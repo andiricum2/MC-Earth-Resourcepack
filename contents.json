@@ -9631,6 +9631,9 @@
             "path": "textures/entity/tappable_stone_mound.png"
         }, 
         {
+            "path": "textures/entity/tappable_sand_mound.png"
+        }, 
+        {
             "path": "textures/entity/beacon_beam.png"
         }, 
         {
@@ -12634,6 +12637,15 @@
             "path": "entity/tappable_stone_mound_a.ent.json"
         }, 
         {
+            "path": "entity/tappable_sand_mound_a.ent.json"
+        },
+        {
+            "path": "entity/tappable_sand_mound_b.ent.json"
+        },
+        {
+            "path": "entity/tappable_sand_mound_c.ent.json"
+        },
+        {
             "path": "adventures/adventure_metadata.json"
         }, 
         {
@@ -13439,6 +13451,15 @@
         }, 
         {
             "path": "models/entity/stone_mound_c.geo.json"
+        }, 
+        {
+            "path": "models/entity/sand_mound_a.geo.json"
+        },
+        {
+            "path": "models/entity/sand_mound_b.geo.json"
+        }, 
+        {
+            "path": "models/entity/sand_mound_c.geo.json"
         }, 
         {
             "path": "models/entity/ar_sign.geo.json"
@@ -14690,6 +14711,216 @@
         }, 
         {
             "path": "tappables/stone_mound/sequence/stone_mound_b_08.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sand_mound_a.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sand_mound_c.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sand_mound_b.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_tappable_tapped.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_mound_a_tap_map.geo.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_mound_a_tap_map.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_tappable_mapSpawn.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_mound_b_tap_map.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_tappable_mapDespawn.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_mound_c_tap_map.geo.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_mound_c_tap_map.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_tappable_awardTransition.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/map/sand_mound_b_tap_map.geo.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_04.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_tap_seq.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_tap_seq_epic.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_05.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_tap_5.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_07.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_award.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_tap_seq_rare.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_tap_seq.geo.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_06.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_02.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_03.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_01.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_tap_3.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_tap_seq.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_tap_seq_rare.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_tap_seq_rare.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_tap_seq_epic.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_tap_seq.geo.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_tap_4.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_08.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_award_transition.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_08.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_tap_seq.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_tap_seq_epic.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_tap_2.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_03.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tappable_enter.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_tap_seq.geo.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_06.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_07.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_02.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_tap_seq.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_05.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_04.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_tap_7.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_01.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_tap_seq_epic.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_05.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_01.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_tap_seq_rare.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_04.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_06.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_tap_1.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_tap_seq_epic.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_03.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_02.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_07.png"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tappable_idle.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_c_tap_seq_rare.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_tap_seq.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_tap_6.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_tap_seq_epic.vig.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_tap_seq_award_loop.anim.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_tap_seq.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_a_tap_seq_rare.ent.json"
+        }, 
+        {
+            "path": "tappables/sand_mound/sequence/sand_mound_b_08.png"
         }, 
         {
             "path": "tappables/squid/squid_tappable.png"

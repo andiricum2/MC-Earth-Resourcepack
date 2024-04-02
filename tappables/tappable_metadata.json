@@ -8,6 +8,11 @@
       "genoa:stone_mound_b_tappable_map",
       "genoa:stone_mound_c_tappable_map"
     ],
+    "Sand_Mine": [
+      "genoa:sand_mound_a_tappable_map",
+      "genoa:sand_mound_b_tappable_map",
+      "genoa:sand_mound_c_tappable_map"
+    ],
     "Grassy_Mine": [
       "genoa:grass_mound_a_tappable_map",
       "genoa:grass_mound_b_tappable_map",
@@ -66,6 +71,21 @@
       "genoa:stone_mound_c_tappable_sequence_vignette",
       "genoa:stone_mound_c_tappable_sequence_rare_vignette",
       "genoa:stone_mound_c_tappable_sequence_epic_vignette"
+    ],
+    "genoa:sand_mound_a_tappable_map": [
+      "genoa:sand_mound_a_tappable_sequence_vignette",
+      "genoa:sand_mound_a_tappable_sequence_rare_vignette",
+      "genoa:sand_mound_a_tappable_sequence_epic_vignette"
+    ],
+    "genoa:sand_mound_b_tappable_map": [
+      "genoa:sand_mound_b_tappable_sequence_vignette",
+      "genoa:sand_mound_b_tappable_sequence_rare_vignette",
+      "genoa:sand_mound_b_tappable_sequence_epic_vignette"
+    ],
+    "genoa:sand_mound_c_tappable_map": [
+      "genoa:sand_mound_c_tappable_sequence_vignette",
+      "genoa:sand_mound_c_tappable_sequence_rare_vignette",
+      "genoa:sand_mound_c_tappable_sequence_epic_vignette"
     ],
     "genoa:grass_mound_a_tappable_map": [
       "genoa:grass_mound_a_tappable_sequence_vignette",

@@ -95,6 +95,27 @@
       }
     }
   },
+  "Sand_Mine": {
+    "actor_names": [
+      "genoa:sand_mound_a_tappable_map",
+      "genoa:sand_mound_b_tappable_map",
+      "genoa:sand_mound_c_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.stone.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.stone.expire",
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
   "Grassy_Mine": {
     "actor_names": [
       "genoa:grass_mound_a_tappable_map",

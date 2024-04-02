@@ -1,0 +1,44 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:sand_mound_a_tappable_sequence_epic",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+        "default": "tappables/sand_mound/sand_mound_a",
+        "tap_1" : "tappables/sand_mound/sequence/sand_mound_a_02",
+        "tap_2" : "tappables/sand_mound/sequence/sand_mound_a_03",
+        "tap_3" : "tappables/sand_mound/sequence/sand_mound_a_05",
+        "tap_4" : "tappables/sand_mound/sequence/sand_mound_a_06",
+        "tap_5" : "tappables/sand_mound/sequence/sand_mound_a_07",
+        "tap_6" : "tappables/sand_mound/sequence/sand_mound_a_08",
+        "tap_7" : "tappables/sand_mound/sequence/sand_mound_a_08"
+      },
+      "geometry": {
+        "default": "geometry.sand_mound_a_tappable_sequence"
+      },
+      "animations": {
+        "setup": "animation.genoa_tappable_sequence_setup",
+        "tap_1": "animation.sand_mound_tappable_tap_1",
+        "tap_2": "animation.sand_mound_tappable_tap_2",
+        "tap_3": "animation.sand_mound_tappable_tap_3",
+        "tap_4": "animation.sand_mound_tappable_tap_4",
+        "tap_5": "animation.sand_mound_tappable_tap_5",
+        "tap_6": "animation.sand_mound_tappable_tap_6",
+        "tap_7": "animation.sand_mound_tappable_tap_7",
+        "enter": "animation.sand_mound_tappable_enter",
+        "idle" : "animation.sand_mound_tappable_idle",
+        "award_transition": "animation.sand_mound_tappable_award_transition",
+        "award_loop": "animation.sand_mound_tappable_award_loop",
+        "award": "animation.sand_mound_tappable_award"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.genoa_tappable_sequence_setup" }
+      ],
+      "render_controllers": [ "controller.render.genoa_tappable_sequence_texture_array_epic"  ]
+    }
+  }
+}

@@ -2532,6 +2532,7 @@
   "textures/entity/sign_spruce", 
   "textures/entity/lead_rope", 
   "textures/entity/tappable_stone_mound", 
+  "textures/entity/tappable_sand_mound", 
   "textures/entity/beacon_beam", 
   "textures/entity/chicken_tappable", 
   "textures/entity/sign_darkoak", 

@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:sand_mound_c_tappable_map",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default": "tappables/sand_mound/sand_mound_c"
+      },
+      "geometry": {
+        "default": "geometry.sand_mound_c_tappable_map"
+      },
+      "animations": {
+        "tapped": "animation.sand.tappable.tapped",
+        "map_spawn": "animation.sand.tappable.mapSpawn",
+        "map_despawn": "animation.sand.tappable.mapDespawn",
+        "award_transition": "animation.sand.tappable.awardTransition"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.tappable" }
+      ],
+      "render_controllers": [ "controller.render.tappable" ]
+    }
+  }
+}
