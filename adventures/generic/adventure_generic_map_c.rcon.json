@@ -1,0 +1,82 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.adventure_generic_c_base": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.base",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.base" ]
+    },
+    "controller.render.adventure_generic_c_sign": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.sign",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.sign" ]
+    },
+    "controller.render.adventure_generic_c_chest": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.chest",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.chest" ]
+    },
+    "controller.render.adventure_generic_c_mob_spawner": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.mob_spawner",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.mob_spawner" ]
+    },
+    "controller.render.adventure_generic_c_torches": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.torches",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.torches" ]
+    },
+    "controller.render.adventure_generic_c_iron_bars": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.iron_bars",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.iron_bars" ]
+    },
+    "controller.render.adventure_generic_c_zombie": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.zombie",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.zombie" ]
+    }    
+  }
+}

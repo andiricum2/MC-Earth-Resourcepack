@@ -1,0 +1,73 @@
+{
+  "namespace": "vignette_test",
+
+  "test_screen@genoa_common.genoa_base_screen": {
+    "animation_name": "Tappable Screen",
+    "$screen_animations": "genoa_common.genoa_screen_anims",
+    "$background_animations": "genoa_common.genoa_screen_background_anims",
+    "$screen_content": "vignette_test.content",
+    "screen_visibility": "opaque",
+    "$use_background": false
+  },
+
+  "content": {
+    "type": "panel",
+    "size": ["100%", "100%"],
+
+    "controls": [
+      {
+        "input_steal": {
+          "type": "input_panel",
+          "size": [ "100%", "100%" ]
+        }
+      },
+      {
+        "vignette_control": {
+          "type": "custom",
+          "size": [ "100%", "100%" ],
+          "layer": 15,
+          "renderer": "vignette",
+          "vignette_scene": "$vignette_scene",
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_property_name": "#vignette_id",
+              "target_property_name": "#vignette_id",
+              "invoke_screen_controller": true
+            }
+          ]
+        }
+      },
+      {
+        "main_content": {
+          "type": "panel",
+          "size": [ "100%", "100%" ],
+          "bindings": [
+            {
+              "binding_name": "(not #tappable_animation_playing)",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+
+          "controls": [
+            {
+              "tappable_region": {
+                "type": "input_panel",
+                "size": [ "100%", "100%" ],
+                "layer": 2,
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.tappable_tapped",
+                    "mapping_type": "pressed"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

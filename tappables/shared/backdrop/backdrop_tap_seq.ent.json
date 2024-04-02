@@ -1,0 +1,35 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:backdrop_vignette",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+        "default": "tappables/shared/backdrop/pixelated_background"
+      },
+      "geometry": {
+        "default": "geometry.background.vignette"
+      },
+      "animations": {
+        "setup": "animation.backdrop_vignette_setup",
+        "backdrop_setup_45_deg": "animation.backdrop_vignette_setup_45_deg",
+        "backdrop_setup_neg_45_deg": "animation.backdrop_vignette_setup_neg_45_deg",
+        "backdrop_setup_225_deg": "animation.backdrop_vignette_setup_225_deg",
+        "backdrop_setup_135_deg": "animation.backdrop_vignette_setup_135_deg",
+        "backdrop_setup_45_tree": "animation.backdrop_vignette_setup_45_deg_tree",
+        "backdrop_setup_135_tree": "animation.backdrop_vignette_setup_135_deg_tree",
+        "backdrop_setup_spruce_tree": "animation.backdrop_vignette_setup_spruce_tree",
+        "backdrop_setup_mobs": "animation.backdrop_vignette_setup_mobs",
+        "backdrop_setup_dressing_room": "animation.backdrop_vignette_setup_dressing_room",
+        "backdrop_setup_level_up": "animation.backdrop_vignette_setup_level_up"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.genoa_tappable_sequence_setup" }
+      ],
+      "render_controllers": [ "controller.render.genoa_tappable_sequence" ]
+    }
+  }
+}

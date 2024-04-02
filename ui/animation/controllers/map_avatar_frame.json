@@ -1,0 +1,28 @@
+{
+  "version": 1,
+
+  "states": {
+    "Default": {
+      "default": true,
+      "triggers": {
+        "XP_avatar_pulse": "Set"
+      }
+    },
+
+    "Set": {
+      "animation": "Set",
+      "triggers": {
+        "onAnimationFinished": "Trigger",
+        "XP_avatar_pulse": "Set"
+      }
+    },
+
+    "Trigger": {
+      "animation": "Trigger",
+      "triggers": {
+        "onAnimationFinished": "Default",
+        "XP_avatar_pulse": "Set"
+      }
+    }
+  }
+}

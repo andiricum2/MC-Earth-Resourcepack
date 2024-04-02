@@ -1,0 +1,42 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.jumbo_rabbit.move": {
+      "states": {
+        "default": {
+          "animations": [ "hop" ],
+          "transitions": [
+            { "idle": "return variable.jump_rotation <= 0;" },
+            { "prehop": "variable.hop_prep" }
+          ]
+        },
+        "idle": {
+          "transitions": [
+            { "default": "return variable.jump_rotation > 0;" },
+            { "prehop": "variable.hop_prep" }
+          ]
+        },
+        "prehop": {
+          "animations": [ "prehop" ],
+          "transitions": [
+            { "default": "!variable.hop_prep" }
+          ]
+        }
+      }
+    },
+    "controller.animation.jumbo_rabbit.blink": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "blink": "variable.is_blinking = 0; variable.return_from_blink = query.life_time + math.random(0, 0.2); variable.last_blink_time = variable.last_blink_time ? variable.last_blink_time : query.life_time; return query.life_time > (variable.last_blink_time + math.random(3, 40));" }
+          ]
+        },
+        "blink": {
+          "transitions": [
+            { "default": "variable.is_blinking = 1; variable.last_blink_time = query.life_time; return query.all_animations_finished && (query.life_time > variable.return_from_blink);" }
+          ]
+        }
+      }
+    }
+  }
+}

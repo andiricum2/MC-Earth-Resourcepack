@@ -1,0 +1,35 @@
+{
+  "version": 1,
+
+  "states": {
+    "EnterLoop": {
+      "default": true,
+      "animation": "Loop",
+      "loop": true,
+      "triggers": {
+        "TriggerCrystalWaitAnimation": "StartWaiting"
+      }
+    },
+
+    "StartWaiting": {
+      "animation": "Activate",
+      "triggers": {
+        "onAnimationFinished": "Waiting",
+        "TriggerCancelWaitAnimation": "EnterLoop"
+      }
+    },
+
+    "Waiting": {
+      "animation": "Activate_Loop",
+      "loop": true,
+      "triggers": {
+        "TriggerCrystalAnimation": "Activate",
+        "TriggerCancelWaitAnimation": "EnterLoop"
+      }
+    },
+
+    "Activate": {
+      "animation": "Activate_Exit"
+    }
+  }
+}

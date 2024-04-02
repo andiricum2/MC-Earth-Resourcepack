@@ -1,0 +1,2319 @@
+{
+  "namespace": "genoa_potions",
+
+  "potions_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_potions.potions_content",
+    "$screen_background_texture": "textures/ui/background_blurred",
+    "$background_scrim_visible": false,
+    "animation_name": "Boosts Screen",
+    "screen_visibility": "opaque"
+  },
+
+  "potions_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "content_stack_panel": {
+          "type": "stack_panel",
+          "layer": 1,
+          "size": [ "100%", "100%" ], //Required
+          "use_new_layout": true,
+          "controls": [
+            {
+              "header_panel@genoa_common.header": {
+                "$header_text": "boost.header",
+                "$header_icon_control": "genoa_potions.boost_header_image"
+              }
+            },
+            {
+              "potions_main_panel": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "controls": [
+                  {
+                    "waiting_boosts_contents@genoa_potions.waiting_boosts_contents": {
+                      "bindings": [
+                        {
+                          "binding_name": "#waiting_for_data",
+                          "binding_name_override": "#visible",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "potions_contents": {
+                      "type": "stack_panel",
+                      "use_new_layout": true,
+                      "size": [ "100%", "100%" ], //required
+                      "bindings": [
+                        {
+                          "binding_name": "(not #waiting_for_data)",
+                          "binding_name_override": "#visible"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "pad_0": {
+                            "type": "panel",
+                            "size": [ "100%", 13 ]
+                          }
+                        },
+                        {
+                          "selection_panel@genoa_potions.selection_panel": {}
+                        },
+                        {
+                          "boosts_name_divider_panel@genoa_common.divider_label": {
+                            "$font_type": "MinecraftSeven",
+                            "$font_size": 18,
+                            "$text_offset": [ 0, -1 ],
+                            "$left_text_pad_size": [ 6, 0 ],
+                            "$right_text_pad_size": [ 6, 0 ],
+                            "$right_bar_pad_size": [ 12, 0 ],
+                            "$left_bar_pad_size": [ 12, 0 ],
+                            "$text_alignment": "center",
+                            "$text": "#boost_tab_text",
+                            "$text_binding": [
+                              {
+                                "binding_name": "$text"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "content_screen_panel@genoa_potions.screen_content_panel": {}
+                        },
+                        {
+                          "scroll_content@genoa_potions.boosts_scroll_stack": {}
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "info_panel_factory": {
+          "type": "factory",
+          "control_ids": {
+            "boost_info_panel": "@genoa_potions.boost_info_panel",
+            "minifig_info_panel": "@genoa_potions.minifig_info_panel"
+          }
+        }
+      },
+      {
+        "active_potion_popup@genoa_potions.active_potion_popup": {}
+      },
+      {
+        "active_minifig_popup@genoa_potions.active_minifig_popup": {}
+      },
+      {
+        "minifig_info_stack@genoa_potions.minifig_info_stack": {
+          "layer": 80
+        }
+      },
+      {
+        "new_boost_mini_active_panel@genoa_potions.new_boost_mini_active_panel": {
+          "layer": 85
+        }
+      },
+      {
+        "activate_boost_load@genoa_potions.scrim": {
+          "bindings": [
+            {
+              "binding_name": "#boost_waiting_for_activation",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "activate_boost_mini_load@genoa_potions.scrim": {
+          "bindings": [
+            {
+              "binding_name": "#boost_mini_waiting_for_activation",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "waiting_boosts_contents": {
+    "type": "panel",
+    "controls": [
+      {
+        "loading_contents@genoa_common.loading_content_stack_panel": {
+          "$loading_text": "boost.loading",
+          "$loading_content_bindings": [
+            {
+              "binding_name": "#show_loading",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "boost_activation_loading": {
+    "type": "image",
+    "$loading_texture|default": "textures/ui/boost_load",
+    "texture": "$loading_texture",
+    "size": [ 50, 50 ],
+    "$uv_size|default": [ 8, 9 ],
+    "uv_size": "$uv_size",
+    "uv": "@genoa_potions.boost_activation_loading_animation",
+    "animation_name": "Loading Icon"
+  },
+
+  "boost_activation_loading_animation": {
+    "anim_type": "flip_book",
+    "initial_uv": [ 0, 0 ],
+    "frame_count": 30,
+    "fps": 30,
+    "reversible": false,
+    "easing": "linear"
+  },
+
+  "screen_content_panel": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "potions_panel@genoa_potions.potions_panel": {
+          "bindings": [
+            {
+              "binding_name": "#potions_button_active",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "minifigs_panel@genoa_potions.minifigs_panel": {
+          "bindings": [
+            {
+              "binding_name": "#mini_figs_button_active",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "potions_panel": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "$active_boosts_collection_name": "#active_potions",
+    "$grid_template": "genoa_potions.active_boost_element",
+    "$not_active_binding_name": "#no_active",
+    "$boost_scrolling_content": "genoa_potions.potions_stack_panel",
+    "controls": [
+      {
+        "active_potions@genoa_potions.active_panel": {}
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 20 ]
+        }
+      },
+      {
+        "store_button@genoa_common.button": {
+          "size": [ 351, 60 ],
+          "$pressed_button_name": "button.store",
+          "$button_content": "genoa_potions.store_button_content",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/collect_button_gradient",
+          "sound_name": "menu.enter.button"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      },
+      {
+        "sunset_information_buttton@genoa_common.button": {
+          "$glow_style": "white",
+          "$button_content": "genoa_common.button_content_text",
+          "$button_text": "sunset.settings.button",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_height": 24,
+          "$pressed_button_name": "button.sunset_info",
+          "size": [ 351, 60 ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/button_confirm"
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ "100%", 8 ]
+        }
+      }
+    ]
+  },
+
+  "minifigs_panel": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "$active_boosts_collection_name": "#active_minifigs",
+    "$grid_template": "genoa_potions.active_boost_element",
+    "$empty_texture": "textures/ui/icons/boosts_icons/mini_icon",
+    "$empty_icon_size": [ 38, 38 ],
+    "$button_handler": "button.select_active_minifig",
+    "$not_active_binding_name": "#no_active_minifigs",
+    "controls": [
+      {
+        "active_minifigs@genoa_potions.active_panel": {}
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 20 ]
+        }
+      },
+      {
+        "android_nfc_button@genoa_potions.andoid_info_button": {
+          "visible": "(not $is_ios)"
+        }
+      },
+      {
+        "ios_nfc_button@genoa_potions.ios_nfc_button": {
+          "visible": "$is_ios"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      },
+      {
+        "sunset_information_buttton@genoa_common.button": {
+          "$glow_style": "white",
+          "$button_content": "genoa_common.button_content_text",
+          "$button_text": "sunset.settings.button",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_height": 24,
+          "$pressed_button_name": "button.sunset_info",
+          "size": [ 351, 60 ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/button_confirm"
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ "100%", 8 ]
+        }
+      }
+    ]
+  },
+
+  "selection_panel": {
+    "type": "panel",
+    "size": [ "100%", 36 ],
+    "controls": [
+      {
+        "selection_panel_foreground": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%", "100%" ], //Required
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 12, "100%" ]
+              }
+            },
+            {
+              "potions_button@genoa_potions.selection_button": {
+                "size": [ "fill", "100%" ],
+                "$button_icon_alpha": 0.5,
+                "$button_image_texture": "textures/ui/icons/boosts_icons/boost_icon",
+                "$pressed_button_name": "button.potions",
+                "$selection_button_visible_binding_name": "#potions_button_active"
+              }
+            },
+            {
+              "mini_fig_button@genoa_potions.selection_button": {
+                "size": [ "fill", "100%" ],
+                "$button_icon_alpha": 0.5,
+                "$button_image_texture": "textures/ui/icons/boosts_icons/mini_icon",
+                "$pressed_button_name": "button.mini_figs",
+                "$selection_button_visible_binding_name": "#mini_figs_button_active"
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 12, "100%" ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "selection_button": {
+    "type": "panel",
+    "controls": [
+      {
+        "button@genoa_common.button": {
+          "size": [ 175, 36 ],
+          "$button_content": "genoa_challenges.button_icon",
+          "$background_style": "image",
+          "$bevel_texture": "",
+          "$glow_enabled": false,
+          "$shadow_enabled": false,
+          "$button_icon_alpha": 1.0,
+          "$background_alpha": 0.5,
+          "$button_background_image_texture": "textures/ui/9_slice/label_simple",
+          "bindings": [
+            {
+              "binding_name": "$selection_button_visible_binding_name",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "button_inactive": {
+          "type": "input_panel",
+          "size": [ "100%", 40 ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "$pressed_button_name",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$selection_button_visible_binding_name",
+              "binding_name_override": "(not #visible)"
+            }
+          ],
+          "controls": [
+            { "text@genoa_potions.button_icon": {} }
+          ]
+        }
+      }
+    ]
+  },
+
+  "boosts_name_divider_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ 351, 15 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 12, "100%" ]
+        }
+      },
+      {
+        "divider_1@genoa_common.white": {
+          "size": [ "fill", 3 ],
+          "alpha": 0.2
+        }
+      },
+      {
+        "pad_div_label_0": {
+          "type": "panel",
+          "size": [ 6, 0 ]
+        }
+      },
+      {
+        "boosts_tab_name": {
+          "type": "label",
+          "size": [ "default", 20 ],
+          "text": "#boost_tab_text",
+          "text_alignment": "center",
+          "override_height": 18,
+          "font_type": "MinecraftSeven",
+          "bindings": [
+            {
+              "binding_name": "#boost_tab_text"
+            }
+          ]
+        }
+      },
+      {
+        "pad_div_label_1": {
+          "type": "panel",
+          "size": [ 6, 0 ]
+        }
+      },
+      {
+        "divider_2@genoa_common.white": {
+          "size": [ "fill", 3 ],
+          "alpha": 0.2
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 12, "100%" ]
+        }
+      }
+    ]
+  },
+
+  "button_icon": {
+    "type": "image",
+    "size": [ 21, 24 ],
+    "texture": "$button_image_texture",
+    "$button_icon_alpha|default": 1.0,
+    "alpha": "$button_icon_alpha"
+  },
+
+  "active_panel": {
+    "type": "stack_panel",
+    "size": [ "100%cm", "100%c" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "container": {
+          "type": "panel",
+          "size": [ 350, 71 ],
+          "controls": [
+            {
+              "grid_panel": {
+                "type": "panel",
+                "size": [ 350, "100%cm" ],
+                //Required for selecting when popup is present
+                "layer": 2,
+                "controls": [
+                  {
+                    "active_boosts_grid": {
+                      "type": "grid",
+                      "size": [ "100%+5px", "100%c" ],
+                      "grid_dimensions": [ 5, 1 ],
+                      "collection_name": "$active_boosts_collection_name",
+                      "grid_item_template": "$grid_template",
+                      "anchor_to": "top_middle",
+                      "anchor_from": "top_middle"
+                    }
+                  },
+                  {
+                    "no_active_boosts_panel": {
+                      "type": "image",
+                      "layer": 2,
+                      "size": [ "100%c + 10px", 30 ],
+                      "texture": "textures/ui/9_slice/label_simple",
+                      "alpha": 0.8,
+                      "controls": [
+                        {
+                          "message_panel": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [ "100%c", "100%cm" ],
+                            "use_new_layout": true,
+                            "controls": [
+                              {
+                                "message": {
+                                  "type": "label",
+                                  "text": "boost.no_active.message",
+                                  "offset": [ 0, -3 ],
+                                  "text_alignment": "center",
+                                  "font_type": "MinecraftSeven",
+                                  "override_height": 14
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "$not_active_binding_name",
+                          "binding_name_override": "#visible",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "info_button_icon": {
+    "type": "image",
+    "size": [ 20, 20 ],
+    "texture": "textures/ui/info_icon",
+    "fill": true
+  },
+
+  "active_boost_element": {
+    "type": "panel",
+    "animation_name": "Boosts Panel",
+    "size": [ "100%cm", "100%cm" ],
+    "$empty_texture|default": "textures/ui/icons/boosts_icons/boost_icon",
+    "$empty_icon_size|default": [ 24, 28 ],
+    "$button_handler|default": "button.select_active_potion",
+    "controls": [
+      {
+        "active_boost_border_panel": {
+          "type": "panel",
+          "size": [ 71, 71 ],
+          "controls": [
+            {
+              "active_boost_panel": {
+                "type": "input_panel",
+                "size": [ 66, 66 ],
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "$button_handler",
+                    "mapping_type": "pressed"
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ],
+                "controls": [
+                  {
+                    "boost_grid_background@genoa_common.white": {
+                      "animation_name": "Boost Icon Parent",
+                      "texture": "textures/ui/crafting_smelting_recipe_grid_none_bg",
+                      "controls": [
+                        {
+                          "slot_bevel@genoa_common.white": {
+                            "texture": "textures/ui/slot_bevel_simple",
+                            "controls": [
+                              {
+                                "boost_empty_slot_img": {
+                                  "type": "image",
+                                  "fill": true,
+                                  "size": "$empty_icon_size",
+                                  "texture": "$empty_texture",
+                                  "color": "black",
+                                  "alpha": 0.2,
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#boost_slot_hidden",
+                                      "binding_name_override": "#visible",
+                                      "binding_collection_name": "$active_boosts_collection_name",
+                                      "binding_type": "collection"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "boost_img_active@genoa_inventory_common.genoa_item_renderer": {
+                                  "size": [ 56, 56 ],
+                                  "animation_name": "Boost Icon",
+                                  "$item_collection_name": "$active_boosts_collection_name",
+                                  "bindings": [
+                                    {
+                                      "binding_type": "collection_details",
+                                      "binding_collection_name": "$item_collection_name"
+                                    },
+                                    {
+                                      "binding_name": "#item_id_guid",
+                                      "binding_type": "collection",
+                                      "binding_collection_name": "$item_collection_name",
+                                      "binding_condition": "$binding_condition"
+                                    },
+                                    {
+                                      "binding_name": "#boost_slot_active_visible",
+                                      "binding_name_override": "#visible",
+                                      "binding_collection_name": "$active_boosts_collection_name",
+                                      "binding_type": "collection"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "boost_img_removing@genoa_inventory_common.genoa_item_renderer": {
+                                  //Visible is on by default, and without this the removing animation is playing by default
+                                  "visible": false,
+                                  "size": [ 56, 56 ],
+                                  "animation_name": "Boost Icon Removing",
+                                  "$item_collection_name": "$active_boosts_collection_name",
+                                  "bindings": [
+                                    {
+                                      "binding_type": "collection_details",
+                                      "binding_collection_name": "$item_collection_name"
+                                    },
+                                    {
+                                      "binding_name": "#item_id_guid",
+                                      "binding_type": "collection",
+                                      "binding_collection_name": "$item_collection_name",
+                                      "binding_condition": "$binding_condition"
+                                    },
+                                    {
+                                      "binding_name": "#boost_slot_removing_visible",
+                                      "binding_name_override": "#visible",
+                                      "binding_collection_name": "$active_boosts_collection_name",
+                                      "binding_type": "collection"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "tooltip_img": {
+                      "type": "image",
+                      "offset": [ 0, 45 ],
+                      "texture": "textures/ui/tool_tip_tail_dark",
+                      "size": [ 35, 25 ],
+                      "layer": 68,
+                      "bindings": [
+                        {
+                          "binding_name": "#tool_tip_visible",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "$active_boosts_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "active_boost_time_remaining": {
+          "type": "image",
+          "size": [ 66, 24 ],
+          "offset": [ 0, -7 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 2,
+          "texture": "textures/ui/9_slice/label_simple",
+          "$time_remaining": "#time_remaining",
+          "alpha": 0.8,
+          "controls": [
+            {
+              "time_remaining": {
+                "type": "label",
+                "text": "$time_remaining",
+                "offset": [ 0, -3 ],
+                "text_alignment": "center",
+                "font_type": "MinecraftSeven",
+                "override_height": 14,
+                "bindings": [
+                  {
+                    "binding_name": "$time_remaining",
+                    "binding_collection_name": "$active_boosts_collection_name",
+                    "binding_type": "collection",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#time_visible",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$active_boosts_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#selected_table_start_job_animation",
+        "binding_type": "collection",
+        "binding_collection_name": "$active_boosts_collection_name",
+        "binding_name_override": "#selected",
+        "binding_condition": "always_when_visible"
+      }
+    ]
+  },
+
+  "boosts_scroll_stack": {
+    "type": "stack_panel",
+    "size": [ "100%", "fill" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "fading_bars_boost@genoa_common.fading_scroll_mask_bars": {
+          "$source_control_name_override": "boost_mini_scroll_view",
+          "bindings": [
+            {
+              "binding_name": "#potions_button_active",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "fading_bars_potions@genoa_common.fading_scroll_mask_bars": {
+          "$source_control_name_override": "potions_scroll_view",
+          "bindings": [
+            {
+              "binding_name": "#mini_figs_button_active",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "scrolling_potions@common.scrolling_panel": {
+          "$show_background": false,
+          "$scroll_fade_distance": 4.0,
+          "$scrolling_content": "genoa_potions.potions_stack_panel",
+          "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+          "offset": [ 0, -2 ],
+          "bindings": [
+            {
+              "binding_name": "#potions_button_active",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "$scroll_view_name": "boost_mini_scroll_view"
+        }
+      },
+      {
+        "scrolling_boost_minis@common.scrolling_panel": {
+          "$show_background": false,
+          "$scroll_fade_distance": 4.0,
+          "$scrolling_content": "genoa_potions.minifigs_stack_panel",
+          "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+          "offset": [ 0, -1 ],
+          "bindings": [
+            {
+              "binding_name": "#mini_figs_button_active",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "$scroll_view_name": "potions_scroll_view"
+        }
+      }
+    ]
+  },
+
+  "potions_stack_panel": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "potion_factory": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "$potion_collection_name": "#potion_collection",
+          "collection_name": "$potion_collection_name",
+          "factory": {
+            "name": "each_category",
+            "control_name": "genoa_potions.potion_category_panel"
+          },
+          "bindings": [
+            {
+              "binding_name": "#potion_categories",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 26 ]
+        }
+      }
+    ]
+  },
+
+  "minifigs_stack_panel": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "minifig_category_factory": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "$minifig_collection_name": "#minifigs_collection",
+          "collection_name": "$minifig_collection_name",
+          "factory": {
+            "name": "each_category",
+            "control_name": "genoa_potions.minifig_category_panel"
+          },
+          "bindings": [
+            {
+              "binding_name": "#minifig_categories_count",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 26 ]
+        }
+      }
+    ]
+  },
+
+  "minifigs_grid": {
+    "type": "grid",
+    "size": [ "100%c", "100%c" ],
+    "collection_name": "#minifigs_sub_collection",
+    "grid_item_template": "genoa_potions.minifigs_grid_element",
+    "grid_dimension_binding": "#category_grid_size",
+    "bindings": [
+      {
+        "binding_name": "#category_grid_size"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "minifigs_grid_element": {
+    "type": "panel",
+    "size": [ 119, 119 ],
+    "controls": [
+      {
+        "content@genoa_potions.minifigs_grid_element_content": {}
+      }
+    ]
+  },
+
+  "minifigs_grid_element_content": {
+    "type": "panel",
+    "bindings": [
+      {
+        "binding_name": "#minifig_visible",
+        "binding_name_override": "#visible",
+        "binding_collection_name": "#minifigs_collection"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "controls": [
+      {
+        "minifigs_input_panel": {
+          "type": "input_panel",
+          "size": [ 110, 110 ],
+          "bindings": [
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.select_minifig_collection",
+              "mapping_type": "pressed"
+            }
+          ],
+          "controls": [
+            {
+              "minifig_collected_content@genoa_potions.minifig_collected_content": {
+                "bindings": [
+                  {
+                    "binding_name": "#minifig_redeemed",
+                    "binding_name_override": "#visible",
+                    "binding_collection_name": "#minifigs_collection"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            },
+            {
+              "minifig_not_collected_content@genoa_potions.minifig_not_collected_content": {
+                "bindings": [
+                  {
+                    "binding_name": "#minifig_redeemed",
+                    "binding_name_override": "(not #visible)",
+                    "binding_collection_name": "#minifigs_collection"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            },
+            {
+              "minifig_xp_panel@genoa_potions.minifig_xp_panel": {
+                "layer": 2,
+                "offset": [ -15, 0 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "minifig_collected_content": {
+    "type": "image",
+    "texture": "textures/ui/9_slice/slot_buildplate",
+    "fill": true,
+    "controls": [
+      {
+        "minifig_spotlight": {
+          "type": "image",
+          "texture": "textures/ui/profile/spotlight",
+          "fill": true,
+          "controls": [
+            {
+              "minifig_texture@genoa_inventory_common.genoa_item_renderer": {
+                "size": [ 92, 92 ],
+                "bindings": [
+                  {
+                    "binding_name": "#minifig_texture",
+                    "binding_name_override": "#item_id_guid"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "minifig_not_collected_content": {
+    "type": "image",
+    "texture": "textures/ui/9_slice/slot_buildplate",
+    "alpha": 0.5,
+    "fill": true,
+    "controls": [
+      {
+        "minifig_texture@genoa_inventory_common.genoa_item_renderer": {
+          "size": [ 92, 92 ],
+          "alpha": 0.5,
+          "bindings": [
+            {
+              "binding_name": "#minifig_texture",
+              "binding_name_override": "#item_id_guid"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+
+  "minifig_xp_panel": {
+    "type": "image",
+    "anchor_from": "bottom_left",
+    "anchor_to": "bottom_left",
+    "size": [ 100, 24 ],
+    "texture": "textures/ui/rewards_tap_banner",
+    "bindings": [
+      {
+        "binding_name": "#minifig_redeemed",
+        "binding_name_override": "(not #visible)",
+        "binding_collection_name": "#minifigs_collection"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "controls": [
+      {
+        "minifig_xp_stack": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%c", "100%" ],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "offset": [ 10, -2 ],
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 4, 0 ]
+              }
+            },
+            {
+              "xp_image": {
+                "type": "image",
+                "texture": "textures/ui/icons/item_icons/xp",
+                "size": [ 16, 16 ]
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 10, 0 ]
+              }
+            },
+            {
+              "xp_label@genoa_common.shadow_text_panel": {
+                "$override_height": 14,
+                "$text_binding_name": "#minifig_xp_text",
+                "offset": [ 0, -3 ],
+                "$bindings": [
+                  {
+                    "binding_name": "$text_binding_name"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "minifig_category_panel": {
+    "type": "stack_panel",
+    "size": [ 350, "100%c" ],
+    "controls": [
+      {
+        "minifig_category_panel@genoa_common.divider_label": {
+          "$font_type": "MinecraftSeven",
+          "$font_size": 20,
+          "$text_offset": [ 0, -4 ],
+          "$bars_offset": [ 0, 3 ],
+          "$left_text_pad_size": [ 0, 0 ],
+          "$right_text_pad_size": [ 4, 0 ],
+          "$right_bar_pad_size": [ -1, 0 ],
+          "$text_alignment": "left",
+          "$text": "#minifig_category_name",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_collection_name": "$minifig_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 7 ]
+        }
+      },
+      {
+        "minifig_grid@genoa_potions.minifigs_grid": {}
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 13 ]
+        }
+      }
+    ]
+  },
+
+  "potion_category_panel": {
+    "type": "stack_panel",
+    "size": [ 350, "100%c" ],
+    "controls": [
+      {
+        "potion_category_panel@genoa_common.divider_label": {
+          "$font_type": "MinecraftSeven",
+          "$font_size": 20,
+          "$text_offset": [ 0, -4 ],
+          "$bars_offset": [ 0, 3 ],
+          "$left_text_pad_size": [ 0, 0 ],
+          "$right_text_pad_size": [ 4, 0 ],
+          "$right_bar_pad_size": [ -1, 0 ],
+          "$text_alignment": "left",
+          "$text": "#potion_category",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_collection_name": "$potion_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 7 ]
+        }
+      },
+      {
+        "potions_strength_grid": {
+          "type": "grid",
+          "size": [ "100%+10px", "100%c" ],
+          "grid_dimensions": [ 3, 1 ],
+          "collection_name": "#potions_strengths",
+          "grid_item_template": "genoa_potions.potion_strength_button"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 13 ]
+        }
+      }
+    ]
+  },
+
+  "potion_strength_button": {
+    "type": "panel",
+    "size": [ "100%cm", "100%cm" ],
+    "controls": [
+      {
+        "potion_button@genoa_common.button": {
+          "$pressed_button_name": "button.select_potion",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_option",
+          "$glow_style": "white",
+          "$button_content": "genoa_potions.potion_strength_button_content",
+          "sound_name": "inmenu.child.button",
+          "$bevel_texture_bindings": [
+            {
+              "binding_name": "#potion_texture_inactive",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_name": "#potion_alpha_inactive",
+              "binding_name_override": "#alpha"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "$glow_bindings": [
+            {
+              "binding_name": "(not #potion_item_inactive)",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "$shadow_bindings": [
+            {
+              "binding_name": "(not #potion_item_inactive)",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "size": [ 110, 110 ],
+          "bindings": [
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "potion_strength_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "inactive_overlay@genoa_common.white": {
+          "layer": 10,
+          "color": "black",
+          "alpha": 0.65,
+          "bindings": [
+            {
+              "binding_name": "#potion_item_inactive",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "potion_image@genoa_inventory_common.genoa_item_renderer": {
+          "size": [ 92, 92 ],
+          "bindings": [
+            {
+              "binding_name": "#item_id_guid"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "quantity@genoa_common.shadow_text_panel": {
+          "offset": [ -3, -4 ],
+          "$text_alignment": "right",
+          "$text_binding_name": "#potion_collection_quantity",
+          "anchor_from": "bottom_right",
+          "anchor_to": "bottom_right",
+          "$bindings": [
+            {
+              "binding_name": "$text_binding_name"
+            },
+            {
+              "binding_name": "#potion_collection_quantity_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "pip": {
+          "type": "image",
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "size": [ 24, 24 ],
+          "offset": [ 10, -10 ],
+          "texture": "textures/ui/icons/item_icons/new",
+          "bindings": [
+            {
+              "binding_name": "#show_pip",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "gold_boost_particles": {
+          "type": "panel",
+          "animation_name": "Gold Boost Particles",
+          "bindings": [
+            {
+              "binding_name": "#gold_particle_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "diamond_boost_particles": {
+          "type": "panel",
+          "animation_name": "Diamond Boost Particles",
+          "bindings": [
+            {
+              "binding_name": "#diamond_particle_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "store_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "store_icon": {
+          "type": "image",
+          "texture": "textures/ui/header_icons/store",
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "$store_icon_size|default": [ 72, 72 ],
+          "size": "$store_icon_size",
+          "offset": [ -10, 0 ]
+        }
+      },
+      {
+        "store_label": {
+          "type": "label",
+          "$store_label_size|default": [ 201, 50 ],
+          "size": "$store_label_size",
+          "$store_text|default": "boost.store",
+          "text": "$store_text",
+          "override_height": 25,
+          "font_type": "MinecraftTen",
+          "text_alignment": "center"
+        }
+      }
+    ]
+  },
+
+  "active_potion_popup@genoa_potions.active_boost_popup": {
+    "$active_boost_content": "genoa_potions.active_boost_popup_content",
+    "$hide_button_mapping": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.hide_active_potion_popup",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_cancel",
+        "to_button_id": "button.hide_active_potion_popup",
+        "mapping_type": "global"
+      }
+    ],
+    "$visibility_bindings": [
+      {
+        "binding_name": "#active_popup_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "$remove_boost_button_visible_bindings": [
+      {
+        "binding_name": "#active_potion_removable",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "$active_boost_name": "#active_potion_name",
+    "$active_boost_description": "#active_potion_description",
+    "$remove_boost_button_name": "button.remove_potion"
+  },
+
+  "active_minifig_popup@genoa_potions.active_boost_popup": {
+    "$active_boost_content": "genoa_potions.active_boost_popup_content",
+    "$hide_button_mapping": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.hide_active_minifig_popup",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_cancel",
+        "to_button_id": "button.hide_active_minifig_popup",
+        "mapping_type": "global"
+      }
+    ],
+    "$visibility_bindings": [
+      {
+        "binding_name": "#active_minifig_popup_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "$remove_boost_button_visible_bindings": [
+      {
+        "binding_name": "#active_boost_mini_removable",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "$active_boost_name": "#active_minifig_name",
+    "$active_boost_description": "#active_minifig_description",
+    "$remove_boost_button_name": "button.remove_minifig"
+  },
+
+  "active_boost_popup": {
+    "type": "input_panel",
+    "layer": 56,
+    "controls": [
+      {
+        "popup@$active_boost_content": {
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [ 0, 251 ]
+        }
+      }
+    ],
+    "button_mappings": "$hide_button_mapping",
+    "bindings": "$visibility_bindings"
+  },
+
+  "active_boost_popup_content": {
+    "type": "input_panel",
+    "size": [ 330, "100%c" ],
+    "layer": 15,
+    "button_mappings": [
+      {
+        "mapping_type": "pressed"
+      }
+    ],
+    "controls": [
+      {
+        "active_boost_popup_background@genoa_common.white": {
+          "size": [ "100%", "100%c" ],
+          "color": "$genoa_dark_button_color",
+          "controls": [
+            {
+              "panel_bevel": {
+                "type": "image",
+                "size": [ "100%", "100%c" ],
+                "fill": true,
+                "texture": "textures/ui/tile_bevel_dark",
+                "controls": [
+                  {
+                    "popup_content": {
+                      "type": "stack_panel",
+                      "use_new_layout": true,
+                      "controls": [
+                        {
+                          "pad_0": {
+                            "type": "panel",
+                            "size": [ "100%", 5 ]
+                          }
+                        },
+                        {
+                          "header": {
+                            "type": "label",
+                            "text": "$active_boost_name",
+                            "override_height": 22,
+                            "anchor_from": "left_middle",
+                            "anchor_to": "left_middle",
+                            "offset": [ 15, 0 ],
+                            "color": "$genoa_tool_tip_title_font_color",
+                            "bindings": [
+                              {
+                                "binding_name": "$active_boost_name"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "pad_1": {
+                            "type": "panel",
+                            "size": [ "100%", 5 ]
+                          }
+                        },
+                        {
+                          "description": {
+                            "type": "label",
+                            "text": "$active_boost_description",
+                            "override_height": 19,
+                            "size": [ 300, "default" ],
+                            "font_type": "smooth",
+                            "bindings": [
+                              {
+                                "binding_name": "$active_boost_description"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "pad_2": {
+                            "type": "panel",
+                            "size": [ "100%", 15 ]
+                          }
+                        },
+                        {
+                          "remove_boost_button@genoa_common.button": {
+                            "size": [ 299, 50 ],
+                            "$pressed_button_name": "$remove_boost_button_name",
+                            "$button_content": "genoa_potions.remove_button_content",
+                            "$background_style": "color",
+                            "$glow_style": "white",
+                            "$background_color": "$genoa_settings_slider_background_color",
+                            "bindings": "$remove_boost_button_visible_bindings",
+                            "sound_name": "cancel.button"
+                          }
+                        },
+                        {
+                          "pad_3": {
+                            "type": "panel",
+                            "size": [ "100%", 15 ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "boost_info_panel@genoa_common.item_info_panel": {
+    "$info_close_button": "button.boost_info_close",
+    "$attributes_stack_control": "genoa_potions.duration_effect_stack",
+    "$action_button_control": "genoa_potions.boost_popup_use_button_panel",
+    "$last_padding_visible": true,
+
+    "$boost_has_duration": "#has_duration",
+    "$boost_duration": "#potion_duration",
+    "$boost_effect_visible": "#boost_effect_visible",
+    "$boost_effect_value": "#boost_effect_value",
+    "$boost_effect_texture": "#boost_effect_texture",
+    "$boost_pressed_button_name": "button.use_potion",
+    "$boost_store_pressed_button_name": "button.buy_more"
+  },
+
+  "minifig_info_panel@genoa_common.item_info_panel": {
+    "$info_close_button": "button.minifig_info_close",
+    "$attributes_stack_control": "genoa_potions.duration_effect_stack",
+    "$quantity_visible": false,
+    "$boost_has_duration": "#duration_visible",
+    "$boost_duration": "#minifig_duration",
+    "$boost_effect_visible": "#minifig_effect_visible",
+    "$boost_effect_value": "#minifig_effect_value",
+    "$boost_effect_texture": "#minifig_effect_texture",
+    "$boost_pressed_button_name": "button.dummy"
+  },
+
+  "scrim@genoa_common.white": {
+    "layer": 80,
+    "color": "black",
+    "alpha": 0.75,
+    "controls": [
+      {
+        "input": {
+          "type": "input_panel",
+          "cancel_all_input": true,
+          "button_mappings": [
+            {
+              "mapping_type": "pressed"
+            }
+          ]
+        }
+      },
+      {
+        "load_active_boost_mini@genoa_potions.boost_activation_loading": {
+          "$loading_texture": "textures/ui/mini_load",
+          "$uv_size": [ 10, 11 ],
+          "bindings": [
+            {
+              "binding_name": "#boost_mini_waiting_for_activation",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+          "controls": [
+            {
+              "minifig_loading_text": {
+                "type": "label",
+                "font_type": "MinecraftTen",
+                "override_height": 25,
+                "offset": [ 0, 35 ],
+                "text": "minifig.loading.text"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "load_active_boost@genoa_potions.boost_activation_loading": {
+          "bindings": [
+            {
+              "binding_name": "#boost_waiting_for_activation",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "duration_effect_stack": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%c", "100%cm" ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "use_new_layout": true,
+    "bindings": [
+      {
+        "binding_name": "$boost_has_duration",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "clock_icon": {
+          "type": "image",
+          "size": [ 32, 32 ],
+          "texture": "textures/ui/timer"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 5, 32 ]
+        }
+      },
+      {
+        "duration_label": {
+          "type": "label",
+          "text": "$boost_duration",
+          "override_height": 20,
+          "bindings": [
+            {
+              "binding_name": "$boost_duration"
+            }
+          ]
+        }
+      },
+      {
+        "effect_stack_panel@genoa_potions.effect_stack_panel": {}
+      }
+    ]
+  },
+
+  "effect_stack_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ "100%c", "100%cm" ],
+    "controls": [
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 18, 0 ]
+        }
+      },
+      {
+        "effect_icon": {
+          "type": "image",
+          "size": [ 32, 32 ],
+          "fill": true,
+          "texture": "$boost_effect_texture",
+          "bindings": [
+            {
+              "binding_name": "$boost_effect_texture",
+              "binding_name_override": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 5, 0 ]
+        }
+      },
+      {
+        "effect_label": {
+          "type": "label",
+          "text": "$boost_effect_value",
+          "override_height": 20,
+          "bindings": [
+            {
+              "binding_name": "$boost_effect_value"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "$boost_effect_visible",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "boost_popup_use_button_panel": {
+    "type": "panel",
+    "size": [ 290, "100%c" ],
+    "controls": [
+      {
+        "use_button@genoa_common.button": {
+          "size": [ "100%", 50 ],
+          "visible": "$action_button_visible",
+          "$pressed_button_name": "$boost_pressed_button_name",
+          "$boost_button_text": "boost.use",
+          "$button_content": "genoa_potions.boost_button_content",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/collect_button_gradient"
+        }
+      },
+      {
+        "store_button@genoa_common.button": {
+          "size": [ "100%", 50 ],
+          "visible": "(not $action_button_visible)",
+          "$pressed_button_name": "$boost_store_pressed_button_name",
+          "$store_icon_size": [ 56, 56 ],
+          "$store_label_size": [ "100%", 25 ],
+          "$store_text": "boost.store_buy_more",
+          "$button_content": "genoa_potions.store_button_content",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/collect_button_gradient"
+        }
+      }
+    ]
+  },
+
+  "minifig_info_stack": {
+    "type": "input_panel",
+    "controls": [
+      {
+        "minifig_info_content": {
+          "type": "image",
+          "texture": "textures/ui/secondary_background",
+          "fill": true,
+          "controls": [
+            {
+              "minifigs_info_panel@genoa_potions.minifigs_info_content": {}
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#minifig_info_panel_visible",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "minifigs_info_content": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ], //Required
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 49 ]
+        }
+      },
+      {
+        "minifig_info_header_panel@genoa_potions.minifig_info_header_panel": {}
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 22 ]
+        }
+      },
+      {
+        "steps_scroll_panel": {
+          "size": [ "100%", "fill" ],
+          "type": "panel",
+          "controls": [
+            {
+              "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "$source_control_name_override": "boost_mini_howto"
+              }
+            },
+            {
+              "scrolling_panel@common.scrolling_panel": {
+                "size": [ "100%", "100% - 5px" ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "$show_background": false,
+                "$scroll_fade_distance": 4.0,
+                "$scrolling_content": "genoa_potions.steps_scrolling_content",
+                "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+                "$scroll_view_name": "boost_mini_howto"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "steps_scrolling_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 22 ]
+        }
+      },
+      {
+        "info_image": {
+          "type": "image",
+          "size": [ 266, 266 ],
+          "texture": "textures/ui/key_art/Boosts_Howto"
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 0, 25 ]
+        }
+      },
+      {
+        "divider_panel@genoa_common.divider_label": {
+          "$left_text_pad_size": [ 0, 0 ],
+          "$right_text_pad_size": [ 0, 0 ],
+          "$right_bar_pad_size": [ 13, 0 ],
+          "$left_bar_pad_size": [ 13, 0 ]
+        }
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ 0, 25 ]
+        }
+      },
+      {
+        "minifig_info_step_1_stack@genoa_potions.minifig_info_step_stack": {
+          "$step_text": "boost_mini_step_1",
+          "$step_description": "minifig.info_text_1"
+        }
+      },
+      {
+        "pad_4": {
+          "type": "panel",
+          "size": [ 0, 47 ]
+        }
+      },
+      {
+        "minifig_info_step_2_stack@genoa_potions.minifig_info_step_stack": {
+          "$step_text": "boost_mini_step_2",
+          "$step_description": "minifig.info_text_2_android"
+        }
+      },
+      {
+        "pad_5": {
+          "type": "panel",
+          "size": [ 0, 50 ]
+        }
+      },
+      {
+        "minifig_info_step_3_stack@genoa_potions.minifig_info_step_stack": {
+          "$step_text": "boost_mini_step_3",
+          "$step_description": "minifig.info_text_3_android"
+        }
+      },
+      {
+        "pad_6": {
+          "type": "panel",
+          "size": [ 0, 55 ]
+        }
+      }
+    ]
+  },
+
+  "minifig_info_header_panel": {
+    "type": "panel",
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "size": [ "100%", 25 ],
+    "controls": [
+      {
+        "header_label": {
+          "type": "label",
+          "size": [ "100%", "default" ],
+          "text": "minifig.info_header",
+          "override_height": 25,
+          "text_alignment": "center",
+          "font_type": "MinecraftTen"
+        }
+      },
+      {
+        "close_button@genoa_common.button": {
+          "size": [ 24, 24 ],
+          "offset": [ -21, 0 ],
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "$button_content": "genoa_potions.close_icon",
+          "$pressed_button_name": "button.close_info",
+          "$background_style": "image",
+          "$bevel_texture": "",
+          "$button_background_image_texture": "",
+          "$glow_enabled": false,
+          "$shadow_enabled": false,
+          "sound_name": "submenu.close.button"
+        }
+      }
+    ]
+  },
+
+  "minifig_info_step_stack": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", "100%cm" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 23, 0 ]
+        }
+      },
+      {
+        "step_label": {
+          "type": "label",
+          "size": [ 82, "default" ],
+          "override_height": 18,
+          "text": "$step_text"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 23, 0 ]
+        }
+      },
+      {
+        "step_description": {
+          "type": "label",
+          "size": [ 241, "default" ],
+          "override_height": 18,
+          "text": "$step_description"
+        }
+      }
+    ]
+  },
+
+  "ios_nfc_button@genoa_common.button": {
+    "size": [ 351, 60 ],
+    "$pressed_button_name": "button.activate_ios_nfc",
+    "$override_font_height": 25,
+    "$boost_button_text": "minifig.nfc_ios_button_header",
+    "$button_content": "genoa_potions.boost_button_content",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/collect_button_gradient"
+  },
+
+  "andoid_info_button@genoa_common.button": {
+    "size": [ 351, 60 ],
+    "$boost_button_content_size": [ 227, 50 ],
+    "$pressed_button_name": "button.info",
+    "$override_font_height": 25,
+    "$boost_button_text": "minifig.android_enable_minifig",
+    "$button_content": "genoa_potions.boost_button_content",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/collect_button_gradient",
+    "sound_name": "confirm.button"
+  },
+
+  "close_icon": {
+    "type": "image",
+    "texture": "textures/ui/icons/system_icons/close_secondary",
+    "fill": true
+  },
+
+  "boost_button_content": {
+    "type": "label",
+    "$boost_button_content_size|default": [ "100%", "default" ],
+    "size": "$boost_button_content_size",
+    "text": "$boost_button_text",
+    "$override_font_height|default": 20,
+    "override_height": "$override_font_height",
+    "font_type": "MinecraftTen",
+    "text_alignment": "center",
+    "$boost_button_content_alpha|default": 1.0,
+    "alpha": "$boost_button_content_alpha"
+  },
+
+  "remove_button_content": {
+    "type": "label",
+    "text": "boost.remove",
+    "override_height": 25,
+    "font_type": "MinecraftTen",
+    "text_alignment": "center"
+  },
+
+  "new_boost_mini_active_panel": {
+    "type": "image",
+    "fill": true,
+    "texture": "textures/ui/secondary_background",
+    "animation_name": "Boosts Activated Panel",
+    "controls": [
+      {
+        "title_panel": {
+          "type": "stack_panel",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [ 0, 30 ],
+          "size": [ "100%c", "100%c" ],
+          "use_new_layout": true,
+          "animation_name": "Title Panel",
+          "controls": [
+            {
+              "boost_activated_label_first_line": {
+                "type": "label",
+                "font_type": "MinecraftTen",
+                "override_height": 35,
+                "text_alignment": "center",
+                "text": "boost_mini.activate.message_first_line",
+                "color": "$genoa_gold_text"
+              }
+            },
+            {
+              "boost_activated_label_second_line": {
+                "type": "label",
+                "font_type": "MinecraftTen",
+                "override_height": 35,
+                "text_alignment": "center",
+                "text": "boost_mini.activate.message_second_line",
+                "color": "$genoa_gold_text"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "boost_mini_image_panel": {
+          "type": "panel",
+          "size": [ "100%c", "100%c" ],
+          "offset": [ 0, -50 ],
+          "animation_name": "Boost Mini Image",
+          "controls": [
+            {
+              "boost_mini_large_image@genoa_inventory_common.genoa_item_renderer": {
+                "size": [ 248, 247 ],
+                "bindings": [
+                  {
+                    "binding_name": "#activated_boost_mini_id",
+                    "binding_name_override": "#item_id_guid"
+                  },
+                  {
+                    "binding_name": "#use_boost_mini_large_image",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "boost_mini_small_image@genoa_inventory_common.genoa_item_renderer": {
+                "size": [ 170, 169 ],
+                "offset": [ 0, -25 ],
+                "bindings": [
+                  {
+                    "binding_name": "#activated_boost_mini_id",
+                    "binding_name_override": "#item_id_guid"
+                  },
+                  {
+                    "binding_name": "#use_boost_mini_large_image",
+                    "binding_name_override": "(not #visible)"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "new_boost_mini_active_content@genoa_potions.new_boost_mini_active_content": {
+          "anchor_to": "bottom_middle",
+          "anchor_from": "bottom_middle"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#new_boost_mini_panel_visible",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "new_boost_mini_active_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "info_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "propagate_alpha": true,
+          "bindings": [
+            {
+              "binding_name": "#new_boost_mini_active_info_alpha",
+              "binding_name_override": "#alpha"
+            }
+          ],
+          "controls": [
+            {
+              "info_panel_contents": {
+                "type": "stack_panel",
+                "use_new_layout": true,
+                "size": [ "100%", "100%c" ],
+                "offset": [ 0, -50 ],
+                "animation_name": "Info Panel",
+                "controls": [
+                  {
+                    "active_boost_mini_name": {
+                      "type": "label",
+                      "size": [ "100%", 48 ],
+                      "font_type": "MinecraftSeven",
+                      "override_height": 32,
+                      "text_alignment": "center",
+                      "text": "#active_boost_mini_name",
+                      "bindings": [
+                        {
+                          "binding_name": "#active_boost_mini_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "active_boost_mini_time_effect_stack_panel@genoa_potions.duration_effect_stack": {
+                      "$boost_has_duration": "#active_boost_mini_duration_stack_visible",
+                      "$boost_duration": "#active_boost_mini_duration",
+                      "$boost_effect_visible": "#active_boost_mini_effect_visible",
+                      "$boost_effect_texture": "#active_boost_mini_effect_texture",
+                      "$boost_effect_value": "#active_boost_mini_effect_value"
+                    }
+                  },
+                  {
+                    "boost_mini_time_extension_panel@genoa_potions.boost_mini_time_extension_panel": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "confirm_button_panel": {
+          "type": "panel",
+          "size": [ "100%c", "100%c" ],
+          "controls": [
+            {
+              "active_boost_mini_button@genoa_common.button": {
+                "propagate_alpha": true,
+                "size": [ 343, 60 ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [ 0, -40 ],
+                "$pressed_button_name": "button.active_boost_mini_button_pressed",
+                "$boost_button_text": "challenges.excited",
+                "$button_content": "genoa_potions.boost_button_content",
+                "$background_style": "image",
+                "$button_background_image_texture": "textures/ui/collect_button_gradient",
+                "animation_name": "Confirm Button",
+                "sound_name": "confirm.button",
+                "bindings": [
+                  {
+                    "binding_name": "#new_boost_mini_active_confirm_button_alpha",
+                    "binding_name_override": "#alpha"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "boost_mini_time_extension_panel": {
+    "type": "panel",
+    "size": [ "100%", 63 ],
+    "controls": [
+      {
+        "boost_mini_time_extension_stack_panel@genoa_potions.boost_mini_time_extension_stack_panel": {
+          "bindings": [
+            {
+              "binding_name": "#active_boost_mini_time_extension_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "boost_mini_time_extension_stack_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ "100%c", "100%cm" ],
+    "controls": [
+      {
+        "mini_boost_image@genoa_inventory_common.genoa_item_renderer": {
+          "size": [ 64, 63 ],
+          "bindings": [
+            {
+              "binding_name": "#activated_boost_mini_id",
+              "binding_name_override": "#item_id_guid"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 9, 0 ]
+        }
+      },
+      {
+        "time_added_label": {
+          "type": "label",
+          "font_type": "MinecraftSeven",
+          "override_height": 16,
+          "text_alignment": "center",
+          "text": "boost_mini.activate.time_added"
+        }
+      }
+    ]
+  },
+
+  "boost_header_image": {
+    "type": "panel",
+    "size": [ 88, 88 ],
+    "controls": [
+      {
+        "active_image": {
+          "type": "panel",
+          "layer": 1,
+          "animation_name": "Boosts Header Panel", //generates the texture textures/ui/header_icons/boosts here when animating
+          "bindings": [
+            {
+              "binding_name": "#has_active_boost",
+              "binding_name_override": "#selected"
+            }
+          ]
+        }
+      },
+      {
+        "background_image": {
+          "type": "image",
+          "layer": 4,
+          "texture": "textures/ui/header_icons/boosts"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "version": 1,
+
+  "states": {
+    "Off": {
+      "animation": "ExitIdle",
+      "default": true,
+      "properties": [ "!selected" ],
+      "transitions": [
+        {
+          "from": "On",
+          "animation": "Exit"
+        }
+      ]
+    },
+    "On": {
+      "animation": "Idle",
+      "properties": [ "selected" ],
+      "loop": true,
+      "transitions": [
+        {
+          "from": "Off",
+          "animation": "Enter"
+        }
+      ]
+    }
+  }
+}

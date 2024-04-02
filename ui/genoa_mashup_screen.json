@@ -1,0 +1,1102 @@
+{
+  "namespace": "genoa_mashup",
+
+  "empty@genoa_common.empty": {
+    "size": [ "100%", 20 ]
+  },
+
+  "section_title": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 18 ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 14, 0 ]
+        }
+      },
+      {
+        "name": {
+          "type": "label",
+          "offset": [ 0, -1 ],
+          "font_type": "MinecraftSeven",
+          "override_height": 18,
+          "$section_title_bind_name|default": "#section_header",
+          "text": "$section_title_bind_name",
+          "color": "$body_text_color",
+          "bindings": [
+            {
+              "binding_name": "$section_title_bind_name"
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 9, 0 ]
+        }
+      },
+      {
+        "bar@genoa_common.white": {
+          "size": [ "fill", 3 ],
+          "offset": [ 0, 3 ],
+          "alpha": 0.2
+        }
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ 12, 0 ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#section_title_visible",
+        "binding_name_override": "#visible",
+        "binding_type": "$store_factory_binding_type",
+        "binding_collection_name": "$store_factory_collection_name"
+      }
+    ]
+  },
+
+  "section_base": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c + 10px" ],
+    "layer": 100,
+
+    // row binding vars
+    "$store_row_binding_type|default": "global",
+    "$store_row_collection_details|default": "none",
+    "$store_row_collection_prefix|default": "",
+    "$store_row_collection_name|default": "",
+
+    // factory binding vars (for when created within a factory)
+    "$store_factory_collection_details|default": "none",
+    "$store_factory_collection_prefix|default": "",
+    "$store_factory_collection_name|default": "",
+
+    "bindings": [
+      {
+        "binding_type": "$store_factory_collection_details",
+        "binding_collection_name": "$store_factory_collection_name",
+        "binding_collection_prefix": "$store_factory_collection_prefix"
+      }
+    ]
+  },
+
+  "section_background": {
+    "type": "panel",
+    "size": [ 355, "100%cm" ],
+    "$section_content|default": [],
+    "controls": [
+      {
+        "glow": {
+          "type": "image",
+          "texture": "textures/ui/glow_yellow",
+          "bilinear": true,
+          "size": [ "100% + 20px", "100%c + 20px" ],
+          "controls": [
+            {
+              "shadow@genoa_common.white": {
+                "size": [ "100% - 20px", "100%c" ],
+                "offset": [ 3, 3 ],
+                "color": "$genoa_button_shadow_color",
+                "alpha": 0.5,
+                "controls": [
+                  {
+                    "content@genoa_common.white": {
+                      "size": [ "100%", "100%c" ],
+                      "color": "$genoa_inventory_background_color",
+                      "offset": [ -3, -3 ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "controls": [
+                        {
+                          "bevel": {
+                            "type": "image",
+                            "size": [ "100%", "100%c + 20px" ],
+                            "texture": "textures/ui/tile_bevel_bright",
+                            "controls": "$section_content"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "description_section@genoa_mashup.section_base": {
+    "size": [ "100%", "100%c" ], // Removing padding between elements to account for description box having a glow that makes it a bit bigger than it looks
+    "controls": [
+      {
+        "section_title@genoa_mashup.section_title": {
+          "$section_title_bind_name": "#description_title"
+        }
+      },
+      {
+        "bg@genoa_mashup.section_background": {
+          "$section_content": [
+            {
+              "description_label": {
+                "type": "label",
+                "size": [ "100% - 20px", "default" ],
+                "override_height": 18,
+                "anchor_to": "center",
+                "anchor_from": "center",
+                "text": "#description_label",
+                "font_type": "noto-sans",
+                "color": "$genoa_store_pdp_description_text_color",
+                "bindings": [
+                  {
+                    "binding_name": "#description_label"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "purchase_button_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "orientation": "horizontal",
+    "controls": [
+      {
+        "image": {
+          "type": "image",
+          "size": [ 32, 32 ],
+          "texture": "textures/ui/ruby"
+        }
+      },
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ 4, 0 ]
+        }
+      },
+      {
+        "text": {
+          "type": "label",
+          "text": "#offer_prompt_text",
+          "shadow": true,
+          "shadow_color": "$genoa_store_purchase_button_shadow_color",
+          "shadow_offset": [ 0.7, 0.7 ],
+          "override_height": 25,
+          "color": "$genoa_store_offer_purchase_button_text_color",
+          "font_type": "MinecraftTen",
+          "bindings": [
+            {
+              "binding_name": "#offer_prompt_text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "purchase_section@genoa_mashup.section_base": {
+    "controls": [
+      {
+        "purchase_button@genoa_common.button": {
+          "size": [ 355, 50 ],
+          "$glow_style": "white",
+          "$pressed_button_name": "button.purchase_offer",
+          "$button_content": "genoa_mashup.purchase_button_content",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_size": "large",
+          "$background_style": "image",
+          "$button_content_shadow_enabled": false,
+          "$button_background_image_texture": "textures/ui/gradients/button_confirm",
+          "sound_name": "inmenu.child.button"
+        }
+      }
+    ]
+  },
+
+  "buildplate_preview@genoa_mashup.section_base": {
+    "controls": [
+      {
+        "buildplate_thumbnail": {
+          "size": [ "100%", 256 ],
+          "type": "panel",
+          "controls": [
+            {
+              "spotlight": {
+                "type": "image",
+                "layer": 1,
+                "texture": "textures/ui/profile/spotlight",
+                "size": [ 221, 221 ]
+              }
+            },
+            {
+              "background_animation": {
+                "type": "panel",
+                "layer": -10,
+                "animation_name": "Mashup Background Sparkle"
+              }
+            },
+            {
+              "stack": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "size": [ 93, "100%c" ],
+                "anchor_from": "top_left",
+                "anchor_to": "top_left",
+                "offset": [ 16, 0 ],
+                "layer": 6,
+                "controls": [
+                  {
+                    "rarity_pad": {
+                      "type": "panel",
+                      "size": [ "100%", 41 ],
+                      "controls": [
+                        {
+                          "rarity_label@genoa_common.boxed_icon_label": {
+                            "anchor_to": "bottom_left",
+                            "anchor_from": "bottom_left",
+                            "$box_texture": "textures/ui/9_slice/label_simple",
+                            "$label_text": "#rarity_label",
+                            "$propagate_alpha": false,
+                            "$label_alpha": 0.8,
+                            "$shadow_alpha": 0,
+                            "$text_bindings": [
+                              {
+                                "binding_name": "#rarity_label",
+                                "binding_condition": "visible"
+                              },
+                              {
+                                "binding_name": "#rarity_label_color",
+                                "binding_name_override": "#color"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "size_pad": {
+                      "type": "panel",
+                      "size": [ "100%", 41 ],
+                      "controls": [
+                        {
+                          "size_label@genoa_common.boxed_icon_label": {
+                            "anchor_to": "bottom_left",
+                            "anchor_from": "bottom_left",
+                            "$box_texture": "textures/ui/9_slice/label_simple",
+                            "$label_icon": "textures/ui/size_small_selected",
+                            "$label_text": "#plate_size",
+                            "$propagate_alpha": false,
+                            "$label_alpha": 0.8,
+                            "$shadow_alpha": 0,
+                            "$text_bindings": [
+                              {
+                                "binding_name": "#plate_size",
+                                "binding_condition": "visible"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "night_pad": {
+                      "type": "panel",
+                      "size": [ "100%", 41 ],
+                      "visible": false,
+                      "controls": [
+                        {
+                          "night_label@genoa_common.boxed_icon_label": {
+                            "anchor_to": "bottom_left",
+                            "anchor_from": "bottom_left",
+                            "$box_texture": "textures/ui/9_slice/label_simple",
+                            "$label_icon": "textures/ui/night_mode_small",
+                            "$label_text": "buildplates.night_mode",
+                            "$propagate_alpha": false,
+                            "$label_alpha": 0.8,
+                            "$shadow_alpha": 0
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "#is_night_valid",
+                          "binding_name_override": "#visible"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "buildplate_renderer_panel": {
+                "type": "input_panel",
+                "gesture_tracking_button": "button.turn_structure",
+                "layer": 5,
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.turn_structure",
+                    "mapping_type": "pressed",
+                    "button_up_right_of_first_refusal": true
+                  }
+                ],
+                "controls": [
+                  {
+                    "renderer": {
+                      "type": "custom",
+                      "renderer": "buildplate_renderer",
+                      "animation_reset_name": "screen_animation_reset",
+                      "anims": [
+                        "@common.screen_exit_size_animation_push",
+                        "@common.screen_exit_size_animation_pop",
+                        "@common.screen_entrance_size_animation_push",
+                        "@common.screen_entrance_size_animation_pop"
+                      ],
+                      "controls": [
+                        {
+                          "loading@genoa_store.store_offer_loading": {
+                            "$source_control_name": "renderer",
+                            "$source_property_name": "(#buildplate_instance_id = '')"
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "#buildplate_instance_id"
+                        },
+                        {
+                          "binding_name": "#is_store_buildplate"
+                        },
+                        {
+                          "binding_type": "view",
+                          "resolve_sibling_scope": true,
+                          "source_control_name": "buildplate_renderer_panel",
+                          "source_property_name": "#gesture_delta_source",
+                          "target_property_name": "#gesture_delta_source"
+                        },
+                        {
+                          "binding_type": "view",
+                          "resolve_sibling_scope": true,
+                          "source_control_name": "buildplate_renderer_panel",
+                          "source_property_name": "#gesture_mouse_delta_x",
+                          "target_property_name": "#gesture_mouse_delta_x"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_image@genoa_inventory_common.genoa_item_renderer": {
+    "size": [ 128, 128 ],
+    "bindings": [
+      {
+        "binding_name": "#item_id_aux"
+      },
+      {
+        "binding_name": "#item_id_guid"
+      }
+    ]
+  },
+
+  "inventory_item_preview@genoa_mashup.section_base": {
+    "controls": [
+      {
+        "spotlight": {
+          "type": "image",
+          "texture": "textures/ui/profile/spotlight",
+          "size": [ 221, 221 ],
+          "controls": [
+            {
+              "background_animation": {
+                "type": "panel",
+                "animation_name": "Mashup Background Sparkle"
+              }
+            },
+            {
+              "middle_icon@genoa_mashup.item_image": {
+                "layer": 100
+              }
+            },
+            {
+              "three_stack": {
+                "type": "stack_panel",
+                "size": [ "100%c", "100%cm" ],
+                "orientation": "horizontal",
+                "use_new_layout": true,
+                "layer": 100,
+                "visible": false,
+                "controls": [
+                  {
+                    "left_icon@genoa_mashup.item_image": {
+                      "size": [ 85, 85 ]
+                    }
+                  },
+                  {
+                    "pad": {
+                      "type": "panel",
+                      "size": [ 114, 0 ]
+                    }
+                  },
+                  {
+                    "right_icon@genoa_mashup.item_image": {
+                      "size": [ 85, 85 ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#is_three_bundle",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "five_stack": {
+                "size": [ "100%cm", "100%c" ],
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "use_new_layout": true,
+                "layer": 100,
+                "visible": false,
+                "controls": [
+                  {
+                    "upper_stack": {
+                      "size": [ "100%c", "100%cm" ],
+                      "type": "stack_panel",
+                      "orientation": "horizontal",
+                      "use_new_layout": true,
+                      "controls": [
+                        {
+                          "left_icon@genoa_mashup.item_image": {
+                            "size": [ 85, 85 ]
+                          }
+                        },
+                        {
+                          "pad": {
+                            "type": "panel",
+                            "size": [ 114, 0 ]
+                          }
+                        },
+                        {
+                          "right_icon@genoa_mashup.item_image": {
+                            "size": [ 85, 85 ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "pad": {
+                      "type": "panel",
+                      "size": [ 0, 16 ]
+                    }
+                  },
+                  {
+                    "lower_stack": {
+                      "size": [ "100%c", "100%cm" ],
+                      "type": "stack_panel",
+                      "orientation": "horizontal",
+                      "use_new_layout": true,
+                      "controls": [
+                        {
+                          "left_icon@genoa_mashup.item_image": {
+                            "size": [ 85, 85 ]
+                          }
+                        },
+                        {
+                          "pad": {
+                            "type": "panel",
+                            "size": [ 114, 0 ]
+                          }
+                        },
+                        {
+                          "right_icon@genoa_mashup.item_image": {
+                            "size": [ 85, 85 ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#is_five_bundle",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "genoa_item": {
+    "type": "input_panel",
+    "$genoa_item_size|default": [ 82, 82 ],
+    "size": "$genoa_item_size",
+    "$genoa_item_button_name|default": "button.select_slot",
+    "layer": 1,
+    "$item_renderer_size|default": [ "100% - 12px", "100% - 12px" ],
+    "$show_use_type_state|default": false,
+    "sounds": [],
+
+    "$stack_count_overlay_enabled|default": true,
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$item_collection_name"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$genoa_item_button_name",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$genoa_item_button_name",
+        "mapping_type": "pressed"
+      }
+    ],
+    "controls": [
+      {
+        "item_background_base": {
+          "type": "image",
+          "texture": "textures/ui/inventory_slot_background",
+          "controls": [
+            {
+              "empty_background@genoa_common.white": {
+                "color": "#828282",
+                "visible": false,
+                "bindings": [
+                  {
+                    "binding_name": "#slot_is_empty",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ]
+              }
+            },
+            {
+              "item_bevel": {
+                "type": "image",
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_name": "#item_rarity_bevel",
+                    "binding_name_override": "#texture",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ],
+                "controls": [
+                  {
+                    "renderer_background": {
+                      "type": "panel",
+                      "controls": [
+                        {
+                          "renderer_content": {
+                            "type": "panel",
+                            "$item_renderer_control|default": "genoa_inventory_common.genoa_item_renderer",
+                            "controls": [
+                              {
+                                "item_renderer@$item_renderer_control": {
+                                  "size": "$item_renderer_size",
+                                  "layer": 2
+                                }
+                              },
+                              {
+                                "stack_count@common.stack_count_label": {
+                                  "$stack_count_required": true,
+                                  "ignored": "(not $stack_count_overlay_enabled)",
+                                  "$stack_count_offset|default": [ -3, 2 ],
+                                  "$stack_count_override_height": 24,
+                                  "layer": 3,
+                                  "offset": "$stack_count_offset"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "pack_contents@genoa_mashup.section_base": {
+    "controls": [
+      {
+        "section_title@genoa_mashup.section_title": {
+          "$section_title_bind_name": "#pack_contents_title"
+        }
+      },
+      {
+        "bg@genoa_mashup.section_background": {
+          "$section_content": [
+            {
+              "container@genoa_inventory_common.item_container": {
+                "$item_collection_name": "#pack_contents_collection",
+                "$item_container_size": [ "100% - 20px", "100%c" ],
+                "$item_template": "genoa_mashup.genoa_item",
+                "$genoa_item_size": [ 67, 67 ],
+                "offset": [ 0, 10 ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "buildplate_content@genoa_mashup.section_base": {
+    "controls": [
+      {
+        "section_title@genoa_mashup.section_title": {
+          "$section_title_bind_name": "#buildplate_content_title"
+        }
+      },
+      {
+        "bg@genoa_mashup.section_background": {
+          "$section_content": [
+            {
+              "container@genoa_inventory_common.item_container": {
+                "$item_collection_name": "#buildplate_content_collection",
+                "$item_container_size": [ "100% - 20px", "100%c" ],
+                "$item_template": "genoa_mashup.genoa_item",
+                "$genoa_item_size": [ 67, 67 ],
+                "offset": [ 0, 10 ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "scrolling_content_stack": {
+    "type": "stack_panel",
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c + 50px" ], // 50px is for scrolling buffer at the bottom of the screen
+
+    "$store_factory_collection_details|default": "collection_details",
+    "$store_factory_binding_type|default": "collection",
+    "$store_factory_collection_prefix|default": "factory",
+    "$store_factory_collection_name|default": "factory_collection",
+
+    "factory": {
+      "name": "factory",
+      "control_ids": {
+        "buildplate_content": "@genoa_mashup.buildplate_content",
+        "buildplate_preview": "@genoa_mashup.buildplate_preview",
+        "description": "@genoa_mashup.description_section",
+        "pack_contents": "@genoa_mashup.pack_contents",
+        "inventory_item_preview": "@genoa_mashup.inventory_item_preview",
+        "persona_preview": "@genoa_mashup.empty",
+        "persona_set": "@genoa_mashup.empty",
+        "purchasing": "@genoa_mashup.purchase_section"
+      },
+      "factory_variables": [
+        "$store_factory_collection_details",
+        "$store_factory_binding_type",
+        "$store_factory_collection_prefix",
+        "$store_factory_collection_name"
+      ]
+    },
+    "collection_name": "$store_factory_collection_name",
+    "bindings": [
+      {
+        "binding_name": "#item_page_section_content",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+
+  //--------------------------------------------------------------------------------
+  // Screen
+  //--------------------------------------------------------------------------------
+
+  "mashup_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_mashup.mashup_screen_content",
+    "$screen_background_texture": "textures/ui/secondary_background",
+    "$store_factory_clipping_event": "none",
+    "$background_scrim_visible": false,
+    "animation_name": "Mashup Screen",
+    "size": [ "100%", "100%" ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_cancel",
+        "to_button_id": "button.exit",
+        "mapping_type": "global"
+      }
+    ]
+  },
+
+  "header": {
+    "type": "panel",
+    "size": [ "100%", 134 ],
+    "variables": [
+      {
+        "requires": "(not $use_split_currency)",
+        "$wallet_offset": [ -12, -15 ]
+      },
+      {
+        "requires": "($use_split_currency)",
+        "$wallet_offset": [ -12, 10 ]
+      }
+    ],
+    "controls": [
+      {
+        "exit_button": {
+          "type": "input_panel",
+          "$pressed_button_name": "button.exit",
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "offset": [ -21, 38 ],
+          "size": [ "100%c", "100%c" ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "$pressed_button_name",
+              "mapping_type": "pressed"
+            },
+            {
+              "from_button_id": "button.menu_cancel",
+              "to_button_id": "$pressed_button_name",
+              "mapping_type": "global"
+            },
+            {
+              "from_button_id": "button.hardware_back_button",
+              "to_button_id": "$pressed_button_name",
+              "mapping_type": "global"
+            }
+          ],
+          "controls": [
+            { "exit@genoa_common.back_icon": {} }
+          ],
+          "sounds": [
+            {
+              "sound_name": "submenu.close.button",
+              "sound_volume": 1.0,
+              "sound_pitch": 1.0,
+              "event_type": "button_event"
+            }
+          ]
+        }
+      },
+      {
+        "name": {
+          "type": "label",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [ 0, -18 ],
+          "text_alignment": "center",
+          "size": [ "75%", "default" ],
+          "override_height": 25,
+          "font_type": "MinecraftTen",
+          "text": "#title_label",
+          "bindings": [
+            {
+              "binding_name": "#title_label"
+            }
+          ]
+        }
+      },
+      {
+        "ruby_wallet@genoa_store.currency_container": {
+          "anchor_from": "bottom_right",
+          "anchor_to": "bottom_right",
+          "offset": "$wallet_offset"
+        }
+      }
+    ]
+  },
+
+  "mashup_screen_content": {
+    "type": "panel",
+    "alpha": "@common_store.screen_fade_in_alpha_anim",
+    "propagate_alpha": true,
+    "disable_anim_fast_forward": true,
+    "controls": [
+      { "main_panel@genoa_mashup.main_panel": {} },
+      {
+        "night_scrim@genoa_common.white": {
+          "layer": 0,
+          "color": "$genoa_store_night_scrim_color",
+          "alpha": 0.5,
+          "visible": false,
+          "bindings": [
+            {
+              "binding_name": "#is_night_valid",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      { "input_blocker@genoa_store.purchasing_scrim": {} },
+      {
+        "info_panel_factory": {
+          "type": "factory",
+          "control_ids": {
+            "item_info_panel": "@genoa_mashup.item_info_panel",
+            "boost_info_panel": "@genoa_mashup.boost_info_panel"
+          }
+        }
+      }
+    ]
+  },
+
+  "main_panel": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "header@genoa_mashup.header": {}
+      },
+      { "fade_bars@genoa_common.fading_scroll_mask_bars": {} },
+      {
+        "main_panel@genoa_mashup.mashup_screen_main": {}
+      },
+      {
+        "popup_dialog_factory": {
+          "type": "factory",
+          "size": [ 0, 0 ],
+          "control_ids": {
+            "no_store_connection": "@common_store.popup_dialog__no_store_connection",
+            "restore_popup": "@common_store.popup_dialog__restore_popup",
+            "restore_failed": "@common_store.popup_dialog__restore_failed"
+          }
+        }
+      }
+    ]
+  },
+
+  "mashup_screen_main": {
+    "type": "input_panel",
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "size": [ "100%", "fill" ],
+    "controls": [
+      {
+        "pack_content@common.scrolling_panel": {
+          "size": [ "100%", "100% + 3px" ],
+          "offset": [ 0, -3 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$scrolling_content": "genoa_mashup.scrolling_content_stack",
+          "$show_background": false
+        }
+      }
+    ]
+  },
+
+  "item_info_panel@genoa_common.item_info_panel": {
+    "layer": 200,
+    "$attributes_stack_control": "genoa_mashup.attributes_stack",
+    "$quantity_visible": false
+  },
+
+  "boost_info_panel@genoa_common.item_info_panel": {
+    "layer": 200,
+    "$attributes_stack_control": "genoa_mashup.boost_attribute_stack",
+    "$quantity_visible": false
+  },
+
+  "attributes_stack": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ "100%", "100%cm" ],
+    "$value_name|default": -1,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "fill", 0 ]
+        }
+      },
+      {
+        "absorption@genoa_inventory.stat_icon_panel": {
+          "$icon_texture": "textures/ui/stat_icons/absorption",
+          "$stat_name": "absorption",
+          "$value_name": "$absorption_amount"
+        }
+      },
+      {
+        "pad_1": {
+          "ignored": "($absorption_amount = '0')",
+          "type": "panel",
+          "size": [ 16, 0 ]
+        }
+      },
+      {
+        "damage@genoa_inventory.stat_icon_panel": {
+          "$icon_texture": "textures/ui/stat_icons/damage",
+          "$stat_name": "damage",
+          "$value_name": "$damage_amount"
+        }
+      },
+      {
+        "pad_2": {
+          "ignored": "($damage_amount = '0')",
+          "type": "panel",
+          "size": [ 16, 0 ]
+        }
+      },
+      {
+        "durability@genoa_inventory.stat_icon_panel": {
+          "$icon_texture": "textures/ui/stat_icons/durability",
+          "$stat_name": "durability",
+          "$value_name": "$durability_amount"
+        }
+      },
+      {
+        "pad_3": {
+          "ignored": "($durability_amount = '0')",
+          "type": "panel",
+          "size": [ 16, 0 ]
+        }
+      },
+      {
+        "health@genoa_inventory.stat_icon_panel": {
+          "$icon_texture": "textures/ui/stat_icons/health",
+          "$stat_name": "health",
+          "$value_name": "$health_amount"
+        }
+      },
+      {
+        "pad_4": {
+          "ignored": "($health_amount = '0')",
+          "type": "panel",
+          "size": [ 16, 0 ]
+        }
+      },
+      {
+        "regeneration@genoa_inventory.stat_icon_panel": {
+          "$icon_texture": "textures/ui/stat_icons/regeneration",
+          "$stat_name": "regeneration",
+          "$value_name": "$regeneration_amount"
+        }
+      },
+      {
+        "pad_5": {
+          "type": "panel",
+          "size": [ "fill", 0 ]
+        }
+      }
+    ]
+  },
+
+  "boost_attribute_stack": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%c", "100%cm" ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "use_new_layout": true,
+    "visible": "$boost_has_duration",
+    "controls": [
+      {
+        "clock_icon": {
+          "type": "image",
+          "size": [ 32, 32 ],
+          "texture": "textures/ui/timer"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 5, 32 ]
+        }
+      },
+      {
+        "duration_label": {
+          "type": "label",
+          "text": "$boost_duration",
+          "override_height": 20
+        }
+      },
+      {
+        "effect_stack_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%c", "100%cm" ],
+          "visible": "$boost_effect_visible",
+          "controls": [
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 18, 0 ]
+              }
+            },
+            {
+              "effect_icon": {
+                "type": "image",
+                "size": [ 32, 32 ],
+                "fill": true,
+                "texture": "$boost_effect_texture"
+              }
+            },
+            {
+              "pad_2": {
+                "type": "panel",
+                "size": [ 5, 0 ]
+              }
+            },
+            {
+              "effect_label": {
+                "type": "label",
+                "text": "$boost_effect_value",
+                "override_height": 20
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

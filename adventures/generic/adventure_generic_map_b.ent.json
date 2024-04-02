@@ -1,0 +1,53 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:adventure_generic_map_b",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline",
+        "vignette" : "entity_alphatest"
+      },
+      "textures": {
+        "base":  "adventures/generic/adventure_generic_base_b",
+        "tree":  "adventures/generic/tree_birch_a",
+        "sign":  "adventures/generic/sign",
+        "chest":  "adventures/generic/chest_small",
+        "grass": "adventures/generic/double_plant_grass",
+        "tall_grass":"adventures/generic/tallgrass",
+        "zombie" : "adventures/generic/zombie_map"
+      },
+      "geometry": {
+        "base": "geometry.adventure_generic_b_base",
+        "tree": "geometry.adventure_generic_b_tree",
+        "sign": "geometry.adventure_generic_b_sign",
+        "chest": "geometry.adventure_generic_b_chest",
+        "grass": "geometry.adventure_generic_b_grass",
+        "tall_grass":"geometry.adventure_generic_b_tall_grass",
+        "zombie" : "geometry.adventure_generic_b_zombie"
+      },
+      "animations": {
+        "map_spawn": "animation.adventure_hostile_a_map_spawn",
+        "map_summon": "animation.adventure_hostile_a_map_summon",
+        "map_despawn": "animation.adventure.map_despawn",
+        "tapped": "animation.adventure.map_tapped",
+        "award_transition": "animation.adventure.map_setup",
+        "idle": "animation.adventure_hostile_a_preview_idle",
+        "enter": "animation.adventure_hostile_a_preview_enter"
+      },
+      "animation_controllers": [
+        { "setup_controller" : "controller.animation.adventure" }
+      ],
+      "render_controllers": [ 
+        "controller.render.adventure_generic_b_base",
+        "controller.render.adventure_generic_b_tree", 
+        "controller.render.adventure_generic_b_sign", 
+        "controller.render.adventure_generic_b_chest",
+        "controller.render.adventure_generic_b_grass",
+        "controller.render.adventure_generic_b_tall_grass" ,
+        "controller.render.adventure_generic_b_zombie"
+      ]
+    }
+  }
+}

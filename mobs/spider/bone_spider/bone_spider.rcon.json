@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.bone_spider": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.invisible" ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Array.materials[query.is_invisible]" } ],
+      "textures": [ "Texture.default" ],
+      "part_visibility": [ 
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking"} ]
+    }
+  }
+}

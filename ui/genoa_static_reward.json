@@ -1,0 +1,119 @@
+{
+  "namespace": "genoa_static_reward",
+
+  "base_screen@genoa_common.genoa_base_screen": {
+    "screen_visibility": "overlay",
+    "$screen_content": "genoa_static_reward.content",
+    "$use_background": false
+  },
+
+  "content@genoa_common.white": {
+    "size": [ "100%", "100%" ],
+    "color": "black",
+    "alpha": 0.75,
+    "fill": true,
+    "screen_fill_down": true,
+    "screen_fill_left": true,
+    "screen_fill_right": true,
+    "screen_fill_up": true,
+    "controls": [
+      {
+        "header": {
+          "type": "label",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [0, 48],
+          "font_type": "MinecraftTen",
+          "override_height": 20,
+          "text": "static_reward.header"
+        }
+      },
+      {
+        "item_panel": {
+          "type": "panel",
+          "size": [340, 340],
+          "use_new_layout": true,
+          "$stack_count_overlay_enabled": true,
+          "controls": [
+            {
+              "item_name": {
+                "type": "label",
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "override_height": 20,
+                "offset": [0, -24],
+                "text": "#item_name",
+                "bindings": [
+                  {
+                    "binding_name": "#item_name"
+                  }
+                ]
+              }
+            },
+            {
+              "item_rarity": {
+                "type": "label",
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "override_height": 16,
+                "text": "#item_rarity",
+                "bindings": [
+                  {
+                    "binding_name": "#item_rarity"
+                  },
+                  {
+                    "binding_name": "#item_rarity_color",
+                    "binding_name_override": "#color"
+                  }
+                ]
+              }
+            },
+            {
+              "padding": {
+                "type": "panel",
+                "size": [0, 20]
+              }
+            },
+            {
+              "renderer_content": {
+                "type": "panel",
+                "size": [ "80%", "80%" ],
+                "$item_renderer_control|default": "genoa_inventory_common.genoa_item_renderer",
+                "$genoa_item_renderer_bindings": [
+                  {
+                    "binding_name": "#item_id_aux"
+                  }
+                ],
+                "controls": [
+                  {
+                    "item_renderer@$item_renderer_control": {
+                      "size": [ "100% - 2px", "100% - 2px" ],
+                      "layer": 2
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "accept_button@genoa_common.button": {
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "size": [ 351, 60 ],
+          "offset": [ 0, -55 ],
+          "$pressed_button_name": "button.accept",
+          "$button_content": "genoa_common.button_content_text",
+          "$button_background_image_texture": "textures/ui/button_confirm",
+          "$glow_style": "white",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_size": "extra_large",
+          "$button_text": "static_reward.accept",
+          "$background_style": "image",
+          "sound_name": "confirm.button"
+        }
+      }
+    ]
+  }
+}

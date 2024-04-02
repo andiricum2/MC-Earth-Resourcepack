@@ -1,0 +1,61 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:horned_sheep",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "sheep" },
+      "textures": {
+        "default": "mobs/sheep/horned_sheep/horned_sheep"
+      },
+      "geometry": {
+        "default": "geometry.genoa.horned_sheep"
+      },
+      "animations": {
+        "setup": "animation.sheep.setup",
+        "grazing": "animation.sheep.grazing",
+        "walk": "animation.quadruped.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "baby_transform": "animation.sheep.baby_transform",
+        "prep_transition": "animation.horned_sheep.prep_transition",
+        "prep_ram": "animation.horned_sheep.prep_to_ram",
+        "charge" : "animation.horned_sheep.charge",
+        "ramming": "animation.horned_sheep.ramming",
+        "move": "controller.animation.horned_sheep.move",
+        "blink": "controller.animation.horned_sheep.blink"
+      },
+      "scripts": {
+        "animate": [
+          "setup",
+          "look_at_target",
+          "move",
+          { "baby_transform": "query.is_baby" },
+          "blink"
+        ],
+        "initialization": [ 
+          "variable.is_blinking = 0;", 
+          "variable.return_from_blink = 0;", 
+          "variable.last_blink_time = 0;",
+          "variable.prepare_ram = 0;",
+          "variable.ramming = 0;",
+          "variable.grazing = 0;"
+        ]
+      },
+      "sound_effects": {
+        "prep": "mob.horned_sheep.prep",
+        "prep.transition": "mob.horned_sheep.prep.transition",
+        "ram": "mob.horned_sheep.ram",
+        "charge": "mob.horned_sheep.charge",
+        "impact": "mob.horned_sheep.impact"
+      },
+      "particle_effects": {
+        "hoof_scuff": "genoa:horned_sheep_hoof_scuff"
+      }, 
+      "render_controllers": [ "controller.render.horned_sheep" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 3
+      }
+    }
+  }
+}

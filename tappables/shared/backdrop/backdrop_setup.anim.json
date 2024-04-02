@@ -1,0 +1,106 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.backdrop_vignette_setup" : {
+			"bones" : {
+				"root" : {
+					"position" : [ 0, 0, 0],
+					"scale" : [1.0, 1.0, 1.0],
+					"rotation" : [ 0.0, 0.0, 0.0 ]
+				}
+			}
+		},
+		"animation.backdrop_vignette_setup_45_deg" : {
+			"bones" : {
+				"root" : {
+					"position" : [ -103.582, -94.968, 103.582],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ -35, -45.0, 0.0 ]
+				}
+			}
+		},
+
+		"animation.backdrop_vignette_setup_mobs" : {
+			"bones" : {
+				"root" : {
+					"position" : [ -129.749, -120.879, 129.749],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ -35, -45.0, 0.0 ]
+				}
+			}
+		},
+
+		"animation.backdrop_vignette_setup_neg_45_deg" : {
+			"bones" : {
+				"root" : {
+					"position" : [ 103.582, -94.968, 103.582],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ -35, 45.0, 0.0 ]
+				}
+			}
+		},
+		"animation.backdrop_vignette_setup_135_deg" : {
+			"bones" : {
+				"root" : {
+					"position" : [ -103.582, -94.968, -103.582],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ -35, -135.0, 0.0 ]
+				}
+			}
+		},	
+		"animation.backdrop_vignette_setup_225_deg" : {
+			"bones" : {
+				"root" : {
+					"position" : [ 103.583, -94.967, -103.583],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ -35, -225, 0]
+				}
+			}
+		},
+		"animation.backdrop_vignette_setup_45_deg_tree" : {
+			"bones" : {
+				"root" : {
+					"position" : [ -77.609, -48.72, 77.609],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ -35, -45.0, 0.0 ]
+				}
+			}
+		},
+		"animation.backdrop_vignette_setup_135_deg_tree" : {
+			"bones" : {
+				"root" : {
+					"position" : [ 88.062, -59.071, 88.062],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ 35, -135.0, 0.0 ]
+				}
+			}
+		},
+		"animation.backdrop_vignette_setup_spruce_tree" : {
+			"bones" : {
+				"root" : {
+					"position" : [ 77.609, -25.504, 77.609],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [ 35, -135.0, 0.0 ]
+				}
+			}
+		},		
+		"animation.backdrop_vignette_setup_dressing_room" : {
+			"bones" : {
+				"root" : {
+					"position" : [-1.4611483243750707, -33.31096360296482, 197.0606210944975],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [-193.94951898428266, -179.557552607031, -179.94531696362853]
+				}
+			}
+		},
+		"animation.backdrop_vignette_setup_level_up" : {
+			"bones" : {
+				"root" : {
+					"position" : [-1.5, 10, 180],
+					"scale" : [10.0, 10.0, 1.0],
+					"rotation" : [-194, -180, -180]
+				}
+			}
+		}
+	}
+}

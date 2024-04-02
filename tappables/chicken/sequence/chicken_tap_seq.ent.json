@@ -1,0 +1,37 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:chicken_tappable_sequence",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "entity_alphatest"
+      },
+      "textures": {
+        "default": "tappables/chicken/chicken_tappable"
+      },
+      "geometry": {
+        "default": "geometry.chicken_tappable_sequence"
+      },
+      "animations": {
+        "setup": "animation.genoa_tappable_sequence_setup",
+        "tap_1": "animation.chicken_tappable_tap_1",
+        "tap_2": "animation.chicken_tappable_tap_2",
+        "tap_3": "animation.chicken_tappable_tap_3",
+        "tap_4": "animation.chicken_tappable_tap_4",
+        "tap_5": "animation.chicken_tappable_tap_5",
+        "tap_6": "animation.chicken_tappable_tap_6",
+        "tap_7": "animation.chicken_tappable_tap_7",
+        "enter": "animation.chicken_tappable_enter",
+        "idle": "animation.chicken_tappable_idle",
+        "award_transition": "animation.chicken_tappable_award_transition",
+        "award_loop": "animation.chicken_tappable_award_loop",
+        "award": "animation.chicken_tappable_award"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.genoa_tappable_sequence_setup" }
+      ],
+      "render_controllers": [ "controller.render.genoa_tappable_sequence" ]
+    }
+  }
+}

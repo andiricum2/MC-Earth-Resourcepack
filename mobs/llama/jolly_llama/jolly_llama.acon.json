@@ -1,0 +1,54 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.jolly_llama.move": {
+      "states": {
+        "default": {
+          "animations": [
+            { "walk": "query.modified_move_speed" }
+          ],
+          "transitions": [
+            { "grazing": "variable.grazing" },
+            { "fern_detected": "variable.fern_detected" },
+            { "prancing": "variable.prancing" }
+          ]
+        },
+        "fern_detected": {
+          "animations": [ "fern_detected" ],
+          "transitions": [
+            { "default": "!variable.fern_detected" },
+            { "prancing": "variable.prancing" }
+          ]
+        },
+        "grazing": {
+          "animations": [ "grazing" ],
+          "transitions": [
+            { "prancing": "variable.prancing" },
+            { "default": "!variable.grazing" }
+          ]
+        },
+        "prancing": {
+          "animations": [ "prance" ],
+          "transitions": [
+            { "default": "!variable.prancing" },
+            { "fern_detected": "variable.fern_detected" }
+          ]
+        }
+      }
+    },
+    "controller.animation.jolly_llama.blink": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "blink": "variable.is_blinking = 0; variable.return_from_blink = query.life_time + math.random(0, 0.2); variable.last_blink_time = variable.last_blink_time ? variable.last_blink_time : query.life_time; return query.life_time > (variable.last_blink_time + math.random(3, 40));" }
+          ]
+        },
+        "blink": {
+          "transitions": [
+            { "default": "variable.is_blinking = 1; variable.last_blink_time = query.life_time; return query.all_animations_finished && (query.life_time > variable.return_from_blink);" }
+          ]
+        }
+      }
+    }
+  }
+}

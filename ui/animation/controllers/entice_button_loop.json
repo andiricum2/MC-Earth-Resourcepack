@@ -1,0 +1,16 @@
+{
+  "version": 2,
+
+  "states": {
+    "Inactive": {
+      "animation": "Set",
+      "default": true,
+      "properties": [ "!selected" ]
+    },
+    "Loop": {
+      "animation": "Entice",
+      "properties": [ "selected" ],
+      "loop": true
+    }
+  }
+}

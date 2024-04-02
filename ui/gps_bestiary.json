@@ -1,0 +1,52 @@
+{
+  "namespace": "genoa_gps_bestiary",
+
+  "gps_bestiary_overlay@common.base_screen": {
+    "is_showing_menu": true,
+    "should_steal_mouse": false,
+    "low_frequency_rendering": true,
+    "absorbs_input": false,
+    "send_telemetry": true,
+    "$screen_content": "genoa_gps_bestiary.gps_bestiary_content"
+  },
+  "gps_bestiary_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "TEMP_control": {
+          "type": "image",
+          "texture": "textures/ui/dark_bg",
+          "size": [ "100%", "100%c + 10px" ],
+          "controls": [
+            {
+              "test_txt": {
+                "type": "label",
+                "text_alignment": "center",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "text": "This is a test subscreen\nBestiary Tab"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "exit_button_panel": {
+          "type": "panel",
+          "size": [ 20, 20 ],
+          "offset": [ -20, 20 ],
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "controls": [
+            {
+              "exit_button@genoa_common_hud.hud_button": {
+                "$button_image_control": "genoa_common_hud.exit_button_image",
+                "$button_bind_name": "button.exit_screen"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

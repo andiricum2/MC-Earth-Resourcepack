@@ -1,0 +1,407 @@
+/********************************************************
++*   (c) Mojang. All rights reserved                       *
++*   (c) Microsoft. All rights reserved.                   *
++*********************************************************/
+{
+  "namespace": "genoa_settings_common",
+
+  /*
+  Requires:
+    $setting_type - Option type
+    $setting_name - Option label
+   
+  Can use:
+    $setting_name_binding - For dynamic option labels (gamertag, etc.)
+  */
+  "genoa_setting_main": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "$use_setting_image|default": false,
+
+    "propagate_alpha": true,
+    "$genoa_setting_main_alpha|default": 1,
+    "alpha": "$genoa_setting_main_alpha",
+
+    "variables": [
+      {
+        "requires": "($setting_type = 'button')",
+        "$setting_control": "genoa_settings_common.genoa_button_setting",
+        "$bottom_pad_size": [ "100%", 6 ]
+      },
+      {
+        "requires": "($setting_type = 'bool')",
+        "$setting_control": "genoa_settings_common.genoa_bool_setting",
+        "$bottom_pad_size": [ "100%", 6 ]
+      },
+      {
+        "requires": "($setting_type = 'slider')",
+        "$setting_control": "genoa_settings_common.genoa_slider_setting",
+        "$content_size": [ "100%", 50 ],
+        "$name_panel_size": [ "fill", "100% - 10px" ],
+        "$bottom_pad_size": [ "100%", 0 ]
+      }
+    ],
+
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 6 ]
+        }
+      },
+      {
+        "content": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "$content_size|default": [ "100%", 40 ],
+          "size": "$content_size",
+          "use_new_layout": true,
+          "controls": [
+            {
+              "setting_image": {
+                "ignored": "(not $use_setting_image)",
+                "type": "image",
+                "texture": "$setting_image",
+                "$setting_image_size|default": [ 24, 24 ],
+                "size": "$setting_image_size",
+                "$setting_image_offset|default": [ 0, 0 ],
+                "offset": "$setting_image_offset"
+              }
+            },
+            {
+              "setting_image_padding": {
+                "ignored": "(not $use_setting_image)",
+                "type": "panel",
+                "size": [ 5, "default" ]
+              }
+            },
+            {
+              "name_panel": {
+                "type": "panel",
+                "$name_panel_size|default": [ "fill", "100%" ],
+                "size": "$name_panel_size",
+                "$setting_name_binding|default": [],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+
+                "controls": [
+                  {
+                    "name": {
+                      "type": "label",
+                      "size": [ "100%", "default" ],
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "text": "$setting_name",
+                      "override_height": 18,
+                      "font_type": "MinecraftSeven",
+                      "bindings": "$setting_name_binding"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "setting_interactable@$setting_control": {
+                "size": [ 149, "100%" ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": "$bottom_pad_size"
+        }
+      }
+    ]
+  },
+
+  /*
+  Requires:
+    $pressed_button_name
+  */
+  "genoa_button_setting@genoa_common.button": {
+    "size": [ 149, "100%" ],
+    "$button_content": "genoa_common.button_content_text",
+    "$button_font_type": "MinecraftTen",
+    "$background_style": "color",
+    "$background_color": "$genoa_button_color",
+    "$button_text_color": "$genoa_settings_button_text_color",
+    "$button_font_height": 25,
+    "$glow_style": "white",
+    "$genoa_button_setting_binds|default": [],
+    "bindings": "$genoa_button_setting_binds",
+    "sound_name": "inmenu.general.button",
+    "sound_volume": 1.0
+  },
+
+  "genoa_bool_setting": {
+    "type": "panel",
+    "size": [ 149, "100%" ],
+
+    //Shared variables for the buttons
+    "$pressed_button_name": "$bool_option_id",
+    "$button_content": "genoa_common.button_content_text",
+    "$locked_control": "genoa_common.partial_alpha_button_content",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_height": 25,
+    "$glow_style": "white",
+
+    "bindings": [
+      {
+        "binding_name": "('#' + $bool_option_id + '_enabled')",
+        "binding_name_override": "#enabled"
+      }
+    ],
+
+    "controls": [
+      {
+        "on@genoa_common.button": {
+          "$button_text": "options.genoa.on",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_confirm_flipped",
+          "$bevel_texture": "textures/ui/slot_bevel_simple",
+          "$glow_enabled": false,
+          "$shadow_enabled": false,
+          "bindings": [
+            {
+              "binding_name": "('#' + $bool_option_id)",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "sound_name": "inmenu.general.button",
+          "sound_volume": 1.0
+        }
+      },
+      {
+        "off@genoa_common.button": {
+          "$button_text": "options.genoa.off",
+          "$background_style": "color",
+          "$background_color": "$genoa_dark_button_color",
+          "$bevel_texture": "textures/ui/tile_bevel_dark",
+          "bindings": [
+            {
+              "binding_name": "('#' + $bool_option_id)",
+              "binding_name_override": "(not #visible)"
+            }
+          ],
+          "sound_name": "inmenu.child.button",
+          "sound_volume": 1.0
+        }
+      }
+    ]
+  },
+
+  "genoa_slider_setting": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%" ],
+    "$option_label": "('#' + $slider_name + '_slider_label')",
+    "controls": [
+      {
+        "slider_percent": {
+          "type": "label",
+          "size": [ "100%", "default" ],
+          "override_height": 15,
+          "text": "$option_label",
+          "text_alignment": "right",
+          "font_type": "MinecraftSeven",
+          "bindings": [
+            {
+              "binding_name": "$option_label"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 3 ]
+        }
+      },
+      {
+        "slider@settings_common.option_slider_control": {
+          "size": [ "100% - 2px", 30 ],
+          "$enabled": true,
+          "$slider_tts_text_value": "$option_label",
+          "$slider_value_binding_name": "('#' + $slider_name)",
+          "$option_enabled_binding_name": "('#' + $slider_name + '_enabled')",
+          "$slider_box_layout": "genoa_settings_common.slider_box",
+          "$slider_box_hover_layout": "genoa_settings_common.slider_box",
+          "$slider_box_locked_layout": "genoa_settings_common.slider_box",
+          "$slider_box_indent_layout": "genoa_settings_common.slider_box",
+          "$background_control": "genoa_settings_common.slider_bar_background",
+          "$progress_control": "genoa_settings_common.slider_bar_fill"
+        }
+      }
+    ]
+  },
+
+  "slider_box@genoa_common.default_button_content": {
+    "size": "$slider_box_size",
+    "$button_content": "genoa_common.empty",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/button_confirm",
+    "$bevel_texture": "textures/ui/tile_bevel_transparent",
+    "$glow_enabled": false
+  },
+
+  "slider_bar@genoa_common.white": {
+    "$slider_bar_color|default": "$genoa_settings_slider_background_color",
+    "color": "$slider_bar_color",
+    "controls": [
+      {
+        "bevel": {
+          "type": "image",
+          "texture": "textures/ui/bar_bevel_simple"
+        }
+      }
+    ]
+  },
+
+  "slider_bar_background@genoa_settings_common.slider_bar": {
+    "$slider_bar_color": "$genoa_settings_slider_background_color"
+  },
+
+  "slider_bar_fill@genoa_settings_common.slider_bar": {
+    "$slider_bar_color": "$genoa_settings_slider_fill_color"
+  },
+
+  /*************************************************
+
+  Standalone option types (not ran through `genoa_setting_main`)
+
+  *************************************************/
+
+  /*
+  Requires:
+    $pressed_button_name
+    $button_text
+  */
+  "genoa_full_button_setting": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "$full_button_content|default": "genoa_common.button_content_text",
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 6 ]
+        }
+      },
+      {
+        "button@genoa_settings_common.genoa_button_setting": {
+          "$genoa_full_button_bindings|default": [],
+          "$full_button_size|default": [ "100%", 40 ],
+          "size": "$full_button_size",
+          "$button_content": "$full_button_content",
+          "bindings":  "$genoa_full_button_bindings"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 6 ]
+        }
+      }
+    ]
+  },
+
+  "labeled_full_button_setting": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "title": {
+          "type": "label",
+          "text": "options.genoa.language",
+          "font_type": "MinecraftSeven",
+          "override_height": 18
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 5 ]
+        }
+      },
+      { "button@genoa_settings_common.genoa_full_button_setting": {} }
+    ]
+  },
+
+
+  "genoa_text_edit": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "$show_copy_paste_buttons|default": false,
+    "controls": [
+      { "text_edit@settings_common.option_text_edit": {} },
+      {
+        "copy_paste_buttons": {
+          "ignored": "(not $show_copy_paste_buttons)",
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%", 30 ],
+
+          //button vars
+          "$button_content": "genoa_common.button_content_text",
+          "$button_font_type": "MinecraftTen",
+          "$background_style": "color",
+          "$background_color": "$genoa_button_color",
+          "$button_text_color": "$genoa_settings_button_text_color",
+          "$button_font_height": 20,
+          "$glow_style": "white",
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 10, "100%" ]
+              }
+            },
+            {
+              "copy_to_clipboard@genoa_common.button": {
+                "size": [ "fill", 30 ],
+                "$pressed_button_name": "('button.copy.' + $text_box_name)",
+                "$button_text": "options.genoa.dev.copy",
+                "sound_name": "inmenu.general.button",
+                "sound_volume": 1.0
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 10, "100%" ]
+              }
+            },
+            {
+              "paste_from_clipboard@genoa_common.button": {
+                "size": [ "fill", 30 ],
+                "$pressed_button_name": "('button.paste.' + $text_box_name)",
+                "$button_text": "options.genoa.dev.paste",
+                "sound_name": "inmenu.general.button",
+                "sound_volume": 1.0
+              }
+            },
+            {
+              "pad_2": {
+                "type": "panel",
+                "size": [ 10, "100%" ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      }
+    ]
+  }
+}

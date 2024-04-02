@@ -1,0 +1,2565 @@
+// Temporary profile screen which is created only when persona is enabled, and features the "Appearance" tab
+// Once persona is fully integrated, this screen should be merged with genoa_profile_screen.json 
+// and the condition in GenoaSceneFactory::createProfileScreen() should be removed.
+{
+  "namespace": "genoa_profile_persona",
+
+  // SCREEN DEFINITION
+  "profile_persona_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_profile_persona.main_content",
+    "screen_visibility": "opaque",
+    "$use_background": true,
+    "$screen_background_texture": "textures/ui/background_blurred",
+    "$background_scrim_visible": false
+  },
+
+  // CONTENT PANEL
+  "main_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "$activity_log_collection_name": "#activity_log_list",
+    "$overview_bindings": [
+      {
+        "binding_name": "#overview_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "$activity_log_bindings": [
+      {
+        "binding_name": "#activity_log_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "$appearance_bindings": [
+      {
+        "binding_name": "#appearance_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "$settings_bindings": [
+      {
+        "binding_name": "#settings_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "deep_linking_progress_modal@genoa_persona.loading_in_progress_modal": {
+          "$loading_in_progress_binding": "#deep_linking_in_progress",
+          "$loading_text": "profile.modal.label.loadingPersona"
+        }
+      },
+      {
+        "screen_input_panel": {
+          "type": "input_panel",
+          "size": [ "100%", "100%" ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.disable_tool_tip_screen_fill",
+              "mapping_type": "pressed"
+            }
+          ]
+        }
+      },
+      { "settings_full_screen_controls@genoa_settings.settings_full_screen_controls": {} },
+      {
+        "main_stack": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%" ],
+          "use_new_layout": true,
+          "controls": [
+            {
+              // HEADER
+              "header_section@genoa_common.header": {
+                "$header_text": "profile.header",
+                "$header_icon_control": "genoa_common.profile_head",
+                "size": [ "100%", 68 ]
+              }
+              // END OF HEADER
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 23 ]
+              }
+            },
+            {
+              "tab_selection_panel@genoa_profile_persona.tab_selection_panel": {
+                "$tab_button_controls": [
+                  {
+                    "overview_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.overview_tab",
+                      "$tab_button_texture": "textures/ui/icons/pixel_icons/all",
+                      "$tab_button_visible_binding_name": "#overview_visible"
+                    }
+                  },
+                  {
+                    "appearance_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.appearance_tab",
+                      "$tab_button_texture": "textures/ui/icons/pixel_icons/8x8/persona",
+                      "$tab_button_visible_binding_name": "#appearance_visible",
+                      "$tab_content": "genoa_profile_persona.appearance_button_notification_icon_image",
+                      "$alpha_binding_name": "#appearance_alpha",
+                      "$enabled_binding_name": "#appearance_enabled"
+                    }
+                  },
+                  {
+                    "activity_log_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.activity_log_tab",
+                      "$tab_button_texture": "textures/ui/profile/activity_log",
+                      "$tab_button_visible_binding_name": "#activity_log_visible",
+                      "$alpha_binding_name": "#activity_log_alpha",
+                      "$enabled_binding_name": "#activity_log_enabled"
+                    }
+                  },
+                  {
+                    "settings_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.settings_tab",
+                      "$tab_button_texture": "textures/ui/icons/pixel_icons/9x8/settings",
+                      "$tab_button_visible_binding_name": "#settings_visible"
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "(not #enable_level_up_rewards)",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "tab_selection_panel_with_level_up_rewards@genoa_profile_persona.tab_selection_panel": {
+                "$tab_button_controls": [
+                  {
+                    "overview_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.overview_tab",
+                      "$tab_button_texture": "textures/ui/icons/pixel_icons/all",
+                      "$tab_button_visible_binding_name": "#overview_visible"
+                    }
+                  },
+                  {
+                    "appearance_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.appearance_tab",
+                      "$tab_button_texture": "textures/ui/icons/pixel_icons/8x8/persona",
+                      "$tab_button_visible_binding_name": "#appearance_visible",
+                      "$tab_content": "genoa_profile_persona.appearance_button_notification_icon_image",
+                      "$alpha_binding_name": "#appearance_alpha",
+                      "$enabled_binding_name": "#appearance_enabled"
+                    }
+                  },
+                  {
+                    "level_up_rewards_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.level_up_rewards_tab",
+                      "$tab_button_texture": "textures/ui/icons/pixel_icons/7x8/crown",
+                      "$tab_button_visible_binding_name": "#level_up_rewards_visible",
+                      "$tab_content": "genoa_profile_persona.level_up_rewards_button_notification_icon_image",
+                      "$alpha_binding_name": "#level_up_rewards_alpha",
+                      "$enabled_binding_name": "#level_up_rewards_enabled"
+                    }
+                  },
+                  {
+                    "activity_log_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.activity_log_tab",
+                      "$tab_button_texture": "textures/ui/profile/activity_log",
+                      "$tab_button_visible_binding_name": "#activity_log_visible",
+                      "$alpha_binding_name": "#activity_log_alpha",
+                      "$enabled_binding_name": "#activity_log_enabled"
+                    }
+                  },
+                  {
+                    "settings_button@genoa_common.tab_button": {
+                      "$pressed_button_name": "button.settings_tab",
+                      "$tab_button_texture": "textures/ui/icons/pixel_icons/9x8/settings",
+                      "$tab_button_visible_binding_name": "#settings_visible"
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#enable_level_up_rewards",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "xp_bar@genoa_profile_persona.xp_bar": {
+                "bindings": [
+                  {
+                    "binding_name": "#level_up_rewards_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            { "tab_layout@genoa_profile_persona.tab_layouts": {} }
+          ]
+        }
+      }
+    ]
+  },
+
+  "tab_layouts": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "size": [ "100%", "fill" ],
+    "controls": [
+      {
+        "non_fullscreen_tabs": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "use_new_layout": true,
+          "size": [ "100%", "100%" ],
+          "bindings": [
+            {
+              "binding_name": "(not #settings_visible)",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 8 ]
+              }
+            },
+            {
+              "tab_specific_layout_panel@genoa_profile_persona.tab_specific_layout_panel": {
+                "size": [ "100%", "fill" ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 8 ]
+        }
+      },
+      {
+        "fade_bars@genoa_common.fading_scroll_mask_bars": {
+          "layer": 20,
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$source_control_name_override": "settings_scroll_view"
+        }
+      },
+      {
+        "settings_layout_panel@common.scrolling_panel": {
+          "size": [ "100%", "fill" ],
+          "$scrolling_content": "genoa_settings.genoa_settings_panel",
+          "$scrolling_pane_size": [ "100%", "100%" ],
+          "$show_background": false,
+          "$scroll_size": [ "10px", "100%" ],
+          "bindings": "$settings_bindings",
+          "$scroll_view_name": "settings_scroll_view",
+          "offset": [ 0, -3 ]
+        }
+      }
+    ]
+  },
+
+  "appearance_button_notification_icon_image@genoa_persona.status_image": {
+    "size": [ 10, 10 ],
+    "offset": [ "100%x", -10 ],
+    "texture": "textures/ui/profile_notification_icon",
+    "$status_image_anchor": "center",
+    "$status_image_visible_binding_type": "global",
+    "$status_image_visible_binding_name": "#are_new_persona_offers_available"
+  },
+
+  "level_up_rewards_button_notification_icon_image@genoa_persona.status_image": {
+    "size": [ 10, 10 ],
+    "offset": [ "100%x", -10 ],
+    "texture": "textures/ui/profile_notification_icon",
+    "$status_image_anchor": "center",
+    "$status_image_visible_binding_type": "global",
+    "$status_image_visible_binding_name": "#new_level_up_rewards_available"
+  },
+
+  "tab_selection_panel@genoa_common.tab_selection_panel": {
+    "$text": "#profile_tab_filter_name",
+    "$text_binding": [
+      {
+        "binding_name": "$text",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "gamer_tag@genoa_common.boxed_icon_label": {
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "$label_text_height": 22,
+    "$label_text": "#player_name",
+    "$label_text_max_size": [ 320, 0 ],
+    "$text_bindings": [
+      {
+        "binding_name": "$label_text",
+        "binding_condition": "once"
+      }
+    ],
+    "bindings": "$overview_bindings"
+  },
+
+  // SKIN VIEWER PANEL
+  "skin_view": {
+    "type": "panel",
+    "controls": [
+      {
+        "vignette": {
+          "type": "custom",
+          "size": [ "100%", "100%" ],
+          "renderer": "vignette",
+          "vignette_scene": "genoa:profile_vignette",
+          "property_bag": {
+            "vignette_skins": "$vignette_skins"
+          },
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_property_name": "#vignette_id",
+              "target_property_name": "#vignette_id",
+              "invoke_screen_controller": true
+            },
+            {
+              "binding_name": "#vignette_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "preview@genoa_profile_persona.skin_viewer_panel": {
+        }
+      },
+      {
+        "skin_view_panel_appearance": {
+          "type": "panel",
+          "bindings": "$appearance_bindings",
+          "controls": [
+            {
+              "retry_button@genoa_store.button_with_icon": {
+                "size": [ 80, 80 ],
+                "layer": 2,
+                "$button_icon_texture": "textures/ui/refresh",
+                "$button_icon_size": [ 36, 36 ],
+                "$pressed_button_name": "button.retry_appearance_preset",
+                "bindings": [
+                  {
+                    "binding_name": "#is_retry_visible",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            },
+            {
+              "progress_loading@genoa_common.progress_loading": {
+                "bindings": [
+                  {
+                    "binding_name": "#is_current_preset_loading_visible",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "skin_viewer_panel": {
+    "type": "input_panel",
+    "size": [ "100%", "100%" ],
+    "gesture_tracking_button": "button.disable_tool_tip_screen_fill",
+    "always_handle_controller_direction": true,
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.disable_tool_tip_screen_fill",
+        "mapping_type": "pressed"
+      }
+    ],
+    "property_bag": {
+      "#rotation_speed": 2.0
+    },
+    "bindings": [
+      {
+        "binding_type": "global",
+        "binding_name": "#gesture_info",
+        "binding_condition": "always_when_visible"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "#gesture_delta_source",
+        "target_property_name": "#gesture_delta_source"
+      },
+      {
+        "binding_type": "view",
+        "source_property_name": "#gesture_mouse_delta_x",
+        "target_property_name": "#gesture_mouse_delta_x"
+      }
+    ]
+  },
+  // END OF SKIN VIEWER PANEL
+
+  "tab_specific_layout_panel": {
+    "type": "panel",
+    "controls": [
+      {
+        "overview_layout_panel@genoa_profile_persona.overview_layout_panel": {
+          "size": [ "100%", "100%" ],
+          "bindings": "$overview_bindings"
+        }
+      },
+      {
+        "activity_log_layout_panel@genoa_profile_persona.activity_log_layout_panel": {
+          "size": [ "100%", "100%" ],
+          "bindings": "$activity_log_bindings"
+        }
+      },
+      {
+        "appearance_layout_panel@genoa_profile_persona.appearance_layout_panel": {
+          "size": [ "100%", "100%" ],
+          "bindings": "$appearance_bindings"
+        }
+      },
+      {
+        "level_up_rewards_layout_panel@genoa_profile_persona.level_up_rewards_layout_panel": {
+          "bindings": [
+            {
+              "binding_name": "#level_up_rewards_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  // OVERVIEW TAB LAYOUT
+  "overview_layout_panel": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "gamer_tag@genoa_profile_persona.gamer_tag": {}
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 2 ]
+        }
+      },
+      {
+        "persona_and_stats_panel": {
+          "size": [ "100%", "fill" ],
+          "type": "panel",
+          "controls": [
+            {
+              "skin_view@genoa_profile_persona.skin_view": {
+                "size": [ "100%", "55%" ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle"
+              }
+            },
+            {
+              "overview_scroll_panel": {
+                "size": [ "100%", "45%" ],
+                "type": "panel",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "controls": [
+                  {
+                    "tooltip": {
+                      "type": "panel",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "bottom_middle",
+                      "offset": [ 0, -10 ],
+                      "size": [ 330, 85 ],
+                      "controls": [
+                        {
+                          "tooltip@genoa_profile_persona.new_tool_tip": {
+                            "layer": 12,
+                            "bindings": [
+                              {
+                                "binding_name": "#stat_tooltip_visible",
+                                "binding_name_override": "#visible"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                      "layer": 20,
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "$source_control_name_override": "overview_persona_scroll_view"
+                    }
+                  },
+                  {
+                    "scrolling_panel@common.scrolling_panel": {
+                      "size": [ "100%", "100% - 5px" ],
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "bottom_middle",
+                      "$show_background": false,
+                      "$scroll_fade_distance": 4.0,
+                      "$scrolling_content": "genoa_profile_persona.overview_scrolling_content",
+                      "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+                      "$scroll_view_name": "overview_persona_scroll_view"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "xp_bar": {
+    "type": "panel",
+    "size": [ "100%", 60 ],
+    "controls": [
+      {
+        "xp_label": {
+          "type": "label",
+          "offset": [ 12, 13 ],
+          "font_type": "MinecraftSeven",
+          "override_height": 18,
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "text": "profile.level"
+        }
+      },
+      {
+        "xp_tally": {
+          "type": "label",
+          "offset": [ -13, 13 ],
+          "font_type": "MinecraftSeven",
+          "override_height": 18,
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "text": "#xp_tally",
+          "bindings": [
+            {
+              "binding_name": "#xp_tally",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "bar_box": {
+          "type": "image",
+          "size": [ 350, 20 ],
+          "offset": [ 0, -2 ],
+          "texture": "textures/ui/9_slice/box_simple",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "controls": [
+            {
+              "xp_bar_color@genoa_common.white": {
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "layer": 2,
+                "offset": [ 5, 0 ],
+                "size": [ 340, 10 ],
+                "color": "$genoa_hud_experience_bar_color",
+                "clip_direction": "left",
+                "clip_pixelperfect": false,
+                "controls": [
+                  {
+                    "xp_bar_gradient": {
+                      "type": "image",
+                      "texture": "textures/ui/bar_bevel_basic",
+                      "clip_direction": "left",
+                      "clip_pixelperfect": false,
+                      "bindings": [
+                        {
+                          "binding_name": "#xp_bar_size",
+                          "binding_name_override": "#clip_ratio",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#xp_bar_size",
+                    "binding_name_override": "#clip_ratio",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            },
+            {
+              "xp_overlay_grid": {
+                "type": "grid",
+                "layer": 3,
+                "size": [ "100% - 5px", 10 ],
+                "offset": [ 5, 0 ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "grid_item_template": "genoa_profile_persona.xp_overlay_grid_item",
+                "$grid_name": "#xp_overlay",
+                "collection_name": "$grid_name",
+                "grid_dimension_binding": "$grid_name",
+                "bindings": [
+                  {
+                    "binding_name": "$grid_name"
+                  }
+                ]
+              }
+            },
+            {
+              "player_level@genoa_profile_persona.player_level_display": {
+                "layer": 6,
+                "$offset_size": "large",
+                "offset": [ 0, -24 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "overview_scrolling_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "xp_bar@genoa_profile_persona.xp_bar": {}
+      },
+      {
+        "pad_stats": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      },
+      {
+        "stats_row_0@genoa_profile_persona.stats_row": {
+          "$stat_name_1": "blocks_placed",
+          "$stat_name_2": "blocks_collected",
+          "$stat_name_3": "mobs_collected",
+          "$stat_name_4": "time_played"
+        }
+      },
+
+      //the extra stats below are under a feature flag controlled by the #enable_player_stats binding
+      {
+        "player_stats": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "bindings": [
+            {
+              "binding_name": "#enable_player_stats",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "pad_stats_row_1": {
+                "type": "panel",
+                "size": [ "100%", 5 ]
+              }
+            },
+            {
+              "stats_row_1@genoa_profile_persona.stats_row": {
+                "$stat_name_1": "challenges_completed",
+                "$stat_name_2": "tools_broken",
+                "$stat_name_3": "items_crafted",
+                "$stat_name_4": "items_smelted"
+              }
+            },
+            {
+              "pad_stats_row_2": {
+                "type": "panel",
+                "size": [ "100%", 5 ]
+              }
+            },
+            {
+              "stats_row_2@genoa_profile_persona.stats_row": {
+                "$stat_name_1": "adventures_played",
+                "$stat_name_2": "tappables_collected",
+                "$stat_name_3": "number_of_deaths",
+                "$stat_name_4": "mobs_killed"
+              }
+            },
+            {
+              "pad_stats_row_3": {
+                "type": "panel",
+                "size": [ "100%", 5 ]
+              }
+            },
+            {
+              "stats_row_3@genoa_profile_persona.stats_row": {
+                "$stat_name_1": "shared_buildplate_views",
+                "$stat_2_ignored": true,
+                "$stat_3_ignored": true,
+                "$stat_4_ignored": true
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_end": {
+          "type": "panel",
+          "size": [ "100%", 35 ]
+        }
+      }
+    ]
+  },
+  // END OVERVIEW TAB LAYOUT
+
+  // LEVEL UP REWARDS TAB LAYOUT
+  "empty_reward": {
+    "type": "panel",
+    "size": [ 60, 60 ],
+    "controls": [
+      {
+        "reward_grid_background@genoa_common.white": {
+          "texture": "textures/ui/crafting_smelting_recipe_grid_none_bg",
+          "controls": [
+            {
+              "slot_bevel@genoa_common.white": {
+                "texture": "textures/ui/slot_bevel_simple"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "reward": {
+    "type": "panel",
+    "size": [ 60, 60 ],
+    "controls": [
+      {
+        "reward_box@genoa_challenges.reward": {
+          "size": [ "100%", "100%" ], // necessary, the default size fo reward in genoa_challenges is set to 50, 50
+          "$reward_alpha": "#collected_level_reward_alpha",
+          "$reward_quantity_propagate_alpha": true,
+          "$reward_quantity_alpha_bindings": [
+            {
+              "binding_name": "$reward_alpha",
+              "binding_name_override": "#alpha"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "$reward_image_bindings": [
+            {
+              "binding_name": "$reward_alpha",
+              "binding_name_override": "#alpha"
+            },
+            {
+              "binding_name": "#level_up_reward_item_texture",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_name": "#level_up_reward_item_texture_file_system",
+              "binding_name_override": "#texture_file_system"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "$reward_quantity": "#level_up_reward_quantity",
+          "$reward_quantity_bindings": [
+            {
+              "binding_name": "$reward_quantity"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "$button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.level_up_reward_selected",
+              "mapping_type": "pressed"
+            }
+          ],
+          "$reward_title_bindings": [
+            {
+              "binding_name": "#level_up_reward_title_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "$fading_selection_info_name": "level_up_reward_info"
+        }
+      },
+      {
+        "checkmark@genoa_common.white": {
+          "texture": "textures/ui/check_small_selected_pixelated_no_background",
+          "size": [ 34, 34 ],
+          "layer": 2,
+          "bindings": [
+            {
+              "binding_name": "#collected_level_reward",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "#per_level_rewards_list"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "level_up_reward_card": {
+    "type": "panel",
+    "size": [ 315, 110 ],
+    "$card_level_color": "#card_level_color",
+    "$card_level_alpha": "#card_level_alpha",
+    "$card_binding_collection_name|default": "#level_up_rewards_list",
+    "controls": [
+      {
+        "card_shadow@genoa_common.white": {
+          "size": [ "100%", 80 ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "color": "$genoa_button_shadow_color",
+          "offset": [ 3, 3 ],
+          "controls": [
+            {
+              "card@genoa_common.white": {
+                "offset": [ -3, -3 ],
+                "bindings": [
+                  {
+                    "binding_name": "#card_background",
+                    "binding_name_override": "#texture",
+                    "binding_collection_name": "$card_binding_collection_name",
+                    "binding_type": "collection"
+                  }
+                ],
+                "controls": [
+                  {
+                    "reward_stacks": {
+                      "type": "stack_panel",
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [ -10, 10 ],
+                      "size": [ 240, "100%-20px" ],
+                      "orientation": "horizontal",
+                      "controls": [
+                        {
+                          "reward_stack": {
+                            "type": "stack_panel",
+                            "size": [ "100%c", "fill" ],
+                            "orientation": "horizontal",
+                            "collection_name": "#per_level_rewards_list",
+                            "factory": {
+                              "name": "each_reward",
+                              "control_name": "genoa_profile_persona.reward"
+                            },
+                            "bindings": [
+                              {
+                                "binding_name": "#per_level_rewards_list_size",
+                                "binding_name_override": "#collection_length",
+                                "binding_collection_name": "$card_binding_collection_name",
+                                "binding_type": "collection"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "empty_reward_stack": {
+                            "type": "stack_panel",
+                            "size": [ "100%c", "fill" ],
+                            "orientation": "horizontal",
+                            "factory": {
+                              "name": "each_empty_reward",
+                              "control_name": "genoa_profile_persona.empty_reward"
+                            },
+                            "bindings": [
+                              {
+                                "binding_name": "#per_level_empty_rewards_list_size",
+                                "binding_name_override": "#collection_length",
+                                "binding_collection_name": "$card_binding_collection_name",
+                                "binding_type": "collection"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "level_shadow": {
+                      "type": "label",
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [ -254, 1 ],
+                      "text_alignment": "right",
+                      "text": "#card_level",
+                      "override_height": 45,
+                      "font_type": "MinecraftTen",
+                      "color": "$genoa_store_purchase_button_shadow_color",
+                      "alpha": 0.1,
+                      "bindings": [
+                        {
+                          "binding_name": "#card_level",
+                          "binding_collection_name": "$card_binding_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "level": {
+                            "type": "label",
+                            "offset": [ 0, -2 ],
+                            "text": "#card_level",
+                            "override_height": 45,
+                            "font_type": "MinecraftTen",
+                            "bindings": [
+                              {
+                                "binding_name": "#card_level",
+                                "binding_collection_name": "$card_binding_collection_name",
+                                "binding_type": "collection"
+                              },
+                              {
+                                "binding_name": "$card_level_color",
+                                "binding_name_override": "#color",
+                                "binding_collection_name": "$card_binding_collection_name",
+                                "binding_type": "collection"
+                              },
+                              {
+                                "binding_name": "$card_level_alpha",
+                                "binding_name_override": "#alpha",
+                                "binding_collection_name": "$card_binding_collection_name",
+                                "binding_type": "collection"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "lock_shadow@genoa_common.white": {
+                      "size": [ 48, 48 ],
+                      "layer": 1,
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [ -286, 30 ],
+                      "color": "black",
+                      "alpha": 0.2,
+                      "texture": "textures/ui/icons/item_icons/locked",
+                      "controls": [
+                        {
+                          "lock@genoa_common.white": {
+                            "texture": "textures/ui/icons/item_icons/locked",
+                            "offset": [ 0, -4 ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "#lock_visible",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "$card_binding_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "decoration_top_left@genoa_common.white": {
+                      "size": [ 84, 30 ],
+                      "anchor_from": "top_left",
+                      "anchor_to": "bottom_left",
+                      "offset": [ 5, 0 ],
+                      "bindings": [
+                        {
+                          "binding_name": "#top_left_decoration_texture",
+                          "binding_name_override": "#texture",
+                          "binding_collection_name": "$card_binding_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "decoration_top_right@genoa_common.white": {
+                      "size": [ 84, 30 ],
+                      "anchor_from": "top_right",
+                      "anchor_to": "bottom_right",
+                      "offset": [ -5, 0 ],
+                      "bindings": [
+                        {
+                          "binding_name": "#top_right_decoration_texture",
+                          "binding_name_override": "#texture",
+                          "binding_collection_name": "$card_binding_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "decoration_bottom_left@genoa_common.white": {
+                      "size": [ 84, 30 ],
+                      "anchor_from": "bottom_left",
+                      "anchor_to": "top_left",
+                      "offset": [ 5, 0 ],
+                      "bindings": [
+                        {
+                          "binding_name": "#bottom_left_decoration_texture",
+                          "binding_name_override": "#texture",
+                          "binding_collection_name": "$card_binding_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "decoration_bottom_right@genoa_common.white": {
+                      "size": [ 84, 30 ],
+                      "anchor_from": "bottom_right",
+                      "anchor_to": "top_right",
+                      "offset": [ -5, 0 ],
+                      "bindings": [
+                        {
+                          "binding_name": "#bottom_right_decoration_texture",
+                          "binding_name_override": "#texture",
+                          "binding_collection_name": "$card_binding_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "banner": {
+                      "type": "image",
+                      "size": [ "100%c+60px", 45 ],
+                      "layer": 2,
+                      "texture": "textures/ui/9_slice/LevelUpRewards/next_reward_ribbon",
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
+                      "offset": [ -10, -20 ],
+                      "keep_ratio": false,
+                      "controls": [
+                        {
+                          "next_reward_label_shadow": {
+                            "type": "label",
+                            "anchor_from": "top_left",
+                            "anchor_to": "top_left",
+                            "offset": [ 23, 6 ],
+                            "text_alignment": "right",
+                            "text": "profile.level_up_rewards_ribbon",
+                            "override_height": 17,
+                            "font_type": "MinecraftTen",
+                            "color": "$genoa_store_purchase_button_shadow_color",
+                            "alpha": 0.1,
+                            "controls": [
+                              {
+                                "next_reward_label": {
+                                  "type": "label",
+                                  "offset": [ 0, -2 ],
+                                  "text_alignment": "right",
+                                  "text": "profile.level_up_rewards_ribbon",
+                                  "color": "white",
+                                  "override_height": 17,
+                                  "font_type": "MinecraftTen"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "#banner_visible",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "$card_binding_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "level_up_rewards_list_bottom_padded": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "level_up_rewards_list": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "$card_binding_collection_name": "#level_up_rewards_list",
+          "collection_name": "$card_binding_collection_name",
+          "factory": {
+            "name": "each_level_up_reward",
+            "control_name": "genoa_profile_persona.level_up_reward_card"
+          },
+          "bindings": [
+            {
+              "binding_name": "#level_up_rewards_list_size",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 20 ]
+        }
+      }
+    ]
+  },
+
+  "level_up_rewards_layout_panel": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%" ], // necessary for layout resolution
+    "controls": [
+      {
+        "fade_bars@genoa_common.fading_scroll_mask_bars": {
+          "layer": 20,
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$source_control_name_override": "level_up_rewards_scroll_view"
+        }
+      },
+      {
+        "scrolling_level_up_rewards@common.scrolling_panel": {
+          "$show_background": false,
+          "$scroll_fade_distance": 4.0,
+          "$scrolling_content": "genoa_profile_persona.level_up_rewards_list_bottom_padded",
+          "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+          "$scroll_view_name": "level_up_rewards_scroll_view",
+          "offset": [ 0, -3 ]
+        }
+      }
+    ]
+  },
+  // END LEVEL UP REWARDS TAB LAYOUT
+
+  // ACTIVITY_LOG TAB LAYOUT
+  "activity_log_layout_panel": {
+    "type": "panel",
+    "controls": [
+      {
+        "waiting_makinghub_contents@genoa_profile_persona.waiting_activity_log_contents": {
+          "bindings": [
+            {
+              "binding_name": "#activity_log_ready",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      },
+      {
+        "activity_log_scrolling_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%" ],
+          "bindings": [
+            {
+              "binding_name": "#activity_log_ready",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "activity_log_scroll_stack": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%" ],
+                "use_new_layout": true,
+                "controls": [
+                  {
+                    "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                      "layer": 20,
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "$source_control_name_override": "activity_log_scroll_view"
+                    }
+                  },
+                  {
+                    "scrolling_activity_log@common.scrolling_panel": {
+                      "$show_background": false,
+                      "$scroll_fade_distance": 4.0,
+                      "$scrolling_content": "genoa_profile_persona.activity_log_stack",
+                      "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+                      "$scroll_view_name": "activity_log_scroll_view",
+                      "offset": [ 0, -3 ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // END ACTIVITY_LOG TAB LAYOUT
+
+  "waiting_activity_log_contents": {
+    "type": "panel",
+    "controls": [
+      {
+        "loading_contents@genoa_common.loading_content_stack_panel": {
+          "$loading_text": "profile.activity_log_loading",
+          "$loading_content_bindings": [
+            {
+              "binding_name": "#show_loading",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "activity_log_empty_contents": {
+    "size": [ "default", 20 ],
+    "type": "label",
+    "font_type": "MinecraftSeven",
+    "shadow": true,
+    "text": "profile.activity_log_empty"
+  },
+
+  "activity_log_stack": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "activity_log_empty@genoa_profile_persona.activity_log_empty_contents": {
+          "bindings": [
+            {
+              "binding_name": "#activity_log_empty",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "activity_log_factory": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "animation_name": "Main Challenges", // WHAT TO DO HERE?
+          "collection_name": "$activity_log_collection_name",
+          "factory": {
+            "name": "each_activity_log",
+            "control_name": "genoa_profile_persona.activity_log_box"
+          },
+          "bindings": [
+            {
+              "binding_name": "#activity_log_list_size",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 3 ]
+        }
+      }
+    ]
+  },
+
+  "activity_log_box": {
+    "type": "panel",
+    "size": [ 350, "100%c" ],
+    "controls": [
+      {
+        "one_line@genoa_profile_persona.activity_log_with_background": {
+          "bindings": [
+            {
+              "binding_name": "#is_activity_log_special_event",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$activity_log_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "two_line@genoa_profile_persona.activity_log_two_line": {
+          "bindings": [
+            {
+              "binding_name": "#is_activity_log_two_line",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$activity_log_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "date_divider@genoa_common.divider_label": {
+          "$text_alignment": "left",
+          "$text": "#activity_log_title",
+          "$left_text_pad_size": [ 0, 0 ],
+          "$right_bar_pad_size": [ 0, 0 ],
+          "$left_bar_pad_size": [ 0, 0 ],
+          "$text_binding": [
+            {
+              "binding_name": "#activity_log_title",
+              "binding_collection_name": "$activity_log_collection_name",
+              "binding_type": "collection"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#is_activity_log_date_divider",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$activity_log_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      }
+    ]
+  },
+
+  "activity_log_with_background": {
+    "type": "panel",
+    "size": [ "100%", 73 ],
+    "anchor_to": "left_middle",
+    "anchor_from": "left_middle",
+    "controls": [
+      {
+        "main_content@activity_log_with_background_main_content": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [ 5, 0 ]
+        }
+      },
+      {
+        "background_image@genoa_profile_persona.activity_log_background_image": {
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "size": [ 351, 73 ]
+        }
+      },
+      {
+        "bottom_line@genoa_profile_persona.activity_log_two_line_content_bottom": {
+          "anchor_from": "bottom_right",
+          "anchor_to": "bottom_right",
+          "offset": [ -8, 0 ]
+        }
+      },
+      {
+        "secondary_icon_panel": {
+          "type": "input_panel",
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.show_secondary_icon_title",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "controls": [
+            {
+              "secondary_icon@genoa_profile_persona.activity_log_icon": {
+                "anchor_from": "top_right",
+                "anchor_to": "top_right",
+                "layer": 2,
+                "size": [ 67, 67 ],
+                "offset": [ -5, 0 ],
+                "$icon_binding": "#activity_log_secondary_icon"
+              }
+            },
+            {
+              "secondary_icon_fading_selection_info@genoa_common.fading_selection_info": {
+                "$anchoring_to": "bottom_right",
+                "$anchoring_from": "top_right",
+                "$selection_info_text_offset": [ 15, -5 ],
+                "$ingredient_name_panel_visible_binding": [
+                  {
+                    "binding_name": "#secondary_icon_fading_text_visible",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "activity_log_two_line": {
+    "type": "panel",
+    "size": [ "100%", "100%cm" ],
+    "controls": [
+      {
+        "box_shadow@genoa_common.white": {
+          "color": "$genoa_activity_log_entry_background_color",
+          "alpha": 0.7,
+          "size": [ "100%", "100%cm" ],
+          "controls": [
+            {
+              "activity_log_content@genoa_profile_persona.activity_log_two_line_content": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "activity_log_with_background_main_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout":  true,
+    "size": [ "100%", 69 ],
+    "controls": [
+      {
+        "icon@genoa_profile_persona.activity_log_icon": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [ 4, 14 ]
+        }
+      },
+      {
+        "one_line_text@genoa_profile_persona.activity_log_with_background_main_content_text": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [ 7, 16 ]
+        }
+      }
+    ]
+  },
+
+  "activity_log_with_background_main_content_text": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%c", 69 ],
+    "offset": [ 5, 0 ],
+    "controls": [
+      {
+        "title_text@genoa_profile_persona.activity_log_title_text": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left"
+        }
+      },
+      {
+        "time_text@genoa_profile_persona.activity_log_date_time_text": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left"
+        }
+      }
+    ]
+  },
+
+  "activity_log_two_line_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", 71 ],
+    "controls": [
+      {
+        "top_line@genoa_profile_persona.activity_log_two_line_content_top": {
+        }
+      },
+      {
+        "bottom_line@genoa_profile_persona.activity_log_two_line_content_bottom": {
+          "anchor_from": "bottom_right",
+          "anchor_to": "bottom_right",
+          "offset": [ -5, -110 ]
+        }
+      }
+    ]
+  },
+
+  "activity_log_two_line_content_top": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "icon@genoa_profile_persona.activity_log_icon": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [ 5, 5 ]
+        }
+      },
+      {
+        "info_text@genoa_profile_persona.activity_log_two_line_content_text": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [ 5, 9 ]
+        }
+      },
+      {
+        "background_image@genoa_profile_persona.activity_log_background_image": {
+          "offset": [ 75, 0 ],
+          "size": [ 351, 71 ],
+          "anchor_from": "left_middle",
+          "anchor_to":  "left_middle"
+        }
+      }
+    ]
+  },
+
+  "activity_log_two_line_content_text": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "title_text@genoa_profile_persona.activity_log_title_text": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left"
+        }
+      },
+      {
+        "time_text@genoa_profile_persona.activity_log_date_time_text": {
+          "anchor_from": "top_left",
+          "anchor_to": "top_left"
+        }
+      }
+    ]
+  },
+
+  "activity_log_two_line_content_bottom": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ "default", 32 ],
+    "collection_name": "#activity_log_list_rewards",
+    "factory": {
+      "name": "each_reward_icon",
+      "control_name": "genoa_profile_persona.activity_log_rewards_grid_element"
+    },
+    "bindings": [
+      {
+        "binding_name": "#num_activity_log_rewards",
+        "binding_name_override": "#collection_length"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "activity_log_rewards_grid_element": {
+    "type": "panel",
+    "size": [ 48, 32 ],
+    "bindings": [
+      {
+        "binding_name": "#activity_log_reward_visible",
+        "binding_name_override": "#visible",
+        "binding_collection_name": "#activity_log_list_rewards"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "controls": [
+      {
+        "activity_log_rewards_panel": {
+          "type": "input_panel",
+          "size": [ 48, 32 ],
+          "button_mappings": "$fading_name_tag_button",
+          "$fading_name_tag_button|default": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.show_reward_title",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "controls": [
+            {
+              "activity_log_reward_icon@genoa_profile_persona.activity_log_reward_icon": {
+                "offset": [ 0, -5 ]
+              }
+            },
+            {
+              "activity_log_reward_text_extra@genoa_profile_persona.activity_log_reward_text": {
+                "override_height": 16,
+                "offset": [ 0, 11 ],
+                "bindings": [
+                  {
+                    "binding_name": "#activity_log_reward_extra",
+                    "binding_name_override": "#visible",
+                    "binding_collection_name": "#activity_log_list_rewards"
+                  },
+                  {
+                    "binding_name": "#activity_log_reward_count",
+                    "binding_collection_name": "#activity_log_list_rewards"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            },
+            {
+              "activity_log_reward_text@genoa_profile_persona.activity_log_reward_text": {
+                "override_height": 22,
+                "offset": [ 0, 5 ],
+                "bindings": [
+                  {
+                    "binding_name": "#activity_log_reward_extra",
+                    "binding_name_override": "(not #visible)",
+                    "binding_collection_name": "#activity_log_list_rewards"
+                  },
+                  {
+                    "binding_name": "#activity_log_reward_count",
+                    "binding_collection_name": "#activity_log_list_rewards"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "reward_fading_selection_info@genoa_profile_persona.fading_selection_info": {}
+      }
+    ]
+  },
+
+  "fading_selection_info@genoa_common.fading_selection_info": {
+    "$anchoring_to": "bottom_right",
+    "$anchoring_from": "top_right",
+    "$selection_info_text_offset": [ 15, -5 ],
+    "$ingredient_name_panel_visible_binding": [
+      {
+        "binding_name": "#activity_log_reward_text_visible",
+        "binding_name_override": "#visible"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "activity_log_reward_icon": {
+    "type": "image",
+    "fill": true,
+    "size": [ 32, 32 ],
+    "layer": 2,
+    "bindings": [
+      {
+        "binding_name": "#activity_log_reward_texture",
+        "binding_name_override": "#texture",
+        "binding_collection_name": "#activity_log_list_rewards"
+      },
+      {
+        "binding_name": "#activity_log_reward_texture_file_system",
+        "binding_name_override": "#texture_file_system",
+        "binding_collection_name": "#activity_log_list_rewards"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "activity_log_reward_text": {
+    "size": [ "default", 32 ],
+    "type": "label",
+    "font_type": "MinecraftSeven",
+    "shadow": true,
+    "layer": 3,
+    "text": "#activity_log_reward_count",
+    "anchor_from": "bottom_right",
+    "anchor_to": "bottom_right"
+  },
+
+  "activity_log_title_text": {
+    "type": "label",
+    "override_height": 16,
+    "font_type": "MinecraftSeven",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "text": "#activity_log_title",
+    "color": "$genoa_gold_text",
+    "shadow": false,
+    "bindings": [
+      {
+        "binding_name": "#activity_log_title",
+        "binding_type": "collection",
+        "binding_collection_name": "$activity_log_collection_name"
+      }
+    ]
+  },
+
+  "activity_log_date_time_text": {
+    "type": "label",
+    "override_height": 16,
+    "font_type": "MinecraftSeven",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "text": "#activity_log_date_time",
+    "color": "$genoa_button_color",
+    "shadow": false,
+    "bindings": [
+      {
+        "binding_name": "#activity_log_date_time",
+        "binding_type": "collection",
+        "binding_collection_name": "$activity_log_collection_name"
+      }
+    ]
+  },
+
+  "activity_log_icon": {
+    "type": "image",
+    "size": [ 45, 45 ],
+    "$icon_binding|default": "#activity_log_icon",
+    "bindings": [
+      {
+        "binding_name": "$icon_binding",
+        "binding_type": "collection",
+        "binding_collection_name": "$activity_log_collection_name",
+        "binding_name_override": "#texture"
+      }
+    ]
+  },
+
+  "activity_log_background_image@genoa_common.white": {
+    "bindings": [
+      {
+        "binding_name": "#activity_log_background_image",
+        "binding_type": "collection",
+        "binding_collection_name": "$activity_log_collection_name",
+        "binding_name_override": "#texture"
+      }
+    ]
+  },
+
+  // APPEARANCE TAB LAYOUT
+  "appearance_layout_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "controls": [
+      {
+        "appearance_stack": {
+          "type": "stack_panel",
+          "size": [ "fill", "100%" ],
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 2 ]
+              }
+            },
+            {
+              "skin_view@genoa_profile_persona.skin_view": {
+                "size": [ "100%", "60%" ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle"
+              }
+            },
+            {
+              "button_stack@genoa_profile_persona.appearance_controls_horizontal_stack": {}
+            },
+            {
+              "padding_gap": {
+                "type": "panel",
+                "size": [ "100%", 5 ]
+              }
+            },
+            {
+              "persona_grid": {
+                "size": [ "100%", "40%" ],
+                "type": "panel",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "controls": [
+                  {
+                    "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                      "layer": 30,
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "$source_control_name_override": "persona_scroll_view"
+                    }
+                  },
+                  {
+                    "persona_scrolling_panel@common.scrolling_panel": {
+                      "size": [ "100%", "100% - 5px" ],
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "bottom_middle",
+                      "$show_background": false,
+                      "$scroll_fade_distance": 4.0,
+                      "$scrolling_content": "genoa_profile_persona.persona_grid_scrolling_content",
+                      "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+                      "$scroll_view_name": "persona_scroll_view",
+                      "offset": [ 0, 1 ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "edit_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "new_icon_image@genoa_persona.new_icon_image": {
+          "layer": 5,
+          "offset": [ 3, -5 ],
+          "anchor_to": "top_right",
+          "anchor_from": "top_right",
+          "$status_image_visible_binding_type": "global",
+          "$status_image_visible_binding_name": "#are_new_persona_offers_available"
+        }
+      },
+      {
+        "button_text_content@genoa_common.button_content_text_bindable": {}
+      }
+    ]
+  },
+
+  "appearance_controls_horizontal_stack": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 48 ],
+    "controls": [
+      {
+        "padding_left": {
+          "type": "panel",
+          "size": [ 13, "100%" ]
+        }
+      },
+      {
+        "edit_button@genoa_common.button": {
+          "size": [ "fill", "100%" ],
+          "sound_name": "confirm.button",
+          "$locked_control": "genoa_profile_persona.disabled_edit_button",
+          "$pressed_button_name": "button.edit_appearance_preset",
+          "$button_content": "genoa_profile_persona.edit_button_content",
+          "$button_text": "#edit_appearance_text",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_height": 22,
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_confirm",
+          "$glow_style": "white",
+          "bindings": [
+            {
+              "binding_name": "#enable_edit_appearance",
+              "binding_name_override": "#enabled",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "padding_gap": {
+          "type": "panel",
+          "size": [ 5, "100%" ]
+        }
+      },
+      {
+        "delete_button@genoa_store.button_with_icon": {
+          "size": [ 48, 48 ],
+          "sound_name": "delete.button",
+          "$locked_control": "genoa_profile_persona.disabled_delete_button",
+          "$button_icon_texture": "textures/ui/profile/delete",
+          "$button_icon_size": [ 36, 36 ],
+          "$pressed_button_name": "button.delete_appearance_preset",
+          "$background_style": "color",
+          "$background_color": "$genoa_nav_bar_background_color",
+          "bindings": [
+            {
+              "binding_name": "#delete_button_enabled",
+              "binding_name_override": "#enabled"
+            }
+          ]
+        }
+      },
+      {
+        "padding_right": {
+          "type": "panel",
+          "size": [ 13, "100%" ]
+        }
+      }
+    ]
+  },
+  //END APPEARANCE TAB
+
+  "disabled_edit_button@genoa_common.default_button_content": {
+    "alpha": 0.5,
+    "$font_alpha": 0.5,
+    "$background_alpha": 0.5,
+    "$bevel_alpha": 0.5,
+    "$shadow_enabled": false,
+    "$glow_enabled": false
+  },
+
+  "disabled_delete_button@genoa_common.default_button_content": {
+    "alpha": 0.6,
+    "$shadow_alpha": 0.25,
+    "$glow_alpha": 0.6,
+    "$background_alpha": 0.6,
+    "$button_icon_alpha": 0.8,
+    "$bevel_alpha": 0.6
+  },
+
+  // XP AND LEVEL
+  "xp_overlay_grid_item": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "fill", "100%" ],
+    "controls": [
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ "fill", "100%" ]
+        }
+      },
+      {
+        "tick": {
+          "type": "image",
+          "texture": "textures/ui/9_slice/box_simple",
+          "size": [ 5, 10 ],
+          "layer": 2,
+          "alpha": 0.5,
+          "bindings": [
+            {
+              "binding_name": "#xp_tick_visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$grid_name",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  //This implementation is required due to lack of font functionality for making a black border around text
+  "xp_level_shadow": {
+    "type": "label",
+    "shadow": false,
+    "text": "#player_level",
+    "font_type": "MinecraftSeven",
+    "$font_height|default": 34,
+    "override_height": "$font_height",
+    "color": "black",
+    "bindings": [
+      {
+        "binding_name": "#player_level",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "player_level_display": {
+    "type": "panel",
+    "size": [ "100%cm + 5px", "100%cm + 5px" ],
+    "$offset_size|default": "large",
+    "variables": [
+      {
+        "requires": "($offset_size = 'large')",
+        "$top_left_offset": [ -3, -3 ],
+        "$top_center_offset": [ 0, -3 ],
+        "$top_right_offset": [ 3, -3 ],
+        "$center_left_offset": [ -3, 0 ],
+        "$center_right_offset": [ 3, 0 ],
+        "$bottom_left_offset": [ -3, 3 ],
+        "$bottom_center_offset": [ 0, 3 ],
+        "$bottom_right_offset": [ 3, 3 ],
+        "$font_scaling": 1.5,
+        "$font_height": 34
+      },
+      {
+        "requires": "($offset_size = 'small')",
+        "$top_left_offset": [ -2, -2 ],
+        "$top_center_offset": [ 0, -2 ],
+        "$top_right_offset": [ 2, -2 ],
+        "$center_left_offset": [ -2, 0 ],
+        "$center_right_offset": [ 2, 0 ],
+        "$bottom_left_offset": [ -2, 2 ],
+        "$bottom_center_offset": [ 0, 2 ],
+        "$bottom_right_offset": [ 2, 2 ],
+        "$font_scaling": 1.0,
+        "$font_height": 22
+      }
+    ],
+    "controls": [
+      {
+        "level_shadow1@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$top_left_offset"
+        }
+      },
+      {
+        "level_shadow2@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$top_center_offset"
+        }
+      },
+      {
+        "level_shadow3@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$top_right_offset"
+        }
+      },
+      {
+        "level_shadow4@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$center_left_offset"
+        }
+      },
+      {
+        "level_shadow5@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$center_right_offset"
+        }
+      },
+      {
+        "level_shadow6@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$bottom_left_offset"
+        }
+      },
+      {
+        "level_shadow7@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$bottom_center_offset"
+        }
+      },
+      {
+        "level_shadow8@genoa_profile_persona.xp_level_shadow": {
+          "offset": "$bottom_right_offset"
+        }
+      },
+      {
+        "level_number@genoa_profile_persona.xp_level_shadow": {
+          "color": "$genoa_hud_experience_bar_color",
+          "offset": [ 0, 0 ]
+        }
+      }
+    ]
+  },
+  // END XP AND LEVEL
+
+  // STATS
+  /* Requires:
+    $stat_name_1
+    $stat_name_2
+    $stat_name_3
+    $stat_name_4
+  */
+  "stats_row": {
+    "type": "panel",
+    "size": [ "100%", 110 ],
+    "$stat_1_ignored|default": false,
+    "$stat_2_ignored|default": false,
+    "$stat_3_ignored|default": false,
+    "$stat_4_ignored|default": false,
+    "controls": [
+      {
+        "stats": {
+          "size": [ 349, "100%" ],
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "controls": [
+            {
+              "pad_0@genoa_profile_persona.stat_pad": {
+                "size": [ 0, "100% - 10px" ]
+              }
+            },
+            {
+              "$stat_name_1@genoa_profile_persona.stat_item": {
+                "ignored": "$stat_1_ignored",
+                "$stat_name": "$stat_name_1"
+              }
+            },
+            {
+              "$stat_name_1_empty@genoa_profile_persona.stat_item_empty": {
+                "ignored": "(not $stat_1_ignored)"
+              }
+            },
+            { "pad_1@genoa_profile_persona.stat_pad": {} },
+            {
+              "$stat_name_2@genoa_profile_persona.stat_item": {
+                "ignored": "$stat_2_ignored",
+                "$stat_name": "$stat_name_2"
+              }
+            },
+            {
+              "$stat_name_2_empty@genoa_profile_persona.stat_item_empty": {
+                "ignored": "(not $stat_2_ignored)"
+              }
+            },
+            { "pad_2@genoa_profile_persona.stat_pad": {} },
+            {
+              "$stat_name_3@genoa_profile_persona.stat_item": {
+                "ignored": "$stat_3_ignored",
+                "$stat_name": "$stat_name_3"
+              }
+            },
+            {
+              "$stat_name_3_empty@genoa_profile_persona.stat_item_empty": {
+                "ignored": "(not $stat_3_ignored)"
+              }
+            },
+            { "pad_3@genoa_profile_persona.stat_pad": {} },
+            {
+              "$stat_name_4@genoa_profile_persona.stat_item": {
+                "ignored": "$stat_4_ignored",
+                "$stat_name": "$stat_name_4"
+              }
+            },
+            {
+              "$stat_name_4_empty@genoa_profile_persona.stat_item_empty": {
+                "ignored": "(not $stat_4_ignored)"
+              }
+            },
+            {
+              "pad_4@genoa_profile_persona.stat_pad": {
+                "size": [ 0, "100% - 10px" ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "stat_pad": {
+    "type": "panel",
+    "size": [ 5, "100% - 10px" ]
+  },
+
+  "stat_item_background": {
+    "type": "image",
+    "texture": "textures/ui/9_slice/label_simple",
+    "alpha": 0.4
+  },
+
+  // Requires $stat_name
+  "stat_item_content": {
+    "type": "stack_panel",
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "size": [ "100%", "100%" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 8 ]
+        }
+      },
+      {
+        "icon_panel": {
+          "type": "panel",
+          "size": [ 70, 70 ],
+          "controls": [
+            {
+              "icon": {
+                "type": "image",
+                "size": [ 64, 64 ],
+                "texture": "('textures/ui/icons/stat_icons/' + $stat_name)"
+              }
+            },
+            {
+              "highlight": {
+                "layer": 2,
+                "type": "image",
+                "size": [ 70, 70 ],
+                "texture": "textures/ui/icons/stat_icons/hexagon_selected",
+                "bindings": [
+                  {
+                    "binding_name": "('#' + $stat_name + '_highlighted')",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "text_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "collected_text": {
+                "type": "label",
+                "layer": 2,
+                "font_type": "MinecraftSeven",
+                "text_alignment": "center",
+                "override_height": 18,
+                "color": "white",
+                "text": "('#' + $stat_name)",
+                "bindings": [
+                  {
+                    "binding_name": "('#' + $stat_name)",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  // Requires $stat_name
+  "stat_item": {
+    "type": "panel",
+    "size": [ 84, "100%" ],
+    "$stat_name|default": "blocks_placed",
+    "controls": [
+      {
+        "icon_button@genoa_common.button": {
+          "$pressed_button_name": "('button.' + $stat_name + '_tool_tip')",
+          "$background_control": "genoa_profile_persona.stat_item_background",
+          "$button_content": "genoa_profile_persona.stat_item_content",
+          "$shadow_enabled": false,
+          "$glow_enabled": false,
+          "$bevel_texture": "",
+          "sound_name": "stat.button",
+          "sound_volume": 1.0
+        }
+      }
+    ]
+  },
+
+  "stat_item_empty": {
+    "type": "panel",
+    "size": [ 84, "100%" ],
+    "controls": [
+      {
+        "background@genoa_profile_persona.stat_item_background": {}
+      }
+    ]
+  },
+
+  // END STATS
+
+  "new_tool_tip": {
+    "type": "panel",
+    "size": [ "100%", "100%cm" ],
+    "controls": [
+      {
+        "tool_tip_panel@genoa_common.default_button_content": {
+          "size": [ "100%", 85 ], //85 is minimum, height will be overridden if needed
+          "inherit_max_sibling_width": true,
+          "inherit_max_sibling_height": true,
+          "$background_style": "color",
+          "$background_color": "$genoa_dark_button_color",
+          "$glow_style": "white",
+          "$bevel_texture": "textures/ui/tile_bevel_dark",
+          "$button_content": "genoa_profile_persona.tool_tip_stack"
+        }
+      },
+      {
+        "tool_tip_stack@genoa_profile_persona.tool_tip_stack": {}
+      }
+    ]
+  },
+
+  "tool_tip_stack": {
+    "type": "stack_panel",
+    "size": [ 300, "100%c + 10px" ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 6 ]
+        }
+      },
+      {
+        "tool_tip_title": {
+          "type": "label",
+          "size": [ 300, 31 ],
+          "text": "#tool_tip_title",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "override_height": 24,
+          "color": "$genoa_tool_tip_title_font_color",
+          "font_type": "MinecraftSeven",
+          "bindings": [
+            {
+              "binding_name": "#tool_tip_title"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 3 ]
+        }
+      },
+      {
+        "tool_tip_text": {
+          "type": "label",
+          "size": [ 300, "default" ],
+          "text": "#tool_tip_text",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "override_height": 18,
+          "offset": [ 0, -18 ],
+          "font_type": "smooth",
+          "bindings": [
+            {
+              "binding_name": "#tool_tip_text"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  // PERSONA CONTENT
+  "persona_grid_scrolling_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "padding_left": {
+          "type": "panel",
+          "size": [ "fill", 0 ]
+        }
+      },
+      {
+        "vertical_stack": {
+          "type": "stack_panel",
+          "size": [ 348, "100%c" ],
+          "controls": [
+            {
+              "padding_top": {
+                "type": "panel",
+                "size": [ "100%", 10 ]
+              }
+            },
+            {
+              "grid_panel@genoa_common.default_button_content": {
+                "type": "panel",
+                "size": [ "100%", 290 ],
+                "$scrolling_content_anchor_from": "top_middle",
+                "$scrolling_content_anchor_to": "top_middle",
+                "$bevel_texture": "textures/ui/tile_bevel_bright",
+                "$button_content": "genoa_profile_persona.persona_grid_panel",
+                "$background_style": "color",
+                "$background_color": "$genoa_button_color",
+                "$shadow_enabled": true,
+                "$glow_enabled": true
+              }
+            },
+            {
+              "padding_bottom": {
+                "type": "panel",
+                "size": [ "100%", 60 ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "padding_right": {
+          "type": "panel",
+          "size": [ "fill", 0 ]
+        }
+      }
+    ]
+  },
+
+  "persona_grid_panel": {
+    "type": "panel",
+    "$persona_asset_prefix": "persona",
+    "$persona_asset_binding_type": "collection",
+    "$persona_asset_collection_details": "collection_details",
+    "$persona_asset_collection_name": "persona_collection",
+    "$asset_offer_size|default": [ 110, 135 ],
+    "controls": [
+      {
+        "persona_asset_offer_grid": {
+          "type": "grid",
+          "size": [ "100%", "100%c" ],
+          "grid_dimension_binding": "#persona_grid_slots",
+          "grid_rescaling_type": "horizontal",
+          "grid_item_template": "genoa_profile_persona.persona_button_panel",
+          "$pressed_button_name": "button.select_persona",
+          "clip_state_change_event": "#persona_list_clipping_event",
+
+          "$persona_asset_prefix|default": "asset",
+          "$persona_asset_binding_type|default": "collection",
+          "$persona_asset_collection_details|default": "collection_details",
+          "$persona_asset_collection_name|default": "asset_collection",
+          "collection_name": "$persona_asset_collection_name",
+          "bindings": [
+            {
+              "binding_name": "#persona_grid_slots",
+              "binding_name_override": "#maximum_grid_items"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "persona_button_panel": {
+    "type": "panel",
+    "size": "$asset_offer_size",
+
+    "controls": [
+      {
+        "persona_offer_button@genoa_common.button": {
+          "size": [ "100%", "100%" ],
+          "$background_keep_ratio": false,
+          "$bevel_texture": "textures/ui/slot_bevel_simple",
+          "$button_content": "genoa_profile_persona.selectable_persona",
+          "$locked_control": "genoa_persona.no_offer",
+          "$shadow_enabled": false,
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/inventory_slot_background",
+          "$glow_enabled": false,
+          "sound_name": "item.select",
+          "bindings": [
+            {
+              "binding_type": "$persona_asset_collection_details",
+              "binding_collection_name": "$persona_asset_collection_name",
+              "binding_collection_prefix": "$persona_asset_prefix"
+            },
+            {
+              "binding_type": "$persona_asset_binding_type",
+              "binding_collection_name": "$persona_asset_collection_name",
+              "binding_name": "#button_enabled",
+              "binding_name_override": "#enabled"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "selectable_persona@genoa_persona.selectable_grid_offer": {
+    "$selectable_content": "genoa_profile_persona.persona_button_content",
+    "$selected_size|default": [ 121, 152 ],
+    "$selection_collection_name": "$persona_asset_collection_name",
+    "$selection_collection_prefix": "$persona_asset_prefix",
+    "$selection_border_binding": "#persona_selection_visible",
+    "$selected_offset": [ 0, -8 ]
+  },
+
+  "persona_button_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "$asset_image_size|default": [ 51, 101 ],
+
+    "controls": [
+      {
+        "existing_persona": {
+          "type": "custom",
+          "$paperdoll_size|default": [ 80, 125 ],
+          "size": "$paperdoll_size",
+          "layer": 2,
+          "renderer": "paper_doll_renderer",
+          "use_selected_skin": false,
+          "use_skin_gui_scale": true,
+          "$paperdoll_offset|default": [ 0, -18 ],
+          "offset": "$paperdoll_offset",
+          "bindings": [
+            {
+              "binding_type": "$persona_asset_binding_type",
+              "binding_collection_name": "$persona_asset_collection_name",
+              "binding_name": "#is_preset_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            },
+            {
+              "binding_type": "$persona_asset_binding_type",
+              "binding_collection_name": "$persona_asset_collection_name",
+              "binding_name": "#persona_skin"
+            }
+          ]
+        }
+      },
+      {
+        "new_persona_image": {
+          "type": "image",
+          "size": "$asset_image_size",
+          "texture": "textures/ui/profile/create_new_persona",
+          "bindings": [
+            {
+              "binding_type": "$persona_asset_binding_type",
+              "binding_collection_name": "$persona_asset_collection_name",
+              "binding_name": "#is_preset_add_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "progress_loading@genoa_common.progress_loading": {
+          "bindings": [
+            {
+              "binding_type": "$persona_asset_binding_type",
+              "binding_collection_name": "$persona_asset_collection_name",
+              "binding_name": "#is_preset_loading_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  // END PERSONA CONTENT
+}

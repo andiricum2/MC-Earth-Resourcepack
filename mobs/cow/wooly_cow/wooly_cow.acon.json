@@ -1,0 +1,104 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.wooly_cow.walk": {
+      "states": {
+        "default": {
+          "animations": [
+            { "walk": "variable.speed = query.modified_move_speed; return 5.0 * (math.sqrt(variable.speed / 2));" },
+            "look_at_target"
+          ]
+        }
+      }
+    },
+    "controller.animation.wooly_cow.shake": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "shake": "variable.head_shake_delay = query.life_time + variable.head_shake_time; return variable.is_shaking;"
+            }
+          ]
+        },
+        "shake": {
+          "animations": [ "shake" ],
+          "transitions": [
+            {
+              "shake_end": "variable.fire_effect = 1; return query.all_animations_finished;"
+            }
+          ]
+        },
+        "shake_end": {
+          "transitions": [
+            {
+              "default": "variable.fire_effect = 0; return 1;"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.fire_effect": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "effect_delay": "variable.fire_effect && !query.is_sheared"
+            }
+          ]
+        },
+
+        "effect_delay": {
+          "transitions": [
+            {
+              "fire_effect": "return variable.head_shake_delay <= query.life_time;"
+            }
+          ]
+        },
+
+        "fire_effect": {
+          "transitions": [
+            {
+              "default": "return !variable.fire_effect || query.is_sheared;"
+            }
+          ],
+          "particle_effects": [
+            { "effect": "shake_fx" }
+          ]
+        }
+      }
+    },
+    "controller.animation.wooly_cow.prep": {
+      "states": {
+        "default": {
+          "transitions": [
+            {
+              "prep": "return variable.pre_growth_time > 0;"
+            }
+          ]
+        },
+        "prep": {
+          "animations": [ "prep" ],
+          "transitions": [
+            {
+              "default": "return variable.pre_growth_time <= 0;"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.wooly_cow.blink": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "blink": "variable.is_blinking = 0; variable.return_from_blink = query.life_time + math.random(0, 0.2); variable.last_blink_time = variable.last_blink_time ? variable.last_blink_time : query.life_time; return query.life_time > (variable.last_blink_time + math.random(3, 40));" }
+          ]
+        },
+        "blink": {
+          "transitions": [
+            { "default": "variable.is_blinking = 1; variable.last_blink_time = query.life_time; return query.all_animations_finished && (query.life_time > variable.return_from_blink);" }
+          ]
+        }
+      }
+    }
+  }
+}

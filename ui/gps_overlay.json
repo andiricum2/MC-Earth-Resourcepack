@@ -1,0 +1,2035 @@
+{
+  "namespace": "genoa_gps",
+
+
+  "gps_overlay@genoa_common.genoa_base_screen": {
+    "animation_name": "GPS Overlay",
+    "$use_background": false,
+    "$steal_all_input": false,
+    "$screen_content": "genoa_gps.content"
+  },
+
+  "content": {
+    "type": "panel",
+    "controls": [
+      {
+        "main_overlay": {
+          "type": "stack_panel",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "size": [ "100%", "100%" ], // Required
+          "controls": [
+            {
+              "gps_subscreens@genoa_gps.gps_overworld_subscreen": {
+                "size": [ "100%", "fill" ]
+              }
+            },
+            {
+              "nav_bar@genoa_gps.navigation_bar": {
+                "size": [ "100%", 110 ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "daily_notifications@genoa_daily_notifications.daily_notification": {
+          "layer": 19,
+          "visible": false,
+          "bindings": [
+            {
+              "binding_name": "#daily_notification_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "season_notifications@genoa_seasons.season_info_screen_popup": {
+          "layer": 300
+        }
+      },
+      {
+        "sunset_rewards@genoa_gps.sunset_rewards_popup": {
+          "layer": 300
+        }
+      },
+      {
+        "tappable_challenge_icon_panel": {
+          "type": "panel",
+          "animation_name": "Obtain Tappable Challenge Icon",
+          "controls": [
+            {
+              "tappable_icon": {
+                "type": "image",
+                "layer": 3,
+                "size": [ 125, 125 ],
+                "bindings": [
+                  {
+                    "binding_name": "#obtained_challenge_icon",
+                    "binding_name_override": "#texture"
+                  },
+                  {
+                    "binding_name": "#obtained_challenge_icon_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "global_map_scrim": {
+          "type": "panel",
+          "size": [ "100%", "100%" ],
+          "layer": 100,
+          "visible": false,
+          "bindings": [
+            {
+              "binding_name": "#map_permission_scrim_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+
+          "controls": [
+            {
+              "scrim@genoa_common.white": {
+                "layer": -2,
+                "color": "black",
+                "alpha": 0.75,
+                "screen_fill_left": true,
+                "screen_fill_right": true,
+                "screen_fill_up": true,
+                "screen_fill_down": true
+              }
+            },
+            {
+              "global_cancel_panel": {
+                "layer": -1,
+                "type": "input_panel",
+                // Can't use screen fill directions, because they don't affect input bounds
+                "size": "$ui_screen_fill",
+                "cancel_all_input": true,
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "",
+                    "mapping_type": "global"
+                  }
+                ],
+                "sounds": [],
+                "sound_name": "dropdown.collapse.button"
+              }
+            },
+            {
+              "loading@genoa_common.loading_content_stack_panel": {
+                "$loading_text": "oobe.map.permission.update",
+                "$loading_text_height": 22
+              }
+            }
+          ]
+        }
+      },
+      {
+        "oobe_transition_button": {
+          "type": "input_panel",
+          "layer": 2,
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.hide_merl_dialog",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#show_transition_button",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "gps_overworld_subscreen": {
+    "type": "panel",
+    "controls": [
+      {
+        "top_panel": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 20 ]
+              }
+            },
+            {
+              "top_panel": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "variables": [
+                  {
+                    "requires": "(not $use_split_currency)",
+                    "$wallet_offset": [ 0, 132 ]
+                  },
+                  {
+                    "requires": "($use_split_currency)",
+                    "$wallet_offset": [ -12, 108 ]
+                  }
+                ],
+                "controls": [
+                  {
+                    "top_left_stack@genoa_gps.top_left_stack_panel": {
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left"
+                    }
+                  },
+                  {
+                    "compass@genoa_gps.top_right_stack_panel": {
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [ -10, 9 ]
+                    }
+                  },
+                  {
+                    "wallet@genoa_store.currency_container": {
+                      "animation_name": "Ruby Balance",
+                      "alpha": 0,
+                      "layer": 200,
+                      "propagate_alpha": true,
+                      "anchor_to": "top_right",
+                      "anchor_from": "top_right",
+                      "offset": "$wallet_offset"
+                    }
+                  },
+                  {
+                    "crafting_notification@genoa_gps.makehub_notification": {
+                      "size": [ 60, 60 ],
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [ 0, 134 ],
+
+                      "$notification_icon_image": "textures/ui/header_icons/crafting",
+                      "$notification_animation_name": "Crafting Notification",
+                      "$notification_collection_name": "#crafting_notifications",
+                      "$notification_visible_binding_name": "#crafting_notification_visible",
+                      "$notification_grid_size_binding_name": "#crafting_grid_size",
+                      "$notification_button_name|default": "button.crafting.notification"
+                    }
+                  },
+                  {
+                    "smelting_notification@genoa_gps.makehub_notification": {
+                      "size": [ 60, 60 ],
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [ 0, 189 ],
+
+                      "$notification_icon_image": "textures/ui/header_icons/smelting",
+                      "$notification_animation_name": "Smelting Notification",
+                      "$notification_collection_name": "#smelting_notifications",
+                      "$notification_visible_binding_name": "#smelting_notification_visible",
+                      "$notification_grid_size_binding_name": "#smelting_grid_size",
+                      "$notification_button_name|default": "button.smelting.notification"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "xp_spawn_marker": {
+          "type": "panel",
+          "size": [ 10, 10 ],
+          "animation_name": "XP Orb Spawnpoint"
+        }
+      }
+    ]
+  },
+
+  "top_left_stack_panel": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "profile_button@genoa_gps.head_button": {
+          "offset": [ 10, 0 ],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 50 ],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle"
+        }
+      },
+      {
+        "sidebar_buttons": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "journal_button@genoa_gps.sidebar_button": {
+                "$sidebar_button_name": "button.navigate_journal",
+                "$sidebar_button_sound": "journal.icon.button",
+                "$sidebar_button_image": "textures/ui/header_icons/journal",
+                "$sidebar_visible_binding_name": "#journal_icon_visible",
+                "$sidebar_button_animation_name": "Journal Button",
+                "$sidebar_button_content": "genoa_gps.journal_sidebar_button_content",
+                "$sidebar_input_panels": "genoa_gps.journal_button_input_panels",
+                "$notification_bind_name": "#journal_notification_visible"
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ "100%", 5 ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle"
+              }
+            },
+            {
+              "seasons_button@genoa_gps.sidebar_button": {
+                "$sidebar_button_name": "button.navigate_seasons",
+                "$sidebar_button_sound": "seasons.icon.button",
+                "$sidebar_visible_binding_name": "#seasons_button_visible",
+                "$sidebar_button_animation_name": "Seasons Button",
+                "$sidebar_button_content": "genoa_gps.seasons_sidebar_button_content",
+                "$sidebar_input_panels": "genoa_gps.seasons_button_input_panels",
+                "$notification_bind_name": "#seasons_challenges_notification_visible"
+              }
+            },
+            {
+              "pad_2": {
+                "type": "panel",
+                "size": [ "100%", 5 ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle"
+              }
+            },
+            {
+              "challenges_button@genoa_gps.sidebar_button": {
+                "$sidebar_button_name": "button.navigate_challenges",
+                "$sidebar_button_sound": "challenge.icon.button",
+                "$sidebar_visible_binding_name": "#challenges_button_visible",
+                "$sidebar_button_animation_name": "Challenges Button",
+                "$sidebar_button_content": "genoa_gps.challenges_sidebar_button_content",
+                "$sidebar_input_panels": "genoa_gps.challenges_button_input_panels",
+                "$notification_bind_name": "#challenges_notification_visible"
+              }
+            },
+            {
+              "pad_3": {
+                "type": "panel",
+                "size": [ "100%", 5 ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "bindings": [
+                  {
+                    "binding_name": "#challenges_button_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "boosts_sidebar@genoa_gps.sidebar_button": {
+                "size": [ 50, 50 ],
+                "offset": [ 0, -55 ],
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "$sidebar_button_image_anchor": "left_middle",
+                "$sidebar_button_name": "button.navigate_boosts",
+                "$sidebar_button_sound": "boost.icon.button",
+                "$sidebar_button_content": "genoa_gps.boost_button_content",
+                "$notification_bind_name": "#boost_notification_visible",
+                "$sidebar_button_background": "textures/ui/9_slice/label_simple_right",
+                "$notification_anchor_from": "top_left"
+              }
+            },
+            {
+              "pad_4": {
+                "type": "panel",
+                "size": [ "100%", 5 ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle"
+              }
+            },
+            {
+              "boost_grid@genoa_gps.active_boosts_panel": {
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "layer": 6,
+                "size": [ 250, 40 ],
+                "offset": [ 200, 0 ]
+              }
+            },
+            {
+              "countdown_label@genoa_gps.active_boost_time_remaining": {
+                "size": [ 50, 15 ],
+                "offset": [ 0, 3 ],
+                "$time_remaining_text": "#fade_boost_time_remaining",
+                "$time_visible_bindings": [
+                  {
+                    "binding_name": "#fade_boost_time_visible",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ],
+                "$time_remaining_bindings": [
+                  {
+                    "binding_name": "#fade_boost_time_remaining",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#sidebar_buttons_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "boost_button_content@genoa_gps.sidebar_button_enable_disable": {
+    "$sidebar_button_image": "textures/ui/header_icons/boosts",
+    "$alpha_binding_name": "#boost_icon_alpha",
+    "$disable_button_binding_name": "#boosts_disabled"
+  },
+
+  "side_button_input_panel": {
+    "$panel_sound|default": "",
+    "$button_mappings|default": [],
+    "$visibility_binding_name|default": "#none",
+    "type": "input_panel",
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+    "sounds": [],
+    "sound_name": "$panel_sound",
+    "button_mappings": "$button_mappings",
+    "bindings": [
+      {
+        "binding_name": "$visibility_binding_name",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "sidebar_button_icon": {
+    "type": "image",
+    "size": [ 44, 44 ],
+    "texture": "$sidebar_button_image",
+    "anchor_to": "$sidebar_button_image_anchor",
+    "anchor_from": "$sidebar_button_image_anchor",
+    "offset": [ -2, 0 ],
+    "layer": 3
+  },
+
+  "sidebar_button": {
+    "type": "panel",
+    "size": [ 306, 50 ],
+    "offset": [ -254, 0 ],
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+
+    "$sidebar_button_name|default": "",
+    "$sidebar_button_sound|default": "",
+    "$sidebar_button_image|default": "",
+    "$sidebar_button_image_anchor|default": "right_middle",
+    "$sidebar_button_animation_name|default": "",
+    "$sidebar_button_content|default": "genoa_gps.sidebar_button_icon",
+    "$sidebar_button_background|default": "textures/ui/9_slice/label_simple_left",
+    "$sidebar_input_panels|default": "genoa_gps.side_button_input_panel",
+    "$sidebar_visible_binding_name|default": "",
+
+    "animation_name": "$sidebar_button_animation_name",
+    "$visible_binding|default": [],
+    "$button_mappings|default": [],
+    "variables": [
+      {
+        "requires": "(not ($sidebar_button_name = ''))",
+        "$button_mappings": [
+          {
+            "from_button_id": "button.menu_select",
+            "to_button_id": "$sidebar_button_name",
+            "mapping_type": "pressed"
+          }
+        ]
+      },
+      {
+        "requires": "(not ($sidebar_visible_binding_name = ''))",
+        "$visible_binding": [
+          {
+            "binding_name": "$sidebar_visible_binding_name",
+            "binding_name_override": "#visible",
+            "binding_condition": "always"
+          }
+        ]
+      }
+    ],
+    "bindings": "$visible_binding",
+    "controls": [
+      {
+        "input_panel_group": {
+          "type": "panel",
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "size": [ 52, 50 ],
+          "$panel_sound": "$sidebar_button_sound",
+          "controls": [
+            {
+              "panels@$sidebar_input_panels": {}
+            }
+          ]
+        }
+      },
+      {
+        "button_content": {
+          "type": "panel",
+          "controls": [
+            {
+              "notification@genoa_gps.notification": {}
+            },
+            {
+              "button_background": {
+                "type": "image",
+                "animation_name": "($sidebar_button_animation_name + ' Label')",
+                "alpha": 0.5,
+                "texture": "$sidebar_button_background",
+                "controls": [
+                  {
+                    "content@$sidebar_button_content": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "journal_sidebar_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "notification_panel@genoa_gps.notifications_stack_panel": {
+          "size": [ 155, "100%" ],
+          "$title_text_bind": "#journal_challenge_title_text",
+          "$progress_bind": "#journal_challenge_progress",
+          "$in_progress_visible_bind": "#journal_challenge_in_progress_fill_visible",
+          "offset": [ -85, 0 ],
+          "bindings": [
+            {
+              "binding_name": "#show_journal_challenge_button_content",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "journal_icon_panel": {
+          "type": "panel",
+          "size": [ 44, 44 ],
+          "offset": [ -2, 0 ],
+          "anchor_to": "right_middle",
+          "anchor_from": "right_middle",
+          "layer": 2,
+          "controls": [
+            {
+              "journal_book_particles": {
+                "type": "panel",
+                "offset": [ -4, 0 ],
+                "animation_name": "Journal Book Particles"
+              }
+            },
+            {
+              "journal_closed_icon": {
+                "animation_name": "Journal Closed",
+                "type": "image",
+                "texture": "textures/ui/header_icons/journal",
+                "bindings": [
+                  {
+                    "binding_name": "#journal_icon_alpha",
+                    "binding_name_override": "#alpha",
+                    "binding_condition": "always"
+                  }
+                ],
+                "controls": [
+                  {
+                    "disable_button@genoa_gps.disable_button": {
+                      "bindings": [
+                        {
+                          "binding_name": "#journal_disabled",
+                          "binding_name_override": "#visible",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "arrow_anim@genoa_common.oobe_arrow": {
+                      "$binding_name": "#journal_arrow_animation"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "journal_open_icon": {
+                "animation_name": "Journal Open",
+                "alpha": 0, // The animation layer attached to this image will override this alpha.
+                "type": "image",
+                "texture": "textures/ui/header_icons/journal_open"
+              }
+            },
+            {
+              "new_item@genoa_inventory_common.genoa_item_renderer": {
+                "size": [ 35, 35 ],
+                "alpha": 0, // The animation layer attached to this image will override this alpha.
+                "animation_name": "New Item",
+                "layer": 3,
+                "$genoa_item_renderer_bindings": [
+                  {
+                    "binding_name": "#journal_button_item_aux",
+                    "binding_name_override": "#item_id_aux",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "complete_ribbon@genoa_gps.complete_ribbon": {
+          "$ribbon_animation_name": "Journal Complete Ribbon"
+        }
+      }
+    ]
+  },
+
+  "disable_button": {
+    "type": "input_panel",
+    "size": [ 50, 50 ]
+  },
+
+  "journal_button_input_panels": {
+    "type": "panel",
+    "controls": [
+      {
+        "resting_input_panel@genoa_gps.side_button_input_panel": {
+          "$visibility_binding_name": "#journal_button_resting"
+        }
+      },
+      {
+        "short_animated_journal_input_panel@genoa_gps.side_button_input_panel": {
+          "$visibility_binding_name": "#short_journal_button_animated",
+          "size": [ 90, 50 ]
+        }
+      },
+      {
+        "long_animated_journal_input_panel@genoa_gps.side_button_input_panel": {
+          "$visibility_binding_name": "#long_journal_button_animated",
+          "size": [ 245, 50 ]
+        }
+      }
+    ]
+  },
+
+  "seasons_sidebar_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "notification_panel@genoa_gps.notifications_stack_panel": {
+          "size": [ 177, 50 ],
+          "$title_text_bind": "#seasons_challenge_title_text",
+          "$progress_bind": "#seasons_challenge_progress",
+          "$in_progress_visible_bind": "#seasons_challenge_in_progress_fill_visible",
+          "offset": [ -65, 0 ],
+          "bindings": [
+            {
+              "binding_name": "#show_seasons_notification_content",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "seasons_icon@genoa_gps.sidebar_button_enable_disable": {
+          "animation_name": "Seasons Icon",
+          "$sidebar_button_image": "textures/ui/header_icons/earth",
+          "$alpha_binding_name": "#seasons_icon_alpha",
+          "$disable_button_binding_name": "#seasons_disabled"
+        }
+      },
+      {
+        "complete_ribbon@genoa_gps.complete_ribbon": {
+          "$ribbon_animation_name": "Complete Ribbon"
+        }
+      }
+    ]
+  },
+
+  "sidebar_button_enable_disable@genoa_gps.sidebar_button_icon": {
+    "$alpha_binding_name|default": "",
+    "bindings": [
+      {
+        "binding_name": "$alpha_binding_name",
+        "binding_name_override": "#alpha",
+        "binding_condition": "always"
+      }
+    ],
+    "controls": [
+      {
+        "disable_button@genoa_gps.disable_button": {
+          "$disable_button_binding_name|default": "",
+          "bindings": [
+            {
+              "binding_name": "$disable_button_binding_name",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "seasons_button_input_panels": {
+    "type": "panel",
+    "controls": [
+      {
+        "seasons_input_panel@genoa_gps.side_button_input_panel": {
+          "size": [ 52, 50 ],
+          "$visibility_binding_name": "(not #seasons_long_input_panel_visible)"
+        }
+      },
+      {
+        "seasons_long_input_panel@genoa_gps.side_button_input_panel": {
+          "size": [ 230, 50 ],
+          "$visibility_binding_name": "#seasons_long_input_panel_visible"
+        }
+      }
+    ]
+  },
+
+  "challenges_sidebar_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "notification_panel@genoa_gps.notifications_stack_panel": {
+          "size": [ 190, "100%" ],
+          "offset": [ -52, 0 ],
+          "$title_text_bind": "#regular_challenge_title_text",
+          "$progress_bind": "#regular_challenge_progress",
+          "$in_progress_visible_bind": "#regular_challenge_in_progress_fill_visible",
+          "bindings": [
+            {
+              "binding_name": "#challenge_notification_info_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "challenges_icon@genoa_gps.sidebar_button_enable_disable": {
+          "animation_name": "Trophy Icon",
+          "$sidebar_button_image": "textures/ui/header_icons/challenges",
+          "$alpha_binding_name": "#challenges_icon_alpha",
+          "$disable_button_binding_name": "#challenges_disabled",
+          "controls": [
+            {
+              "disable_button@genoa_gps.disable_button": {
+                "bindings": [
+                  {
+                    "binding_name": "$disable_button_binding_name",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            },
+            {
+              "arrow_anim@genoa_common.oobe_arrow": {
+                "$binding_name": "#challenges_arrow_animation"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "complete_ribbon@genoa_gps.complete_ribbon": {
+          "$ribbon_animation_name": "Complete Ribbon"
+        }
+      },
+      {
+        "challenges_icon_maxranged@genoa_common.empty": {
+          "offset": [ 140, 0 ],
+          "animation_name": "Tappable Challenge End Point"
+        }
+      }
+    ]
+  },
+
+  "challenges_button_input_panels": {
+    "type": "panel",
+    "controls": [
+      {
+        "challenges_input_panel@genoa_gps.side_button_input_panel": {
+          "size": [ 52, 50 ],
+          "$visibility_binding_name": "#challenges_button_resting"
+        }
+      },
+      {
+        "short_challenges_input_panel@genoa_gps.side_button_input_panel": {
+          "$visibility_binding_name": "#short_challenges_button_animated",
+          "size": [ 90, 50 ]
+        }
+      },
+      {
+        "long_challenges_input_panel@genoa_gps.side_button_input_panel": {
+          "size": [ 245, 50 ],
+          "$visibility_binding_name": "#long_challenges_button_animated"
+        }
+      }
+    ]
+  },
+
+  "head_button@common_buttons.transparent_content_button": {
+    "$ignore_new_persona_offers_icon": false,
+    "$button_content": "genoa_common.profile_hex_info_panel_with_healthbar",
+    "size": [ 77, 89 ],
+    "$profile_hex_animation_name": "Map Avatar Frame",
+    "$pressed_button_name": "button.profile_button",
+    "$default_button_texture": "",
+    "$hover_button_texture": "",
+    "$pressed_button_texture": "",
+    "$locked_button_texture": "",
+    "sound_name": "menu.enter.button"
+  },
+
+  "notification": {
+    "type": "image",
+    "texture": "textures/ui/icons/item_icons/new",
+    "visible": false,
+    "size": [ 24, 24 ],
+    "layer": 1,
+    "$notification_anchor_from|default": "top_right",
+    "anchor_from": "$notification_anchor_from",
+    "$notification_bindings|default": [],
+    "$notification_bind_name|default": "",
+    "variables": [
+      {
+        "requires": "(not ($notification_bind_name = ''))",
+        "$notification_bindings": [
+          {
+            "binding_name": "$notification_bind_name",
+            "binding_name_override": "#visible",
+            "binding_condition": "always"
+          }
+        ]
+      }
+    ],
+    "bindings": "$notification_bindings"
+  },
+
+  "active_boosts_panel": {
+    "type": "panel",
+    "anchor_to": "top_left",
+    "anchor_from": "top_left",
+    "animation_name": "Active Boost",
+    "bindings": [
+      {
+        "binding_name": "#boost_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "active_boost_background": {
+          "anchor_to": "top_left",
+          "anchor_from": "top_left",
+          "size": [ 290, 40 ],
+          "type": "image",
+          "fill": true,
+          "alpha": 0.5,
+          "animation_name": "Active Boost Drawer BG",
+          "texture": "textures/ui/9_slice/label_simple"
+        }
+      },
+      {
+        "active_boosts_stack_panel": {
+          "type": "panel",
+          "anchor_to": "top_left",
+          "anchor_from": "top_left",
+          "animation_name": "Active Boost Drawer",
+          "size": [ "100%c", "100%cm" ],
+          "offset": [ 5, 0 ],
+          "controls": [
+            {
+              "active_boost_grid": {
+                "type": "grid",
+                "grid_dimension_binding": "#boost_grid_size",
+                "$active_boosts_collection_name": "#active_boosts",
+                "collection_name": "$active_boosts_collection_name",
+                "grid_item_template": "genoa_gps.active_boost_element",
+                "bindings": [
+                  {
+                    "binding_name": "#boost_grid_size",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#boost_visible_large",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "active_boosts_stack_panel_small": {
+          "type": "panel",
+          "anchor_to": "top_left",
+          "anchor_from": "top_left",
+          "animation_name": "Active Boost Drawer SM",
+          "size": [ "100%c", "100%cm" ],
+          "offset": [ 5, 0 ],
+          "controls": [
+            {
+              "active_boost_grid": {
+                "type": "grid",
+                "grid_dimension_binding": "#boost_grid_size",
+                "$active_boosts_collection_name": "#active_boosts",
+                "collection_name": "$active_boosts_collection_name",
+                "grid_item_template": "genoa_gps.active_boost_element_small",
+                "bindings": [
+                  {
+                    "binding_name": "#boost_grid_size",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#boost_visible_small",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "active_boosts_touch_panel": {
+          "type": "panel",
+          "anchor_to": "top_right",
+          "anchor_from": "top_right",
+          "size": [ "100%c", "100%cm" ],
+          "offset": [ -190, 0 ],
+          "controls": [
+            {
+              "active_boost_grid": {
+                "type": "grid",
+                "grid_dimension_binding": "#touch_grid_size",
+                "$active_boosts_collection_name": "#active_boosts",
+                "collection_name": "$active_boosts_collection_name",
+                "grid_item_template": "genoa_gps.active_boosts_touch_element",
+                "bindings": [
+                  {
+                    "binding_name": "#touch_grid_size",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#boost_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "navigation_button_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "$button_image_content_offset|default": [ 0, 0 ],
+    "controls": [
+      {
+        "image_container": {
+          "animation_name": "$navigation_content_animation_name",
+          "type": "panel",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "controls": [
+            {
+              "image@genoa_gps.navigation_button_image": {
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "$nav_image_offset|default": [ 0, 11 ],
+                "offset": "$nav_image_offset"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "notification@genoa_gps.notification": {
+          "offset": [ -12, 6 ]
+        }
+      }
+    ]
+  },
+
+  "navigation_button_image": {
+    "type": "image",
+    "$nav_image_size|default": [ 65, 65 ],
+    "size": "$nav_image_size",
+    "$navigation_button_alpha|default": 1.0,
+    "$navigation_button_alpha_bind|default": "",
+    "alpha": "$navigation_button_alpha",
+    "$navigation_button_content_layer|default": 0,
+    "$navigation_content_animation_name|default": "",
+    "layer": "$navigation_button_content_layer",
+    "texture": "$nav_button_texture",
+    "variables": [
+      {
+        "requires": "($navigation_button_alpha_bind = '')",
+        "$enabled_bindings": []
+      }
+    ],
+    "$enabled_bindings|default": [
+      {
+        "binding_name": "$navigation_button_alpha_bind",
+        "binding_name_override": "#alpha",
+        "binding_condition": "always_when_visible"
+      }
+    ],
+    "bindings": "$enabled_bindings"
+  },
+
+  "locked_navigation_button@genoa_common.default_button_content": {
+    "$navigation_button_alpha": 0.5
+  },
+
+  "navigation_button": {
+    "type": "panel",
+    "$navigation_button_size|default": [ "fill", "100%" ],
+    "size": "$navigation_button_size",
+    "controls": [
+      {
+        "button@genoa_common.button": {
+          "$button_content": "genoa_gps.navigation_button_content",
+          "$locked_control": "genoa_gps.locked_navigation_button",
+          "$bevel_texture": "textures/ui/tile_bevel_special",
+          "$shadow_enabled": false,
+          "$background_style": "color",
+          "$background_color": [ 1.0, 1.0, 1.0 ],
+          "$background_alpha": 0.0,
+          "$glow_style": "white",
+          "$sound_name|default": "menu.enter.button",
+          "animation_name": "$animation_name",
+          "sound_name": "$sound_name",
+          "$nav_button_enabled_bind|default": "",
+          "variables": [
+            {
+              "requires": "($nav_button_enabled_bind = '')",
+              "$enabled_bindings": []
+            }
+          ],
+          "$enabled_bindings|default": [
+            {
+              "binding_name": "$nav_button_enabled_bind",
+              "binding_name_override": "#enabled",
+              "binding_condition": "always_when_visible"
+            }
+          ],
+          "bindings": "$enabled_bindings"
+        }
+      },
+      {
+        "background@genoa_common.white": {
+          "color": "$genoa_nav_bar_background_color",
+          "alpha": 0.9,
+          "screen_fill_down": true
+        }
+      },
+      {
+        "number_shadow@genoa_common.white": {
+          "$notification_bindings|default": [],
+          "$notification_text_bindings|default": [],
+          "$notification_text|default": "",
+          "layer": 200, // put in front of dark overlays and selected icons
+          "size": [ "100%c", "100%c" ],
+          "color": "$genoa_button_shadow_color",
+          "alpha": 0.5,
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "offset": [ -2, -2 ],
+          "visible": false,
+          "bindings": "$notification_bindings",
+          "controls": [
+            {
+              "number_yellow_back@genoa_common.white": {
+                "size": [ "100%c", 24 ],
+                "color": "$genoa_smelting_yellow_notification",
+                "anchor_from": "top_right",
+                "anchor_to": "top_right",
+                "offset": [ -3, -3 ],
+                "controls": [
+                  {
+                    "horizontal_stack": {
+                      "type": "stack_panel",
+                      "orientation": "horizontal",
+                      "size": [ "100%c", "100%cm" ],
+                      "controls": [
+                        {
+                          "pad_0": {
+                            "type": "panel",
+                            "size": [ 4, 0 ]
+                          }
+                        },
+                        {
+                          "notification_number": {
+                            "type": "label",
+                            "text": "$notification_text",
+                            "override_height": 25,
+                            "font_type": "MinecraftTen",
+                            "color": "black",
+                            "offset": [ 0, -1 ],
+                            "bindings": "$notification_text_bindings"
+                          }
+                        },
+                        {
+                          "pad_1": {
+                            "type": "panel",
+                            "size": [ 4, 0 ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "store_button@genoa_gps.navigation_button": {
+    "$animation_name": "Store Nav Bar Button",
+    "$navigation_content_animation_name": "Store Nav Bar Icon",
+    "$nav_button_texture": "textures/ui/header_icons/store",
+    "$navigation_button_alpha_bind": "#store_button_alpha",
+    "$pressed_button_name": "button.navigate_store",
+    "$nav_button_enabled_bind": "#store_enabled"
+  },
+
+  "workshop_button@genoa_gps.navigation_button": {
+    "$animation_name": "Workshop Nav Bar Button",
+    "$navigation_content_animation_name": "Workshop Nav Bar Icon",
+    "$nav_button_texture": "textures/ui/header_icons/makinghub",
+    "$navigation_button_alpha_bind": "#workshop_button_alpha",
+    "$pressed_button_name": "button.workshop",
+    "$nav_button_enabled_bind": "#workshop_enabled",
+    "$notification_bind_name": "#makehub_notification_visible"
+  },
+
+  "crystals_button": {
+    "type": "panel",
+    "size": [ "95px", "100%" ],
+    "controls": [
+      {
+        "arrow_anim@genoa_common.oobe_arrow": {
+          "offset": [ 0, 20 ],
+          "$binding_name": "#crystal_arrow_animation"
+        }
+      },
+      {
+        "actual_crystals_button@genoa_gps.navigation_button": {
+          "$nav_image_offset": [ 0, -9 ],
+          "$nav_image_size": [ 95, 95 ],
+          "$navigation_button_size": [ "95px", "100%" ],
+          "$animation_name": "Adventure Crystals Bar Button",
+          "$navigation_content_animation_name": "Adventure Crystals Bar Icon",
+          "$nav_button_texture": "textures/ui/icons/graphic_icons/adventure_crystals",
+          "$navigation_button_alpha_bind": "#scrolls_button_alpha",
+          "$pressed_button_name": "button.navigate_adventure_scrolls",
+          "$nav_button_enabled_bind": "#crystals_enabled"
+        }
+      }
+    ]
+  },
+
+  "buildplates_button@genoa_gps.navigation_button": {
+    "$animation_name": "Buildplates Nav Bar Button",
+    "$navigation_content_animation_name": "Buildplates Nav Bar Icon",
+    "$nav_button_texture": "textures/ui/header_icons/buildplate",
+    "$navigation_button_alpha_bind": "#buildplates_button_alpha",
+    "$pressed_button_name": "button.navigate_buildplates",
+    "$nav_button_enabled_bind": "#buildplates_enabled"
+  },
+
+  "inventory_button@genoa_gps.navigation_button": {
+    "$animation_name": "Inventory Nav Bar Button",
+    "$navigation_content_animation_name": "Inventory Nav Bar Icon",
+    "$inventory_layer_override|default": 0,
+    "$navigation_button_content_layer": "$inventory_layer_override",
+    "$nav_button_texture": "textures/ui/header_icons/inventory",
+    "$pressed_button_name": "button.navigate_player_inventory",
+    "$nav_button_enabled_bind": "#inventory_enabled"
+  },
+
+  "navigation_bar": {
+    "type": "panel",
+    "controls": [
+      {
+        "navigation_bar_row": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%", "100%" ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "controls": [
+            {
+              "background_left@genoa_common.white": {
+                "size": [ 0, "100%" ],
+                "color": "$genoa_nav_bar_background_color",
+                "alpha": 0.9,
+                "screen_fill_left": true
+              }
+            },
+            { "inventory_button@genoa_gps.inventory_button": {} },
+            { "workshop_button@genoa_gps.workshop_button": {} },
+            { "crystals_button@genoa_gps.crystals_button": {} },
+            { "buildplates_button@genoa_gps.buildplates_button": {} },
+            { "store_button@genoa_gps.store_button": {} },
+            {
+              "background_right@genoa_common.white": {
+                "size": [ 0, "100%" ],
+                "color": "$genoa_nav_bar_background_color",
+                "alpha": 0.9,
+                "screen_fill_left": true
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "top_right_stack_panel": {
+    "type": "stack_panel",
+    "size": [ 72, "100%c" ],
+    "use_new_layout": true,
+    "controls": [
+      { "gps_compass_button@genoa_gps.gps_compass_button": {} },
+      {
+        "padding": {
+          "type": "panel",
+          "size": [ 0, 20 ]
+        }
+      },
+      {
+        "loading_indicator@genoa_common.progress_loading": {
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [ 25, 25 ],
+          "bindings": [
+            {
+              "binding_name": "#loading_indicator_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "gps_compass_button@common_buttons.transparent_content_button": {
+    "$button_content": "genoa_gps.gps_compass",
+    "size": [ "100%", "100%x" ],
+    "$pressed_button_name": "button.compass_lock",
+    "$default_button_texture": "",
+    "$hover_button_texture": "",
+    "$pressed_button_texture": "",
+    "$locked_button_texture": "",
+    "sound_name": ""
+  },
+
+  "gps_compass": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "unlocked": {
+          "type": "image",
+          "texture": "textures/ui/gps/compass_atlas",
+          "fill": true,
+          "bindings": [
+            {
+              "binding_name": "#gps_compass_locked",
+              "binding_name_override": "(not #visible)",
+              "binding_condition": "always"
+            },
+            {
+              "binding_name": "#gps_compass_degrees",
+              "binding_name_override": "#animation_percent",
+              "binding_condition": "always"
+            },
+            {
+              "binding_name": "#compass_icon_alpha",
+              "binding_name_override": "#alpha",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "locked": {
+          "type": "image",
+          "texture": "textures/ui/gps/compass_atlas_locked",
+          "fill": true,
+          "bindings": [
+            {
+              "binding_name": "#gps_compass_locked",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            },
+            {
+              "binding_name": "#gps_compass_degrees",
+              "binding_name_override": "#animation_percent",
+              "binding_condition": "always"
+            },
+            {
+              "binding_name": "#compass_icon_alpha",
+              "binding_name_override": "#alpha",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "disable_button@genoa_gps.disable_button": {
+          "size": [ "100%", "100%" ],
+          "bindings": [
+            {
+              "binding_name": "#compass_disabled",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "makehub_notification": {
+    "type": "panel",
+    // the notification control needs to be rendered on a higher layer than the gps_overlay.wallet control,
+    // otherwise input events intended for the notification may be captured by the wallet (even if it's not visible).
+    "layer": 300,
+
+    "$notification_icon_image|default": "",
+    "$notification_animation_name|default": "",
+    "$notification_collection_name|default": "",
+    "$notification_visible_binding_name|default": "",
+    "$notification_grid_size_binding_name|default": "",
+    "$notification_button_name|default": "",
+
+    "animation_name": "$notification_animation_name",
+    "controls": [
+      {
+        "makehub_notification_panel": {
+          "type": "panel",
+          "offset": [ 69, 0 ],
+          "controls": [
+            {
+              "notification_content@genoa_gps.notification_content": {}
+            },
+            {
+              "notification_input_panel@genoa_gps.input_grid_panel": {}
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "$notification_visible_binding_name",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "notification_content": {
+    "type": "panel",
+    "size": [ 290, 50 ],
+    "animation_name": "($notification_animation_name + ' Panel')",
+    "controls": [
+      {
+        "background_image": {
+          "type": "image",
+          "alpha": 0.5,
+          "texture": "textures/ui/9_slice/label_simple_right"
+        }
+      },
+      {
+        "notification_icon": {
+          "type": "image",
+          "layer": 1, //required
+          "size": [ 45, 44 ],
+          "texture": "$notification_icon_image",
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "offset": [ 5, 0 ]
+        }
+      },
+      {
+        "item_grid_panel": {
+          "type": "panel",
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "size": [ "100%c", "100%cm" ],
+          "offset": [ 57, 0 ],
+          "controls": [
+            {
+              "item_grid": {
+                "type": "grid",
+                "grid_dimension_binding": "$notification_grid_size_binding_name",
+                "collection_name": "$notification_collection_name",
+                "grid_item_template": "genoa_gps.item_element",
+                "bindings": [
+                  {
+                    "binding_name": "$notification_grid_size_binding_name",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_element": {
+    "type": "panel",
+    "size": [ 45, 30 ],
+    "anchor_to": "left_middle",
+    "anchor_from": "left_middle",
+    "controls": [
+      {
+        "new_item@genoa_inventory_common.genoa_item_renderer": {
+          "size": [ 30, 30 ],
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "$genoa_item_renderer_bindings": [
+            {
+              "binding_name": "#item_number",
+              "binding_name_override": "#item_id_aux",
+              "binding_collection_name": "$notification_collection_name",
+              "binding_type": "collection",
+              "binding_condition": "always_when_visible"
+            }
+          ]
+        }
+      },
+      {
+        "quantity": {
+          "type": "label",
+          "offset": [ -12, 6 ],
+          "anchor_to": "bottom_right",
+          "anchor_from": "bottom_right",
+          "shadow": true,
+          "text": "#completed_quantity",
+          "override_height": 18,
+          "bindings": [
+            {
+              "binding_name": "#completed_quantity",
+              "binding_collection_name": "$notification_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "input_grid_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "anchor_to": "right_middle",
+    "anchor_from": "right_middle",
+    "size": [ "100%c", "100%cm" ],
+    "offset": [ -68, 0 ],
+    "controls": [
+      {
+        "icon_input_panel@genoa_gps.input_grid_element": {
+          "size": [ 60, 50 ]
+        }
+      },
+      {
+        "input_grid": {
+          "type": "grid",
+          "grid_dimension_binding": "$notification_grid_size_binding_name",
+          "collection_name": "$notification_collection_name",
+          "grid_item_template": "genoa_gps.input_grid_element",
+          "bindings": [
+            {
+              "binding_name": "$notification_grid_size_binding_name",
+              "binding_condition": "always_when_visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "input_grid_element": {
+    "type": "input_panel",
+    "size": [ 45, 50 ],
+    "anchor_to": "right_middle",
+    "anchor_from": "right_middle",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$notification_button_name",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+
+  "active_boost_element": {
+    "type": "panel",
+    "size": [ 58, 53 ],
+    "controls": [
+      {
+        "active_boost_element_panel": {
+          "type": "panel",
+          "size": [ "100%c", "100%c" ],
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "offset": [ 0, 3 ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$active_boosts_collection_name"
+            },
+            {
+              "binding_name": "#boost_element_visible",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$active_boosts_collection_name",
+              "binding_type": "collection"
+            }
+          ],
+          "controls": [
+            {
+              "active_boost_icon@genoa_inventory_common.genoa_item_renderer": {
+                "size": [ 32, 32 ],
+                "$item_collection_name": "$active_boosts_collection_name"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "time_remaining@genoa_gps.active_boost_time_remaining": {
+          "size": [ 55, 15 ],
+          "offset": [ 0, 19 ],
+          "$time_remaining_text": "#boost_time_remaining",
+          "$time_visible_bindings": [
+            {
+              "binding_name": "#boost_time_visible",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$active_boosts_collection_name",
+              "binding_type": "collection"
+            }
+          ],
+          "$time_remaining_bindings": [
+            {
+              "binding_name": "#boost_time_remaining",
+              "binding_collection_name": "$active_boosts_collection_name",
+              "binding_type": "collection",
+              "binding_condition": "always_when_visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "active_boost_element_small": {
+    "type": "panel",
+    "size": [ 32, 38 ],
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "offset": [ 0, 3 ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$active_boosts_collection_name"
+      },
+      {
+        "binding_name": "#boost_element_visible_small",
+        "binding_name_override": "#visible",
+        "binding_collection_name": "$active_boosts_collection_name",
+        "binding_type": "collection"
+      }
+    ],
+    "controls": [
+      {
+        "active_boost_icon@genoa_inventory_common.genoa_item_renderer": {
+          "size": [ 32, 32 ],
+          "$item_collection_name": "$active_boosts_collection_name"
+        }
+      }
+    ]
+  },
+
+  "active_boosts_touch_element": {
+    "type": "input_panel",
+    "anchor_to": "top_left",
+    "anchor_from": "top_left",
+    "size": [ 60, 60 ],
+    "sounds": [],
+    "sound_name": "inmenu.child.small.button",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.boost_pressed",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+
+  "active_boost_time_remaining": {
+    "type": "image",
+    "texture": "textures/ui/9_slice/label_simple",
+    "anchor_to": "right_middle",
+    "anchor_from": "right_middle",
+    "alpha": 0.5,
+    "$time_visible_bindings|default": [],
+    "$time_remaining_bindings|default": [],
+    "$time_remaining_text|default": "",
+    "controls": [
+      {
+        "time_remaining": {
+          "type": "label",
+          "text": "$time_remaining_text",
+          "offset": [ 0, -3 ],
+          "text_alignment": "center",
+          "font_type": "MinecraftSeven",
+          "override_height": 14,
+          "bindings": "$time_remaining_bindings"
+        }
+      }
+    ],
+    "bindings": "$time_visible_bindings"
+  },
+
+  "notifications_stack_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ 185, "100%" ],
+    "use_new_layout": true,
+    "anchor_to": "right_middle",
+    "anchor_from": "right_middle",
+    "$title_text_bind|default": "#none",
+    "$progress_bind|default": "#none",
+    "$in_progress_visible_bind|default": "#none",
+    "controls": [
+      {
+        "notifications_info_stack_panel": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 7 ]
+              }
+            },
+            {
+              "notification_label": {
+                "type": "label",
+                "text": "$title_text_bind",
+                "size": [ "100%", 20 ],
+                "override_height": 20,
+                "font_type": "MinecraftTen",
+                "bindings": [
+                  {
+                    "binding_name": "$title_text_bind"
+                  }
+                ]
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ "100%", 11 ]
+              }
+            },
+            {
+              "progress_bar_background": {
+                "type": "image",
+                "fill": true,
+                "texture": "textures/ui/gradients/progress_bar_bg",
+                "size": [ "100%", 3 ],
+                "controls": [
+                  {
+                    "in_progress_fill": {
+                      "type": "image",
+                      "fill": true,
+                      "texture": "textures/ui/challenge_progress_bar",
+                      "clip_direction": "left",
+                      "clip_ratio": 0.5,
+                      "bindings": [
+                        {
+                          "binding_name": "$progress_bind",
+                          "binding_name_override": "#clip_ratio",
+                          "binding_condition": "always_when_visible"
+                        },
+                        {
+                          "binding_name": "$in_progress_visible_bind",
+                          "binding_name_override": "#visible",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "completed_fill": {
+                      "type": "image",
+                      "fill": true,
+                      "texture": "textures/ui/gradients/gold_gradient",
+                      "bindings": [
+                        {
+                          "binding_name": "$in_progress_visible_bind",
+                          "binding_name_override": "(not #visible)",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "complete_ribbon": {
+    "$ribbon_animation_name|default": "",
+    "$ribbon_text|default": "challenge.notification_complete",
+    "type": "panel",
+    "animation_name": "$ribbon_animation_name",
+    "size": [ 228, 40 ],
+    "offset": [ -290, -24 ],
+    "layer": 3,
+    "controls": [
+      {
+        "complete_label": {
+          "type": "label",
+          "text": "$ribbon_text",
+          "override_height": 20,
+          "layer": 4,
+          "font_type": "MinecraftTen"
+        }
+      }
+    ]
+  },
+
+  "sunset_rewards_popup": {
+    "type": "input_panel",
+    "visible": false,
+    "bindings": [
+      {
+        "binding_name": "#show_sunset_rewards_popup",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "scrim": {
+          "type": "input_panel",
+          "cancel_all_input": true,
+          "controls": [
+            {
+              "scrim_background@genoa_common.white": {
+                "color": "$seasons_scrim_color",
+                "alpha": 0.7
+              }
+            }
+          ]
+        }
+      },
+      {
+        "panel": {
+          "type": "panel",
+          "size": [ 336, 410 ],
+          "controls": [
+            {
+              "panel_background@genoa_common.white": {
+                "layer": 1,
+                "color": "#C4C4C4"
+              }
+            },
+            {
+              "bevel": {
+                "type": "image",
+                "layer": 2,
+                "texture": "textures/ui/tile_bevel_bright",
+                "layer": 40
+              }
+            },
+            {
+              "content": {
+                "type": "stack_panel",
+                "layer": 3,
+                "size": [ "100%-40px", "100%-20px" ],
+                "controls": [
+                  {
+                    "offset_0": {
+                      "type": "panel",
+                      "size": [ "100%", 18 ]
+                    }
+                  },
+                  {
+                    "title": {
+                      "type": "panel",
+                      "size": [ "100%", 38 ],
+                      "controls": [
+                        {
+                          "label": {
+                            "type": "label",
+                            "layer": 1,
+                            "text": "sunset.rewards_popup.header",
+                            "color": "$genoa_modal_text_color",
+                            "text_alignment": "center",
+                            "override_height": 36,
+                            "font_type": "MinecraftTen"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "offset_1": {
+                      "type": "panel",
+                      "size": [ "100%", 10 ]
+                    }
+                  },
+                  {
+                    "description": {
+                      "type": "panel",
+                      "size": [ "100%", 58 ],
+                      "controls": [
+                        {
+                          "label": {
+                            "type": "label",
+                            "layer": 1,
+                            "size": [ "100%", "100%" ],
+                            "text": "sunset.rewards_popup.body",
+                            "color": "$genoa_modal_text_color",
+                            "text_alignment": "center",
+                            "override_height": 18,
+                            "font_type": "noto-sans"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "offset_2": {
+                      "type": "panel",
+                      "size": [ "100%", 10 ]
+                    }
+                  },
+                  {
+                    "banner_pannel": {
+                      "type": "panel",
+                      "size": [ "100%", 44 ],
+                      "controls": [
+                        {
+                          "banner": {
+                            "type": "image",
+                            "size": [ 230, 44 ],
+                            "texture": "textures/ui/rewards_banner_completed",
+                            "controls": [
+                              {
+                                "completed_label": {
+                                  "type": "label",
+                                  "offset": [ 0, -4 ],
+                                  "text_alignment": "center",
+                                  "override_height": 20,
+                                  "font_type": "MinecraftTen",
+                                  "text": "sunset.rewards_popup.banner"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "offset_3": {
+                      "type": "panel",
+                      "size": [ "100%", 14 ]
+                    }
+                  },
+                  {
+                    "rewards_panel": {
+                      "type": "panel",
+                      "size": [ "100%", "100%c" ],
+                      "$sunset_rewards_collection_name": "#sunset_rewards_grid",
+                      "controls": [
+                        {
+                          "rewards_collection": {
+                            "type": "grid",
+                            "size": [ 264, 66 ],
+                            "layer": 1,
+                            "collection_name": "$sunset_rewards_collection_name",
+                            "grid_dimensions": [ 4, 1 ],
+                            "controls": [
+                              {
+                                "cowl@genoa_gps.sunset_rewards_node": {
+                                  "$sunset_rewards_texture_name": "textures/persona_thumbnails/EarthHero/cowl_earth_hero_thumbnail_0"
+                                }
+                              },
+                              {
+                                "suit@genoa_gps.sunset_rewards_node": {
+                                  "$sunset_rewards_texture_name": "textures/persona_thumbnails/EarthHero/suit_earth_hero_thumbnail_0"
+                                }
+                              },
+                              {
+                                "gloves@genoa_gps.sunset_rewards_node": {
+                                  "$sunset_rewards_texture_name": "textures/persona_thumbnails/EarthHero/gloves_earth_hero_thumbnail_0"
+                                }
+                              },
+                              {
+                                "boots@genoa_gps.sunset_rewards_node": {
+                                  "$sunset_rewards_texture_name": "textures/persona_thumbnails/EarthHero/boots_earth_hero_thumbnail_0"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "offset_4": {
+                      "type": "panel",
+                      "size": [ "100%", 15 ]
+                    }
+                  },
+                  {
+                    "accept_sunset_rewards_button@genoa_common.button": {
+                      "size": [ "100%", 50 ],
+                      "$glow_style": "white",
+                      "$button_content": "genoa_common.button_content_text",
+                      "$button_text": "sunset.rewards_popup.button.one",
+                      "$button_font_type": "MinecraftTen",
+                      "$button_font_height": 24,
+                      "$pressed_button_name": "button.accept_sunset_rewards",
+                      "$background_style": "image",
+                      "$button_background_image_texture": "textures/ui/button_confirm",
+                      "sound_name": "confirm.button"
+                    }
+                  },
+                  {
+                    "offset_5": {
+                      "type": "panel",
+                      "size": [ "100%", 10 ]
+                    }
+                  },
+                  {
+                    "go_to_dressing_room_button@genoa_common.button": {
+                      "size": [ "100%", 50 ],
+                      "$glow_style": "white",
+                      "$button_content": "genoa_common.button_content_text",
+                      "$button_text": "sunset.rewards_popup.button.two",
+                      "$button_font_type": "MinecraftTen",
+                      "$button_font_height": 24,
+                      "$pressed_button_name": "button.go_to_dressing_room",
+                      "$background_style": "color",
+                      "$background_color": "$genoa_modal_button_color_cancel",
+                      "sound_name": "cancel.button"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "sunset_rewards_node": {
+    "type": "panel",
+    "size": [ 66, 66 ],
+    "layer": 1,
+    "controls": [
+      {
+        "reward_image": {
+          "type": "image",
+          "layer": 1,
+          "texture": "textures/ui/makestuff_slot_empty",
+          "controls": [
+            {
+              "item_image": {
+                "type": "image",
+                "layer": 1,
+                "size": [ 56, 56 ],
+                "texture": "$sunset_rewards_texture_name"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

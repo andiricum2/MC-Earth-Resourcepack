@@ -1,0 +1,29 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:rotten_flesh_projectile",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "mobs/zombie/lobber/rotten_flesh_projectile"
+      },
+      "geometry": {
+        "default": "geometry.rotten_flesh_projectile"
+      },
+      "animations": {
+        "move": "animation.rotten_flesh_projectile.move"
+      },
+      "scripts": {
+        "animate": [
+          "move"
+        ],
+        "initialization": [
+          "variable.rotationx = 0;",
+          "variable.rotationy = 0;",
+          "variable.rotationz = 0;"
+        ]
+      },
+      "render_controllers": [ "controller.render.rotten_flesh_projectile" ]
+    }
+  }
+}

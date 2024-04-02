@@ -1,0 +1,471 @@
+{
+  "format_version": "1.8.0",
+  "vignette": {
+    "name": "genoa:tree_birch_a_tappable_sequence_rare_vignette",
+    "loop": false,
+    "cameras": [
+      {
+        "name": "default",
+        "position": [ 7.113, 8.801, -7.113 ],
+        "target": [ 4.217, 5.934, -4.217 ],
+        "up": [ 0, 1, 0 ],
+        "fov": 50.0,
+        "far_clip": 100.0
+      }
+    ],
+    "entities": [
+      {
+        "name": "backdrop",
+        "entity_definition": "genoa:backdrop_vignette"
+      },
+      {
+        "name": "tappable_model",
+        "entity_definition": "genoa:tree_birch_a_tappable_sequence_rare"
+      }
+    ],
+    "effects": [
+      {
+        "name": "tap_impact",
+        "effect_definition": "genoa:tappable_tap_impact"
+      },
+      {
+        "name": "tap_impact_rare",
+        "effect_definition": "genoa:tappable_tap_impact_rare"
+      },
+      {
+        "name": "tap_rubble",
+        "effect_definition": "genoa:tappable_tap_rubble"
+      },
+      {
+        "name": "tap_rubble_rare",
+        "effect_definition": "genoa:tappable_tap_rubble_rare"
+      },
+      {
+        "name": "tap_foreground_glow",
+        "effect_definition": "genoa:tappable_foreground_glow"
+      },
+      {
+        "name": "tap_clear_flash",
+        "effect_definition": "genoa:tappable_flash_black"
+      },
+      {
+        "name": "tap_clear_flash_white_fade",
+        "effect_definition": "genoa:tappable_flash_white_fade"
+      },
+      {
+        "name": "ambient_motion",
+        "effect_definition": "genoa:tappable_ambient_moat"
+      },
+      {
+        "name": "ambient_motion_rare",
+        "effect_definition": "genoa:tappable_ambient_moat_rare"
+      },
+      {
+        "name": "ambient_glow",
+        "effect_definition": "genoa:tappable_ambient_glow"
+      },
+      {
+        "name": "ambient_glow_rare",
+        "effect_definition": "genoa:tappable_ambient_glow_rare"
+      },
+      {
+        "name": "award_loop_ray_rare",
+        "effect_definition": "genoa:tappable_award_loop_ray_rare"
+      },
+      {
+        "name": "award_loop_rubble_rare",
+        "effect_definition": "genoa:tappable_award_loop_rubble_rare"
+      },
+      {
+        "name": "award_loop_impact_rare",
+        "effect_definition": "genoa:tappable_award_loop_impact_rare"
+      },
+      {
+        "name" : "ambient_sunburst_rare",
+        "effect_definition" : "genoa:tappable_ambient_sunburst_rare"
+      }
+    ],
+    "keyframes": [
+      {
+        "0": [
+          {
+            "command": "create_entity",
+            "entity": "tappable_model",
+            "label": "start"
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "tappable_model",
+            "parameter": 0.0,
+            "label": "variable.number_of_taps"
+          },
+          {
+            "command": "create_entity",
+            "entity": "backdrop"
+          },
+          {
+            "command": "play_animation",
+            "entity": "backdrop",
+            "animation": "backdrop_setup_45_deg"
+          },
+          {
+            "command": "create_effect",
+            "entity": "ambient_motion",
+            "position": [ -2.434, -0.31, 2.434 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "ambient_glow",
+            "position": [-2.434, -0.31, 2.434 ]
+          },
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "enter"
+          },
+          {
+            "command": "play_animation",
+            "entity": "backdrop",
+            "animation": "backdrop_setup_135_tree"
+          }
+        ],
+        "0.3666667": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "idle"
+          },
+          {
+            "command": "pause"
+          }
+        ],
+        "1.0": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "tap_1",
+            "label": "tap_1"
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "tappable_model",
+            "parameter": 1.0,
+            "label": "variable.number_of_taps"
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_clear_flash",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_impact",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_rubble",
+            "position": [ 0, 2, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_foreground_glow",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.tap.sequence.01"
+          },
+          {
+            "command": "pause"
+          }
+        ],
+        "2.0": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "tap_2",
+            "label": "tap_2"
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "tappable_model",
+            "parameter": 2.0,
+            "label": "variable.number_of_taps"
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_clear_flash",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_impact",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_rubble",
+            "position": [ 0, 2, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_foreground_glow",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.tap.sequence.02"
+          },
+          {
+            "command": "pause"
+          }
+        ],
+        "3.0": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "tap_3",
+            "label": "tap_3"
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "tappable_model",
+            "parameter": 3.0,
+            "label": "variable.number_of_taps"
+          },
+          {
+            "command": "destroy_effect",
+            "entity": "ambient_motion"
+          },
+          {
+            "command": "destroy_effect",
+            "entity": "ambient_glow"
+          },
+          {
+            "command": "create_effect",
+            "entity": "ambient_motion_rare",
+            "position": [ -2.434, -0.31, 2.434 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "ambient_glow_rare",
+            "position": [ -2.434, -0.31, 2.434 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_clear_flash",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_impact_rare",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_rubble_rare",
+            "position": [ 0, 2, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_foreground_glow",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.tap.sequence.03"
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.particle.color.change"
+          },
+          {
+            "command": "pause"
+          }
+        ],
+        "4.0": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "tap_4",
+            "label": "tap_4"
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "tappable_model",
+            "parameter": 4.0,
+            "label": "variable.number_of_taps"
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_clear_flash",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_impact_rare",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_rubble_rare",
+            "position": [ 0, 2, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_foreground_glow",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.tap.sequence.04"
+          },
+          {
+            "command": "pause"
+          }
+        ],
+        "5.0": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "tap_5",
+            "label": "tap_5"
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "tappable_model",
+            "parameter": 5.0,
+            "label": "variable.number_of_taps"
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_clear_flash_white_fade",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_impact_rare",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_rubble_rare",
+            "position": [ 0, 2, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_foreground_glow",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command" : "create_effect",
+            "entity" : "ambient_sunburst_rare",
+            "position": [ -2.434, -0.31, 2.434 ]
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.tap.sequence.05"
+          }
+        ],
+        "5.233333": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "award_transition"
+          },
+          {
+            "command": "create_effect",
+            "entity": "award_loop_rubble_rare",
+            "position": [ 0, 0.5, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "award_loop_ray_rare",
+            "position": [ 0, 0.5, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "award_loop_impact_rare",
+            "position": [ 0, 0.5, 0 ]
+          },
+          {
+            "command": "destroy_effect",
+            "entity": "ambient_motion_rare"
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.award.transition"
+          }
+        ],
+        "5.5": [
+          {
+            "command": "play_animation",
+            "entity": "tappable_model",
+            "animation": "award_loop"
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.award.loop"
+          },
+          {
+            "command": "wait_for_service"
+          }
+        ],
+        "5.6": [
+          {
+            "command": "create_effect",
+            "entity": "tap_clear_flash",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_rubble",
+            "position": [ 0, 2, 0 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "tap_foreground_glow",
+            "position": [ 1.92, 3.903, -1.92 ]
+          },
+          {
+            "command": "destroy_entity",
+            "entity": "tappable_model"
+          },
+          {
+            "command": "destroy_effect",
+            "entity": "ambient_glow_rare"
+          },
+          {
+            "command": "destroy_effect",
+            "entity": "award_loop_ray_rare"
+          },
+          {
+            "command": "destroy_effect",
+            "entity": "award_loop_rubble_rare"
+          },
+          {
+            "command": "destroy_effect",
+            "entity": "award_loop_impact_rare"
+          },
+          {
+            "command" : "destroy_effect",
+            "entity" : "ambient_sunburst_rare"
+          },
+          {
+            "command": "stop_sound",
+            "entity": "tappable.tree.award.loop"
+          },
+          {
+            "command" : "play_sound",
+            "entity" : "tappable.tree.award"
+          },
+          {
+            "command": "play_ui_sequence",
+            "entity": "tappable_sequence"
+          }
+        ]
+      }
+    ]
+  }
+}

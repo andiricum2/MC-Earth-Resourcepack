@@ -1,0 +1,33 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:squid",
+      "materials": { "default": "entity" },
+      "textures": {
+        "default": "mobs/squid/genoa_squid/squid"
+      },
+      "geometry": {
+        "default": "geometry.genoa.squid"
+      },
+      "animations":{
+        "move": "animation.genoa_squid.move",
+        "squid_rotate":"animation.genoa_squid.rotate",
+        "blink": "controller.animation.shared_mob.blink"
+      },
+      "scripts":{
+        "animate": [
+          "move",
+          "squid_rotate",
+          "blink"
+        ],
+        "initialization": [ "variable.is_blinking = 0;", "variable.return_from_blink = 0;", "variable.last_blink_time = 0;", "variable.max_blink_time = 0.2;", "variable.min_blink_rest = 3;", "variable.max_blink_rest = 40;" ]
+      },
+      "render_controllers": [ "controller.render.genoa_squid" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 17
+      }
+    }
+  }
+}

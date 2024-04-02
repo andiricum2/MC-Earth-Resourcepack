@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.skeleton_wolf.howl": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "howl": "variable.is_howling" }
+          ]
+        },
+        "howl": {
+          "animations": [ "wolf_howl" ],
+          "transitions": [
+            { "default": "variable.is_howling = 0; return query.all_animations_finished;" }
+          ]
+        }
+      }
+    }
+  }
+}

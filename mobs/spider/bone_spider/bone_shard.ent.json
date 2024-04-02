@@ -1,0 +1,24 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:bone_shard",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "mobs/spider/bone_spider/bone_shard"
+      },
+      "geometry": {
+        "default": "geometry.bone_spider.bone_shard"
+      },
+      "animations": {
+        "move": "animation.bone_shard.move"
+      },
+      "scripts": {
+        "animate": [
+          "move"
+        ]
+      },
+      "render_controllers": [ "controller.render.bone_shard" ]
+    }
+  }
+}

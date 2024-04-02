@@ -1,0 +1,61 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "genoa:player_dressing_room",
+        "min_engine_version": "1.8.0",
+        "materials": {
+          "default": "entity_alphatest",
+          "animated": "player_animated"
+        },
+        "textures": {
+          "default": "textures/entity/steve"
+        },
+        "geometry": {
+          "default": "geometry.humanoid.custom"
+        },
+        "animations": {
+          "setup": "animation.backdrop_vignette_setup",
+          "blink": "controller.animation.persona.blink",
+          "react_idle": "animation.dressing_react_idle",
+          "idle_torso": "animation.idle_torso_1",
+          "idle_bottom": "animation.idle_bottom_1",
+          "idle_arm": "animation.idle_arm_1",
+          "idle_back": "animation.idle_back_1",
+          "react_head_1": "animation.react_head_1",
+          "react_head_2": "animation.react_head_2",
+          "react_torso_1": "animation.react_torso_1",
+          "react_torso_2": "animation.react_torso_2",
+          "react_bottom_1": "animation.react_bottom_1",
+          "react_bottom_2": "animation.react_bottom_2",
+          "react_bottom_3": "animation.react_bottom_3",
+          "react_arm_1": "animation.react_arm_1",
+          "react_arm_2": "animation.react_arm_2",
+          "react_back_1": "animation.react_back_1",
+          "react_back_2": "animation.react_back_2",
+          "react_confirm_1": "animation.react_confirm_1",
+          "react_confirm_2": "animation.react_confirm_2",
+          "react_bored_1": "animation.react_bored_1",
+          "tappable": "controller.animation.genoa_persona_humanoid_setup",
+          "level_up_jump": "animation.player.level_up_jump",
+          "level_up_celebrate": "animation.player.level_up_celebrate",
+          "level_up_idle": "animation.player.level_up_idle",
+          "react_animations": "controller.animation.persona_dressing_room_react",
+          "adventure_rewards_celebration_enter": "animation.adventure_celebration_enter",
+          "adventure_rewards_celebration_exit": "animation.adventure_celebration_exit",
+          "adventure_rewards_celebration_loop": "animation.adventure_celebration_loop",
+          "adventure_rewards_fail_enter": "animation.adventure_fail_enter",
+          "adventure_rewards_fail_exit": "animation.adventure_fail_exit",
+          "adventure_rewards_fail_loop": "animation.adventure_fail_loop"
+        },
+        "scripts": {
+          "animate": [
+            "blink",
+            "react_animations"
+          ],
+          "initialization": [ "variable.is_blinking = 0;", "variable.return_from_blink = 0;", "variable.last_blink_time = 0;", "variable.is_offer = 0;" ]
+        },
+        "render_controllers": [ "controller.render.genoa_player" ]
+      }
+    }
+  }

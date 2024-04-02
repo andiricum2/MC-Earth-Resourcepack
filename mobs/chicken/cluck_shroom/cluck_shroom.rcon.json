@@ -1,0 +1,20 @@
+{
+  "format_version": "1.10.0",
+  "render_controllers": {
+    "controller.render.cluck_shroom": {
+      "geometry": "Geometry.default",
+      "materials": [
+        {"*": "Material.default"},
+        {"mushroom*": "Material.mushrooms"},
+        {"leg*": "Material.legs"}
+      ],
+      "textures": [
+        "Texture.default"
+      ],
+      "part_visibility": [
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking" }
+      ]
+    }
+  }
+}

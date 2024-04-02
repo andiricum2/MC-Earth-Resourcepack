@@ -1,0 +1,216 @@
+{
+  "namespace": "braze_news_template",
+
+  "braze_news_template@genoa_common.genoa_base_screen": {
+    "screen_visibility": "overlay",
+    "$screen_content": "braze_news_template.content",
+    "$use_background": false
+  },
+
+  "content@genoa_common.white": {
+    "size": [ "100%", "100%" ],
+    "texture": "textures/ui/secondary_background", // art/design wants an actual texture instead of a solid color
+    "alpha": 1.0,
+    "fill": true,
+    "screen_fill_down": true,
+    "screen_fill_left": true,
+    "screen_fill_right": true,
+    "screen_fill_up": true,
+    "controls": [
+      {
+        "foreground": {
+          "type": "stack_panel",
+          "size": [ 351, "100%" ],
+          "controls": [
+            {
+              "text_pad": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "controls": [
+                  {
+                    "text_scroll@common.scrolling_panel": {
+                      "size": [ "100%", "100%" ],
+                      "$scroll_view_port_size_touch": [ 351, "100%" ],
+                      "clips_children": true,
+                      "allow_clipping": true,
+                      "$scroll_view_name": "braze_news_text_scroll",
+                      "$scrolling_content": "braze_news_template.braze_news_scroll_content",
+                      "$scroll_size": [ 5, "100%" ],
+                      "$scroll_box_visible_touch": true,
+                      "$show_background": false,
+                      "$scroll_fade_distance": 10.0
+                    }
+                  },
+                  {
+                    "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "bottom_middle",
+                      "offset": [ 0, 5 ],
+                      "$source_control_name_override": "braze_news_text_scroll",
+                      "$is_below_scroll": true
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "button_panel": {
+                "type": "panel",
+                "size": [ "100%", "100%c" ],
+                "controls": [
+                  {
+                    "button_stack_panel": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": [ "100%", "100%c + 48px" ],
+                      "use_new_layout": true,
+                      "controls": [
+                        {
+                          "button_padding_1": {
+                            "type": "panel",
+                            "size": [ "100%", 15 ]
+                          }
+                        },
+                        {
+                          "button_one@genoa_common.button": {
+                            "size": [ "100%", 50 ],
+                            "$pressed_button_name": "button.accept",
+                            "$button_content": "genoa_common.button_content_text_bindable",
+                            "$glow_style": "white",
+                            "$button_font_type": "MinecraftTen",
+                            "$button_font_height": 26,
+                            "$button_text": "#button_one_text",
+                            "$button_binding_condition": "once",
+                            "$background_style": "image",
+                            "$button_background_image_texture": "textures/ui/button_confirm",
+                            "sound_name": "confirm.button"
+                          }
+                        },
+                        {
+                          "button_padding_2": {
+                            "type": "panel",
+                            "size": [ "100%", 10 ],
+                            "visible": false,
+                            "bindings": [
+                              {
+                                "binding_name": "#second_button_visible",
+                                "binding_name_override": "#visible",
+                                "binding_condition": "once"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "button_two@genoa_common.button": {
+                            "size": [ "100%", 50 ],
+                            "$pressed_button_name": "button.link",
+                            "$button_content": "genoa_common.button_content_text_bindable",
+                            "$glow_style": "white",
+                            "$button_font_type": "MinecraftTen",
+                            "$button_font_height": 26,
+                            "$button_text": "#button_two_text",
+                            "$button_binding_condition": "once",
+                            "$background_style": "color",
+                            "$background_color": "$genoa_modal_button_color_cancel",
+                            "sound_name": "cancel.button",
+                            "visible": false,
+                            "bindings": [
+                              {
+                                "binding_name": "#second_button_visible",
+                                "binding_name_override": "#visible",
+                                "binding_condition": "once"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "braze_news_scroll_content": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "pad_top_1": {
+          "type": "panel",
+          "size": [ "100%", 39 ]
+        }
+      },
+      {
+        "header_text": {
+          "type": "label",
+          "size": [ "100%", 25 ],
+          "text_alignment": "center",
+          "font_type": "MinecraftTen",
+          "override_height": 24,
+          "text": "#header_text",
+          "bindings": [
+            {
+              "binding_name": "#header_text",
+              "binding_condition": "once"
+            }
+          ]
+        }
+      },
+      {
+        "pad_top_2": {
+          "type": "panel",
+          "size": [ "100%", 26 ]
+        }
+      },
+      {
+        "key_art_panel": {
+          "type": "panel",
+          "size": [ "100%", 200 ],
+          "controls": [
+            {
+              "key_art": {
+                "type": "image",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "bindings": [
+                  {
+                    "binding_name": "#key_art_texture",
+                    "binding_name_override": "#texture",
+                    "binding_condition": "once"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "text_pad": {
+          "type": "panel",
+          "size": [ "100%", 20 ]
+        }
+      },
+      {
+        "body_text": {
+          "type": "label",
+          "size": [ "100%", "default" ],
+          "text_alignment": "left",
+          "font_type": "smooth",
+          "override_height": 20,
+          "text": "#body_text",
+          "bindings": [
+            {
+              "binding_name": "#body_text",
+              "binding_condition": "once"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

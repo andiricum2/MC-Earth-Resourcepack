@@ -1,0 +1,200 @@
+// Example format: https://dev-mc.visualstudio.com/Minecraft/_wiki/wikis/Minecraft.wiki?wikiVersion=GBwikiMaster&pagePath=%2FTeam%20Wikis%2FPersona%20Wiki%2FFonts%2FTechnical%20Details&pageId=2679&anchor=font_metadata.json-format
+
+// Note: when defining ranges for fonts remember that glyphs are stored in sheets of 256 characters.
+//     : The code is written in such a way that if two fonts would have glyphs on the same sheet
+//     : it will take the last one from the above list (the font overrides it).  This will be the current
+//     : behavior until we actually run into a problem
+
+
+// Special Aliases
+// RuneFont - used on enchanting tables and books (look for "font_type": "rune")
+// DefaultFont - used for debug text, and in world text
+// UnicodeFont - used for labels that specify font_type "unicode"
+// SmoothFontLatin  - used for labels that specify font_type "smooth"
+// UIFont - used for the ui if a font type is provided
+
+// if you make your font alias in the list of aliases that matches the above, the default loaded ones
+// created in MinecraftGame::_initPostC will be overridden (assuming Use TTF Overrides is set to true in settings)
+{
+  "version" : 1,
+
+  // font_name should never be one of the reserved aliases
+  // the repository uses the list of stored fonts to restore textures on reload
+  // and since aliases and fonts are treated the same in the repo, the base font's reload
+  // wouldn't be called if an alias's name matched a font_name
+  // so don't name a font_name the same as an alias.
+  "fonts" : [
+    {
+      "font_format": "ttf",
+      "font_name" : "MinecraftSevenOriginal",
+      "target_font_render_size": 28,
+      "font_file" : "fonts/MinecraftSeven"
+    },
+    {
+      "font_format" : "ttf",
+      "font_name" : "MinecraftTenOriginal",
+      "target_font_render_size": 40,
+      "font_file" : "fonts/MinecraftTen"
+    },
+    {
+      "font_format" : "ttf",
+      "font_name" : "noto-sans-regular",
+      "font_file" : "fonts/NotoSans-Regular"
+    },
+    {
+      "font_format" : "ttc",
+      "font_name": "noto-sans-jp",
+      "target_font_render_size":  48,
+      "font_file" : "fonts/NotoSansCJK-Regular",
+      "collection_index" : 0,
+      "first_sheet_is_shared" :  true
+    },
+    {
+      "font_format" : "ttc",
+      "font_name" : "noto-sans-kr",
+      "target_font_render_size":  48,
+      "font_file" : "fonts/NotoSansCJK-Regular",
+      "collection_index" :  1,
+      "first_sheet_is_shared" :  true
+    },
+    {
+      "font_format" : "ttc",
+      "font_name" : "noto-sans-sc",
+      "target_font_render_size":  48,
+      "font_file" : "fonts/NotoSansCJK-Regular",
+      "collection_index" :  2,
+      "first_sheet_is_shared" :  true
+    },
+    {
+      "font_format" : "ttc",
+      "font_name" : "noto-sans-tc",
+      "target_font_render_size":  48,
+      "font_file" : "fonts/NotoSansCJK-Regular",
+      "collection_index" :  3,
+      "first_sheet_is_shared" :  true
+    },
+
+    // Old Defaults
+    {
+      "font_format" : "bitmap",
+      "font_name" : "default8",
+      // These are the required fields for bitmap fonts
+      // files expected to have an acceptable image extension (png, tga, jpg, jpeg)
+      "ascii_font_file" : "font/default8",
+      "unicode_file_prefix" : "font/glyph_"
+    },
+    {
+      "font_format" : "msdf",
+      "font_name" : "default_msdf",
+      // for MSDF font, files are expected to be font_file + .fontdata and prefix + .(tga, png, jpg, jpeg)
+      "font_file" : "font/smooth/smooth_"
+    }
+  ],
+
+
+  "font_aliases": [
+    {
+      "alias": "MinecraftSeven",
+      "fonts": [
+        {
+          "font_reference": "MinecraftSevenOriginal"
+        },
+        {
+          "font_reference": "noto-sans-regular",
+          "font_ranges": [
+            {
+              "first": 8192,
+              "last": 8447
+            },
+            {
+              "first": 65280,
+              "last": 65535
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alias": "MinecraftTen",
+      "fonts": [
+        {
+          "font_reference": "MinecraftTenOriginal"
+        },
+        {
+          "font_reference": "noto-sans-regular",
+          "font_ranges": [
+            {
+              "first": 8192,
+              "last": 8447
+            },
+            {
+              "first": 65280,
+              "last": 65535
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "alias": "noto-sans",
+      "fonts": [
+        {
+          "font_reference": "noto-sans-regular"
+        },
+        {
+          "font_reference": "noto-sans-jp",
+          "font_language_code": "ja_JP"
+        },
+        {
+          "font_reference": "noto-sans-kr",
+          "font_language_code": "ko_KR"
+        },
+        {
+          "font_reference": "noto-sans-sc",
+          "font_language_code": "zh_CN"
+        },
+        {
+          "font_reference": "noto-sans-tc",
+          "font_language_code": "zh_TW"
+        }
+      ]
+    },
+    {
+      "alias": "UIFont",
+      "fonts": [
+        {
+          "font_reference": "default8"
+        },
+        {
+          "font_reference": "noto-sans"
+        },
+        {
+          "font_reference": "MinecraftSeven"
+        }
+      ]
+    },
+    {
+      "alias": "UnicodeFont",
+      "fonts": [
+        {
+          "font_reference": "default8"
+        },
+        {
+          "font_reference": "noto-sans"
+        },
+        {
+          "font_reference": "MinecraftSeven"
+        }
+      ]
+    },
+    {
+      "alias": "SmoothFontLatin",
+      "fonts": [
+        {
+          "font_reference": "noto-sans"
+        }
+      ]
+    }
+
+  ]
+}

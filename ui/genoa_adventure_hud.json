@@ -1,0 +1,23 @@
+{
+  "namespace": "genoa_adventure_hud",
+
+  "genoa_adventure_hud_screen@genoa_common.genoa_base_screen": {
+    "animation_name": "Buildplate Hud Screen",
+    "is_showing_menu": false,
+    "should_steal_mouse": true,
+    "$use_background": false,
+    "$steal_all_input": false,
+    "$screen_content": "genoa_play_hud.genoa_play_hud_content",
+    "$move_buildplate_supported": true,
+    "$precision_mode_supported": true,
+    "$bright_mode_supported": true,
+    "$show_hud_mob_indicators": true,
+    "$people_occlusion_supported": true,
+    "$wideangle_supported": true,
+    "$status_effects_supported": true,
+    "$options_unopened_animation_selected_bind_name": "#entice_enabled",
+    "$options_unopened_animation_name": "Settings Button",
+    "$exit_button_options_arrow_binding_name": "#entice_enabled",
+    "$options_button_scrim_binding_name": "#options_scrim_enabled"
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:tappable_tree_oak_b",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default": "textures/entity/tappable_tree_oak"
+      },
+      "geometry": {
+        "default": "geometry.tree_oak_b"
+      },
+      "animations": {
+        "tapped": "animation.tree.tappable.tapped",
+        "map_spawn": "animation.tree.tappable.mapSpawn",
+        "map_despawn": "animation.tree.tappable.mapDespawn",
+        "award_transition": "animation.tree.tappable.awardTransition"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.tappable" }
+      ],
+      "render_controllers": [ "controller.render.tappable" ]
+    }
+  }
+}

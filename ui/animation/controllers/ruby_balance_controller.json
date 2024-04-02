@@ -1,0 +1,41 @@
+{
+  "version": 1,
+
+  "states": {
+    "Default": {
+      "default": true,
+      "triggers": {
+        "RubyPanelEnter": "Enter"
+      }
+    },
+
+    "Enter": {
+      "animation": "Enter",
+      "triggers": {
+        "onAnimationFinished": "Set"
+      }
+    },
+
+    "Set": {
+      "animation": "Set",
+      "triggers": {
+        "RubyPanelIncrement": "Trigger",
+        "RubyPanelExit": "Exit"
+      }
+    },
+
+    "Trigger": {
+      "animation": "Trigger",
+      "triggers": {
+        "onAnimationFinished": "Set"
+      }
+    },
+
+    "Exit": {
+      "animation": "Exit",
+      "triggers": {
+        "onAnimationFinished": "Default"
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:melon_seed_projectile",
+      "materials": { "default": "entity" },
+      "textures": {
+        "default": "mobs/snow_golem/melon_golem/melon_golem_projectile"
+      },
+      "geometry": {
+        "default": "geometry.genoa.melon_golem_projectile"
+      },
+      "animations": {
+        "move": "animation.melon_seed_projectile.move",
+        "move_controller": "controller.animation.melon_seed_projectile.move"
+      },
+      "scripts": {
+        "animate": [
+          "move_controller"
+        ]
+      },
+      "render_controllers": [ "controller.render.melon_golem_projectile" ]
+    }
+  }
+}

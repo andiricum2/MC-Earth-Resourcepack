@@ -1,0 +1,38 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:polar_bear",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "polar_bear" },
+      "textures": {
+        "default": "mobs/polar_bear/genoa_polar_bear/polar_bear"
+      },
+      "geometry": {
+        "default": "geometry.genoa.polar_bear"
+      },
+      "scripts": {
+        "scale": "1.2",
+        "animate": [ 
+          "blink",
+          "move_controller",
+          {"baby_transform" : "query.is_baby"}
+        ],
+        "initialization": [ "variable.is_blinking = 0;", "variable.return_from_blink = 0;", "variable.last_blink_time = 0;" ]
+      },      
+      "animations": {
+        "walk": "animation.quadruped.walk",
+        "move": "animation.polarbear.move",
+        "look_at_target": "animation.common.look_at_target",
+        "baby_transform": "animation.polarbear.baby_transform",
+        "blink": "controller.animation.polar_bear.blink",
+        "move_controller": "controller.animation.polarbear.move" 
+      },
+      "render_controllers": [ "controller.render.polar_bear" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 37
+      }
+    }
+  }
+}

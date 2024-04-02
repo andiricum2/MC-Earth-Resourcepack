@@ -1,0 +1,22 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.moo_bloom.setup": {
+      "loop": true,
+      "bones": {
+        "body": {
+          "rotation": [ "-this", 0.0, 0.0 ]
+        }
+      }
+    },
+    "animation.moo_bloom.baby_transform": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "scale": "query.is_baby ? 2.0 : 1.0",
+          "position": [ 0.0, "query.is_baby ? 4.0 : 0.0", "query.is_baby ? 4.0 : 0.0" ]
+        }
+      }
+    }
+  }
+}

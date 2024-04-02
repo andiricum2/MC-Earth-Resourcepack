@@ -1,0 +1,44 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:patched_sheep",
+      "materials": { "default": "entity" },
+      "textures": {
+        "default": "mobs/sheep/patched/patched_sheep"
+      },
+      "geometry": {
+        "default": "geometry.genoa.sheep_v2"
+      },
+      "animations": {
+        "grazing": "animation.sheep.grazing",
+        "walk": "animation.quadruped.walk",
+        "look_at_target": "animation.shared.look_at_target",
+        "baby_transform": "animation.sheep.baby_transform",
+        "move": "controller.animation.sheep.move",
+        "blink": "controller.animation.shared.mob_blink"
+      },
+      "scripts": {
+        "animate": [
+          "look_at_target",
+          "move",
+          { "baby_transform": "query.is_baby" },
+          "blink"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.3;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;"
+        ]
+      },
+      "render_controllers": [ "controller.render.genoa_sheep" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 3
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+
+  "states": {
+    "Loop": {
+      "animation": "Loop",
+      "default": true,
+      "properties": [ "selected" ],
+      "loop": true
+    },
+    "Inactive": {
+      "properties": [ "!selected" ]
+    }
+  }
+}

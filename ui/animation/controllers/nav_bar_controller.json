@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "controller": "visible_children",
+
+  "states": {
+    "Released": {
+      "default": true,
+      "animation": "Released",
+      "properties": [ "!pressed" ],
+      "transitions": [
+        {
+          "from": "Pressed",
+          "animation": "Release"
+        }
+      ]
+    },
+
+    "Pressed": {
+      "animation": "Pressed",
+      "properties": [ "pressed" ],
+      "transitions": [
+        {
+          "from": "Released",
+          "animation": "Press"
+        }
+      ]
+    }
+  },
+
+  "Notify": {
+    "animation": "Notify",
+    "triggers": {
+      "onNotify": "Notify"
+    },
+    "transitions": [
+      {
+        "from": "Released",
+        "animation": "Notify"
+      }
+    ]
+  }
+}

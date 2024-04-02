@@ -1,0 +1,42 @@
+{
+  "version": 2,
+
+  "states": {
+    "Deselected": {
+      "default": true,
+      "animation": "Deselected",
+      "properties": [ "!selected" ],
+
+      "transitions": [
+        {
+          "from": "Selected",
+          "animation": "Deselect"
+        }
+      ]
+    },
+
+    "Selected": {
+      "animation": "Selected",
+      "properties": [ "selected" ],
+
+      "triggers" : {
+        "onBreakTriggered": "Break"
+      },
+
+      "transitions": [
+        {
+          "from": "Deselected",
+          "animation": "Select"
+        }
+      ]
+    },
+
+    "Break": {
+      "animation": "Break",
+      "disable_property_transition": true,
+      "triggers" : {
+        "onAnimationFinished": "Selected"
+      }
+    }
+  }
+}

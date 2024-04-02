@@ -1,0 +1,66 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:umbra_cow",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "mobs/cow/umbra_cow/umbra_cow",
+        "sheared": "mobs/cow/umbra_cow/umbra_cow_sheared"
+      },
+      "geometry": {
+        "default": "geometry.genoa.wooly_cow",
+        "sheared": "geometry.genoa.wooly_cow"
+      },
+      "animations": {
+        "walk": "animation.wooly_cow.walk",
+        "look_at_target": "animation.wooly_cow.lookattarget",
+        "baby_transform": "animation.wooly_cow.baby_transform",
+        "shake": "animation.wooly_cow.shake",
+        "prep": "animation.wooly_cow.prep",
+        "shake_control": "controller.animation.wooly_cow.shake",
+        "walk_control": "controller.animation.wooly_cow.walk",
+        "effect_control": "controller.animation.fire_effect",
+        "blink": "controller.animation.shared.mob_blink",
+        "prep_control": "controller.animation.wooly_cow.prep"
+      },
+      "scripts": {
+        "animate": [
+          { "baby_transform": "query.is_baby" },
+          "blink",
+          "walk_control",
+          "shake_control",
+          "effect_control",
+          "prep_control"
+        ],
+        "initialization": [
+          "variable.is_shaking = 0;",
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.3;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;",
+          "variable.speed = 0;",
+          "variable.head_shake_time = 3.0;",
+          "variable.head_shake_delay = 0;",
+          "variable.fire_effect = 0;",
+          "variable.pre_growth_time = 0;"
+        ]
+      },
+      "particle_effects": {
+        "shake_fx": "genoa:wooly_cow_shake"
+      },
+      "sound_effects": {
+        "shake": "mob.wooly_cow.shake",
+        "prep": "mob.wooly_cow.prep"
+      },
+      "render_controllers": [ "controller.render.wooly_cow" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 57
+      }
+    }
+  }
+}

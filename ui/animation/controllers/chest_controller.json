@@ -1,0 +1,19 @@
+{
+  "version": 1,
+
+  "states": {
+    "Default": {
+      "default": true,
+      "triggers": {
+        "NotifyChestOpen": "Notify"
+      }
+    },
+
+    "Notify": {
+      "animation": "Notify",
+      "triggers": {
+        "onAnimationFinished": "Default"
+      }
+    }
+  }
+}

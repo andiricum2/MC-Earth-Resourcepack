@@ -1,0 +1,3443 @@
+{
+  "adventure.backpack.burst.01": {
+    "external_path": "event:/SFX/UI/adventure.backpack.burst.01"
+  },
+  "adventure.backpack.burst.02": {
+    "external_path": "event:/SFX/UI/adventure.backpack.burst.02"
+  },
+  "adventure.backpack.burst.03": {
+    "external_path": "event:/SFX/UI/adventure.backpack.burst.03"
+  },
+  "adventure.backpack.burst.04": {
+    "external_path": "event:/SFX/UI/adventure.backpack.burst.04"
+  },
+  "adventure.celebration": {
+    "external_path": "event:/SFX/UI/adventure.celebration"
+  },
+  "adventure.celebration.fireworks": {
+    "external_path": "event:/SFX/UI/adventure.celebration.fireworks"
+  },
+  "adventure.celebration.persona.enter": {
+    "external_path": "event:/SFX/UI/adventure.celebration.persona.enter"
+  },
+  "adventure.celebration.persona.exit": {
+    "external_path": "event:/SFX/UI/adventure.celebration.persona.exit"
+  },
+  "adventure.chest.item.burst.01": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.burst.01"
+  },
+  "adventure.chest.item.burst.02": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.burst.02"
+  },
+  "adventure.chest.item.burst.03": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.burst.03"
+  },
+  "adventure.chest.item.burst.04": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.burst.04"
+  },
+  "adventure.chest.item.fly": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.fly"
+  },
+  "adventure.chest.item.particle": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.particle"
+  },
+  "adventure.chest.item.reveal.01": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.reveal.01"
+  },
+  "adventure.chest.item.reveal.02": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.reveal.02"
+  },
+  "adventure.chest.item.reveal.03": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.reveal.03"
+  },
+  "adventure.chest.item.reveal.04": {
+    "external_path": "event:/SFX/UI/adventure.chest.item.reveal.04"
+  },
+  "adventure.chest.slide.in": {
+    "external_path": "event:/SFX/UI/adventure.chest.slide.in"
+  },
+  "adventure.chest.slide.out": {
+    "external_path": "event:/SFX/UI/adventure.chest.slide.out"
+  },
+  "adventure.crystal.activation.burst.common": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.burst.common"
+  },
+  "adventure.crystal.activation.burst.epic": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.burst.epic"
+  },
+  "adventure.crystal.activation.burst.legendary": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.burst.legendary"
+  },
+  "adventure.crystal.activation.burst.rare": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.burst.rare"
+  },
+  "adventure.crystal.activation.burst.uncommon": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.burst.uncommon"
+  },
+  "adventure.crystal.activation.loop.common": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.loop.common"
+  },
+  "adventure.crystal.activation.loop.epic": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.loop.epic"
+  },
+  "adventure.crystal.activation.loop.legendary": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.loop.legendary"
+  },
+  "adventure.crystal.activation.loop.rare": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.loop.rare"
+  },
+  "adventure.crystal.activation.loop.uncommon": {
+    "external_path": "event:/SFX/UI/adventure.crystal.activation.loop.uncommon"
+  },
+  "adventure.cue.chest.common.break": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.chest.common.break"
+  },
+  "adventure.cue.chest.epic.break": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.chest.epic.break"
+  },
+  "adventure.cue.chest.legendary.break": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.chest.legendary.break"
+  },
+  "adventure.cue.chest.rare.break": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.chest.rare.break"
+  },
+  "adventure.cue.chest.uncommon.break": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.chest.uncommon.break"
+  },
+  "adventure.cue.completed": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.completed"
+  },
+  "adventure.cue.danger": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.danger"
+  },
+  "adventure.cue.puzzle.failure": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.puzzle.failure"
+  },
+  "adventure.cue.segment.success": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.cue.segment.success"
+  },
+  "adventure.despawn.warning": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.despawn.warning"
+  },
+  "adventure.enter.button": {
+    "external_path": "event:/SFX/UI/adventure.enter.button"
+  },
+  "adventure.enter.music": {
+    "external_path": "event:/SFX/UI/adventure.enter.music"
+  },
+  "adventure.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.expire"
+  },
+  "adventure.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.in.range"
+  },
+  "adventure.item.summary.tier.01": {
+    "external_path": "event:/SFX/UI/adventure.item.summary.tier.01"
+  },
+  "adventure.item.summary.tier.02": {
+    "external_path": "event:/SFX/UI/adventure.item.summary.tier.02"
+  },
+  "adventure.item.summary.tier.03": {
+    "external_path": "event:/SFX/UI/adventure.item.summary.tier.03"
+  },
+  "adventure.item.summary.tier.04": {
+    "external_path": "event:/SFX/UI/adventure.item.summary.tier.04"
+  },
+  "adventure.item.summary.tier.05": {
+    "external_path": "event:/SFX/UI/adventure.item.summary.tier.05"
+  },
+  "adventure.item.summary.tier.06": {
+    "external_path": "event:/SFX/UI/adventure.item.summary.tier.06"
+  },
+  "adventure.item.summary.tier.07": {
+    "external_path": "event:/SFX/UI/adventure.item.summary.tier.07"
+  },
+  "adventure.model.drop": {
+    "external_path": "event:/SFX/UI/adventure.model.drop"
+  },
+  "adventure.preview.ambience.mystery": {
+    "external_path": "event:/SFX/UI/adventure.preview.ambience.mystery"
+  },
+  "adventure.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.spawn"
+  },
+  "adventure.stone.door.open": {
+    "external_path": "event:/SFX/AR Mode/Adventure Cues/adventure.stone.door.open"
+  },
+  "adventure.summary.chest.common": {
+    "external_path": "event:/SFX/UI/adventure.summary.chest.common"
+  },
+  "adventure.summary.chest.epic": {
+    "external_path": "event:/SFX/UI/adventure.summary.chest.epic"
+  },
+  "adventure.summary.chest.legendary": {
+    "external_path": "event:/SFX/UI/adventure.summary.chest.legendary"
+  },
+  "adventure.summary.chest.rare": {
+    "external_path": "event:/SFX/UI/adventure.summary.chest.rare"
+  },
+  "adventure.summary.chest.uncommon": {
+    "external_path": "event:/SFX/UI/adventure.summary.chest.uncommon"
+  },
+  "adventure.summary.xp.earned": {
+    "external_path": "event:/SFX/UI/adventure.summary.xp.earned"
+  },
+  "adventure.summon.hard": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.summon.hard"
+  },
+  "adventure.summon.hostile": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.summon.hostile"
+  },
+  "adventure.summon.peaceful": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.summon.peaceful"
+  },
+  "adventure.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/adventure.tap"
+  },
+  "adventure.timeout.01": {
+    "external_path": "event:/SFX/UI/adventure.timeout.01"
+  },
+  "adventure.timeout.02": {
+    "external_path": "event:/SFX/UI/adventure.timeout.02"
+  },
+  "adventure.timeout.03": {
+    "external_path": "event:/SFX/UI/adventure.timeout.03"
+  },
+  "adventure.timeout.04": {
+    "external_path": "event:/SFX/UI/adventure.timeout.04"
+  },
+  "adventure.timeout.done": {
+    "external_path": "event:/SFX/UI/adventure.timeout.done"
+  },
+  "adventure.timeout.start": {
+    "external_path": "event:/SFX/UI/adventure.timeout.start"
+  },
+  "ambient.weather.lightning.impact": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/ambient.weather.lightning.impact"
+  },
+  "ambient.weather.rain": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/ambient.weather.rain"
+  },
+  "ambient.weather.thunder": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/ambient.weather.thunder"
+  },
+  "anchor.found": {
+    "external_path": "event:/SFX/UI/anchor.found"
+  },
+  "anchor.snap": {
+    "external_path": "event:/SFX/UI/anchor.snap"
+  },
+  "armor.equip_chain": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/armor.equip_chain"
+  },
+  "armor.equip_diamond": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/armor.equip_diamond"
+  },
+  "armor.equip_generic": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/armor.equip_generic"
+  },
+  "armor.equip_gold": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/armor.equip_gold"
+  },
+  "armor.equip_iron": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/armor.equip_iron"
+  },
+  "armor.equip_leather": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/armor.equip_leather"
+  },
+  "avatar.arm.render.01": {
+    "external_path": "event:/SFX/Dress Room/avatar.arm.render.01"
+  },
+  "avatar.arm.render.02": {
+    "external_path": "event:/SFX/Dress Room/avatar.arm.render.02"
+  },
+  "avatar.back.render.01": {
+    "external_path": "event:/SFX/Dress Room/avatar.back.render.01"
+  },
+  "avatar.back.render.02": {
+    "external_path": "event:/SFX/Dress Room/avatar.back.render.02"
+  },
+  "avatar.bored.01": {
+    "external_path": "event:/SFX/Dress Room/avatar.bored.01"
+  },
+  "avatar.bored.02": {
+    "external_path": "event:/SFX/Dress Room/avatar.bored.02"
+  },
+  "avatar.bored.03": {
+    "external_path": "event:/SFX/Dress Room/avatar.bored.03"
+  },
+  "avatar.bottom.render.01": {
+    "external_path": "event:/SFX/Dress Room/avatar.bottom.render.01"
+  },
+  "avatar.bottom.render.02": {
+    "external_path": "event:/SFX/Dress Room/avatar.bottom.render.02"
+  },
+  "avatar.bottom.render.03": {
+    "external_path": "event:/SFX/Dress Room/avatar.bottom.render.03"
+  },
+  "avatar.design.confirm.01": {
+    "external_path": "event:/SFX/Dress Room/avatar.design.confirm.01"
+  },
+  "avatar.full.render.02": {
+    "external_path": "event:/SFX/Dress Room/avatar.full.render.02"
+  },
+  "avatar.head.render.01": {
+    "external_path": "event:/SFX/Dress Room/avatar.head.render.01"
+  },
+  "avatar.head.render.02": {
+    "external_path": "event:/SFX/Dress Room/avatar.head.render.02"
+  },
+  "avatar.head.render.03": {
+    "external_path": "event:/SFX/Dress Room/avatar.head.render.03"
+  },
+  "avatar.item.equip.large": {
+    "external_path": "event:/SFX/Dress Room/avatar.item.equip.large"
+  },
+  "avatar.item.equip.medium": {
+    "external_path": "event:/SFX/Dress Room/avatar.item.equip.medium"
+  },
+  "avatar.item.equip.small": {
+    "external_path": "event:/SFX/Dress Room/avatar.item.equip.small"
+  },
+  "avatar.torso.render.01": {
+    "external_path": "event:/SFX/Dress Room/avatar.torso.render.01"
+  },
+  "avatar.torso.render.02": {
+    "external_path": "event:/SFX/Dress Room/avatar.torso.render.02"
+  },
+  "avatar.torso.render.03": {
+    "external_path": "event:/SFX/Dress Room/avatar.torso.render.03"
+  },
+  "backpack.open.button": {
+    "external_path": "event:/SFX/UI/backpack.open.button"
+  },
+  "beacon.activate": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/beacon.activate"
+  },
+  "beacon.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/beacon.ambient"
+  },
+  "beacon.deactivate": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/beacon.deactivate"
+  },
+  "beacon.power": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/beacon.power"
+  },
+  "block.bamboo.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bamboo.break"
+  },
+  "block.bamboo.fall": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bamboo.fall"
+  },
+  "block.bamboo.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bamboo.hit"
+  },
+  "block.bamboo.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bamboo.place"
+  },
+  "block.bamboo.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bamboo.step"
+  },
+  "block.bamboo_sapling.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bamboo_sapling.break"
+  },
+  "block.bamboo_sapling.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bamboo_sapling.place"
+  },
+  "block.barrel.close": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.barrel.close"
+  },
+  "block.barrel.open": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.barrel.open"
+  },
+  "block.bell.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.bell.hit"
+  },
+  "block.blastfurnace.fire_crackle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.blastfurnace.fire_crackle"
+  },
+  "block.campfire.crackle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.campfire.crackle"
+  },
+  "block.chorusflower.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.chorusflower.death"
+  },
+  "block.chorusflower.grow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.chorusflower.grow"
+  },
+  "block.composter.empty": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.composter.empty"
+  },
+  "block.composter.fill": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.composter.fill"
+  },
+  "block.composter.fill_success": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.composter.fill_success"
+  },
+  "block.composter.ready": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.composter.ready"
+  },
+  "block.end_portal.spawn": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.end_portal.spawn"
+  },
+  "block.end_portal_frame.fill": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.end_portal_frame.fill"
+  },
+  "block.grindstone.use": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.grindstone.use"
+  },
+  "block.itemframe.add_item": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.itemframe.add_item"
+  },
+  "block.itemframe.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.itemframe.break"
+  },
+  "block.itemframe.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.itemframe.place"
+  },
+  "block.itemframe.remove_item": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.itemframe.remove_item"
+  },
+  "block.itemframe.rotate_item": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.itemframe.rotate_item"
+  },
+  "block.lantern.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.lantern.break"
+  },
+  "block.lantern.fall": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.lantern.fall"
+  },
+  "block.lantern.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.lantern.hit"
+  },
+  "block.lantern.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.lantern.place"
+  },
+  "block.lantern.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.lantern.step"
+  },
+  "block.place.invalid": {
+    "external_path": "event:/SFX/UI/block.place.invalid"
+  },
+  "block.placed.invalid": {
+    "external_path": "event:/SFX/UI/block.placed.invalid"
+  },
+  "block.scaffolding.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.scaffolding.break"
+  },
+  "block.scaffolding.climb": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.scaffolding.climb"
+  },
+  "block.scaffolding.fall": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.scaffolding.fall"
+  },
+  "block.scaffolding.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.scaffolding.hit"
+  },
+  "block.scaffolding.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.scaffolding.place"
+  },
+  "block.scaffolding.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.scaffolding.step"
+  },
+  "block.smoker.smoke": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.smoker.smoke"
+  },
+  "block.sweet_berry_bush.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.sweet_berry_bush.break"
+  },
+  "block.sweet_berry_bush.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.sweet_berry_bush.hurt"
+  },
+  "block.sweet_berry_bush.pick": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.sweet_berry_bush.pick"
+  },
+  "block.sweet_berry_bush.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.sweet_berry_bush.place"
+  },
+  "block.turtle_egg.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.turtle_egg.break"
+  },
+  "block.turtle_egg.crack": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.turtle_egg.crack"
+  },
+  "block.turtle_egg.drop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/block.turtle_egg.drop"
+  },
+  "boost.activated.pop.in": {
+    "external_path": "event:/SFX/UI/boost.activated.pop.in"
+  },
+  "boost.icon.button": {
+    "external_path": "event:/SFX/UI/boost.icon.button"
+  },
+  "boost.remove.outro": {
+    "external_path": "event:/SFX/UI/boost.remove.outro"
+  },
+  "boost.remove.shake": {
+    "external_path": "event:/SFX/UI/boost.remove.shake"
+  },
+  "boost.use.button": {
+    "external_path": "event:/SFX/UI/boost.use.button"
+  },
+  "bottle.dragonbreath": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bottle.dragonbreath"
+  },
+  "bubble.down": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bubble.down"
+  },
+  "bubble.downinside": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bubble.downinside"
+  },
+  "bubble.pop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bubble.pop"
+  },
+  "bubble.up": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bubble.up"
+  },
+  "bubble.upinside": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bubble.upinside"
+  },
+  "bucket.empty_fish": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bucket.empty_fish"
+  },
+  "bucket.empty_lava": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bucket.empty_lava"
+  },
+  "bucket.empty_mud": {
+    "external_path": "event:/SFX/AR Mode/Earth/bucket.empty_mud"
+  },
+  "bucket.empty_water": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bucket.empty_water"
+  },
+  "bucket.fill_fish": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bucket.fill_fish"
+  },
+  "bucket.fill_lava": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bucket.fill_lava"
+  },
+  "bucket.fill_mud": {
+    "external_path": "event:/SFX/AR Mode/Earth/bucket.fill_mud"
+  },
+  "bucket.fill_water": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/bucket.fill_water"
+  },
+  "buildplate.drop": {
+    "external_path": "event:/SFX/AR Mode/buildplate.drop"
+  },
+  "buildplate.place.button": {
+    "external_path": "event:/SFX/UI/buildplate.place.button"
+  },
+  "buildplate.placed": {
+    "external_path": "event:/SFX/AR Mode/buildplate.placed"
+  },
+  "buildplate.unlock.celebration": {
+    "external_path": "event:/SFX/UI/buildplate.unlock.celebration"
+  },
+  "button.appear": {
+    "external_path": "event:/SFX/UI/button.appear"
+  },
+  "cancel.button": {
+    "external_path": "event:/SFX/UI/cancel.button"
+  },
+  "cancel.small.button": {
+    "external_path": "event:/SFX/UI/cancel.small.button"
+  },
+  "cauldron.adddye": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.adddye"
+  },
+  "cauldron.cleanarmor": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.cleanarmor"
+  },
+  "cauldron.cleanbanner": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.cleanbanner"
+  },
+  "cauldron.dyearmor": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.dyearmor"
+  },
+  "cauldron.explode": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.explode"
+  },
+  "cauldron.fillpotion": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.fillpotion"
+  },
+  "cauldron.fillwater": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.fillwater"
+  },
+  "cauldron.takepotion": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.takepotion"
+  },
+  "cauldron.takewater": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/cauldron.takewater"
+  },
+  "challenge.activate.button": {
+    "external_path": "event:/SFX/UI/challenge.activate.button"
+  },
+  "challenge.added.to.icon": {
+    "external_path": "event:/SFX/UI/challenge.added.to.icon"
+  },
+  "challenge.bar.full": {
+    "external_path": "event:/SFX/UI/challenge.bar.full"
+  },
+  "challenge.complete.big": {
+    "external_path": "event:/SFX/UI/challenge.complete.big"
+  },
+  "challenge.complete.side.celebration": {
+    "external_path": "event:/SFX/UI/challenge.complete.side.celebration"
+  },
+  "challenge.complete.small": {
+    "external_path": "event:/SFX/UI/challenge.complete.small"
+  },
+  "challenge.complete.stinger": {
+    "external_path": "event:/SFX/UI/challenge.complete.stinger"
+  },
+  "challenge.icon.button": {
+    "external_path": "event:/SFX/UI/challenge.icon.button"
+  },
+  "challenge.icon.slide.in": {
+    "external_path": "event:/SFX/UI/challenge.icon.slide.in"
+  },
+  "challenge.icon.slide.out": {
+    "external_path": "event:/SFX/UI/challenge.icon.slide.out"
+  },
+  "challenge.notification.appear": {
+    "external_path": "event:/SFX/UI/challenge.notification.appear"
+  },
+  "challenge.notification.disappear": {
+    "external_path": "event:/SFX/UI/challenge.notification.disappear"
+  },
+  "challenge.pop.up": {
+    "external_path": "event:/SFX/UI/challenge.pop.up"
+  },
+  "compass.off": {
+    "external_path": "event:/SFX/UI/compass.off"
+  },
+  "compass.on": {
+    "external_path": "event:/SFX/UI/compass.on"
+  },
+  "complete.flag.challenge": {
+    "external_path": "event:/SFX/UI/complete.flag.challenge"
+  },
+  "complete.flag.journal": {
+    "external_path": "event:/SFX/UI/complete.flag.journal"
+  },
+  "complete.flag.seasons": {
+    "external_path": "event:/SFX/UI/complete.flag.seasons"
+  },
+  "conduit.activate": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/conduit.activate"
+  },
+  "conduit.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/conduit.ambient"
+  },
+  "conduit.attack": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/conduit.attack"
+  },
+  "conduit.deactivate": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/conduit.deactivate"
+  },
+  "conduit.short": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/conduit.short"
+  },
+  "confirm.button": {
+    "external_path": "event:/SFX/UI/confirm.button"
+  },
+  "confirm.button.appear": {
+    "external_path": "event:/SFX/UI/confirm.button.appear"
+  },
+  "craft.button": {
+    "external_path": "event:/SFX/UI/craft.button"
+  },
+  "crossbow.loading.end": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/crossbow.loading.end"
+  },
+  "crossbow.loading.middle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/crossbow.loading.middle"
+  },
+  "crossbow.loading.start": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/crossbow.loading.start"
+  },
+  "crossbow.quick_charge.end": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/crossbow.quick_charge.end"
+  },
+  "crossbow.quick_charge.middle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/crossbow.quick_charge.middle"
+  },
+  "crossbow.quick_charge.start": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/crossbow.quick_charge.start"
+  },
+  "crossbow.shoot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/crossbow.shoot"
+  },
+  "daily.challenge.completed.transition": {
+    "external_path": "event:/SFX/UI/daily.challenge.completed.transition"
+  },
+  "daily.goodies.adventure.added": {
+    "external_path": "event:/SFX/UI/daily.goodies.adventure.added"
+  },
+  "daily.goodies.confirm.button.popup": {
+    "external_path": "event:/SFX/UI/daily.goodies.confirm.button.popup"
+  },
+  "daily.goodies.day7.checkmarks": {
+    "external_path": "event:/SFX/UI/daily.goodies.day7.checkmarks"
+  },
+  "daily.goodies.day7.flag": {
+    "external_path": "event:/SFX/UI/daily.goodies.day7.flag"
+  },
+  "daily.goodies.day7.rewards.burst.common": {
+    "external_path": "event:/SFX/UI/daily.goodies.day7.rewards.burst.common"
+  },
+  "daily.goodies.day7.rewards.burst.epic": {
+    "external_path": "event:/SFX/UI/daily.goodies.day7.rewards.burst.epic"
+  },
+  "daily.goodies.day7.rewards.burst.legendary": {
+    "external_path": "event:/SFX/UI/daily.goodies.day7.rewards.burst.legendary"
+  },
+  "daily.goodies.day7.rewards.burst.rare": {
+    "external_path": "event:/SFX/UI/daily.goodies.day7.rewards.burst.rare"
+  },
+  "daily.goodies.day7.rewards.burst.uncommon": {
+    "external_path": "event:/SFX/UI/daily.goodies.day7.rewards.burst.uncommon"
+  },
+  "daily.goodies.login.bonus.slide": {
+    "external_path": "event:/SFX/UI/daily.goodies.login.bonus.slide"
+  },
+  "daily.goodies.single.checkmark.common": {
+    "external_path": "event:/SFX/UI/daily.goodies.single.checkmark.common"
+  },
+  "daily.goodies.single.checkmark.epic": {
+    "external_path": "event:/SFX/UI/daily.goodies.single.checkmark.epic"
+  },
+  "daily.goodies.single.checkmark.legendary": {
+    "external_path": "event:/SFX/UI/daily.goodies.single.checkmark.legendary"
+  },
+  "daily.goodies.single.checkmark.rare": {
+    "external_path": "event:/SFX/UI/daily.goodies.single.checkmark.rare"
+  },
+  "daily.goodies.single.checkmark.uncommon": {
+    "external_path": "event:/SFX/UI/daily.goodies.single.checkmark.uncommon"
+  },
+  "daily.goodies.title": {
+    "external_path": "event:/SFX/UI/daily.goodies.title"
+  },
+  "daily.goodies.todo": {
+    "external_path": "event:/SFX/UI/daily.goodies.todo"
+  },
+  "damage.fallbig": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/damage.fallbig"
+  },
+  "damage.fallsmall": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/damage.fallsmall"
+  },
+  "delete.button": {
+    "external_path": "event:/SFX/UI/delete.button"
+  },
+  "dialogue.text.blop": {
+    "external_path": "event:/SFX/UI/OOBE/dialogue.text.blop"
+  },
+  "dig.adventure.chest.common": {
+    "external_path": "event:/SFX/AR Mode/Earth/dig.adventure.chest.common"
+  },
+  "dig.adventure.chest.epic": {
+    "external_path": "event:/SFX/AR Mode/Earth/dig.adventure.chest.epic"
+  },
+  "dig.adventure.chest.legendary": {
+    "external_path": "event:/SFX/AR Mode/Earth/dig.adventure.chest.legendary"
+  },
+  "dig.adventure.chest.rare": {
+    "external_path": "event:/SFX/AR Mode/Earth/dig.adventure.chest.rare"
+  },
+  "dig.adventure.chest.uncommon": {
+    "external_path": "event:/SFX/AR Mode/Earth/dig.adventure.chest.uncommon"
+  },
+  "dig.cloth": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.cloth"
+  },
+  "dig.cocoa": {
+    "external_path": "event:/SFX/AR Mode/Earth/dig.cocoa"
+  },
+  "dig.glass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.glass"
+  },
+  "dig.grass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.grass"
+  },
+  "dig.gravel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.gravel"
+  },
+  "dig.ice": {
+    "external_path": "event:/SFX/AR Mode/Earth/dig.ice"
+  },
+  "dig.sand": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.sand"
+  },
+  "dig.snow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.snow"
+  },
+  "dig.stone": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.stone"
+  },
+  "dig.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/dig.wood"
+  },
+  "dirt.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/dirt.block.collect"
+  },
+  "dirt.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/dirt.block.select"
+  },
+  "dropdown.collapse.button": {
+    "external_path": "event:/SFX/UI/dropdown.collapse.button"
+  },
+  "dropdown.expand.button": {
+    "external_path": "event:/SFX/UI/dropdown.expand.button"
+  },
+  "eat.button": {
+    "external_path": "event:/SFX/UI/eat.button"
+  },
+  "elytra.loop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/elytra.loop"
+  },
+  "entity.zombie.converted_to_drowned": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/entity.zombie.converted_to_drowned"
+  },
+  "epic.chest.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/epic.chest.block.collect"
+  },
+  "epic.chest.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/epic.chest.block.select"
+  },
+  "fall.cloth": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.cloth"
+  },
+  "fall.egg": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.egg"
+  },
+  "fall.grass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.grass"
+  },
+  "fall.gravel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.gravel"
+  },
+  "fall.ladder": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.ladder"
+  },
+  "fall.sand": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.sand"
+  },
+  "fall.slime": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.slime"
+  },
+  "fall.snow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.snow"
+  },
+  "fall.stone": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.stone"
+  },
+  "fall.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fall.wood"
+  },
+  "feature.point.sparkle": {
+    "external_path": "event:/SFX/UI/feature.point.sparkle"
+  },
+  "finish.with.rubies.button": {
+    "external_path": "event:/SFX/UI/finish.with.rubies.button"
+  },
+  "fire.fire": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fire.fire"
+  },
+  "fire.ignite": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/fire.ignite"
+  },
+  "firework.blast": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/firework.blast"
+  },
+  "firework.large_blast": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/firework.large_blast"
+  },
+  "firework.launch": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/firework.launch"
+  },
+  "firework.shoot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/firework.shoot"
+  },
+  "firework.twinkle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/firework.twinkle"
+  },
+  "fireworks.celebration.animation": {
+    "external_path": "event:/SFX/UI/fireworks.celebration.animation"
+  },
+  "ftue.block.payload.celebration": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.block.payload.celebration"
+  },
+  "ftue.complete.celebration": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.complete.celebration"
+  },
+  "ftue.increment.counter.01": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.01"
+  },
+  "ftue.increment.counter.02": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.02"
+  },
+  "ftue.increment.counter.03": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.03"
+  },
+  "ftue.increment.counter.04": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.04"
+  },
+  "ftue.increment.counter.05": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.05"
+  },
+  "ftue.increment.counter.06": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.06"
+  },
+  "ftue.increment.counter.07": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.07"
+  },
+  "ftue.increment.counter.08": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.08"
+  },
+  "ftue.increment.counter.09": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.09"
+  },
+  "ftue.increment.counter.10": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.10"
+  },
+  "ftue.increment.counter.11": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.11"
+  },
+  "ftue.increment.counter.12": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.12"
+  },
+  "ftue.increment.counter.complete": {
+    "external_path": "event:/SFX/UI/OOBE/ftue.increment.counter.complete"
+  },
+  "furnace.lit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/furnace.lit"
+  },
+  "game.player.attack.nodamage": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/game.player.attack.nodamage"
+  },
+  "game.player.attack.strong": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/game.player.attack.strong"
+  },
+  "game.player.attack.weak": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/game.player.attack.weak"
+  },
+  "game.player.die": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/game.player.die"
+  },
+  "game.player.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/game.player.hurt"
+  },
+  "glass.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/glass.block.collect"
+  },
+  "glass.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/glass.block.select"
+  },
+  "grass.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/grass.block.collect"
+  },
+  "grass.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/grass.block.select"
+  },
+  "hit.adventure.chest.common": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.adventure.chest.common"
+  },
+  "hit.adventure.chest.epic": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.adventure.chest.epic"
+  },
+  "hit.adventure.chest.legendary": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.adventure.chest.legendary"
+  },
+  "hit.adventure.chest.rare": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.adventure.chest.rare"
+  },
+  "hit.adventure.chest.uncommon": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.adventure.chest.uncommon"
+  },
+  "hit.cloth": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.cloth"
+  },
+  "hit.cocoa": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.cocoa"
+  },
+  "hit.grass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.grass"
+  },
+  "hit.gravel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.gravel"
+  },
+  "hit.ice": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.ice"
+  },
+  "hit.ladder": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.ladder"
+  },
+  "hit.sand": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.sand"
+  },
+  "hit.slime": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.slime"
+  },
+  "hit.snow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.snow"
+  },
+  "hit.stone": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.stone"
+  },
+  "hit.unbreakable": {
+    "external_path": "event:/SFX/AR Mode/Earth/hit.unbreakable"
+  },
+  "hit.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/hit.wood"
+  },
+  "ice.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/ice.block.collect"
+  },
+  "ice.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/ice.block.select"
+  },
+  "inmenu.child.button": {
+    "external_path": "event:/SFX/UI/inmenu.child.button"
+  },
+  "inmenu.child.small.button": {
+    "external_path": "event:/SFX/UI/inmenu.child.small.button"
+  },
+  "inmenu.general.button": {
+    "external_path": "event:/SFX/UI/inmenu.general.button"
+  },
+  "interact.mode.button": {
+    "external_path": "event:/SFX/UI/interact.mode.button"
+  },
+  "inventory.open.button": {
+    "external_path": "event:/SFX/UI/inventory.open.button"
+  },
+  "item.alt.mode.off": {
+    "external_path": "event:/SFX/UI/item.alt.mode.off"
+  },
+  "item.alt.mode.on": {
+    "external_path": "event:/SFX/UI/item.alt.mode.on"
+  },
+  "item.book.page_turn": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.book.page_turn"
+  },
+  "item.book.put": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.book.put"
+  },
+  "item.collect.animation": {
+    "external_path": "event:/SFX/UI/item.collect.animation"
+  },
+  "item.collect.animation.common": {
+    "external_path": "event:/SFX/UI/item.collect.animation.common"
+  },
+  "item.collect.animation.epic": {
+    "external_path": "event:/SFX/UI/item.collect.animation.epic"
+  },
+  "item.collect.animation.legendary": {
+    "external_path": "event:/SFX/UI/item.collect.animation.legendary"
+  },
+  "item.collect.animation.rare": {
+    "external_path": "event:/SFX/UI/item.collect.animation.rare"
+  },
+  "item.collect.animation.uncommon": {
+    "external_path": "event:/SFX/UI/item.collect.animation.uncommon"
+  },
+  "item.collect.boost": {
+    "external_path": "event:/SFX/UI/Seasons/item.collect.boost"
+  },
+  "item.collect.button.big": {
+    "external_path": "event:/SFX/UI/item.collect.button.big"
+  },
+  "item.collect.button.small": {
+    "external_path": "event:/SFX/UI/item.collect.button.small"
+  },
+  "item.collect.rubies": {
+    "external_path": "event:/SFX/UI/Seasons/item.collect.rubies"
+  },
+  "item.collect.xp": {
+    "external_path": "event:/SFX/UI/Seasons/item.collect.xp"
+  },
+  "item.count.down.button": {
+    "external_path": "event:/SFX/UI/item.count.down.button"
+  },
+  "item.count.up.button": {
+    "external_path": "event:/SFX/UI/item.count.up.button"
+  },
+  "item.deselect": {
+    "external_path": "event:/SFX/UI/item.deselect"
+  },
+  "item.fly.in": {
+    "external_path": "event:/SFX/AR Mode/item.fly.in"
+  },
+  "item.fly.out": {
+    "external_path": "event:/SFX/AR Mode/item.fly.out"
+  },
+  "item.hotbar.to.inventory": {
+    "external_path": "event:/SFX/UI/item.hotbar.to.inventory"
+  },
+  "item.inventory.to.hotbar": {
+    "external_path": "event:/SFX/UI/item.inventory.to.hotbar"
+  },
+  "item.pickup": {
+    "external_path": "event:/SFX/AR Mode/Earth/item.pickup"
+  },
+  "item.pop.in": {
+    "external_path": "event:/SFX/UI/item.pop.in"
+  },
+  "item.select": {
+    "external_path": "event:/SFX/UI/item.select"
+  },
+  "item.shield.block": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.shield.block"
+  },
+  "item.sort": {
+    "external_path": "event:/SFX/UI/item.sort"
+  },
+  "item.trident.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.hit"
+  },
+  "item.trident.hit_ground": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.hit_ground"
+  },
+  "item.trident.return": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.return"
+  },
+  "item.trident.riptide_1": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.riptide_1"
+  },
+  "item.trident.riptide_2": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.riptide_2"
+  },
+  "item.trident.riptide_3": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.riptide_3"
+  },
+  "item.trident.throw": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.throw"
+  },
+  "item.trident.thunder": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/item.trident.thunder"
+  },
+  "jolly.llama.reward.stinger": {
+    "external_path": "event:/SFX/UI/Special Events/jolly.llama.reward.stinger"
+  },
+  "journal.celebration.common": {
+    "external_path": "event:/SFX/UI/journal.celebration.common"
+  },
+  "journal.celebration.epic": {
+    "external_path": "event:/SFX/UI/journal.celebration.epic"
+  },
+  "journal.celebration.legendary": {
+    "external_path": "event:/SFX/UI/journal.celebration.legendary"
+  },
+  "journal.celebration.rare": {
+    "external_path": "event:/SFX/UI/journal.celebration.rare"
+  },
+  "journal.celebration.uncommon": {
+    "external_path": "event:/SFX/UI/journal.celebration.uncommon"
+  },
+  "journal.complete.side.celebration": {
+    "external_path": "event:/SFX/UI/journal.complete.side.celebration"
+  },
+  "journal.icon.button": {
+    "external_path": "event:/SFX/UI/journal.icon.button"
+  },
+  "journal.icon.slide.in": {
+    "external_path": "event:/SFX/UI/journal.icon.slide.in"
+  },
+  "journal.icon.slide.out": {
+    "external_path": "event:/SFX/UI/journal.icon.slide.out"
+  },
+  "journal.new.item.pop.in": {
+    "external_path": "event:/SFX/UI/journal.new.item.pop.in"
+  },
+  "journal.select.arrow": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.arrow"
+  },
+  "journal.select.bone.spider": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.bone.spider"
+  },
+  "journal.select.bow": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.bow"
+  },
+  "journal.select.bucket.empty": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.bucket.empty"
+  },
+  "journal.select.bucket.fish": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.bucket.fish"
+  },
+  "journal.select.bucket.lava": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.bucket.lava"
+  },
+  "journal.select.bucket.water": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.bucket.water"
+  },
+  "journal.select.cauldron": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.cauldron"
+  },
+  "journal.select.chicken": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.chicken"
+  },
+  "journal.select.click": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.click"
+  },
+  "journal.select.cloth": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.cloth"
+  },
+  "journal.select.cooked.food": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.cooked.food"
+  },
+  "journal.select.cow": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.cow"
+  },
+  "journal.select.creeper": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.creeper"
+  },
+  "journal.select.door": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.door"
+  },
+  "journal.select.drink": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.drink"
+  },
+  "journal.select.fancy.chicken": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.fancy.chicken"
+  },
+  "journal.select.fire": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.fire"
+  },
+  "journal.select.firework": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.firework"
+  },
+  "journal.select.fish": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.fish"
+  },
+  "journal.select.flap": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.flap"
+  },
+  "journal.select.food": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.food"
+  },
+  "journal.select.furnace.golem": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.furnace.golem"
+  },
+  "journal.select.gadget": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.gadget"
+  },
+  "journal.select.glass": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.glass"
+  },
+  "journal.select.gravel": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.gravel"
+  },
+  "journal.select.ice": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.ice"
+  },
+  "journal.select.ignite": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.ignite"
+  },
+  "journal.select.iron.golem": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.iron.golem"
+  },
+  "journal.select.jolly.llama": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.jolly.llama"
+  },
+  "journal.select.jumbo.rabbit": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.jumbo.rabbit"
+  },
+  "journal.select.ladder": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.ladder"
+  },
+  "journal.select.leather": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.leather"
+  },
+  "journal.select.melon.golem": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.melon.golem"
+  },
+  "journal.select.mom": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.mom"
+  },
+  "journal.select.muddy.pig": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.muddy.pig"
+  },
+  "journal.select.note.block": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.note.block"
+  },
+  "journal.select.ocelot": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.ocelot"
+  },
+  "journal.select.paper": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.paper"
+  },
+  "journal.select.parrot": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.parrot"
+  },
+  "journal.select.pig": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.pig"
+  },
+  "journal.select.piston": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.piston"
+  },
+  "journal.select.plants": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.plants"
+  },
+  "journal.select.plop": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.plop"
+  },
+  "journal.select.polar.bear": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.polar.bear"
+  },
+  "journal.select.powder": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.powder"
+  },
+  "journal.select.rabbit": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.rabbit"
+  },
+  "journal.select.rail": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.rail"
+  },
+  "journal.select.raw.meat": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.raw.meat"
+  },
+  "journal.select.sand": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.sand"
+  },
+  "journal.select.shear": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.shear"
+  },
+  "journal.select.sheep": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.sheep"
+  },
+  "journal.select.skeleton": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.skeleton"
+  },
+  "journal.select.skeleton.wolf": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.skeleton.wolf"
+  },
+  "journal.select.slime": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.slime"
+  },
+  "journal.select.snow": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.snow"
+  },
+  "journal.select.spider": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.spider"
+  },
+  "journal.select.squid": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.squid"
+  },
+  "journal.select.stone": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.stone"
+  },
+  "journal.select.tools.metal": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.tools.metal"
+  },
+  "journal.select.tools.stone": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.tools.stone"
+  },
+  "journal.select.tools.wood": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.tools.wood"
+  },
+  "journal.select.viler_witch": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.viler_witch"
+  },
+  "journal.select.witch": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.witch"
+  },
+  "journal.select.wood": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.wood"
+  },
+  "journal.select.wool": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.wool"
+  },
+  "journal.select.zombie": {
+    "external_path": "event:/SFX/UI/Journal/journal.select.zombie"
+  },
+  "journal.side.icon.new.item.added": {
+    "external_path": "event:/SFX/UI/journal.side.icon.new.item.added"
+  },
+  "jump.cloth": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.cloth"
+  },
+  "jump.grass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.grass"
+  },
+  "jump.gravel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.gravel"
+  },
+  "jump.sand": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.sand"
+  },
+  "jump.slime": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.slime"
+  },
+  "jump.snow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.snow"
+  },
+  "jump.stone": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.stone"
+  },
+  "jump.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/jump.wood"
+  },
+  "land.cloth": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.cloth"
+  },
+  "land.grass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.grass"
+  },
+  "land.gravel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.gravel"
+  },
+  "land.sand": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.sand"
+  },
+  "land.slime": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.slime"
+  },
+  "land.snow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.snow"
+  },
+  "land.stone": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.stone"
+  },
+  "land.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/land.wood"
+  },
+  "lava.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/lava.block.collect"
+  },
+  "lava.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/lava.block.select"
+  },
+  "leashknot.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/leashknot.break"
+  },
+  "leashknot.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/leashknot.place"
+  },
+  "lets.play.button": {
+    "external_path": "event:/SFX/UI/lets.play.button"
+  },
+  "level.up.celebration": {
+    "external_path": "event:/SFX/UI/level.up.celebration"
+  },
+  "liquid.lava": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/liquid.lava"
+  },
+  "liquid.lavapop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/liquid.lavapop"
+  },
+  "liquid.water": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/liquid.water"
+  },
+  "low_hp_mode": {
+    "external_path": "snapshot:/low_hp_mode"
+  },
+  "map.mode.ambience": {
+    "external_path": "event:/Ambience/map.mode.ambience"
+  },
+  "menu.challenge.enter": {
+    "external_path": "event:/SFX/UI/menu.challenge.enter"
+  },
+  "menu.close.button": {
+    "external_path": "event:/SFX/UI/menu.close.button"
+  },
+  "menu.crafting.enter": {
+    "external_path": "event:/SFX/UI/menu.crafting.enter"
+  },
+  "menu.enter.button": {
+    "external_path": "event:/SFX/UI/menu.enter.button"
+  },
+  "menu.enter.simple.button": {
+    "external_path": "event:/SFX/UI/menu.enter.simple.button"
+  },
+  "menu.smelting.enter": {
+    "external_path": "event:/SFX/UI/menu.smelting.enter"
+  },
+  "menu.sub.collapse": {
+    "external_path": "event:/SFX/UI/menu.sub.collapse"
+  },
+  "menu.sub.expand": {
+    "external_path": "event:/SFX/UI/menu.sub.expand"
+  },
+  "menu.whoosh.in": {
+    "external_path": "event:/SFX/UI/menu.whoosh.in"
+  },
+  "menu.whoosh.out": {
+    "external_path": "event:/SFX/UI/menu.whoosh.out"
+  },
+  "menu_mode": {
+    "external_path": "snapshot:/menu_mode"
+  },
+  "minecart.base": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/minecart.base"
+  },
+  "minecart.inside": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/minecart.inside"
+  },
+  "minecoin.wallet.plus.button": {
+    "external_path": "event:/SFX/UI/minecoin.wallet.plus.button"
+  },
+  "mini.pause.button": {
+    "external_path": "event:/SFX/UI/Seasons/mini.pause.button"
+  },
+  "mini.start.button": {
+    "external_path": "event:/SFX/UI/Seasons/mini.start.button"
+  },
+  "minifig.boost.activation.stinger": {
+    "external_path": "event:/SFX/UI/minifig.boost.activation.stinger"
+  },
+  "minifig.loading.animation": {
+    "external_path": "event:/SFX/UI/minifig.loading.animation"
+  },
+  "minifig.loading.transition": {
+    "external_path": "event:/SFX/UI/minifig.loading.transition"
+  },
+  "mob.agent.spawn": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.agent.spawn"
+  },
+  "mob.armor_stand.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.armor_stand.break"
+  },
+  "mob.armor_stand.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.armor_stand.hit"
+  },
+  "mob.armor_stand.land": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.armor_stand.land"
+  },
+  "mob.armor_stand.place": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.armor_stand.place"
+  },
+  "mob.bat.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.bat.death"
+  },
+  "mob.bat.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.bat.hurt"
+  },
+  "mob.bat.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.bat.idle"
+  },
+  "mob.bat.takeoff": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.bat.takeoff"
+  },
+  "mob.blaze.breathe": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.blaze.breathe"
+  },
+  "mob.blaze.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.blaze.death"
+  },
+  "mob.blaze.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.blaze.hit"
+  },
+  "mob.blaze.shoot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.blaze.shoot"
+  },
+  "mob.bone_spider.bone.stab": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.bone_spider.bone.stab"
+  },
+  "mob.bone_spider.death": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.bone_spider.death"
+  },
+  "mob.bone_spider.say": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.bone_spider.say"
+  },
+  "mob.bone_spider.spit": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.bone_spider.spit"
+  },
+  "mob.bone_spider.walk": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.bone_spider.walk"
+  },
+  "mob.bouldering_zombie.climb": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.bouldering_zombie.climb"
+  },
+  "mob.cat.beg": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.beg"
+  },
+  "mob.cat.eat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.eat"
+  },
+  "mob.cat.hiss": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.hiss"
+  },
+  "mob.cat.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.hit"
+  },
+  "mob.cat.meow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.meow"
+  },
+  "mob.cat.purr": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.purr"
+  },
+  "mob.cat.purreow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.purreow"
+  },
+  "mob.cat.straymeow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cat.straymeow"
+  },
+  "mob.chicken.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.chicken.hurt"
+  },
+  "mob.chicken.plop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.chicken.plop"
+  },
+  "mob.chicken.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.chicken.say"
+  },
+  "mob.chicken.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.chicken.step"
+  },
+  "mob.cluck_shroom.lay.mushroom": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.cluck_shroom.lay.mushroom"
+  },
+  "mob.cow.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cow.hurt"
+  },
+  "mob.cow.milk": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cow.milk"
+  },
+  "mob.cow.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cow.say"
+  },
+  "mob.cow.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.cow.step"
+  },
+  "mob.creeper.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.creeper.death"
+  },
+  "mob.creeper.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.creeper.say"
+  },
+  "mob.dolphin.attack": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.attack"
+  },
+  "mob.dolphin.blowhole": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.blowhole"
+  },
+  "mob.dolphin.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.death"
+  },
+  "mob.dolphin.eat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.eat"
+  },
+  "mob.dolphin.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.hurt"
+  },
+  "mob.dolphin.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.idle"
+  },
+  "mob.dolphin.idle_water": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.idle_water"
+  },
+  "mob.dolphin.jump": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.jump"
+  },
+  "mob.dolphin.play": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.play"
+  },
+  "mob.dolphin.splash": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.splash"
+  },
+  "mob.dolphin.swim": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.dolphin.swim"
+  },
+  "mob.drowned.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.death"
+  },
+  "mob.drowned.death_water": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.death_water"
+  },
+  "mob.drowned.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.hurt"
+  },
+  "mob.drowned.hurt_water": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.hurt_water"
+  },
+  "mob.drowned.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.say"
+  },
+  "mob.drowned.say_water": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.say_water"
+  },
+  "mob.drowned.shoot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.shoot"
+  },
+  "mob.drowned.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.step"
+  },
+  "mob.drowned.swim": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.drowned.swim"
+  },
+  "mob.elderguardian.curse": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.elderguardian.curse"
+  },
+  "mob.elderguardian.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.elderguardian.death"
+  },
+  "mob.elderguardian.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.elderguardian.hit"
+  },
+  "mob.elderguardian.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.elderguardian.idle"
+  },
+  "mob.enderdragon.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.enderdragon.death"
+  },
+  "mob.enderdragon.flap": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.enderdragon.flap"
+  },
+  "mob.enderdragon.growl": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.enderdragon.growl"
+  },
+  "mob.enderdragon.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.enderdragon.hit"
+  },
+  "mob.endermen.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermen.death"
+  },
+  "mob.endermen.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermen.hit"
+  },
+  "mob.endermen.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermen.idle"
+  },
+  "mob.endermen.portal": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermen.portal"
+  },
+  "mob.endermen.scream": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermen.scream"
+  },
+  "mob.endermen.stare": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermen.stare"
+  },
+  "mob.endermite.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermite.hit"
+  },
+  "mob.endermite.kill": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermite.kill"
+  },
+  "mob.endermite.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermite.say"
+  },
+  "mob.endermite.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.endermite.step"
+  },
+  "mob.evocation_fangs.attack": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_fangs.attack"
+  },
+  "mob.evocation_illager.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_illager.ambient"
+  },
+  "mob.evocation_illager.cast_spell": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_illager.cast_spell"
+  },
+  "mob.evocation_illager.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_illager.death"
+  },
+  "mob.evocation_illager.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_illager.hurt"
+  },
+  "mob.evocation_illager.prepare_attack": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_illager.prepare_attack"
+  },
+  "mob.evocation_illager.prepare_summon": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_illager.prepare_summon"
+  },
+  "mob.evocation_illager.prepare_wololo": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.evocation_illager.prepare_wololo"
+  },
+  "mob.fancy_chicken.crow": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.fancy_chicken.crow"
+  },
+  "mob.fancy_chicken.death": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.fancy_chicken.death"
+  },
+  "mob.fancy_chicken.hurt": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.fancy_chicken.hurt"
+  },
+  "mob.fancy_chicken.say": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.fancy_chicken.say"
+  },
+  "mob.fish.flop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.fish.flop"
+  },
+  "mob.fish.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.fish.hurt"
+  },
+  "mob.fish.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.fish.step"
+  },
+  "mob.furnace_golem.aggro.amb": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.furnace_golem.aggro.amb"
+  },
+  "mob.furnace_golem.attack": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.furnace_golem.attack"
+  },
+  "mob.furnace_golem.death": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.furnace_golem.death"
+  },
+  "mob.furnace_golem.fire_summon": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.furnace_golem.fire_summon"
+  },
+  "mob.furnace_golem.hit": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.furnace_golem.hit"
+  },
+  "mob.furnace_golem.throw": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.furnace_golem.throw"
+  },
+  "mob.furnace_golem.walk": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.furnace_golem.walk"
+  },
+  "mob.ghast.affectionate_scream": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ghast.affectionate_scream"
+  },
+  "mob.ghast.charge": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ghast.charge"
+  },
+  "mob.ghast.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ghast.death"
+  },
+  "mob.ghast.fireball": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ghast.fireball"
+  },
+  "mob.ghast.moan": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ghast.moan"
+  },
+  "mob.ghast.scream": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ghast.scream"
+  },
+  "mob.guardian.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.ambient"
+  },
+  "mob.guardian.attack_loop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.attack_loop"
+  },
+  "mob.guardian.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.death"
+  },
+  "mob.guardian.flop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.flop"
+  },
+  "mob.guardian.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.hit"
+  },
+  "mob.guardian.land_death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.land_death"
+  },
+  "mob.guardian.land_hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.land_hit"
+  },
+  "mob.guardian.land_idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.guardian.land_idle"
+  },
+  "mob.horned_sheep.charge": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.horned_sheep.charge"
+  },
+  "mob.horned_sheep.impact": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.horned_sheep.impact"
+  },
+  "mob.horned_sheep.prep": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.horned_sheep.prep"
+  },
+  "mob.horned_sheep.prep.transition": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.horned_sheep.prep.transition"
+  },
+  "mob.horned_sheep.ram": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.horned_sheep.ram"
+  },
+  "mob.horse.angry": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.angry"
+  },
+  "mob.horse.armor": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.armor"
+  },
+  "mob.horse.breathe": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.breathe"
+  },
+  "mob.horse.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.death"
+  },
+  "mob.horse.donkey.angry": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.donkey.angry"
+  },
+  "mob.horse.donkey.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.donkey.death"
+  },
+  "mob.horse.donkey.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.donkey.hit"
+  },
+  "mob.horse.donkey.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.donkey.idle"
+  },
+  "mob.horse.eat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.eat"
+  },
+  "mob.horse.gallop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.gallop"
+  },
+  "mob.horse.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.hit"
+  },
+  "mob.horse.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.idle"
+  },
+  "mob.horse.jump": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.jump"
+  },
+  "mob.horse.land": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.land"
+  },
+  "mob.horse.leather": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.leather"
+  },
+  "mob.horse.skeleton.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.skeleton.death"
+  },
+  "mob.horse.skeleton.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.skeleton.hit"
+  },
+  "mob.horse.skeleton.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.skeleton.idle"
+  },
+  "mob.horse.soft": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.soft"
+  },
+  "mob.horse.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.wood"
+  },
+  "mob.horse.zombie.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.zombie.death"
+  },
+  "mob.horse.zombie.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.zombie.hit"
+  },
+  "mob.horse.zombie.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.horse.zombie.idle"
+  },
+  "mob.husk.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.husk.ambient"
+  },
+  "mob.husk.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.husk.death"
+  },
+  "mob.husk.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.husk.hurt"
+  },
+  "mob.husk.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.husk.step"
+  },
+  "mob.irongolem.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.irongolem.death"
+  },
+  "mob.irongolem.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.irongolem.hit"
+  },
+  "mob.irongolem.throw": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.irongolem.throw"
+  },
+  "mob.irongolem.walk": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.irongolem.walk"
+  },
+  "mob.jolly_llama.death": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jolly_llama.death"
+  },
+  "mob.jolly_llama.detect.fern": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jolly_llama.detect.fern"
+  },
+  "mob.jolly_llama.eat": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jolly_llama.eat"
+  },
+  "mob.jolly_llama.hurt": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jolly_llama.hurt"
+  },
+  "mob.jolly_llama.prance.01": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jolly_llama.prance.01"
+  },
+  "mob.jolly_llama.step": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jolly_llama.step"
+  },
+  "mob.jumbo_rabbit.death": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jumbo_rabbit.death"
+  },
+  "mob.jumbo_rabbit.hop": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jumbo_rabbit.hop"
+  },
+  "mob.jumbo_rabbit.hurt": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jumbo_rabbit.hurt"
+  },
+  "mob.jumbo_rabbit.idle": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.jumbo_rabbit.idle"
+  },
+  "mob.llama.angry": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.angry"
+  },
+  "mob.llama.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.death"
+  },
+  "mob.llama.eat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.eat"
+  },
+  "mob.llama.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.hurt"
+  },
+  "mob.llama.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.idle"
+  },
+  "mob.llama.spit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.spit"
+  },
+  "mob.llama.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.step"
+  },
+  "mob.llama.swag": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.llama.swag"
+  },
+  "mob.lobber_zombie.projectile": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.lobber_zombie.projectile"
+  },
+  "mob.lobber_zombie.throw": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.lobber_zombie.throw"
+  },
+  "mob.magmacube.big": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.magmacube.big"
+  },
+  "mob.magmacube.jump": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.magmacube.jump"
+  },
+  "mob.magmacube.small": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.magmacube.small"
+  },
+  "mob.melon_golem.aggro": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.melon_golem.aggro"
+  },
+  "mob.melon_golem.hop": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.melon_golem.hop"
+  },
+  "mob.melon_golem.seed": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.melon_golem.seed"
+  },
+  "mob.melon_golem.spit": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.melon_golem.spit"
+  },
+  "mob.melon_golem.spit.charge": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.melon_golem.spit.charge"
+  },
+  "mob.moo_bloom.lay.flower": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.moo_bloom.lay.flower"
+  },
+  "mob.mud_pig.bloom": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.mud_pig.bloom"
+  },
+  "mob.mud_pig.wallow": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.mud_pig.wallow"
+  },
+  "mob.ocelot.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ocelot.death"
+  },
+  "mob.ocelot.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ocelot.idle"
+  },
+  "mob.of.me.interact": {
+    "external_path": "event:/SFX/AR Mode/Earth/mob.of.me.interact"
+  },
+  "mob.of.me.place": {
+    "external_path": "event:/SFX/AR Mode/Earth/mob.of.me.place"
+  },
+  "mob.panda.bite": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.bite"
+  },
+  "mob.panda.cant_breed": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.cant_breed"
+  },
+  "mob.panda.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.death"
+  },
+  "mob.panda.eat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.eat"
+  },
+  "mob.panda.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.hurt"
+  },
+  "mob.panda.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.idle"
+  },
+  "mob.panda.idle.aggressive": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.idle.aggressive"
+  },
+  "mob.panda.idle.worried": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.idle.worried"
+  },
+  "mob.panda.presneeze": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.presneeze"
+  },
+  "mob.panda.sneeze": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.sneeze"
+  },
+  "mob.panda.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda.step"
+  },
+  "mob.panda_baby.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.panda_baby.idle"
+  },
+  "mob.parrot.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.parrot.death"
+  },
+  "mob.parrot.eat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.parrot.eat"
+  },
+  "mob.parrot.fly": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.parrot.fly"
+  },
+  "mob.parrot.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.parrot.hurt"
+  },
+  "mob.parrot.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.parrot.idle"
+  },
+  "mob.parrot.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.parrot.step"
+  },
+  "mob.phantom.bite": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.phantom.bite"
+  },
+  "mob.phantom.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.phantom.death"
+  },
+  "mob.phantom.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.phantom.hurt"
+  },
+  "mob.phantom.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.phantom.idle"
+  },
+  "mob.phantom.swoop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.phantom.swoop"
+  },
+  "mob.pickup": {
+    "external_path": "event:/SFX/AR Mode/Earth/mob.pickup"
+  },
+  "mob.pig.boost": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.pig.boost"
+  },
+  "mob.pig.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.pig.death"
+  },
+  "mob.pig.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.pig.say"
+  },
+  "mob.pig.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.pig.step"
+  },
+  "mob.pillager.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.pillager.death"
+  },
+  "mob.pillager.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.pillager.hurt"
+  },
+  "mob.pillager.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.pillager.idle"
+  },
+  "mob.polarbear.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.polarbear.death"
+  },
+  "mob.polarbear.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.polarbear.hurt"
+  },
+  "mob.polarbear.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.polarbear.idle"
+  },
+  "mob.polarbear.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.polarbear.step"
+  },
+  "mob.polarbear.warning": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.polarbear.warning"
+  },
+  "mob.polarbear_baby.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.polarbear_baby.idle"
+  },
+  "mob.rabbit.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.rabbit.death"
+  },
+  "mob.rabbit.hop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.rabbit.hop"
+  },
+  "mob.rabbit.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.rabbit.hurt"
+  },
+  "mob.rabbit.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.rabbit.idle"
+  },
+  "mob.rainbow_sheep.death": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.rainbow_sheep.death"
+  },
+  "mob.rainbow_sheep.say": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.rainbow_sheep.say"
+  },
+  "mob.rainbow_sheep.step": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.rainbow_sheep.step"
+  },
+  "mob.ravager.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ravager.ambient"
+  },
+  "mob.ravager.bite": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ravager.bite"
+  },
+  "mob.ravager.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ravager.death"
+  },
+  "mob.ravager.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ravager.hurt"
+  },
+  "mob.ravager.roar": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ravager.roar"
+  },
+  "mob.ravager.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ravager.step"
+  },
+  "mob.ravager.stun": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.ravager.stun"
+  },
+  "mob.sheep.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.sheep.say"
+  },
+  "mob.sheep.shear": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.sheep.shear"
+  },
+  "mob.sheep.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.sheep.step"
+  },
+  "mob.shulker.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.ambient"
+  },
+  "mob.shulker.bullet.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.bullet.hit"
+  },
+  "mob.shulker.close": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.close"
+  },
+  "mob.shulker.close.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.close.hurt"
+  },
+  "mob.shulker.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.death"
+  },
+  "mob.shulker.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.hurt"
+  },
+  "mob.shulker.open": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.open"
+  },
+  "mob.shulker.shoot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.shoot"
+  },
+  "mob.shulker.teleport": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.shulker.teleport"
+  },
+  "mob.silverfish.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.silverfish.hit"
+  },
+  "mob.silverfish.kill": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.silverfish.kill"
+  },
+  "mob.silverfish.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.silverfish.say"
+  },
+  "mob.silverfish.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.silverfish.step"
+  },
+  "mob.skeleton.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.skeleton.death"
+  },
+  "mob.skeleton.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.skeleton.hurt"
+  },
+  "mob.skeleton.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.skeleton.say"
+  },
+  "mob.skeleton.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.skeleton.step"
+  },
+  "mob.skeleton_wolf.bark": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.bark"
+  },
+  "mob.skeleton_wolf.death": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.death"
+  },
+  "mob.skeleton_wolf.growl": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.growl"
+  },
+  "mob.skeleton_wolf.howl": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.howl"
+  },
+  "mob.skeleton_wolf.hurt": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.hurt"
+  },
+  "mob.skeleton_wolf.panting": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.panting"
+  },
+  "mob.skeleton_wolf.shake": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.shake"
+  },
+  "mob.skeleton_wolf.step": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.step"
+  },
+  "mob.skeleton_wolf.whine": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.skeleton_wolf.whine"
+  },
+  "mob.slime.attack": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.slime.attack"
+  },
+  "mob.slime.big": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.slime.big"
+  },
+  "mob.slime.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.slime.death"
+  },
+  "mob.slime.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.slime.hurt"
+  },
+  "mob.slime.jump": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.slime.jump"
+  },
+  "mob.slime.small": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.slime.small"
+  },
+  "mob.slime.squish": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.slime.squish"
+  },
+  "mob.snowgolem.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.snowgolem.death"
+  },
+  "mob.snowgolem.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.snowgolem.hurt"
+  },
+  "mob.snowgolem.shoot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.snowgolem.shoot"
+  },
+  "mob.spider.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.spider.death"
+  },
+  "mob.spider.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.spider.say"
+  },
+  "mob.spider.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.spider.step"
+  },
+  "mob.squid.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.squid.ambient"
+  },
+  "mob.squid.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.squid.death"
+  },
+  "mob.squid.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.squid.hurt"
+  },
+  "mob.stray.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.stray.ambient"
+  },
+  "mob.stray.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.stray.death"
+  },
+  "mob.stray.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.stray.hurt"
+  },
+  "mob.stray.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.stray.step"
+  },
+  "mob.turtle.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle.ambient"
+  },
+  "mob.turtle.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle.death"
+  },
+  "mob.turtle.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle.hurt"
+  },
+  "mob.turtle.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle.step"
+  },
+  "mob.turtle.swim": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle.swim"
+  },
+  "mob.turtle_baby.born": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle_baby.born"
+  },
+  "mob.turtle_baby.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle_baby.death"
+  },
+  "mob.turtle_baby.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle_baby.hurt"
+  },
+  "mob.turtle_baby.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.turtle_baby.step"
+  },
+  "mob.vex.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.vex.ambient"
+  },
+  "mob.vex.charge": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.vex.charge"
+  },
+  "mob.vex.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.vex.death"
+  },
+  "mob.vex.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.vex.hurt"
+  },
+  "mob.viler_witch.cast": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.viler_witch.cast"
+  },
+  "mob.villager.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.villager.death"
+  },
+  "mob.villager.haggle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.villager.haggle"
+  },
+  "mob.villager.hit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.villager.hit"
+  },
+  "mob.villager.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.villager.idle"
+  },
+  "mob.villager.no": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.villager.no"
+  },
+  "mob.villager.yes": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.villager.yes"
+  },
+  "mob.vindicator.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.vindicator.death"
+  },
+  "mob.vindicator.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.vindicator.hurt"
+  },
+  "mob.vindicator.idle": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.vindicator.idle"
+  },
+  "mob.witch.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.witch.ambient"
+  },
+  "mob.witch.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.witch.death"
+  },
+  "mob.witch.drink": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.witch.drink"
+  },
+  "mob.witch.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.witch.hurt"
+  },
+  "mob.witch.throw": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.witch.throw"
+  },
+  "mob.wither.ambient": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wither.ambient"
+  },
+  "mob.wither.break_block": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wither.break_block"
+  },
+  "mob.wither.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wither.death"
+  },
+  "mob.wither.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wither.hurt"
+  },
+  "mob.wither.shoot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wither.shoot"
+  },
+  "mob.wither.spawn": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wither.spawn"
+  },
+  "mob.wolf.bark": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.bark"
+  },
+  "mob.wolf.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.death"
+  },
+  "mob.wolf.growl": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.growl"
+  },
+  "mob.wolf.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.hurt"
+  },
+  "mob.wolf.panting": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.panting"
+  },
+  "mob.wolf.shake": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.shake"
+  },
+  "mob.wolf.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.step"
+  },
+  "mob.wolf.whine": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.wolf.whine"
+  },
+  "mob.wooly_cow.prep": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.wooly_cow.prep"
+  },
+  "mob.wooly_cow.shake": {
+    "external_path": "event:/SFX/AR Mode/Earth/Mob Variants/mob.wooly_cow.shake"
+  },
+  "mob.zombie.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.death"
+  },
+  "mob.zombie.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.hurt"
+  },
+  "mob.zombie.remedy": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.remedy"
+  },
+  "mob.zombie.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.say"
+  },
+  "mob.zombie.step": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.step"
+  },
+  "mob.zombie.unfect": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.unfect"
+  },
+  "mob.zombie.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.wood"
+  },
+  "mob.zombie.woodbreak": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie.woodbreak"
+  },
+  "mob.zombie_villager.death": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie_villager.death"
+  },
+  "mob.zombie_villager.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie_villager.hurt"
+  },
+  "mob.zombie_villager.say": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombie_villager.say"
+  },
+  "mob.zombiepig.zpig": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombiepig.zpig"
+  },
+  "mob.zombiepig.zpigangry": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombiepig.zpigangry"
+  },
+  "mob.zombiepig.zpigdeath": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombiepig.zpigdeath"
+  },
+  "mob.zombiepig.zpighurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/mob.zombiepig.zpighurt"
+  },
+  "more.in.store.button": {
+    "external_path": "event:/SFX/UI/more.in.store.button"
+  },
+  "move.left.button": {
+    "external_path": "event:/SFX/UI/move.left.button"
+  },
+  "move.right.button": {
+    "external_path": "event:/SFX/UI/move.right.button"
+  },
+  "music.adventure": {
+    "external_path": "event:/Music/music.adventure"
+  },
+  "music.build": {
+    "external_path": "event:/Music/music.build"
+  },
+  "music.menu": {
+    "external_path": "event:/Music/music.menu"
+  },
+  "music.play": {
+    "external_path": "event:/Music/music.play"
+  },
+  "new.item.unlock.notification": {
+    "external_path": "event:/SFX/UI/new.item.unlock.notification"
+  },
+  "note.bass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/note.bass"
+  },
+  "note.bassattack": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/note.bassattack"
+  },
+  "note.bd": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/note.bd"
+  },
+  "note.harp": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/note.harp"
+  },
+  "note.hat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/note.hat"
+  },
+  "note.pling": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/note.pling"
+  },
+  "note.snare": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/note.snare"
+  },
+  "oobe.merl.celebrate": {
+    "external_path": "event:/SFX/UI/OOBE/oobe.merl.celebrate"
+  },
+  "oobe.merl.encourage": {
+    "external_path": "event:/SFX/UI/OOBE/oobe.merl.encourage"
+  },
+  "oobe.merl.greeting": {
+    "external_path": "event:/SFX/UI/OOBE/oobe.merl.greeting"
+  },
+  "oobe.merl.normal": {
+    "external_path": "event:/SFX/UI/OOBE/oobe.merl.normal"
+  },
+  "panel.collapse.button": {
+    "external_path": "event:/SFX/UI/panel.collapse.button"
+  },
+  "panel.expand.button": {
+    "external_path": "event:/SFX/UI/panel.expand.button"
+  },
+  "panel.slide.in": {
+    "external_path": "event:/SFX/UI/panel.slide.in"
+  },
+  "pickup.mode.button": {
+    "external_path": "event:/SFX/UI/pickup.mode.button"
+  },
+  "player.damage": {
+    "external_path": "event:/SFX/UI/player.damage"
+  },
+  "player.death": {
+    "external_path": "event:/SFX/UI/player.death"
+  },
+  "player.death.persona.enter": {
+    "external_path": "event:/SFX/UI/player.death.persona.enter"
+  },
+  "player.death.persona.exit": {
+    "external_path": "event:/SFX/UI/player.death.persona.exit"
+  },
+  "player.hp.low": {
+    "external_path": "event:/SFX/UI/player.hp.low"
+  },
+  "portal.portal": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/portal.portal"
+  },
+  "portal.travel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/portal.travel"
+  },
+  "portal.trigger": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/portal.trigger"
+  },
+  "punch.mode.button": {
+    "external_path": "event:/SFX/UI/punch.mode.button"
+  },
+  "purchase.celebration.toast": {
+    "external_path": "event:/SFX/UI/purchase.celebration.toast"
+  },
+  "purchase.confirm.celebration": {
+    "external_path": "event:/SFX/UI/purchase.confirm.celebration"
+  },
+  "purchase.with.minecoin.button": {
+    "external_path": "event:/SFX/UI/purchase.with.minecoin.button"
+  },
+  "purchase.with.rubies.button": {
+    "external_path": "event:/SFX/UI/purchase.with.rubies.button"
+  },
+  "qr.code.success": {
+    "external_path": "event:/SFX/UI/qr.code.success"
+  },
+  "raid.horn": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/raid.horn"
+  },
+  "random.anvil_break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.anvil_break"
+  },
+  "random.anvil_land": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.anvil_land"
+  },
+  "random.anvil_use": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.anvil_use"
+  },
+  "random.bow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.bow"
+  },
+  "random.bowhit": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.bowhit"
+  },
+  "random.break": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.break"
+  },
+  "random.burp": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.burp"
+  },
+  "random.chestclosed": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.chestclosed"
+  },
+  "random.chestopen": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.chestopen"
+  },
+  "random.click": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.click"
+  },
+  "random.door_close": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.door_close"
+  },
+  "random.door_open": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.door_open"
+  },
+  "random.drink": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.drink"
+  },
+  "random.eat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.eat"
+  },
+  "random.enderchestclosed": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.enderchestclosed"
+  },
+  "random.enderchestopen": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.enderchestopen"
+  },
+  "random.explode": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.explode"
+  },
+  "random.fizz": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.fizz"
+  },
+  "random.fuse": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.fuse"
+  },
+  "random.glass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.glass"
+  },
+  "random.hurt": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.hurt"
+  },
+  "random.levelup": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.levelup"
+  },
+  "random.orb": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.orb"
+  },
+  "random.pop": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.pop"
+  },
+  "random.pop2": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.pop2"
+  },
+  "random.potion.brewed": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.potion.brewed"
+  },
+  "random.screenshot": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.screenshot"
+  },
+  "random.shulkerboxclosed": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.shulkerboxclosed"
+  },
+  "random.shulkerboxopen": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.shulkerboxopen"
+  },
+  "random.splash": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.splash"
+  },
+  "random.swim": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.swim"
+  },
+  "random.toast": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.toast"
+  },
+  "random.totem": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/random.totem"
+  },
+  "randomize.button": {
+    "external_path": "event:/SFX/UI/randomize.button"
+  },
+  "rare.chest.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/rare.chest.block.collect"
+  },
+  "rare.chest.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/rare.chest.block.select"
+  },
+  "record.11": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.11"
+  },
+  "record.13": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.13"
+  },
+  "record.blocks": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.blocks"
+  },
+  "record.cat": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.cat"
+  },
+  "record.chirp": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.chirp"
+  },
+  "record.far": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.far"
+  },
+  "record.mall": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.mall"
+  },
+  "record.mellohi": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.mellohi"
+  },
+  "record.stal": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.stal"
+  },
+  "record.strad": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.strad"
+  },
+  "record.wait": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.wait"
+  },
+  "record.ward": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/record.ward"
+  },
+  "report.button.appear": {
+    "external_path": "event:/SFX/UI/report.button.appear"
+  },
+  "report.success": {
+    "external_path": "event:/SFX/UI/report.success"
+  },
+  "rubies.added.wallet": {
+    "external_path": "event:/SFX/UI/rubies.added.wallet"
+  },
+  "ruby.aquired.map.mode": {
+    "external_path": "event:/SFX/UI/ruby.aquired.map.mode"
+  },
+  "ruby.finish.item.animation": {
+    "external_path": "event:/SFX/UI/ruby.finish.item.animation"
+  },
+  "ruby.pop.up": {
+    "external_path": "event:/SFX/UI/ruby.pop.up"
+  },
+  "ruby.spent.animation": {
+    "external_path": "event:/SFX/UI/ruby.spent.animation"
+  },
+  "ruby.spent.initial.drop": {
+    "external_path": "event:/SFX/UI/ruby.spent.initial.drop"
+  },
+  "ruby.spent.spin.loop": {
+    "external_path": "event:/SFX/UI/ruby.spent.spin.loop"
+  },
+  "ruby.wallet.plus.button": {
+    "external_path": "event:/SFX/UI/ruby.wallet.plus.button"
+  },
+  "sand.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/sand.block.collect"
+  },
+  "sand.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/sand.block.select"
+  },
+  "seasons.complete.side.celebration": {
+    "external_path": "event:/SFX/UI/seasons.complete.side.celebration"
+  },
+  "seasons.icon.button": {
+    "external_path": "event:/SFX/UI/seasons.icon.button"
+  },
+  "seasons.icon.slide.in": {
+    "external_path": "event:/SFX/UI/seasons.icon.slide.in"
+  },
+  "seasons.icon.slide.out": {
+    "external_path": "event:/SFX/UI/seasons.icon.slide.out"
+  },
+  "seasons.unlock.single": {
+    "external_path": "event:/SFX/UI/seasons.unlock.single"
+  },
+  "seasons.unlock.triple": {
+    "external_path": "event:/SFX/UI/seasons.unlock.triple"
+  },
+  "sequence_isolated_mode": {
+    "external_path": "snapshot:/sequence_isolated_mode"
+  },
+  "sequence_mode": {
+    "external_path": "snapshot:/sequence_mode"
+  },
+  "side.button.menu.enter": {
+    "external_path": "event:/SFX/UI/side.button.menu.enter"
+  },
+  "side.icon.new.mark": {
+    "external_path": "event:/SFX/UI/side.icon.new.mark"
+  },
+  "side.notification.appear": {
+    "external_path": "event:/SFX/UI/side.notification.appear"
+  },
+  "slime.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/slime.block.collect"
+  },
+  "slime.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/slime.block.select"
+  },
+  "smelt.button": {
+    "external_path": "event:/SFX/UI/smelt.button"
+  },
+  "smelt.fuel.intensity.01": {
+    "external_path": "event:/SFX/UI/smelt.fuel.intensity.01"
+  },
+  "smelt.fuel.intensity.02": {
+    "external_path": "event:/SFX/UI/smelt.fuel.intensity.02"
+  },
+  "smelt.fuel.intensity.03": {
+    "external_path": "event:/SFX/UI/smelt.fuel.intensity.03"
+  },
+  "smelt.fuel.intensity.04": {
+    "external_path": "event:/SFX/UI/smelt.fuel.intensity.04"
+  },
+  "snow.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/snow.block.collect"
+  },
+  "snow.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/snow.block.select"
+  },
+  "stat.appear.animation": {
+    "external_path": "event:/SFX/UI/stat.appear.animation"
+  },
+  "stat.button": {
+    "external_path": "event:/SFX/UI/stat.button"
+  },
+  "stat.popup.appear": {
+    "external_path": "event:/SFX/UI/stat.popup.appear"
+  },
+  "stat.popup.disappear": {
+    "external_path": "event:/SFX/UI/stat.popup.disappear"
+  },
+  "step.cloth": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.cloth"
+  },
+  "step.grass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.grass"
+  },
+  "step.gravel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.gravel"
+  },
+  "step.ladder": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.ladder"
+  },
+  "step.sand": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.sand"
+  },
+  "step.slime": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.slime"
+  },
+  "step.snow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.snow"
+  },
+  "step.stone": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.stone"
+  },
+  "step.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/step.wood"
+  },
+  "stone.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/stone.block.collect"
+  },
+  "stone.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/stone.block.select"
+  },
+  "store.item.select": {
+    "external_path": "event:/SFX/UI/store.item.select"
+  },
+  "store.minecoin.item.select": {
+    "external_path": "event:/SFX/UI/store.minecoin.item.select"
+  },
+  "store.ruby.item.select": {
+    "external_path": "event:/SFX/UI/store.ruby.item.select"
+  },
+  "submenu.close.button": {
+    "external_path": "event:/SFX/UI/submenu.close.button"
+  },
+  "submenu.close.simple.button": {
+    "external_path": "event:/SFX/UI/submenu.close.simple.button"
+  },
+  "summary.chest.appear": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/summary.chest.appear"
+  },
+  "summary.chest.disappear": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/summary.chest.disappear"
+  },
+  "summary.item.whooshup": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/summary.item.whooshup"
+  },
+  "tappable.chest.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.award"
+  },
+  "tappable.chest.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.award.loop"
+  },
+  "tappable.chest.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.award.transition"
+  },
+  "tappable.chest.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chest.expire"
+  },
+  "tappable.chest.idle": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chest.idle"
+  },
+  "tappable.chest.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chest.in.range"
+  },
+  "tappable.chest.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chest.spawn"
+  },
+  "tappable.chest.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chest.tap"
+  },
+  "tappable.chest.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.tap.sequence.01"
+  },
+  "tappable.chest.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.tap.sequence.02"
+  },
+  "tappable.chest.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.tap.sequence.03"
+  },
+  "tappable.chest.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.tap.sequence.04"
+  },
+  "tappable.chest.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.tap.sequence.05"
+  },
+  "tappable.chest.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.tap.sequence.06"
+  },
+  "tappable.chest.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chest/tappable.chest.tap.sequence.07"
+  },
+  "tappable.chicken.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.award"
+  },
+  "tappable.chicken.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.award.loop"
+  },
+  "tappable.chicken.award.loop.TEST": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.award.loop.TEST"
+  },
+  "tappable.chicken.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.award.transition"
+  },
+  "tappable.chicken.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chicken.expire"
+  },
+  "tappable.chicken.idle": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chicken.idle"
+  },
+  "tappable.chicken.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chicken.in.range"
+  },
+  "tappable.chicken.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chicken.spawn"
+  },
+  "tappable.chicken.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chicken.tap"
+  },
+  "tappable.chicken.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.tap.sequence.01"
+  },
+  "tappable.chicken.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.tap.sequence.02"
+  },
+  "tappable.chicken.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.tap.sequence.03"
+  },
+  "tappable.chicken.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.tap.sequence.04"
+  },
+  "tappable.chicken.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.tap.sequence.05"
+  },
+  "tappable.chicken.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.tap.sequence.06"
+  },
+  "tappable.chicken.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Chicken/tappable.chicken.tap.sequence.07"
+  },
+  "tappable.chicken.zoom.in": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.chicken.zoom.in"
+  },
+  "tappable.cow.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.award"
+  },
+  "tappable.cow.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.award.loop"
+  },
+  "tappable.cow.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.award.transition"
+  },
+  "tappable.cow.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.cow.expire"
+  },
+  "tappable.cow.idle": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.cow.idle"
+  },
+  "tappable.cow.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.cow.in.range"
+  },
+  "tappable.cow.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.cow.spawn"
+  },
+  "tappable.cow.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.cow.tap"
+  },
+  "tappable.cow.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.tap.sequence.01"
+  },
+  "tappable.cow.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.tap.sequence.02"
+  },
+  "tappable.cow.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.tap.sequence.03"
+  },
+  "tappable.cow.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.tap.sequence.04"
+  },
+  "tappable.cow.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.tap.sequence.05"
+  },
+  "tappable.cow.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.tap.sequence.06"
+  },
+  "tappable.cow.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Cow/tappable.cow.tap.sequence.07"
+  },
+  "tappable.dirt.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.award"
+  },
+  "tappable.dirt.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.award.loop"
+  },
+  "tappable.dirt.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.award.transition"
+  },
+  "tappable.dirt.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.dirt.expire"
+  },
+  "tappable.dirt.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.dirt.in.range"
+  },
+  "tappable.dirt.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.dirt.spawn"
+  },
+  "tappable.dirt.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.dirt.tap"
+  },
+  "tappable.dirt.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.tap.sequence.01"
+  },
+  "tappable.dirt.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.tap.sequence.02"
+  },
+  "tappable.dirt.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.tap.sequence.03"
+  },
+  "tappable.dirt.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.tap.sequence.04"
+  },
+  "tappable.dirt.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.tap.sequence.05"
+  },
+  "tappable.dirt.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.tap.sequence.06"
+  },
+  "tappable.dirt.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Dirt/tappable.dirt.tap.sequence.07"
+  },
+  "tappable.environment.particle.common": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Particle Effects/tappable.environment.particle.common"
+  },
+  "tappable.environment.particle.epic": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Particle Effects/tappable.environment.particle.epic"
+  },
+  "tappable.environment.particle.legendary": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Particle Effects/tappable.environment.particle.legendary"
+  },
+  "tappable.environment.particle.rare": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Particle Effects/tappable.environment.particle.rare"
+  },
+  "tappable.invalid": {
+    "external_path": "event:/SFX/UI/tappable.invalid"
+  },
+  "tappable.item.sparkle": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/tappable.item.sparkle"
+  },
+  "tappable.item.to.inventory": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/tappable.item.to.inventory"
+  },
+  "tappable.particle.color.change": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Particle Effects/tappable.particle.color.change"
+  },
+  "tappable.pig.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.award"
+  },
+  "tappable.pig.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.award.loop"
+  },
+  "tappable.pig.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.award.transition"
+  },
+  "tappable.pig.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.pig.expire"
+  },
+  "tappable.pig.idle": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.pig.idle"
+  },
+  "tappable.pig.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.pig.in.range"
+  },
+  "tappable.pig.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.pig.spawn"
+  },
+  "tappable.pig.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.pig.tap"
+  },
+  "tappable.pig.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.tap.sequence.01"
+  },
+  "tappable.pig.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.tap.sequence.02"
+  },
+  "tappable.pig.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.tap.sequence.03"
+  },
+  "tappable.pig.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.tap.sequence.04"
+  },
+  "tappable.pig.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.tap.sequence.05"
+  },
+  "tappable.pig.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.tap.sequence.06"
+  },
+  "tappable.pig.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Pig/tappable.pig.tap.sequence.07"
+  },
+  "tappable.radius.return": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.radius.return"
+  },
+  "tappable.sheep.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.award"
+  },
+  "tappable.sheep.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.award.loop"
+  },
+  "tappable.sheep.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.award.transition"
+  },
+  "tappable.sheep.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.sheep.expire"
+  },
+  "tappable.sheep.idle": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.sheep.idle"
+  },
+  "tappable.sheep.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.sheep.in.range"
+  },
+  "tappable.sheep.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.sheep.spawn"
+  },
+  "tappable.sheep.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.sheep.tap"
+  },
+  "tappable.sheep.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.tap.sequence.01"
+  },
+  "tappable.sheep.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.tap.sequence.02"
+  },
+  "tappable.sheep.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.tap.sequence.03"
+  },
+  "tappable.sheep.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.tap.sequence.04"
+  },
+  "tappable.sheep.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.tap.sequence.05"
+  },
+  "tappable.sheep.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.tap.sequence.06"
+  },
+  "tappable.sheep.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Sheep/tappable.sheep.tap.sequence.07"
+  },
+  "tappable.stone.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.award"
+  },
+  "tappable.stone.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.award.loop"
+  },
+  "tappable.stone.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.award.transition"
+  },
+  "tappable.stone.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.stone.expire"
+  },
+  "tappable.stone.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.stone.in.range"
+  },
+  "tappable.stone.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.stone.spawn"
+  },
+  "tappable.stone.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.stone.tap"
+  },
+  "tappable.stone.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.tap.sequence.01"
+  },
+  "tappable.stone.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.tap.sequence.02"
+  },
+  "tappable.stone.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.tap.sequence.03"
+  },
+  "tappable.stone.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.tap.sequence.04"
+  },
+  "tappable.stone.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.tap.sequence.05"
+  },
+  "tappable.stone.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.tap.sequence.06"
+  },
+  "tappable.stone.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Stone/tappable.stone.tap.sequence.07"
+  },
+  "tappable.tree.award": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.award"
+  },
+  "tappable.tree.award.loop": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.award.loop"
+  },
+  "tappable.tree.award.transition": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.award.transition"
+  },
+  "tappable.tree.expire": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.tree.expire"
+  },
+  "tappable.tree.in.range": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.tree.in.range"
+  },
+  "tappable.tree.spawn": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.tree.spawn"
+  },
+  "tappable.tree.tap": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.tree.tap"
+  },
+  "tappable.tree.tap.sequence.01": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.tap.sequence.01"
+  },
+  "tappable.tree.tap.sequence.02": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.tap.sequence.02"
+  },
+  "tappable.tree.tap.sequence.03": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.tap.sequence.03"
+  },
+  "tappable.tree.tap.sequence.04": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.tap.sequence.04"
+  },
+  "tappable.tree.tap.sequence.05": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.tap.sequence.05"
+  },
+  "tappable.tree.tap.sequence.06": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.tap.sequence.06"
+  },
+  "tappable.tree.tap.sequence.07": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Tree/tappable.tree.tap.sequence.07"
+  },
+  "tappable.unlock.common": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.common"
+  },
+  "tappable.unlock.common.chicken": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.common.chicken"
+  },
+  "tappable.unlock.common.cow": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.common.cow"
+  },
+  "tappable.unlock.common.pig": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.common.pig"
+  },
+  "tappable.unlock.common.sheep": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.common.sheep"
+  },
+  "tappable.unlock.epic": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.epic"
+  },
+  "tappable.unlock.epic.muddypig": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.epic.muddypig"
+  },
+  "tappable.unlock.legendary": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.legendary"
+  },
+  "tappable.unlock.rare": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.rare"
+  },
+  "tappable.unlock.rare.cluckshroom": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.rare.cluckshroom"
+  },
+  "tappable.unlock.rare.hornedsheep": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.rare.hornedsheep"
+  },
+  "tappable.unlock.uncommon": {
+    "external_path": "event:/SFX/Map Mode Icons/Unlock Sequence/Celebrations/tappable.unlock.uncommon"
+  },
+  "tappable.zoom.in": {
+    "external_path": "event:/SFX/Map Mode Icons/Map Mode/tappable.zoom.in"
+  },
+  "text.popup.blop": {
+    "external_path": "event:/SFX/UI/text.popup.blop"
+  },
+  "tile.piston.in": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/tile.piston.in"
+  },
+  "tile.piston.out": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/tile.piston.out"
+  },
+  "tnt.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/tnt.block.collect"
+  },
+  "tnt.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/tnt.block.select"
+  },
+  "toast.message.hint": {
+    "external_path": "event:/SFX/UI/toast.message.hint"
+  },
+  "too.fast.popup.message": {
+    "external_path": "event:/SFX/UI/too.fast.popup.message"
+  },
+  "ui.stonecutter.take_result": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/ui.stonecutter.take_result"
+  },
+  "unavailable.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/unavailable.block.select"
+  },
+  "use.cloth": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.cloth"
+  },
+  "use.grass": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.grass"
+  },
+  "use.gravel": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.gravel"
+  },
+  "use.ladder": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.ladder"
+  },
+  "use.sand": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.sand"
+  },
+  "use.slime": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.slime"
+  },
+  "use.snow": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.snow"
+  },
+  "use.stone": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.stone"
+  },
+  "use.wood": {
+    "external_path": "event:/SFX/AR Mode/Vanilla/use.wood"
+  },
+  "wood.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/wood.block.collect"
+  },
+  "wood.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/wood.block.select"
+  },
+  "wool.block.collect": {
+    "external_path": "event:/SFX/UI/Seasons/wool.block.collect"
+  },
+  "wool.block.select": {
+    "external_path": "event:/SFX/UI/Seasons/wool.block.select"
+  },
+  "work.complete.button.bounce": {
+    "external_path": "event:/SFX/UI/work.complete.button.bounce"
+  },
+  "xp.orbs.added": {
+    "external_path": "event:/SFX/UI/xp.orbs.added"
+  },
+  "xp.orbs.appear": {
+    "external_path": "event:/SFX/UI/xp.orbs.appear"
+  }
+}

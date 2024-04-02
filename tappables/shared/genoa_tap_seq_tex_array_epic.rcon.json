@@ -1,0 +1,15 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.genoa_tappable_sequence_texture_array_epic": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [ "Texture.default", "Texture.tap_1", "Texture.tap_2","Texture.tap_3","Texture.tap_4","Texture.tap_5","Texture.tap_6","Texture.tap_7" ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Array.skins[variable.number_of_taps]" ]
+    }
+  }
+}

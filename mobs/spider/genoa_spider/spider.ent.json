@@ -1,0 +1,37 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:spider",
+      "materials": {
+        "default": "spider",
+        "invisible": "spider_invisible"
+      },
+      "textures": {
+        "default": "mobs/spider/genoa_spider/spider"
+      },
+      "geometry": {
+        "default": "geometry.genoa.spider"
+      },
+      "animations": {
+        "default_leg_pose": "animation.spider.default_leg_pose",
+        "look_at_target": "animation.spider.look_at_target",
+        "walk": "animation.spider.walk",
+        "blink": "controller.animation.spider.blink",
+        "move_controller": "controller.animation.spider.move" 
+      },
+      "scripts": {
+        "animate": [
+          "move_controller",
+          "blink"
+        ],
+        "initialization": [ "variable.is_blinking = 0;", "variable.return_from_blink = 0;", "variable.last_blink_time = 0;" ]
+      },
+      "render_controllers": [ "controller.render.spider" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 11
+      }
+    }
+  }
+}

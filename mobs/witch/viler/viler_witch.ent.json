@@ -1,0 +1,52 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:viler_witch",
+      "materials": { "default": "witch" },
+      "textures": {
+        "default": "mobs/witch/viler/viler_witch"
+      },
+      "geometry": {
+        "default": "geometry.genoa.viler_witch"
+      },
+
+      "animations": {
+        "look_at_target": "animation.shared.look_at_target",
+        "move": "animation.witch.move",
+        "general": "animation.witch.general",
+        "witch_arms": "animation.witch.folded_arms",
+        "witch_nose": "animation.witch.nose",
+        "general_controller": "controller.animation.viler_witch.general",
+        "move_controller": "controller.animation.witch.move",
+        "cast": "animation.viler_witch.casting",
+        "blink": "controller.animation.shared.mob_blink"
+      },
+
+      "scripts": {
+        "scale": "0.9375",
+        "animate": [
+          "general_controller",
+          "blink"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.3;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;",
+          "variable.cast_preparing = 0;"
+        ]
+      },
+      "sound_effects": {
+        "cast": "mob.viler_witch.cast"
+      },
+      "render_controllers": [ "controller.render.genoa_witch" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 17
+      }
+    }
+  }
+}

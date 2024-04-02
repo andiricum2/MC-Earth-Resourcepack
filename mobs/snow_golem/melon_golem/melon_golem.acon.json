@@ -1,0 +1,23 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.melon_golem.shots": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "attack": "variable.shots_fired" }
+          ]
+        },
+        "attack": {
+          "animations": [ "attack" ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ],
+          "on_exit": [
+            "variable.shots_fired = 0;"
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "namespace": "genoa_build_hud",
+
+  "genoa_build_hud_screen@genoa_common.genoa_base_screen": {
+    "is_showing_menu": false,
+    "should_steal_mouse": true,
+    "$use_background": false,
+    "$steal_all_input": false,
+    "$screen_content": "genoa_build_hud.build_hud_content",
+    "animation_name": "Buildplate Hud Screen"
+  },
+
+  "build_hud_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      { "cursor_rend@genoa_hud_common.cursor_renderer": {} },
+      {
+        "content@genoa_hud_common.hud_content_stack": {
+          "$move_buildplate_supported": true,
+          "$precision_mode_supported": true,
+          "$bright_mode_supported": true,
+          "$show_hud_mob_indicators": false,
+          "$people_occlusion_supported": false,
+          "$wideangle_supported": true,
+          "$status_effects_supported": false
+        } 
+      },
+      { "fading_selection_info@genoa_common.fading_selection_info": {} }
+    ]
+  }
+}

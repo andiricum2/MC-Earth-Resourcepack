@@ -1,0 +1,16 @@
+{
+  "version": 2,
+
+  "states": {
+    "Inactive": {
+      "default": true,
+      "animation": "Set",
+      "properties": [ "!selected" ]
+    },
+
+    "Fade": {
+      "animation": "Enter",
+      "properties": [ "selected" ]
+    }
+  }
+}

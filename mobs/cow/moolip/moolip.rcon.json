@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.moolip": {
+      "geometry": "Geometry.default",
+      "materials": [ 
+        { "*": "Material.default" },
+        {"flower*": "Material.flowers"} 
+      ],
+      "textures": [ "Texture.default" ],
+      "part_visibility": [ 
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking"},
+        { "flowers_body_1": "!query.is_sheared"},
+        { "flowers_body_2": "!query.is_sheared"}   ]
+    }
+  }
+}

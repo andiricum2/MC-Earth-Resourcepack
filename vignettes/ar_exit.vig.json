@@ -1,0 +1,139 @@
+{
+    "format_version": "1.8.0",
+    "vignette" : {
+        "name" : "genoa:ar_exit",
+        "loop" : false,
+        "cameras" : [
+            {
+              "name" : "default",
+              "position" : [0, 3.5, -8.0],
+              "target" : [0.0, 2.5, 0.0],
+              "up" : [0,1,0],
+              "fov" : 55,
+              "far_clip" : 100
+            }
+        ],
+        "entities" : [ 
+            { 
+                "name" : "persona",
+                "entity_definition" : "genoa:player_dressing_room"
+            },
+            {
+                "name" : "backdrop",
+                "entity_definition" : "genoa:backdrop_vignette"
+            }
+        ],
+        "keyframes" : [
+            {
+              "0": [
+                {
+                  "command": "create_entity",
+                  "entity": "persona",
+                  "label": "start",
+                  "position": [ 0.05, 2.0, -4.25]
+                },
+                {
+                  "command": "set_molang_variable",
+                  "entity": "persona",
+                  "label": "variable.is_bored",
+                  "parameter": 0.0
+                },
+                {
+                  "command": "set_molang_variable",
+                  "entity": "persona",
+                  "label": "variable.is_riding",
+                  "parameter": 0.0
+                },
+                {
+                  "command": "set_molang_variable",
+                  "entity": "persona",
+                  "label": "variable.modified_distance_moved",
+                  "parameter": 0.0
+                },
+                {
+                  "command": "set_molang_variable",
+                  "entity": "persona",
+                  "label": "variable.modified_move_speed",
+                  "parameter": 0.0
+                },
+                {
+                  "command" : "set_molang_variable",
+                  "entity" : "persona",
+                  "label" : "variable.is_blinking",
+                  "parameter" : 0.0
+                },
+                {
+                  "command" : "set_molang_variable",
+                  "entity" : "persona",
+                  "label" : "variable.return_from_blink",
+                  "parameter" : 0.0
+                },
+                {
+                  "command" : "set_molang_variable",
+                  "entity" : "persona",
+                  "label" : "variable.last_blink_time",
+                  "parameter" : 0.0
+                },
+                {
+                  "command" : "set_molang_variable",
+                  "entity" : "persona",
+                  "label" : "variable.react_state",
+                  "parameter" : 0.0
+                },
+                {
+                  "command" : "set_molang_variable",
+                  "entity" : "persona",
+                  "label" : "variable.react_select",
+                  "parameter" : 0.0
+                },
+                {
+                  "command" : "set_molang_variable",
+                  "entity" : "persona",
+                  "label" : "variable.confirm_selection",
+                  "parameter" : 0
+                },
+                {
+                  "command" : "set_molang_variable",
+                  "entity" : "persona",
+                  "label" : "variable.last_bored",
+                  "parameter" : 0
+                },
+                {
+                  "command": "create_entity",
+                  "entity": "backdrop"
+                },
+                {
+                  "command": "play_animation",
+                  "entity": "backdrop",
+                  "animation": "backdrop_setup_level_up"
+                },
+                {
+                  "command": "play_ui_sequence",
+                  "animation": "ar_exit"
+                }
+              ],
+              "0.1" : [
+               {
+                  "command": "play_animation",
+                  "entity": "persona",
+                  "animation" : "level_up_idle"
+                }
+              ],
+              "1.0": [
+                {
+                  "command": "ready_to_transition"
+                },
+                {
+                  "command": "pause"
+                }
+              ],
+              "2.0":[
+               {
+                  "label": "animation_exit",
+                  "command": "pause"
+                }
+              ]
+            }
+        ]
+    }
+}

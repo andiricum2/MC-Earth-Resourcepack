@@ -1,0 +1,28 @@
+{
+  "version": 2,
+
+  "states": {
+    "Inactive": {
+      "default": true,
+      "properties": [ "!selected" ],
+      "transitions": [
+        {
+          "from": "Loop",
+          "animation": "Exit"
+        }
+      ]
+    },
+
+    "Loop": {
+      "animation": "Loop",
+      "loop": true,
+      "properties": [ "selected" ],
+      "transitions": [
+        {
+          "from": "Inactive",
+          "animation": "Enter"
+        }
+      ]
+    }
+  }
+}

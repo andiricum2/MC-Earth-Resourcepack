@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:ar_sign",
+      "materials": {
+        "default": "genoa_map_actor_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/ar_sign"
+      },
+      "geometry": {
+        "default": "geometry.ar_sign"
+      },
+      "render_controllers": [ "controller.render.ar_sign" ]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:adventure_generic_map_c",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline",
+        "vignette" : "entity_alphatest"
+      },
+      "textures": {
+        "base":  "adventures/generic/adventure_generic_base_c",
+        "sign":  "adventures/generic/sign",
+        "chest": "adventures/generic/chest_small",
+        "mob_spawner":  "adventures/generic/mob_spawner",
+        "torches":"adventures/generic/torch",
+        "iron_bars":"adventures/generic/iron_bars",
+        "zombie" :"adventures/generic/zombie_map"
+      },
+      "geometry": {
+        "base": "geometry.adventure_generic_c_base",
+        "sign": "geometry.adventure_generic_c_sign",
+        "chest": "geometry.adventure_generic_c_chest",
+        "mob_spawner": "geometry.adventure_generic_c_mob_spawner",
+        "torches": "geometry.adventure_generic_c_torches",
+        "iron_bars": "geometry.adventure_generic_c_iron_bars",
+        "zombie": "geometry.adventure_generic_c_zombie"
+      },
+      "animations": {
+        "map_spawn": "animation.adventure_hard_a_map_spawn",
+        "map_summon": "animation.adventure_hard_a_map_summon",
+        "map_despawn": "animation.adventure.map_despawn",
+        "tapped": "animation.adventure.map_tapped",
+        "award_transition": "animation.adventure.map_setup",
+        "idle": "animation.adventure_hard_a_preview_idle",
+        "enter": "animation.adventure_hard_a_preview_enter"
+      },
+      "animation_controllers": [
+        { "setup_controller" : "controller.animation.adventure" }
+      ],
+      "render_controllers": [ 
+        "controller.render.adventure_generic_c_base",
+        "controller.render.adventure_generic_c_sign", 
+        "controller.render.adventure_generic_c_chest", 
+        "controller.render.adventure_generic_c_mob_spawner",
+        "controller.render.adventure_generic_c_torches",
+        "controller.render.adventure_generic_c_iron_bars",
+        "controller.render.adventure_generic_c_zombie" 
+      ]
+    }
+  }
+}

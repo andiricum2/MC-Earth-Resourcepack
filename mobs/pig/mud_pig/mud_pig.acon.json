@@ -1,0 +1,96 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.mud_pig.baby": {
+      "states": {
+        "baby": {
+          "animations": [
+            {
+              "baby_transform": "query.is_baby"
+            }
+          ]
+        }
+      }
+    },
+    "controller.animation.mud_pig.move": {
+      "states": {
+        "default": {
+          "animations": [
+            { "walk": "return query.modified_move_speed > 0.1 ? 1 : query.modified_move_speed;" },
+            "look_at_target"
+          ],
+          "transitions": [
+            { "roll_in_mud": "variable.mud_rolling" },
+            { "seek_mud": "variable.seek_mud" },
+            { "hop_into_mud": "variable.hop_into_mud" },
+            { "celebration_hop": "variable.celebrate_mud" }
+          ]
+        },
+        "seek_mud": {
+          "animations": [ "seek_mud" ],
+          "transitions": [
+            { "default": "!variable.seek_mud" },
+            { "roll_in_mud": "variable.mud_rolling" },
+            { "hop_into_mud": "variable.hop_into_mud" }
+          ]
+        },
+        "hop_into_mud": {
+          "animations": [ "hop_into_mud" ],
+          "transitions": [
+            { "default": "variable.hop_into_mud = !query.any_animation_finished; return query.any_animation_finished;" }
+          ]
+        },
+        "roll_in_mud": {
+          "animations": [ "roll_in_mud" ],
+          "transitions": [
+            { "default": "!variable.mud_rolling" },
+            { "celebration_hop": "variable.celebrate_mud" }
+          ],
+		      "particle_effects": [
+			      { "effect": "mud_splash" }
+		      ]
+        },
+        "celebration_hop": {
+          "animations": [ "celebration_hop" ],
+          "transitions": [
+            { "default": "variable.celebrate_mud = !query.any_animation_finished; return query.any_animation_finished;" }
+          ],
+          "particle_effects": [
+			      { "effect": "mud_splash" }
+		      ]
+        }
+      }
+    },
+    "controller.animation.mud_pig.drip": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "drip": "query.muddy"}
+          ]      
+        },
+        "drip": {
+          "transitions": [
+            { "default": "!query.muddy" }
+          ],
+          "particle_effects": [
+			      { "effect": "mud_drip" }
+		      ]      
+        }
+      }
+    },    
+    "controller.animation.mud_pig.blink": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "blink": "variable.is_blinking = 0; variable.return_from_blink = query.life_time + math.random(0, 0.2); variable.last_blink_time = variable.last_blink_time ? variable.last_blink_time : query.life_time; return query.life_time > (variable.last_blink_time + math.random(3, 40));" }
+          ]
+        },
+        "blink": {
+          "transitions": [
+            { "default": "variable.is_blinking = 1; variable.last_blink_time = query.life_time; return query.all_animations_finished && (query.life_time > variable.return_from_blink);" }
+          ]
+        }
+      }
+    }
+  }
+ }

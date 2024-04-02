@@ -1,0 +1,69 @@
+{
+  "format_version": "1.8.0",
+  "geometry.genoa.minecart": {
+    "texturewidth": 64,
+    "textureheight": 32,
+    "bones": [
+      {
+        "name": "bottom",
+        "pivot": [ 0, 20, 0 ],
+        "bind_pose_rotation": [ 90, 90, 0 ],
+        "cubes": [
+          {
+            "origin": [ -6, 12, -19 ],
+            "size": [ 20, 16, 2 ],
+            "uv": [ 0, 10 ]
+          }
+        ]
+      },
+      {
+        "name": "back",
+        "pivot": [ -9, 20, 0 ],
+        "bind_pose_rotation": [ 0, 270, 0 ],
+        "cubes": [
+          {
+            "origin": [ -21, 3, -3 ],
+            "size": [ 16, 8, 2 ],
+            "uv": [ 0, 0 ]
+          }
+        ]
+      },
+      {
+        "name": "front",
+        "pivot": [ 9, 20, 0 ],
+        "bind_pose_rotation": [ 0, 90, 0 ],
+        "cubes": [
+          {
+            "origin": [ 5, 3, -3 ],
+            "size": [ 16, 8, 2 ],
+            "uv": [ 0, 0 ]
+          }
+        ]
+      },
+      {
+        "name": "right",
+        "pivot": [ 0, 20, -7 ],
+        "bind_pose_rotation": [ 0, 180, 0 ],
+        "cubes": [
+          {
+            "origin": [ -8, 3, -2 ],
+            "size": [ 16, 8, 2 ],
+            "uv": [ 0, 0 ]
+          }
+        ]
+      },
+      {
+        "name": "left",
+        "pivot": [ 0, 20, 7 ],
+        "bind_pose_rotation": [ 0, 0, 0 ],
+        "cubes": [
+          {
+            "origin": [ -8, 3, 4 ],
+            "size": [ 16, 8, 2 ],
+            "uv": [ 0, 0 ]
+          }
+        ]
+      }
+    ]
+  }
+}

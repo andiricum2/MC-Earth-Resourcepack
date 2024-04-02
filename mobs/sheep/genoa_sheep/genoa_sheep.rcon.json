@@ -1,0 +1,20 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.genoa_sheep": {
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Texture.default" ],
+      "part_visibility": [ 
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking"},
+        { "body_floof": "!query.is_sheared"},
+        { "head_floof": "!query.is_sheared"},
+        { "leg0_floof": "!query.is_sheared"},
+        { "leg1_floof": "!query.is_sheared"},
+        { "leg2_floof": "!query.is_sheared"},
+        { "leg3_floof": "!query.is_sheared"}
+      ]
+    }
+  }
+}

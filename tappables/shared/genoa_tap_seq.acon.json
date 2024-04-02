@@ -1,0 +1,14 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.genoa_tappable_sequence": {
+      "states": {
+        "default": {
+             "animations": [
+                { "tap_1": [] }
+            ]
+          }  
+      }
+    }
+  }
+}

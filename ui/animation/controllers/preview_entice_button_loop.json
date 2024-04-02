@@ -1,0 +1,17 @@
+{
+  "version": 2,
+
+  "states": {
+    "Enter": {
+      "animation": "Slide_Up",
+      "default": true,
+      "triggers": {
+        "onAnimationFinished": "Loop"
+      }
+    },
+    "Loop": {
+      "animation": "Loop",
+      "loop": true
+    }
+  }
+}

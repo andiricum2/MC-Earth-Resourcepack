@@ -1,0 +1,25 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.fancy_chicken.crow": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "crowing": "variable.begin_crow" }
+          ]
+        },
+        "crowing": {
+          "animations": [
+            { "crow": [] }
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ],
+          "on_exit": [
+            "variable.begin_crow = 0;"
+          ]
+        }
+      }
+    }
+  }
+}

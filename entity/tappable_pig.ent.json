@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:tappable_pig",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default": "textures/entity/pig_tappable"
+      },
+      "geometry": {
+        "default": "geometry.pig_tappable_geo"
+      },
+      "animations": {
+        "tapped": "animation.pig.tappable.tapped",
+        "map_spawn": "animation.pig.tappable.mapSpawn",
+        "map_despawn": "animation.pig.tappable.mapDespawn",
+        "award_transition": "animation.pig.tappable.awardTransition"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.tappable" }
+      ],
+      "render_controllers": [ "controller.render.tappable" ]
+    }
+  }
+}

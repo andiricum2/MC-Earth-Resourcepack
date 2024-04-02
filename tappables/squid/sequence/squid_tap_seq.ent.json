@@ -1,0 +1,37 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:squid_tappable_sequence",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+        "default": "tappables/squid/squid_tappable"
+      },
+      "geometry": {
+        "default": "geometry.squid_tappable_sequence"
+      },
+      "animations": {
+        "setup": "animation.genoa_tappable_sequence_setup",
+        "tap_1": "animation.squid_tappable_tap_1",
+        "tap_2": "animation.squid_tappable_tap_2",
+        "tap_3": "animation.squid_tappable_tap_3",
+        "tap_4": "animation.squid_tappable_tap_4",
+        "tap_5": "animation.squid_tappable_tap_5",
+        "tap_6": "animation.squid_tappable_tap_6",
+        "tap_7": "animation.squid_tappable_tap_7",
+        "enter": "animation.squid_tappable_enter",
+        "idle": "animation.squid_tappable_idle",
+        "award_transition": "animation.squid_tappable_award_transition",
+        "award_loop": "animation.squid_tappable_award_loop",
+        "award": "animation.squid_tappable_award"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.genoa_tappable_sequence_setup" }
+      ],
+      "render_controllers": [ "controller.render.genoa_tappable_sequence" ]
+    }
+  }
+}

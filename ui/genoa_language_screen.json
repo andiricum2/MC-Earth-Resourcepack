@@ -1,0 +1,196 @@
+/********************************************************
++*   (c) Mojang. All rights reserved                       *
++*   (c) Microsoft. All rights reserved.                   *
++*********************************************************/
+
+{
+  "namespace": "genoa_language",
+
+  "genoa_language_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_language.main_panel",
+    "$screen_background_texture": "textures/ui/secondary_background",
+    "$background_scrim_visible": false,
+    "screen_visibility": "opaque"
+  },
+
+  "main_panel": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "$language_collection": "languages",
+    "controls": [
+      {
+        "exit_button": {
+          "type": "input_panel",
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "offset": [ -20, 30 ],
+          "size": [ "100%c", "100%c" ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.exit",
+              "mapping_type": "pressed"
+            }
+          ],
+          "controls": [
+            { "exit@genoa_common.back_icon": {} }
+          ],
+          "sounds": [
+            {
+              "sound_name": "submenu.close.button",
+              "sound_volume": 1.0,
+              "sound_pitch": 1.0,
+              "event_type": "button_event"
+            }
+          ]
+        }
+      },
+      {
+        "content": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%" ],
+          "use_new_layout": true,
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 29 ]
+              }
+            },
+            {
+              "title": {
+                "type": "label",
+                "size": [ "100%", "default" ],
+                "text": "options.genoa.language",
+                "font_type": "MinecraftTen",
+                "override_height": 25,
+                "text_alignment": "center"
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ "100%", 10 ]
+              }
+            },
+            {
+              "icon": {
+                "type": "image",
+                "size": [ 88, 88 ],
+                "texture": "textures/ui/header_icons/earth"
+              }
+            },
+            {
+              "pad_2": {
+                "type": "panel",
+                "size": [ "100%", 5 ]
+              }
+            },
+            {
+              "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                "$scroll_fade_distance": 4.0
+              }
+            },
+            {
+              "scrolling_language_list@common.scrolling_panel": {
+                "size": [ "100%", "fill" ],
+                "offset": [ 0, -3 ],
+                "$show_background": false,
+                "$scrolling_content": "genoa_language.language_list",
+                "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "language_list": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "language_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "offset": [ 0, 7 ],
+          "size": [ "100%", "100%c + 50px" ],//50px for padding when scrolled to the bottom
+          "collection_name": "$language_collection",
+          "use_new_layout": true,
+          "factory": {
+            "name": "language_factory",
+            "control_name": "genoa_language.language_button_panel"
+          },
+          "bindings": [
+            {
+              "binding_name": "#languages_count",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "language_button_panel": {
+    "type": "panel",
+    "size": [ 351, 50 ],
+
+    //shared variables b/w both buttons
+    "$button_content": "genoa_common.button_content_text_bindable",
+    "$button_text_binding_type": "collection",
+    "$button_binding_condition": "once",
+    "$button_text_collection_name": "$language_collection",
+    "$button_text": "#language_description",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_height": 20,
+    "$pressed_button_name": "button.select_language",
+
+    "controls": [
+      {
+        "unselected@genoa_common.button": {
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_option",
+          "$button_text_color": "$genoa_settings_button_text_color",
+          "bindings": [
+            {
+              "binding_name": "#language_selected",
+              "binding_name_override": "(not #visible)",
+              "binding_type": "collection",
+              "binding_collection_name": "$language_collection"
+            },
+            {
+              "binding_collection_name": "$language_collection",
+              "binding_type": "collection_details"
+            }
+          ],
+          "sound_name": "inmenu.child.button",
+          "sound_volume": 1.0
+        }
+      },
+      {
+        "selected@genoa_common.button": {
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/button_confirm",
+          "$bevel_texture": "textures/ui/slot_bevel_simple",
+          "bindings": [
+            {
+              "binding_name": "#language_selected",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$language_collection"
+            },
+            {
+              "binding_collection_name": "$language_collection",
+              "binding_type": "collection_details"
+            }
+          ],
+          "sound_name": "cancel.small.button",
+          "sound_volume": 1.0
+        }
+      }
+    ]
+  }
+}

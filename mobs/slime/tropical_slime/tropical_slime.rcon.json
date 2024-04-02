@@ -1,0 +1,24 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.tropical_slime": {
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Texture.default" ],
+      "uv_anim": {
+        "offset": [ 0.0, "Math.mod(Math.floor(query.life_time * 17),48)/48.0"],
+        "scale": [ 1.0, 0.02083 ]
+      }
+    },
+    "controller.render.tropical_slime_shell": {
+      "geometry": "Geometry.shell",
+      "materials": [ { "*": "Material.shell" } ],
+      "textures": [ "Texture.shell" ],
+      "uv_anim": 
+      {
+        "offset": [ 0.0, 0.0],
+        "scale": [ 1.0, 1.0 ]
+      }
+    }   
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+
+  "states": {
+    "Loop": {
+      "animation": "Entice",
+      "loop": true,
+      "default": true
+    }
+  }
+}

@@ -1,0 +1,925 @@
+/********************************************************
++*   (c) Mojang. All rights reserved                       *
++*   (c) Microsoft. All rights reserved.                   *
++*********************************************************/
+
+{
+  "namespace": "genoa_adventure_crystals",
+
+  "genoa_adventure_crystals_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_adventure_crystals.main_panel",
+    "$background_scrim_visible": false,
+    "screen_visibility": "opaque",
+    "animation_name": "Adventure Crystals Screen"
+  },
+
+  "main_panel": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "controls": [
+      {
+        "skrim@genoa_common.white": {
+          "layer": 30,
+          "alpha": 0.0,
+          "size": [ "100%", "100%" ],
+          "color": "#0F000000",
+          "animation_name": "Adventure Crystal Skrim"
+        }
+      },
+      {
+        "content_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "use_new_layout": true,
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "header@genoa_common.header": {
+                "$header_text": "adventure.crystals.title",
+                "$header_image": "textures/ui/icons/graphic_icons/adventure_crystals"
+              }
+            },
+            {
+              "loading_panel": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "controls": [
+                  {
+                    "waiting_inventory_contents@genoa_inventory.waiting_inventory_contents": {
+                      "$loading_text": "adventure.crystals.loading",
+                      "size": [ "100%", "100%" ],
+                      "bindings": [
+                        {
+                          "binding_name": "#waiting_for_data",
+                          "binding_name_override": "#visible",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "screen_content": {
+                      "type": "stack_panel",
+                      "orientation": "vertical",
+                      "size": [ "100%", "100%" ],
+                      "use_new_layout": true,
+                      "bindings": [
+                        {
+                          "binding_name": "#show_screen_contents",
+                          "binding_name_override": "#visible"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "pad_0": {
+                            "type": "panel",
+                            "size": [ "100%", 12 ]
+                          }
+                        },
+                        {
+                          "tab_selection@genoa_common.tab_selection_panel": {
+                            "$tab_button_controls": [
+                              {
+                                "crystals_tab@genoa_common.tab_button": {
+                                  "$pressed_button_name": "button.filter_crystals",
+                                  "$tab_button_texture": "textures/ui/icons/pixel_icons/7x8/crystals",
+                                  "$tab_button_visible_binding_name": "#crystals_tab_active"
+                                }
+                              },
+                              {
+                                "options_tab@genoa_common.tab_button": {
+                                  "$pressed_button_name": "button.filter_options",
+                                  "$tab_button_texture": "textures/ui/icons/pixel_icons/8x8/scan",
+                                  "$tab_button_visible_binding_name": "#options_tab_active"
+                                }
+                              }
+                            ],
+                            "$text": "#crystal_tab_name",
+                            "$text_binding": [
+                              {
+                                "binding_name": "$text",
+                                "binding_condition": "always"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "pad_1": {
+                            "type": "panel",
+                            "size": [ "100%", 6 ]
+                          }
+                        },
+                        {
+                          "tab_content": {
+                            "type": "panel",
+                            "size": [ "100%", "fill" ],
+                            "controls": [
+                              {
+                                "crystals_content": {
+                                  "type": "stack_panel",
+                                  "orientation": "vertical",
+                                  "use_new_layout": true,
+                                  "size": [ "100%", "100%" ],
+                                  "anchor_from": "top_middle",
+                                  "anchor_to": "top_middle",
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#crystals_tab_active",
+                                      "binding_name_override": "#visible"
+                                    }
+                                  ],
+                                  "controls": [
+                                    {
+                                      "scroll_mask@genoa_common.fading_scroll_mask_bars": {}
+                                    },
+                                    {
+                                      "scrolling_panel@common.scrolling_panel": {
+                                        "clips_children": true,
+                                        "allow_clipping": true,
+                                        "$scrolling_pane_size": [ "100%", "default" ],
+                                        "size":  [ "100%", "fill" ],
+                                        "$scrolling_content": "genoa_adventure_crystals.crystal_and_ftue_content",
+                                        "$scroll_fade_distance": 100,
+                                        "$show_background": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "options_content@genoa_adventure_crystals.join_and_scan_stack": {
+                                  "size": [ 351, "100%c" ],
+                                  "offset": [0, 13],
+                                  "anchor_from": "top_middle",
+                                  "anchor_to": "top_middle",
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#options_tab_active",
+                                      "binding_name_override": "#visible"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "fading_selection_info@genoa_common.fading_selection_info": {
+          "$selection_info_text_offset": [ 0, -60 ]
+        }
+      }
+    ]
+  },
+
+  "crystal_grid_item@genoa_inventory_common.genoa_item": {
+    "$genoa_item_size": [ "88px", "100%x" ],
+    "$stack_count_overlay_enabled": true,
+    "$durability_bar_overlay_enabled": true,
+    "$genoa_item_button_name": "button.inactive_crystal_select",
+    "$item_renderer_control": "genoa_adventure_crystals.item_content",
+    "$item_renderer_size": [ 105, 105 ]
+  },
+
+  "item_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "crystal_image@genoa_inventory_common.genoa_item_renderer": {
+          "fallback_texture": "textures/ui/assets/crystal_empty_large",
+          "$drop_shadow_on": false,
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [ 78, 78 ]
+        }
+      },
+      {
+        "crystal_count": {
+          "type": "label",
+          "text": "#item_crystal_count",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "shadow": true,
+          "override_height": 26,
+          "bindings": [
+            {
+              "binding_name": "#item_crystal_count",
+              "binding_type": "collection",
+              "binding_collection_name": "$item_collection_name"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "adventure_display": {
+    "type": "panel",
+    "size": [ 351, 351 ],
+    "controls": [
+      {
+        "inset_panel": {
+          "type": "panel",
+          "size": [ 351, 340 ],
+          "controls": [
+            {
+              "border": {
+                "type": "image",
+                "texture": "textures/ui/9_slice/slot_buildplate"
+              }
+            },
+            {
+              "background@genoa_common.white": {
+                "color": "black",
+                "alpha": 0.25
+              }
+            }
+          ]
+        }
+      },
+      {
+        "info_icon_with_tip@icon_with_tool_tip": { }
+      },
+      {
+        "main_display@genoa_adventure_crystals.active_adventure_display_content": {
+        }
+      },
+      {
+        "main_display_blackout@genoa_common.white": {
+          "layer": 5,
+          "color": "black",
+          "alpha": 0.25,
+          "size": [341, 330],
+          "anchor_to": "center",
+          "anchor_from": "center",
+          "bindings": [
+            {
+              "binding_name": "#has_available_crystal",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "active_adventure_display_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "active_crystal_content_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 2,
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 1, 11 ]
+              }
+            },
+            {
+              "adventure_name": {
+                "layer": 30,
+                "type": "label",
+                "text": "#crystal_panel_title",
+                "font_type": "MinecraftTen",
+                "override_height": 25,
+                "bindings": [
+                  {
+                    "binding_name": "#crystal_panel_title"
+                  }
+                ]
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 1, 1 ]
+              }
+            },
+            {
+              "adventure_size": {
+                "layer": 30,
+                "type": "label",
+                "text": "#rarity_size_text",
+                "font_type": "MinecraftSeven",
+                "override_height": 18,
+                "bindings": [
+                  {
+                    "binding_name": "#rarity_size_text"
+                  }
+                ]
+              }
+            },
+            {
+              "adventure_duration@genoa_adventure_crystals.data_stack": {
+                "offset": [ -5, -15 ],
+                "anchor_from": "top_left",
+                "anchor_to": "top_left"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "crystal_content": {
+          "type": "image",
+          "texture": "#adventure_table_texture",
+          "size": [ 312, 312 ],
+          "offset": [ 0, 25 ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "layer": 4,
+          "bindings": [
+            {
+              "binding_name": "#adventure_table_texture",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_name": "#adventure_table_alpha",
+              "binding_name_override": "#alpha"
+            }
+          ],
+          "controls": [
+            {
+              "adventure_crystal_parent": {
+                "type": "panel",
+                "$crystal_size": [ 85, 85 ],
+                "offset": [ 0, -75 ],
+                "animation_name": "Adventure Crystal Parent",
+                "layer": 100,
+                "bindings": [
+                  {
+                    "binding_name": "#has_available_crystal",
+                    "binding_name_override": "#visible"
+                  }
+                ],
+                "controls": [
+                  {
+                    "glow_layer": {
+                      "layer": 30,
+                      "type": "image",
+                      "alpha": 0.5,
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "animation_name": "Adventure Crystal Glow",
+                      "texture": "#crystal_glow_texture",
+                      "bindings": [
+                        {
+                          "binding_name": "#crystal_glow_texture",
+                          "binding_name_override": "#texture",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "effects_layer": {
+                      "layer": 40,
+                      "type": "panel",
+                      "size": "$crystal_size",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "animation_name": "Adventure Crystal Effects"
+                    }
+                  },
+                  {
+                    "selected_crystal_image@genoa_inventory_common.genoa_item_renderer": {
+                      "layer": 100,
+                      "size": "$crystal_size",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "fallback_texture": "textures/ui/assets/crystal_empty_large",
+                      "animation_name": "Adventure Crystal Image",
+                      "$genoa_item_renderer_bindings": [
+                        {
+                          "binding_name": "#item_id_guid"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "button_panel": {
+          "type": "panel",
+          "size": [ 215, 60 ],
+          "offset": [ 0, 310 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 10,
+          "$pressed_button_name": "button.activate_crystal",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_confirm",
+          "$button_content": "genoa_common.button_content_text",
+          "$button_text": "adventure.crystals.activate",
+          "$button_font_height": 40,
+          "$button_font_type": "MinecraftTen",
+          "animation_name": "Activate Button",
+          "controls": [
+            {
+              "arrow_anim@genoa_common.oobe_arrow": {
+                "offset": [ 0, 25 ],
+                "$binding_name": "#activate_arrow_animation"
+              }
+            },
+            {
+              "activate_button@genoa_common.button": {
+                "bindings": [
+                  {
+                    "binding_name": "#has_available_crystal",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "disabled_button@genoa_common.default_button_content": {
+                "$glow_enabled": false,
+                "$shadow_enabled": false,
+                "alpha": 0.4,
+                "propagate_alpha": true,
+                "bindings": [
+                  {
+                    "binding_name": "#has_available_crystal",
+                    "binding_name_override": "(not #visible)"
+                  }
+                ]
+              }
+            },
+            {
+              "background_shade@genoa_common.white": {
+                "color": "#0b1432",
+                "alpha": 0.8,
+                "bindings": [
+                  {
+                    "binding_name": "#has_available_crystal",
+                    "binding_name_override": "(not #visible)"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "more_crystals_panel": {
+          "type": "panel",
+          "$more_crystals_size": [ 325, "100%cm" ],
+          "size": "$more_crystals_size",
+          "layer": 10,
+          "visible": false,
+          "controls": [
+            {
+              "glow": {
+                "type": "image",
+                "size": [ "100% + 11px", "100%c + 11px" ],
+                "texture": "textures/ui/glow_simple",
+                "bilinear": true,
+                "controls": [
+                  {
+                    "shadow@genoa_common.white": {
+                      "size": "$more_crystals_size",
+                      "color": "$genoa_no_crystals_shadow_color",
+                      "alpha": 0.5,
+                      "offset": [ 3, 3 ],
+                      "controls": [
+                        {
+                          "background@genoa_common.white": {
+                            "size": "$more_crystals_size",
+                            "offset": [ -3, -3 ],
+                            "color": "$genoa_no_crystals_background_color",
+                            "controls": [
+                              {
+                                "bevel": {
+                                  "type": "image",
+                                  "size": [ "100%", "100%c + 20px" ],
+                                  "texture": "textures/ui/9_slice/tile_bevel_dark",
+                                  "controls": [
+                                    {
+                                      "text": {
+                                        "type": "label",
+                                        "size": [ 242, "default" ],
+                                        "offset": [ 69, 0 ],
+                                        "anchor_from": "left_middle",
+                                        "anchor_to": "left_middle",
+                                        "text": "#get_more_crystals_text",
+                                        "font_type": "noto-sans",
+                                        "override_height": 18,
+                                        "bindings": [
+                                          {
+                                            "binding_name": "#get_more_crystals_text"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "crystal_image@genoa_inventory_common.genoa_item_renderer": {
+                "layer": 5,
+                "size": [ 54, 54 ],
+                "offset": [ 7, 0 ],
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "fallback_texture": "textures/ui/assets/crystal_empty_large",
+                "$genoa_item_renderer_bindings": [
+                  {
+                    "binding_name": "#item_id_guid"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#has_available_crystal",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "data_stack": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "size": [ "100%cm", "100%c" ],
+    "layer": 5,
+    "bindings": [
+      {
+        "binding_name": "#timer_data_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "timer_data@genoa_adventure_crystals.crystal_data_panel": {
+          "$crystal_data_text_bind": "#crystal_duration",
+          "$image_texture": "textures/ui/icons/item_icons/timer"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 1, 5 ]
+        }
+      },
+      {
+        "reward_data@genoa_adventure_crystals.crystal_data_panel": {
+          "$crystal_data_text_bind": "adventure.crystals.reward",
+          "$text_bindings": [],
+          "$bindable_image": true,
+          "$image_bind_name": "#reward_texture"
+        }
+      }
+    ]
+  },
+
+  "crystal_data_panel": {
+    "type": "image",
+    "texture": "textures/ui/9_slice/label_simple",
+    "alpha": 0.6,
+    "size": [ "100%c + 12px", "100%c + 4px" ],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "$bindable_image|default": false,
+    "$image_bindings|default": [],
+    "$image_texture|default": "",
+    "$text_bindings|default": [
+      {
+        "binding_name": "$crystal_data_text_bind"
+      }
+    ],
+    "controls": [
+      {
+        "time_stack": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%c", "100%cm" ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "controls": [
+            {
+              "image": {
+                "type": "image",
+                "texture": "$image_texture",
+                "size": [ 24, 24 ],
+                "variables": [
+                  {
+                    "requires": "$bindable_image",
+                    "$image_bindings": [
+                      {
+                        "binding_name": "$image_bind_name",
+                        "binding_name_override": "#texture"
+                      }
+                    ]
+                  }
+                ],
+                "bindings": "$image_bindings"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 8, 1 ]
+              }
+            },
+            {
+              "text": {
+                "type": "label",
+                "text": "$crystal_data_text_bind",
+                "size": [ "default", "default" ],
+                "override_height": 16,
+                "bindings": "$text_bindings"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "image_and_text_button_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+         "content_text@genoa_common.button_content_text": {
+            "offset": [ 0, -1 ],
+            "size": [ "100%", "default" ],
+            "anchor_from": "center",
+            "anchor_to": "center"
+          }
+      },
+      {
+        "content_image": {
+          "type": "image",
+          "texture": "$button_content_image_texture",
+          "anchor_to": "right_middle",
+          "anchor_from": "right_middle",
+          "size": [ 72, 72 ],
+          "offset": [-5, 0]
+        }
+      }
+    ]
+  },
+
+  "join_and_scan_stack": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/gradients/button_confirm",
+    "$button_content": "genoa_adventure_crystals.image_and_text_button_content",
+    "$button_font_height": 26,
+    "$button_font_type": "MinecraftTen",
+    "controls": [
+      {
+        "join_friend_button@genoa_common.button": {
+          "size": [ "100%", 60 ],
+          "$pressed_button_name": "button.join_friend",
+          "$button_content_image_texture": "textures/ui/header_icons/friends",
+          "$button_text": "adventure.crystals.joinFriend"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 20 ]
+        }
+      },
+      {
+        "scan_code_button@genoa_common.button": {
+          "size": [ "100%", 60 ],
+          "$pressed_button_name": "button.scan_code",
+          "$button_content_image_texture": "textures/ui/header_icons/scan_code",
+          "$button_text": "adventure.crystals.scanCode"
+        }
+      }
+    ]
+  },
+
+  "icon_with_tool_tip": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "info_icon": {
+          "layer": 6,
+          "offset": [ -8, 13 ],
+          "anchor_to": "top_right",
+          "anchor_from": "top_right",
+          "type": "image",
+          "texture": "textures/ui/info_small",
+          "size": [ 24, 24 ],
+          "controls": [
+            {
+              "info_toggle_button": {
+                "size": [ 50, 50 ],
+                "type": "input_panel",
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.info",
+                    "mapping_type": "pressed"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "background_input_eater": {
+          "layer": 10,
+          "type": "input_panel",
+          "size": [ "100%", "100%" ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.info",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#info_tip_on",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "tail": {
+          "anchor_to": "top_right",
+          "anchor_from": "top_right",
+          "type": "image",
+          "layer": 420,
+          "texture": "textures/ui/tool_tip_tail_dark",
+          "size": [ 35, 25 ],
+          "offset": [ -15, 35 ],
+          "bindings": [
+            {
+              "binding_name": "#info_tip_on",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "info_tool_tip@genoa_common.tool_tip": {
+          "size": [ 330, 167 ],
+          "offset": [ -10, 55 ],
+          "$tool_tip_text_size": [ 300, 152 ],
+          "$tool_tip_stack_size": [ 300, 167 ],
+          "anchor_to": "top_right",
+          "anchor_from": "top_right",
+          "layer": 400,
+          "$tool_tip_title": "#crystal_panel_title",
+          "$tool_tip_text_body": "#info_tip_text",
+          "$tool_tip_text_body_binding_condition": "always_when_visible",
+          "$tool_tip_on": "#info_tip_on"
+        }
+      }
+    ]
+  },
+
+  "crystal_and_ftue_content": {
+    "type": "panel",
+    "size": [ "100%", "100%cm" ],
+    "controls": [
+      {
+        "ftue_content@genoa_adventure_crystals.ftue_content": {}
+      },
+      {
+        "crystal_content@genoa_adventure_crystals.crystal_content": {}
+      }
+    ]
+
+  },
+
+  "crystal_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "size": [ "100%", "default" ],
+    "controls": [
+      {
+        "adventure_display@genoa_adventure_crystals.adventure_display": {}
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ "100%", 30 ]
+        }
+      },
+      {
+        "crystal count@genoa_common.divider_label": {
+          "$text_alignment": "left",
+          "$text": "#crystal_availability",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_condition": "always_when_visible"
+            }
+          ]
+        }
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ "100%", 13 ]
+        }
+      },
+      {
+        "inactive_crystals_bar": {
+          "type": "grid",
+          "animation_name": "Genoa Adventure Crystals Item Grid",
+          "size": [ 352, 88 ],
+          "$item_collection_name": "inactive_crystals_collection",
+          "collection_name": "$item_collection_name",
+          "grid_dimensions": [ 4, 1 ],
+          "grid_item_template": "genoa_adventure_crystals.crystal_grid_item"
+        }
+      }
+    ]
+  },
+
+  "ftue_content": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "layer": 300,
+    "controls": [
+      {
+        "button_pointer@ftue_common.ftue_dialog_box": {
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$glyph_control": "ftue_common.merl_01",
+          "$target_text_offset": [ 0, 6 ],
+          "$text_override_height": 20,
+          "offset": [ 0, 116 ],
+          "$bind_text": false,
+          "$contextual_text": "ftue.adventure_crystal.activate_crystal",
+          "$contextual_visible": "#activate_button_pointer_visible",
+          "size": [ 347, 120 ],
+          "$glyph_offset": [ -30, 5 ],
+          "$glyph_size": [ 140, 140 ]
+        }
+      },
+      {
+        "button_callout@ftue_common.button_callout": {
+          "size": [ 244, 88 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "offset": [ 0, 296 ],
+          "bindings": [
+            {
+              "binding_name": "#activate_button_pointer_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

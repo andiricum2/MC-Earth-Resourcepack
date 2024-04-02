@@ -1,0 +1,51 @@
+{
+  "namespace": "genoa_ar_placement_standalone",
+
+  "ar_placement_standalone@common.base_screen": {
+      "is_showing_menu": true,
+      "should_steal_mouse": false,
+      "low_frequency_rendering": true,
+      "absorbs_input": false,
+      "send_telemetry": true,
+      "$screen_content": "genoa_ar_placement_standalone.content"
+    },
+
+    "content": {
+      "type": "panel",
+      "size" : ["100%", "100%"],
+      "controls": [
+        {
+          "exit_button@genoa_common.close_button": {
+            "size": [ 24, 24 ],
+            "anchor_from": "top_right",
+            "anchor_to": "top_right",
+            "offset": [-24 , 24 ]
+          }
+        },
+        {
+          "pickup_button@genoa_common.button": {
+            "$button_content": "genoa_ar_placement_standalone.pickup_baseplate_image",
+            "$pressed_button_name": "button.pickup_place",
+            "$background_style": "color",
+            "$background_color": [ 0.7, 0.7, 0.7 ],
+            "size": [ 42, 42 ],
+            "anchor_from": "bottom_middle",
+            "anchor_to": "bottom_middle",
+            "offset": [ 0, -40 ],
+            "bindings": [
+              {
+                "binding_name": "#place_button_visible",
+                "binding_name_override": "#visible",
+                "binding_condition": "always"
+              }
+            ]
+          }
+        }
+      ]
+    },
+  
+    "pickup_baseplate_image": {
+      "type": "image",
+      "texture": "textures/ui/move_buildplate"
+    }
+}

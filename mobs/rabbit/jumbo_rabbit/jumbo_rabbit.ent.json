@@ -1,0 +1,45 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:jumbo_rabbit",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "rabbit" },
+      "textures": {
+        "default": "mobs/rabbit/jumbo_rabbit/jumbo_rabbit"
+      },
+      "geometry": {
+        "default": "geometry.genoa.jumbo_rabbit"
+      },
+
+      "animations": {
+        "hop": "animation.jumbo_rabbit.move",
+        "baby_transform": "animation.jumbo_rabbit.baby",
+        "look_at_target": "animation.common.look_at_target",
+        "move": "controller.animation.jumbo_rabbit.move",
+        "blink": "controller.animation.jumbo_rabbit.blink",
+        "prehop": "animation.jumbo_rabbit.prehop"
+      },
+
+      "scripts": {
+        "animate": [ 
+          {"baby_transform" : "query.is_baby"},
+          "blink",
+          "move",
+          "look_at_target"
+         ],
+        "initialization": [ 
+          "variable.is_blinking = 0;", 
+          "variable.return_from_blink = 0;", 
+          "variable.last_blink_time = 0;",
+          "variable.hop_prep = 0;"]
+      },
+
+      "render_controllers": [ "controller.render.jumbo_rabbit"],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 24
+      }
+    }
+  }
+}

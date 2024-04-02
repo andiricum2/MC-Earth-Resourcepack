@@ -1,0 +1,42 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:ocelot",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "ocelot" },
+      "textures": {
+        "default": "mobs/ocelot/genoa_ocelot/ocelot"
+      },
+      "geometry": {
+        "default": "geometry.genoa.ocelot"
+      },
+     "scripts": {
+      "animate": [
+        "setup",
+        "blink", 
+        "look_at_target",
+        "move",
+        {"baby_transform" : "query.is_baby"}
+      ],
+      "initialization": [ "variable.is_blinking = 0;", "variable.return_from_blink = 0;", "variable.last_blink_time = 0;" ]
+      },
+      "animations": {
+        "setup": "animation.ocelot.setup",
+        "sit": "animation.ocelot.sit",
+        "sneak": "animation.ocelot.sneak_genoa",
+        "walk": "animation.ocelot.walk_genoa",
+        "sprint": "animation.ocelot.sprint_genoa",
+        "look_at_target": "animation.common.look_at_target",
+        "baby_transform": "animation.ocelot.baby_transform",
+        "blink": "controller.animation.ocelot.blink",
+        "move": "controller.animation.ocelot.move"
+      },
+      "render_controllers": [ "controller.render.ocelot" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 16
+      }
+    }
+  }
+}

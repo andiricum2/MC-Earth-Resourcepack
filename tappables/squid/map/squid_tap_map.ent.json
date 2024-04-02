@@ -1,0 +1,30 @@
+{
+    "format_version": "1.8.0",
+    "minecraft:client_entity": {
+      "description": {
+        "identifier": "genoa:squid_tappable_map",
+        "min_engine_version": "1.8.0",
+        "materials": {
+          "default": "genoa_map_actor_alphatest",
+          "outline": "genoa_map_actor_outline"
+        },
+        "textures": {
+          "default": "tappables/squid/squid_tappable"
+        },
+        "geometry": {
+          "default": "geometry.squid_tappable_map"
+        },
+        "animations": {
+          "tapped": "animation.squid.tappable.tapped",
+          "map_spawn": "animation.squid.tappable.mapSpawn",
+          "map_despawn": "animation.squid.tappable.mapDespawn",
+          "award_transition": "animation.squid.tappable.awardTransition",
+          "idle": "animation.squid.tappable.mapIdle"
+        },
+        "animation_controllers": [
+          { "idle_controller" : "controller.animation.tappable.map.idle"}
+        ],
+        "render_controllers": [ "controller.render.tappable" ]
+      }
+    }
+  }

@@ -1,0 +1,260 @@
+{
+  "namespace": "genoa_dialog_overlay",
+
+  "dialog_overlay_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_dialog_overlay.dialog_overlay_content",
+    "$use_background": false,
+    "$steal_all_input": false,
+    "is_showing_menu": false,
+    "always_accepts_input": true
+  },
+
+  "dialog_overlay_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "header_dialog@genoa_dialog_overlay.dialog_card": {
+          "$character_sound_name": "dialogue.text.blop",
+          "animation_name": "Header Dialog",
+          "visible": false,
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "$contextual_visible": "#dialog_visible",
+          "offset": [ 0, 93 ]
+        }
+      },
+      {
+        "profile_dialog@genoa_dialog_overlay.dialog_card": {
+          // Since all dialogs use the same text and are always visible (just using alpha 0)
+          // we only want one of the dialogs to make sound.  So set this one to no sound.
+          "$character_sound_name": "",
+          "animation_name": "Below Profile Dialog",
+          "visible": false,
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "$contextual_visible": "#dialog_visible",
+          "offset": [ 0, 135 ]
+        }
+      },
+      {
+        "bottom_of_screen@genoa_dialog_overlay.dialog_card": {
+          // Since all dialogs use the same text and are always visible (just using alpha 0)
+          // we only want one of the dialogs to make sound.  So set this one to no sound.
+          "$character_sound_name": "",
+          "animation_name": "Bottom Dialog",
+          "visible": false,
+          "anchor_to": "bottom_middle",
+          "anchor_from": "bottom_middle",
+          "$contextual_visible": "#dialog_visible",
+          "offset": [ 0, -35 ]
+        }
+      },
+      {
+        "dialog_scrim_panel": {
+          "type": "input_panel",
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.dialog_scrim",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#dialog_scrim_enabled",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "dialog_speaker_picture": {
+    "type": "image",
+    "texture": "textures/ui/key_art/merl_greet",
+    "bindings": [
+      {
+        "binding_name": "#dialog_speaker_picture",
+        "binding_name_override": "#texture"
+      }
+    ]
+  },
+
+  "dialog_card": {
+    "type": "panel",
+    "$dialog_size": [ 372, 114 ],
+    "size": "$dialog_size",
+    "$contextual_visible|default": "#dialog_visible",
+    "bindings": [
+      {
+        "binding_name": "$contextual_visible",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ],
+    "controls": [
+      {
+        "ellipsis": {
+          "layer": 3,
+          "animation_name": "Ellipsis",
+          "alpha": 0,
+          "type": "image",
+          "texture": "textures/ui/dialog_ellipsis",
+          "size": [ 21, 3 ],
+          "uv_size": [ 7, 1 ],
+          "offset": [ -18, -20 ],
+          "uv": "@ellipsis_animation",
+          "anchor_to": "bottom_right",
+          "anchor_from": "bottom_right",
+          "bindings": [
+            {
+              "binding_name": "#ellipses_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "name_tag": {
+          "alpha": 0,
+          "propagate_alpha": true,
+          "animation_name": "Name Tag",
+          "type": "panel",
+          "layer": 3,
+          "offset": [ 5, -5 ],
+          "size": [ 58, 30 ],
+          "anchor_to": "bottom_left",
+          "anchor_from": "bottom_left",
+          "controls": [
+            {
+              "shadow@genoa_common.white": {
+                "offset": [ 3, 3 ],
+                "color": "black",
+                "alpha": 0.5,
+                "layer": 4
+              }
+            },
+            {
+              "background": {
+                "type": "image",
+                "texture": "textures/ui/9_slice/label",
+                "layer": 5
+              }
+            },
+            {
+              "name": {
+                "type": "label",
+                "font_type": "MinecraftSeven",
+                "override_height": 22,
+                "text": "#name_tag",
+                "text_alignment": "center",
+                "offset": [ 0, -3 ],
+                "layer": 6,
+                "bindings": [
+                  {
+                    "binding_name": "#name_tag",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "dialog_card@ftue_common.ftue_dialog_box": {
+          "alpha": 0,
+          "propagate_alpha": true,
+          "animation_name": "Contextual Base",
+          "size": "$dialog_size",
+          "$item_control": "genoa_dialog_overlay.item_image",
+          "$glyph_size": [ 120, 105 ],
+          "$glyph_offset": [ 1.5, -2.5 ],
+          "$glyph_control": "genoa_dialog_overlay.dialog_speaker_picture",
+          "$contextual_background_texture_bindings": [
+            {
+              "binding_name": "#dialog_speaker_card_texture",
+              "binding_condition": "always_when_visible",
+              "binding_name_override": "#texture"
+            }
+          ],
+          "$contextual_background_texture": "#dialog_speaker_card_texture",
+          "$contextual_text": "#dialog_text",
+          "$label_size|default": [ 335, 89 ],
+          "$target_text_offset": [ -5, 4 ],
+          "$shadow_visible": false,
+          "$text_override_height": 17,
+          "$additional_content": "genoa_dialog_overlay.dialog_card_status"
+        }
+      }
+    ]
+  },
+
+  "item_image": {
+    "type": "custom",
+    "renderer": "genoa_item_renderer",
+    "$item_size": [ 69, 69 ],
+    "$item_offset": [ -5, 4 ],
+    "$bindings": [
+      {
+        "binding_name": "#item_visible",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      },
+      {
+        "binding_name": "#item_id_aux",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "dialog_card_status": {
+    "type": "image",
+    "layer": -1,
+    "anchor_to": "bottom_right",
+    "anchor_from": "bottom_right",
+    "size": [ 160, 30 ],
+    "offset": [ -12, 15 ],
+    "alpha": 0.75,
+    "texture": "textures/ui/9_slice/label_simple",
+    "bindings": [
+      {
+        "binding_name": "#dialog_status_visible",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ],
+    "controls": [
+      {
+        "text": {
+          "type": "label",
+          "font_type": "MinecraftSeven",
+          "override_height": 22,
+          "text": "#dialog_status_text",
+          "text_alignment": "center",
+          "offset": [ 0, 0 ],
+          "bindings": [
+            {
+              "binding_name": "#dialog_status_text",
+              "binding_condition": "always_when_visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "ellipsis_animation": {
+    "anim_type": "flip_book",
+    "initial_uv": [ 0, 0 ],
+    "frame_count": 52,
+    "frame_step": 7,
+    "fps": 20,
+    "reversible": false,
+    "easing": "linear"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:tree_spruce_a_tappable_map",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default": "tappables/tree_spruce/tree_spruce_a"
+      },
+      "geometry": {
+        "default": "geometry.tree_spruce_a_tappable_map"
+      },
+      "animations": {
+        "tapped": "animation.tree.tappable.tapped",
+        "map_spawn": "animation.tree.tappable.mapSpawn",
+        "map_despawn": "animation.tree.tappable.mapDespawn",
+        "award_transition": "animation.tree.tappable.awardTransition",
+        "idle": "animation.tree.tappable.mapIdle"
+      },
+      "animation_controllers": [
+        { "idle_controller" : "controller.animation.tappable.map.idle"}
+      ],
+      "render_controllers": [ "controller.render.tappable" ]
+    }
+  }
+}

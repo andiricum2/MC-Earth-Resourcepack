@@ -1,0 +1,15 @@
+{
+	"format_version" : "1.8.0",
+	"animations" : {
+		"animation.genoa_tappable_sequence_setup" : {
+			"bones" : {
+				"world" : {
+					"position" : [ 0.0, 0.0, 0.0],
+					"scale" : [1.0, 1.0, 1.0],
+					"rotation" : [ 0.0, 0.0, 0.0 ]
+				}
+			},
+			"loop" : true
+		}
+	}
+}

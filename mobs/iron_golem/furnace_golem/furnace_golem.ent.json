@@ -1,0 +1,58 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:furnace_golem",
+      "materials": {
+        "default": "entity",
+        "aggro_flames": "furnace_golem"
+      },
+      "textures": {
+        "default": "mobs/iron_golem/furnace_golem/furnace_golem",
+        "aggro_flames": "mobs/iron_golem/furnace_golem/furnace_golem_flames"
+      },
+      "geometry": {
+        "default": "geometry.genoa.furnace_golem",
+        "aggro_flames": "geometry.genoa.furnace_golem_aggro"
+      },
+      "animations": {
+        "walk": "animation.furnace_golem.walk",
+        "move": "animation.furnace_golem.move",
+        "attack": "animation.furnace_golem.attack",
+        "flower": "animation.furnace_golem.flower",
+        "summon": "animation.furnace_golem.summon",
+        "look_at_target": "animation.common.look_at_target",
+        "move_controller": "controller.animation.furnace_golem.move",
+        "blink": "controller.animation.shared_mob.blink",
+        "look_at_controller": "controller.animation.look_at"
+      },
+      "scripts": {
+        "animate": [
+          "move_controller",
+          "blink",
+          "look_at_controller"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.2;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;",
+          "variable.summon = 0;"
+        ]
+      },
+      "sound_effects": {
+        "summon": "mob.furnace_golem.attack"
+      },
+      "render_controllers": [
+        "controller.render.furnace_golem",
+        "controller.render.furnace_golem_aggro"
+      ],
+      "spawn_egg": {
+        "base_color": "#c1c1c0",
+        "overlay_color": "#9b9b9b"
+      }      
+    }
+  }
+}

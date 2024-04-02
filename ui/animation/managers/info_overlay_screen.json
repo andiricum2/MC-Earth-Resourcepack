@@ -1,0 +1,17 @@
+{
+  "managed_screen_name": "Info Overlay Screen",
+  "version": 1,
+
+  "animations": [
+    {
+      "control": "Genoa FTUE AR Scanning",
+      "animation_name": "ar_scanning",
+      "controller_name": "simple_looping"
+    },
+    {
+      "control": "Genoa FTUE Rotate Swipe",
+      "animation_name": "ftue_rotate",
+      "controller_name": "simple_looping"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+
+  "states": {
+    "Default": {
+      "animation": "Set",
+      "default": true,
+      "triggers": {
+        "RubyEnter": "Finish"
+      }
+    },
+    "Finish": {
+      "animation": "Finish",
+      "triggers": {
+        "onAnimationFinished": "Default"
+      }
+    }
+  }
+}

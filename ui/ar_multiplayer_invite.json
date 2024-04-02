@@ -1,0 +1,293 @@
+{
+  "namespace": "genoa_ar_multiplayer_invite",
+
+  "ar_multiplayer_invite@genoa_common.genoa_base_screen": {
+    "$use_background": true,
+    "$screen_background_texture": "textures/ui/secondary_background",
+    "$screen_content": "genoa_ar_multiplayer_invite.invite_content",
+    "$background_scrim_visible": false,
+    "$screen_animations": [],
+    "$background_animations": []
+  },
+
+
+
+  "ar_image": {
+    "type": "custom",
+    "renderer": "ar_image_renderer",
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 0, 171 ],
+
+    "bindings": [
+      {
+        "binding_name": "#ar_width_meters"
+      },
+      {
+        "binding_name": "#ar_height_meters"
+      },
+      {
+        "binding_name": "#ar_texture_path"
+      }
+    ]
+  },
+
+  "invite_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "exit@genoa_common.back_button": {
+          "size": [ 34, 34 ],
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "offset": [ -16, 44 ],
+          "sound_name": "submenu.close.button"
+        }
+      },
+      {
+        "primary_text": {
+          "type": "label",
+          "size": [ "100%", "default" ],
+          "text_alignment": "center",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "override_height": 25,
+          "text": "ar.friends.scanning.primary",
+          "font_type": "MinecraftTen",
+          "offset": [ 0, 45 ]
+        }
+      },
+      {
+        "frame_scan_guide": {
+          "type": "image",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "offset": [ 0, 20 ],
+          "size": [ "100%cm + 30px", "100%c + 35px" ],
+          "texture": "textures/ui/frame_scan_guide",
+          "controls": [
+            {
+              "frame_scan_guide_content": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "size": [ "100%cm", "100%c" ],
+                "offset": [ 0, -2 ],
+                "controls": [
+                  {
+                    "ar_image_panel": {
+                      "type": "panel",
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "size": [ "100%c", "100%c" ],
+
+                      "$background_style": "color",
+                      "$background_color": "white",
+                      "$background_control": "genoa_common.button_background_color",
+                      "$button_content": "genoa_ar_multiplayer_invite.ar_image",
+                      "$glow_style": "yellow",
+                      "$glow_enabled": true,
+                      "$shadow_enabled": true,
+                      "controls": [
+                        {
+                          "shadow@genoa_common.white": {
+                            "ignored": "(not $shadow_enabled)",
+                            "color": "$genoa_button_shadow_color",
+                            "alpha": 0.5,
+                            "size": [ "100%c", "100%c" ],
+                            "anchor_from": "center",
+                            "anchor_to": "center",
+                            "offset": [ 0, 0 ],
+                            "controls": [
+                              {
+                                "background@genoa_common.button_background_color": {
+                                  "size": [ "100%c - 20px", "100%c - 20px" ],
+                                  "controls": [
+                                    {
+                                      "default_button_background_child_controls": {
+                                        "size": [ "100%c", "100%c" ],
+                                        "type": "panel",
+                                        "controls": [
+                                          {
+                                            "glow": {
+                                              "ignored": "(not $glow_enabled)",
+                                              "type": "image",
+                                              "texture": "textures/ui/glow_yellow",
+                                              "bilinear": true,
+                                              //glow extends 20px off the bevel
+                                              "size": [ "100%c + 20px", "100%c + 20px" ],
+                                              "controls": [
+                                                {
+                                                  "bevel": {
+                                                    "type": "image",
+                                                    "layer": 1,
+                                                    "texture": "textures/ui/tile_bevel_basic",
+                                                    "alpha": 1.0,
+                                                    "size": [ "100%c + 10px", "100%c + 10px" ],
+                                                    "controls": [
+                                                      {
+                                                        "content@$button_content": {
+                                                          "offset": [ 0, 5 ],
+                                                          "layer": 2,
+                                                          "size": "$ar_image_size"
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "padding": {
+                      "type": "panel",
+                      "inherit_max_sibling_width": true,
+                      "size": [ 1, 10 ]
+                    }
+                  },
+                  {
+                    "qr_code_stack_panel_panel@genoa_common.white": {
+                      "type": "image",
+                      "size": [ 1, 1 ],
+                      "inherit_max_sibling_width": true,
+                      "inherit_max_sibling_height": true,
+                      "inherited_height_scalar": 0.4,
+                      "anchor_from": "bottom_middle",
+                      "anchor_to": "center",
+                      "offset": [ 0, 0 ],
+                      "color": "$genoa_button_color",
+                      "$glow_style": "yellow",
+                      "$glow_enabled": true,
+                      "$shadow_enabled": true,
+                      "controls": [
+                        {
+                          "qr_code_stack_panel": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [ "100%", "100% - 10px" ],
+                            "controls": [
+                              {
+                                "qr_code_padding_left": {
+                                  "type": "panel",
+                                  "size": [5, "100%"]
+                                }
+                              },
+                              //QR code
+                              {
+                                "qr_code_panel": {
+                                  "type": "panel",
+                                  "size": [ "100%y", "100%" ],
+                                  "controls": [
+                                    {
+                                      "qr_code": {
+                                        "type": "custom",
+                                        "renderer": "qr_code_renderer",
+                                        "size": [ "100%", "100%" ],
+                                        //centering the qr code inside its part of the panel
+                                        "anchor_from": "left_middle",
+                                        "anchor_to": "left_middle",
+                                        "layer": 3,
+                                        "bindings": [
+                                          {
+                                            "binding_name": "#qr_data"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "qr_code_padding_middle": {
+                                  "type": "panel",
+                                  "size": [1, "100%"]
+                                }
+                              },
+                              //"Show this screen to a friend..." text
+                              {
+                                "qr_code_instructions": {
+                                  "type": "panel",
+                                  "size": [ "fill", "100%" ],
+                                  "controls": [
+                                    {
+                                      "qr_instruction_text_panel": {
+                                        "type": "panel",
+                                        "size": [ "100%", "100%" ],
+                                        "controls": [
+                                          {
+                                            "qr_instruction_text": {
+                                              "type": "label",
+                                              "size": [ "100%", "100%" ],
+                                              //centering on the screen horizontally
+                                              "anchor_from": "left_middle",
+                                              "anchor_to": "left_middle",
+                                              "color": "$genoa_banner_background_color",
+                                              "text_alignment": "left",
+                                              "override_height": 16,
+                                              "text": "ar.friends.scanning.secondary"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+
+                                }
+                              },
+                              {
+                                "qr_code_padding_right": {
+                                  "type": "panel",
+                                  "size": [5, "100%"]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "bevel": {
+                            "type": "image",
+                            "layer": 1,
+                            "texture": "textures/ui/tile_bevel_basic",
+                            "alpha": 1.0,
+                            "size": [ "100%", "100%" ],
+                            "anchor_from": "center",
+                            "anchor_to": "center",
+                            "controls": [
+                              {
+                                "glow": {
+                                  "ignored": "(not $glow_enabled)",
+                                  "type": "image",
+                                  "texture": "textures/ui/glow_yellow",
+                                  "bilinear": true,
+                                  //glow extends 20px off the bevel
+                                  "size": [ "100% + 20px", "100% + 20px" ],
+                                  "anchor_from": "center",
+                                  "anchor_to": "center"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

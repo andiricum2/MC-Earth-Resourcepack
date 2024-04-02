@@ -1,0 +1,222 @@
+{
+  "namespace": "genoa_play_hud",
+
+  "genoa_play_hud_screen@genoa_common.genoa_base_screen": {
+    "is_showing_menu": false,
+    "should_steal_mouse": true,
+    "$use_background": false,
+    "$steal_all_input": false,
+    "$screen_content": "genoa_play_hud.genoa_play_hud_content",
+    "animation_name": "Buildplate Hud Screen",
+    "$move_buildplate_supported": true,
+    "$precision_mode_supported": true,
+    "$bright_mode_supported": true,
+    "$show_hud_mob_indicators": true,
+    "$people_occlusion_supported": true,
+    "$wideangle_supported": true,
+    "$status_effects_supported": true
+  },
+
+  "genoa_play_hud_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "$health_feature_enabled": true,
+    "animation_name": "Play Hud Content",
+    "controls": [
+      {
+        "profile_info@genoa_common.profile_hex_info_panel_with_healthbar": {
+          "offset": [ 19, 31 ]
+        }
+      },
+      { "cursor_rend@genoa_hud_common.cursor_renderer": {} },
+      { "content@genoa_play_hud.hud_content_stack": {} },
+      { "fading_selection_info@genoa_common.fading_selection_info": {} },
+      { "xp_gained@genoa_play_hud.xp_info": {} },
+      { "item_notification@genoa_play_hud.item_notification_panel": {} }
+    ]
+  },
+
+  "item_notification_panel" : {
+    "type": "panel",
+    "animation_name": "Items Awarded Notification",
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "size": [250, 87],
+    "offset": [0, 142],
+    "controls": [
+      {
+        "display_icon": {
+          "type": "image",
+          "texture": "textures/ui/icons/graphic_icons/adventure_chest_common",
+          "size": [99, 97],
+          "offset": [-5, 0],
+          "layer": 5,
+          "alpha": 0,
+          "animation_name": "Award Notification Icon",
+          "bindings": [
+            {
+              "binding_name": "#item_notification_texture",
+              "binding_name_override": "#texture"
+            }
+          ]
+        }
+      },
+      {
+        "items": {
+          "type": "panel",
+          "animation_name": "Award Notification Item Bar",
+          "layer": 1,
+          "controls": [
+            {
+              "for_animation_text": {
+                "type": "panel",
+                "animation_name": "Award Notification Item Bar Text",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "text" : {
+          "alpha": 0,
+          "type": "label",
+          "font_type": "MinecraftTen",
+          "override_height": 20,
+          "color": "$genoa_adventure_header_text_color",
+          "text": "#text",
+          "offset": [5, -7],
+          "shadow_offset": [0, 1],
+          "shadow": true,
+          "animation_name": "Award Notification Title",
+          "layer": 30, // Put this above the particle effects spawned by the sequence
+          "bindings": [
+            {
+              "binding_name": "#item_notification_title",
+              "binding_name_override": "#text"
+            }
+          ]
+        }
+      },
+      {
+        "banner" : {
+          "type": "image",
+          "texture": "textures/ui/9_slice/missing_corners",
+          "fill": true,
+          "alpha": 0,
+          "animation_name": "Award Notification Banner"
+        }
+      }
+    ]
+  },
+
+  "xp_info": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "offset": [ 13, 140 ],
+    "anchor_to": "top_left",
+    "anchor_from": "top_left",
+    "size": [ "100%c", "100%c" ],
+    "animation_name": "Experience Total",
+    "use_new_layout": true,
+    "alpha": 0,
+    "propagate_alpha": true,
+    "controls": [
+      {
+        "xp_icon": {
+          "layer": 9,
+          "size": [ 32, 32 ],
+          "type": "image",
+          "texture": "textures/ui/icons/item_icons/xp"
+        }
+      },
+      {
+        "xp_shadow_and_count": {
+          "layer": 4,
+          "offset": [ -15, 0 ],
+          "size": [ 70, 20 ],
+          "type": "panel",
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "controls": [
+            {
+              "xp_shadow": {
+                "layer": 3,
+                "type": "image",
+                "texture": "textures/ui/9_slice/missing_corners",
+                "alpha": 0.5,
+                "size": [ 80, 20 ],
+                "fill": true
+              }
+            },
+            {
+              "xp_count": {
+                "offset": [ 15, -2 ],
+                "anchor_to": "left_middle",
+                "anchor_from": "left_middle",
+                "layer": 4,
+                "type": "label",
+                "font_type": "MinecraftSeven",
+                "override_height": 16,
+                "color": "#E6F446",
+                "text": "#xp_value",
+                "bindings": [
+                  {
+                    "binding_name": "#xp_value",
+                    "binding_condition": "always_when_visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "inventory_button@genoa_hud_common.inventory_button": {
+    "$image_texture": "textures/ui/icons/graphic_icons/backpack",
+    "$activate_sound_name": "backpack.open.button",
+    "bindings": [
+      {
+        "binding_name": "#inventory_button_enabled",
+        "binding_name_override": "#enabled",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "build_modes@genoa_hud_common.build_modes": {
+    "controls": [
+      {
+        "pointer_panel@genoa_hud_common.build_mode_button_panel": {
+          "$mode_icon": "textures/ui/interact_mode",
+          "$mode_icon_selected": "textures/ui/interact_mode_selected",
+          "$mode_bevel_texture": "textures/ui/tile_bevel_dark",
+          "$mode_bevel_texture_selected": "textures/ui/slot_bevel_dark",
+          "$selected_bind_name": "#hand_button_active",
+          "$pressed_button_name": "button.hud_pointer_button",
+          "$activate_sound_name": "interact.mode.button",
+          "$button_enabled_bind": "#pointer_button_enabled"
+        }
+      },
+      {
+        "punch_panel@genoa_hud_common.build_mode_button_panel": {
+          "$mode_icon": "textures/ui/punch_mode",
+          "$mode_icon_selected": "textures/ui/punch_mode_selected",
+          "$mode_bevel_texture": "textures/ui/tile_bevel_dark",
+          "$mode_bevel_texture_selected": "textures/ui/slot_bevel_dark",
+          "$selected_bind_name": "#punch_button_active",
+          "$pressed_button_name": "button.hud_punch_button",
+          "$activate_sound_name": "punch.mode.button",
+          "$button_enabled_bind": "#punch_button_enabled"
+        }
+      }
+    ]
+  },
+
+  "hud_content_stack@genoa_hud_common.hud_content_stack": {
+    "$build_modes_control": "genoa_play_hud.build_modes",
+    "$inventory_button": "genoa_play_hud.inventory_button"
+  }
+}

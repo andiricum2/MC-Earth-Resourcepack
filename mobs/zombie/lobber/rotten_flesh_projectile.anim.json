@@ -1,0 +1,13 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.rotten_flesh_projectile.move": {
+      "loop": true,
+      "bones": {
+        "root": {
+          "rotation": [ "variable.rotationx = variable.rotationx + 1; return variable.rotationx;", "variable.rotationy = variable.rotationy + 1; return variable.rotationy;", "variable.rotationz = variable.rotationz + 1; return variable.rotationz;" ]
+        }
+      }
+    }
+  }
+}

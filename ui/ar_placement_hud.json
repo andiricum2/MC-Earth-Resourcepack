@@ -1,0 +1,258 @@
+{
+  "namespace": "genoa_ar_placement_hud",
+
+  "ar_placement_hud@genoa_common.genoa_base_screen": {
+    "$use_background": false,
+    "$screen_content": "genoa_ar_placement_hud.content",
+    "animation_name": "AR Placement Screen"
+  },
+
+  "content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "exit_button@genoa_common.close_button": {
+          "size": [ 34, 34 ],
+          "sound_name": "inmenu.child.small.button",
+          "$button_content": "genoa_common.small_close_icon",
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "offset": [ -16, 54 ],
+          "bindings": [
+            {
+              "binding_name": "#exit_button_enabled",
+              "binding_name_override": "#enabled",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "content_root@genoa_ar_placement_hud.core_stack_panel": {
+          "size": [ "100%", "100%" ]
+        }
+      },
+      {
+        "oobe_plane_animation": {
+          "type": "panel",
+          "animation_name": "Plane Animation",
+          "bindings": [
+            {
+              "binding_name": "#oobe_plane_animation_visible",
+              "binding_name_override": "#selected",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "rotate_swipe_animation": {
+          "type": "panel",
+          "animation_name": "Rotate Swipe",
+          "bindings": [
+            {
+              "binding_name": "#placement_rotate_animation_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "core_stack_panel": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "controls": [
+      {
+        "fill_panel1": {
+          "type": "panel",
+          "size": [ 0, "fill" ]
+        }
+      },
+      {
+        "indicators@genoa_ar_placement_hud.anchor_indicators": {}
+      },
+      {
+        "fill_panel2": {
+          "type": "panel",
+          "size": [ 0, "fill" ]
+        }
+      },
+      {
+        "footer@genoa_common.footer": {
+          "$footer_size": [ "100%", 124 ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "$footer_content": "genoa_ar_placement_hud.place_button_holder",
+          "bindings": [
+            {
+              "binding_name": "#place_button_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            },
+            {
+              "binding_name": "#place_button_enabled",
+              "binding_name_override": "#enabled",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "anchor_indicators": {
+    "type": "panel",
+    "controls": [
+      {
+        "left_indicator@genoa_ar_placement_hud.anchor_indicator_left": {
+          "size": [ 50, "100%" ],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "bindings": [
+            {
+              "binding_name_override": "#visible",
+              "binding_name": "#left_anchor_indicator_visible"
+            }
+          ]
+        }
+      },
+      {
+        "right_indicator@genoa_ar_placement_hud.anchor_indicator_right": {
+          "size": [ 50, "100%" ],
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "bindings": [
+            {
+              "binding_name_override": "#visible",
+              "binding_name": "#right_anchor_indicator_visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "anchor_indicator_left": {
+    "type": "panel",
+    "controls": [
+      {
+        "indicator_stack_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "size": [ "100%c", "100%c" ],
+          "controls": [
+            {
+              "arrow@genoa_ar_placement_hud.left_arrow_icon": {}
+            },
+            {
+              "anchor@genoa_ar_placement_hud.anchor_icon": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "anchor_indicator_right": {
+    "type": "panel",
+    "controls": [
+      {
+        "indicator_stack_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "size": [ "100%c", "100%c" ],
+          "controls": [
+            {
+              "anchor@genoa_ar_placement_hud.anchor_icon": {}
+            },
+            {
+              "arrow@genoa_ar_placement_hud.right_arrow_icon": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "anchor_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "texture": "textures/ui/ar/sign_indicator",
+    "size": [ 36, 36 ]
+  },
+
+  "left_arrow_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "texture": "textures/ui/arrow_left_white",
+    "size": [ 30, 30 ]
+  },
+
+  "right_arrow_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "texture": "textures/ui/arrow_right_white",
+    "size": [ 30, 30 ]
+  },
+
+  "place_button_holder": {
+    "type": "panel",
+    "size": [ 350, 70 ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 0, 20 ],
+    "controls": [
+      { "place_button@genoa_ar_placement_hud.place_button": {} },
+      {
+        "oobe_arrow@genoa_common.oobe_arrow": {
+          "$binding_name": "#oobe_arrow_visible",
+          "offset": [ 0, 20 ]
+        }
+      },
+      {
+        "ftue_place_button_callout@ftue_common.button_callout": {
+          "size": [ "100% + 30px", "100% + 30px" ],
+          "layer": 3,
+          "bindings": [
+            {
+              "binding_name": "#place_button_callout_visible",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "place_button@genoa_common.button": {
+    "$button_content": "genoa_common.button_content_text",
+    "$button_text": "ar.placement.place",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_size": "extra_large",
+    "$shadow_style": "soft_large",
+    "$pressed_button_name": "button.pickup_place",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/gradients/button_confirm",
+    "sound_name": "buildplate.place.button",
+    "$locked_control": "genoa_common.partial_alpha_button_content",
+    "bindings": [
+      {
+        "binding_name": "#place_button_visible",
+        "binding_name_override": "#enabled",
+        "binding_condition": "always"
+      }
+    ]
+  }
+}

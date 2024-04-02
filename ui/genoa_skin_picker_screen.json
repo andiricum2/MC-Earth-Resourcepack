@@ -1,0 +1,854 @@
+{
+  "namespace": "genoa_skin_picker",
+
+  // SKIN PICKER HEADER
+  "skin_picker_header": {
+    "type": "panel",
+    "size": [ "100%", 30 ],
+    "controls": [
+      {
+        "header_label": {
+          "type": "label",
+          "layer": 5,
+          "text": "profile.change_skin",
+          "override_height": 30,
+          "font_type": "MinecraftTen",
+          "color": "white",
+          "text_alignment": "center"
+        }
+      },
+      {
+        "back_button@genoa_common.back_button": {
+          "size": [ 30, 30 ],
+          "offset": [ -21, 2 ],
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "sound_name": "submenu.close.button",
+          "sound_volume": 1.0
+        }
+      }
+    ]
+  },
+  // SKIN PICKER HEADER
+
+  // SCREEN DEFINITION
+  "genoa_skin_picker_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_skin_picker.main_content",
+    "$background_scrim_visible": false,
+    "$screen_background_texture": "textures/ui/secondary_background"
+  },
+
+  // CONTENT PANEL'S CONTENT PANEL
+  "main_content": {
+    "type": "panel",
+    "controls": [
+      // CONTENT STACK
+      {
+        "content_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "padding": {
+                "type": "panel",
+                "size": [ "100%", 50 ]
+              }
+            },
+            {
+              "header_content@genoa_skin_picker.skin_picker_header": {}
+            },
+            {
+              "padding_1": {
+                "type": "panel",
+                "size": [ "100%", 15 ]
+              }
+            },
+            {
+              "skin_title@genoa_skin_picker.skin_title_background_panel": {}
+            },
+            {
+              "skin_panel": {
+                "type": "panel",
+                "size": [ "100%", 219 ],
+                "controls": [
+                  {
+                    "preview@skin_viewer_panel": {
+                      "layer": 1
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "select_button_panel": {
+                "type": "panel",
+                "size": [ "100%", 60 ],
+                "controls": [
+                  {
+                    "select_button@genoa_common.button": {
+                      "size": [ 349, 60 ],
+                      "layer": 1,
+                      "$pressed_button_name": "button.accept_skin",
+                      "$button_content": "genoa_skin_picker.select_button_content",
+                      "$background_style": "image",
+                      "$button_background_image_texture": "textures/ui/button_confirm",
+                      "$glow_style": "white",
+                      "$locked_control": "genoa_skin_picker.locked_select_button",
+                      "sound_name": "inmenu.general.button",
+                      "bindings": [
+                        {
+                          "binding_name": "#confirm_button_visible",
+                          "binding_name_override": "#enabled"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "padding_3": {
+                "type": "panel",
+                "size": [ "100%", 15 ]
+              }
+            },
+            // END OF SKIN SELECTION BUTTON
+            {
+              "grey@genoa_common.white": {
+                "size": [ "100%", 5 ],
+                "screen_fill_left": true,
+                "screen_fill_right": true,
+                "color": "$genoa_inventory_fade_bar_grey",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "bindings": [
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "scroll_view",
+                    "source_property_name": "(#scrollbar_distance_fade_factor - 0.8)",
+                    "target_property_name": "#alpha"
+                  }
+                ]
+              }
+            },
+            {
+              "grey_transparent@genoa_common.white": {
+                "layer": 13,
+                "size": [ "100%", 3 ],
+                "screen_fill_left": true,
+                "screen_fill_right": true,
+                "color": "$genoa_inventory_fade_bar_shadow",
+                "alpha": 0.4,
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "bindings": [
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "scroll_view",
+                    "source_property_name": "(#scrollbar_distance_fade_factor - 0.8)",
+                    "target_property_name": "#alpha"
+                  }
+                ]
+              }
+            },
+            {
+              "skin_selection_section": {
+                "type": "panel",
+                "layer": 2,
+                "size": [ "100%", "fill" ],
+                "screen_fill_down": true,
+                "controls": [
+                  {
+                    // SKINS GRID
+                    "all_skins_frame": {
+                      "offset": [ 0, -3 ],
+                      "layer": 1,
+                      "type": "panel",
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
+                      "size": [ "100%", "100%" ],
+                      "controls": [
+                        { "all_skins_content@genoa_skin_picker.all_skins_content": {} }
+                      ]
+                    }
+                    // END OF SKINS GRID
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+      // END OF CONTENT STACK
+    ]
+  },
+  // END OF CONTENT PANEL'S CONTENT PANEL
+
+  "locked_select_button@genoa_common.default_button_content": {
+    "size": [ 349, 60 ],
+    "layer": 1,
+    "$pressed_button_name": "button.accept_skin",
+    "$button_content": "genoa_skin_picker.select_button_content",
+    "$text_alpha": 0.5,
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/button_confirm",
+    "$glow_enabled": false,
+    "$shadow_enabled": false,
+    "$background_alpha": 0.5,
+    "$bevel_alpha": 0.5
+  },
+
+  // SKIN VIEWER PANEL
+  "skin_viewer_panel": {
+    "type": "input_panel",
+    "size": [ "100%", "100%" ],
+    "gesture_tracking_button": "button.turn_doll",
+    "always_handle_controller_direction": true,
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.turn_doll",
+        "mapping_type": "pressed",
+        "button_up_right_of_first_refusal": true
+      }
+    ],
+    "controls": [
+      {
+        "skin_model_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%" ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "controls": [
+            {
+              "skin_model": {
+                "type": "custom",
+                "layer": 2,
+                "renderer": "paper_doll_renderer",
+                "use_selected_skin": false,
+                "use_skin_gui_scale": true,
+                "rotation": "gesture_x",
+                "start_rotation": -30,
+                "offset": [ 0, -35 ],
+                "animation_reset_name": "screen_animation_reset",
+                "anims": [
+                  "@common.screen_exit_size_animation_push",
+                  "@common.screen_exit_size_animation_pop",
+                  "@common.screen_entrance_size_animation_push",
+                  "@common.screen_entrance_size_animation_pop"
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_name": "#preview_skin"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "preview",
+                    "source_property_name": "#gesture_delta_source",
+                    "target_property_name": "#gesture_delta_source"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "preview",
+                    "source_property_name": "#gesture_mouse_delta_x",
+                    "target_property_name": "#gesture_mouse_delta_x"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "select_button_content": {
+    "type": "label",
+    "$text_alpha|default": 1.0,
+    "alpha": "$text_alpha",
+    "color": "white",
+    "text": "skins.picker.confirm",
+    "font_type": "MinecraftTen",
+    "override_height": 25
+  },
+
+  // SKINS PANEL
+  "all_skins_content": {
+    "type": "input_panel",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "scrolling_frame": {
+          "type": "panel",
+          "controls": [
+            {
+              "change_skin_scroll@common.scrolling_panel": {
+                "$use_touch_mode": true,
+                "size": [ "100%", "100%" ],
+                "$scrolling_pane_size": [ "100%", "100%" ],
+                "$scroll_size": [ "5px", "100%" ],
+                "$scrolling_content": "genoa_skin_picker.scrolling_content_stack",
+                "$show_background": false,
+                "$bar_visible": true,
+                "bindings": [
+                  {
+                    "binding_name": "#skin_content_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "progress_loading@genoa_common.progress_loading": {
+                "bindings": [
+                  {
+                    "binding_name": "#skin_search_progress_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // END OF SKINS PANEL
+  // SKINS SCROLLING CONTENT
+  "scrolling_content_stack": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c + 50px" ], //50px for padding when scrolled to the bottom
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "controls": [
+      {
+        "standard@pack_item": {
+          "$skins_collection_name": "default_skins_collection",
+          "$skins_pack_collection_name": "default_packs_collection",
+          "$skins_grid_dimensions": "#default_skins_grid_dimensions",
+          "$view_button": "button.view_default_skin"
+        }
+      },
+      {
+        "recent@pack_item": {
+          "$skins_collection_name": "recent_skins_collection",
+          "$skins_pack_collection_name": "recent_packs_collection",
+          "$skins_grid_dimensions": "#recent_skins_grid_dimensions",
+          "$view_button": "button.view_recent_skin"
+        }
+      },
+      {
+        "premium_packs_stack@premium_packs_stack": {
+          "$skins_grid_dimensions": "#premium_skins_grid_dimensions",
+          "$view_button": "button.view_premium_skin"
+        }
+      },
+      {
+        // This is a hack to cause the screen to update the skin pack collection, regular clip events are not working
+        // on this factory. The screen will be replaced soon by the dressing room
+        "premium_pack_clip_event_trigger@genoa_common.empty": {
+          "size": [ "100%", 5 ],
+          "bindings": [
+            {
+              "binding_name": "#clip_event_trigger",
+              "binding_name_override": "#visible",
+              "binding_type": "global",
+              "binding_condition": "visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // END OF SKINS SCROLLING CONTENT
+  // PREMIUM PACKS PANEL
+  "premium_packs_stack": {
+    "type": "stack_panel",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "factory": {
+      "name": "pack_factory",
+      "control_name": "genoa_skin_picker.pack_item"
+    },
+    "collection_name": "premium_packs_collection",
+    "$skins_collection_name": "premium_skins_collection",
+    "$skins_pack_collection_name": "premium_packs_collection",
+    "bindings": [
+      {
+        "binding_name": "#premium_pack_collection_length",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+  // END OF PREMIUM PACKS PANEL
+  // TOGGLE ICON
+  "toggle_icon": {
+    "type": "image",
+    "layer": 1,
+    "texture": "",
+    "$icon_size|default": [ 24, 24 ],
+    "size": "$icon_size"
+  },
+  //END OF TOGGLE ICON
+  // PLUS ICON
+  "plus_icon@genoa_skin_picker.toggle_icon": {
+    "texture": "textures/ui/plus",
+    "fill": true
+  },
+  // END OF PLUS ICON
+  // MINUS ICON
+  "minus_icon@genoa_skin_picker.toggle_icon": {
+    "texture": "textures/ui/minus",
+    "fill": true
+  },
+  // END OF MINUS ICON
+
+  "pack_name_background_control": {
+    "layer": 4,
+    "type": "panel",
+    "size": [ 350, "100%" ],
+    "controls": [
+      {
+        "pack_hidden": {
+          "type": "image",
+          "size": [ "100%", "100%" ],
+          "fill": true,
+          "texture": "textures/ui/gradients/button_option",
+          "controls": [
+            {
+              "bevel": {
+                "type": "image",
+                "layer": 1,
+                "texture": "textures/ui/button_bevel",
+                "controls": [
+                  {
+                    "plus_icon@genoa_skin_picker.plus_icon": {
+                      "anchor_from": "right_middle",
+                      "layer": 1,
+                      "anchor_to": "right_middle",
+                      "offset": [ -14, 0 ]
+                    }
+                  },
+                  {
+                    "label": {
+                      "type": "label",
+                      "layer": 3,
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "override_height": 24,
+                      "offset": [ 10, -2 ],
+                      "size": [ "100% - 45px", 24 ],
+                      "color": "$genoa_pack_name_font_color",
+                      "font_type": "MinecraftTen",
+                      "text": "#pack_name",
+                      "bindings": [
+                        {
+                          "binding_type": "collection",
+                          "binding_collection_name": "$skins_pack_collection_name",
+                          "binding_name": "#pack_name"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$skins_pack_collection_name"
+            },
+            {
+              "binding_name_override": "#visible",
+              "binding_name": "(not #content_visible)"
+            }
+          ]
+        }
+      },
+      {
+        "pack_selected": {
+          "type": "image",
+          "size": [ "100%", "100%" ],
+          "fill": true,
+          "texture": "textures/ui/gradients/button_option_selected",
+          "controls": [
+            {
+              "bevel": {
+                "type": "image",
+                "layer": 1,
+                "texture": "textures/ui/slot_bevel_basic",
+                "controls": [
+                  {
+                    "minus_icon@genoa_skin_picker.minus_icon": {
+                      "anchor_from": "right_middle",
+                      "anchor_to": "right_middle",
+                      "layer": 1,
+                      "offset": [ -19, 0 ]
+                    }
+                  },
+                  {
+                    "label": {
+                      "type": "label",
+                      "layer": 1,
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "override_height": 24,
+                      "offset": [ 10, -2 ],
+                      "size": [ "100% - 45px", 24 ],
+                      "color": [ 1, 1, 1 ],
+                      "font_type": "MinecraftTen",
+                      "text": "#pack_name",
+                      "bindings": [
+                        {
+                          "binding_type": "collection",
+                          "binding_collection_name": "$skins_pack_collection_name",
+                          "binding_name": "#pack_name"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$skins_pack_collection_name"
+            },
+            {
+              "binding_name_override": "#visible",
+              "binding_name": "(#content_visible)"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  // PACK NAME HEADER
+  "pack_name_input_panel": {
+    "type": "input_panel",
+    "layer": 3,
+    "controls": [
+      {
+        "background@genoa_skin_picker.pack_name_background_control": {
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$skins_pack_collection_name",
+        "binding_collection_prefix": "packs"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "$skins_collection_name",
+        "binding_name": "#skin_index"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.toggle_skin_pack",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "button.toggle_skin_pack",
+        "mapping_type": "focused"
+      }
+    ]
+  },
+
+  // END OF PACK NAME HEADER
+  // SKIN PACK ITEM
+  "skin_input_panel": {
+    "type": "input_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "sg@genoa_skin_picker.skins_grid": {}
+      }
+    ]
+  },
+  "skins_grid": {
+    "type": "grid",
+    "$skins_grid_size|default": [ "80%", "100%c" ],
+    "$skins_grid_offset|default": [ "10%", 0 ],
+    "size": "$skins_grid_size",
+    "offset": "$skins_grid_offset",
+    "anchor_from": "bottom_left",
+    "anchor_to": "bottom_left",
+    "grid_item_template": "genoa_skin_picker.skins_grid_item",
+    "grid_dimension_binding": "$skins_grid_dimensions",
+    "collection_name": "$skins_collection_name",
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$skins_pack_collection_name"
+      },
+      {
+        "binding_name": "$skins_grid_dimensions"
+      }
+    ]
+  },
+  "pack_item": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "header": {
+          "type": "panel",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [ "100%", 50 ],
+          "controls": [
+            {
+              "pack_name_button@genoa_skin_picker.pack_name_input_panel": {
+              }
+            }
+          ]
+        }
+      },
+      {
+        "bg": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "offset": [ 0, 4.5 ],
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$skins_pack_collection_name"
+            },
+            {
+              "binding_name": "#content_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "skin_input_panel@genoa_skin_picker.skin_input_panel": {
+                "size": [ "90%", "100%c" ],
+                "$skins_grid_size": [ "100%", "100%c" ],
+                "$skins_grid_offset": [ 0, 0 ]
+              }
+            },
+            {
+              "progress_loading_no_connection@genoa_common.progress_loading": {
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "$skins_pack_collection_name"
+                  },
+                  {
+                    "binding_name": "#pack_loading_no_connection_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "progress_loading@genoa_common.progress_loading": {
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "$skins_pack_collection_name"
+                  },
+                  {
+                    "binding_name": "#pack_loading_progress_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // END OF SKIN PACK ITEM
+  // GRID ITEM TEMPLATE
+  "skins_grid_item": {
+    "type": "panel",
+    "anchor_from": "bottom_left",
+    "anchor_to": "bottom_left",
+    "size": [ "default", 133 ],
+    "controls": [
+      {
+        "fade": {
+          "type": "panel",
+          "size": [ "90%", "89%" ],
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "$skins_collection_name",
+              "binding_name": "#skin_index_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$skins_pack_collection_name",
+              "binding_collection_prefix": "packs"
+            }
+          ]
+        }
+      },
+      {
+        "button@genoa_skin_picker.skin_button": {
+          "size": [ "90%", "90%" ]
+        }
+      },
+      {
+        "clip": {
+          "type": "panel",
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "size": [ "90%", "89%" ],
+          "offset": [ 2, 5 ],
+          "clips_children": true,
+          "controls": [
+            {
+              "model@genoa_skin_picker.skin_model": {
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // END OF GRID ITEM TEMPLATE
+  // GRID DOLL RENDERER
+  "skin_model": {
+    "type": "custom",
+    "renderer": "paper_doll_renderer",
+    "layer": 5,
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "size": [ "100%", "90%" ],
+    "offset": [ 0, -15 ],
+    "use_selected_skin": false,
+    "enable_scissor_test": true,
+    "animation_reset_name": "screen_animation_reset",
+    "rotation": "custom_y",
+    "$skin_model_animations|default": [],
+    "variables": [
+      {
+        "requires": "$screen_transitions_enabled",
+        "$skin_model_animations": [
+          "@expanded_skin_pack.screen_exit_size_animation_push",
+          "@expanded_skin_pack.screen_exit_size_animation_pop",
+          "@common.screen_entrance_size_animation_push",
+          "@common.screen_entrance_size_animation_pop"
+        ]
+      }
+    ],
+
+    "anims": "$skin_model_animations",
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$skins_pack_collection_name",
+        "binding_collection_prefix": "packs"
+      },
+      {
+        "binding_type": "collection",
+        "binding_collection_name": "$skins_collection_name",
+        "binding_name": "#skin_index"
+      }
+    ]
+  },
+  // END OF GRID DOLL RENDERER
+  // GRID SKIN BUTTON
+  "skin_button": {
+    "type": "button",
+    "layer": 3,
+    "controls": [
+      {
+        "selected": {
+          "type": "image",
+          "layer": 2,
+          "texture": "textures/ui/persona/selected_border",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "bg@genoa_common.white": {
+                "type": "image",
+                "color": [ 0.6, 0.6, 0.6 ],
+                "alpha": 0.2
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#border_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$skins_pack_collection_name",
+              "binding_collection_prefix": "packs"
+            },
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "$skins_collection_name",
+              "binding_name": "#skin_index"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$skins_collection_name",
+        "binding_collection_prefix": "skins"
+      },
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$skins_pack_collection_name",
+        "binding_collection_prefix": "packs"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$view_button",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$view_button",
+        "mapping_type": "focused"
+      }
+    ]
+  },
+  "skin_title_background_panel": {
+    "type": "panel",
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "size": [ "100%", 40 ],
+    "layer": 7,
+    "controls": [
+      {
+        "skin_name_label@genoa_common.boxed_icon_label": {
+          "$label_text": "#skin_name",
+          "$label_text_max_size": [ 320, 0 ],
+          "$text_bindings": [
+            {
+              "binding_type": "global",
+              "binding_name": "#skin_name"
+            }
+          ]
+        }
+      }
+    ]
+  }
+  // END OF GRID SKIN BUTTON
+}

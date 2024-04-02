@@ -1,0 +1,18 @@
+{
+  "sbank_master": {
+    "file_name": "sbank_master",
+    "load_behavior_non_blocking": true
+  },
+  "sbank_master_string": {
+    "file_name": "sbank_master.strings",
+    "load_behavior_non_blocking": true
+  },
+  "sbank_mapmode": {
+    "file_name": "sbank_mapmode",
+    "load_behavior_non_blocking": true
+  },
+  "sbank_gameplay": {
+    "file_name": "sbank_gameplay",
+    "load_behavior_non_blocking": true
+  }
+}

@@ -1,0 +1,2500 @@
+{
+  "namespace": "genoa_seasons",
+
+  "seasons_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_seasons.seasons_content",
+    "$background_scrim_visible": false,
+    "animation_name": "Challenges Screen"
+  },
+
+  "seasons_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "content_stack_panel": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%" ], //Required
+          "use_new_layout": true,
+          "controls": [
+            {
+              "header_panel@genoa_seasons.header": {}
+            },
+            {
+              "content_panel": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "controls": [
+                  {
+                    "background": {
+                      "type": "image",
+                      "texture": "textures/ui/background_blurred",
+                      "fill": true,
+                      "layer": -5, // required to display under graph lines. BBITODO - we should probably figure out why
+                      "bindings": [
+                        {
+                          "binding_name": "#season_content_background_texture",
+                          "binding_name_override": "#texture"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "seasons_content_stack@genoa_seasons.seasons_content_stack": {
+                      "bindings": [
+                        {
+                          "binding_name": "#waiting_for_challenge_request",
+                          "binding_name_override": "(not #visible)"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "loader_panel": {
+                      "type": "panel",
+                      "controls": [
+                        {
+                          "loading_contents@genoa_common.loading_content_stack_panel": {
+                            "$loading_text": "seasons.loading",
+                            "$loading_content_bindings": [
+                              {
+                                "binding_name": "#waiting_for_challenge_request",
+                                "binding_name_override": "#visible",
+                                "binding_condition": "always"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "coming_soon_screen@genoa_seasons.coming_soon_screen": {}
+      },
+      {
+        "exit_button@genoa_seasons.exit_button_panel": {}
+      },
+      {
+        "season_info_screen_popup@genoa_seasons.season_info_screen_popup": {
+          "layer": 60
+        }
+      },
+      // BBITODO: Reimplement this once the service-side work for the info button is in
+      //{
+      //  "progress_info_popup@genoa_seasons.progress_popup": {
+      //    "layer": 60
+      //  }
+      //},
+      {
+        "background_scrim@genoa_seasons.background_scrim": {
+          "layer": 100
+        }
+      },
+      {
+        "popup_one@genoa_seasons.popup_one": {
+          "layer": 110
+        }
+      },
+      {
+        "popup_two@genoa_seasons.popup_two": {
+          "layer": 110
+        }
+      },
+      {
+        "popup_three@genoa_seasons.popup_three": {
+          "layer": 110
+        }
+      },
+      {
+        "popup_four@genoa_seasons.popup_four": {
+          "layer": 110
+        }
+      }
+    ]
+  },
+
+  "seasons_content_stack": {
+    "size": [ "100%", "100%" ], //Required
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "graph_stack_panel@genoa_seasons.graph_stack_panel": {
+          "bindings": [
+            {
+              "binding_name": "#season_active",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "time_panel": {
+    "type": "image",
+    "texture": "textures/ui/9_slice/label_simple",
+    "size": [ "100%c + 10px", 30 ],
+    "alpha": 0.5,
+    "controls": [
+      {
+        "time_stack": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "controls": [
+            {
+              "time_img": {
+                "type": "image",
+                "size": [ 24, 24 ],
+                "texture": "textures/ui/icons/item_icons/timer"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 2, 0 ]
+              }
+            },
+            {
+              "time_label": {
+                "type": "label",
+                "size": [ "default", 22 ],
+                "offset": [ 0, -2 ],
+                "font_type": "MinecraftSeven",
+                "override_height": 20,
+                "text_alignment": "center",
+                "text": "#time_left",
+                "bindings": [
+                  {
+                    "binding_name": "#time_left"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#waiting_for_challenge_request",
+        "binding_name_override": "(not #visible)"
+      }
+    ]
+  },
+
+  "fadebar@genoa_common.white": {
+    "size": [ "100%", 5 ],
+    "screen_fill_left": true,
+    "screen_fill_right": true,
+    "color": "$genoa_fade_bar_grey",
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "alpha": 0.2
+  },
+
+  "complete_banner": {
+    "size": [ 330, 68 ],
+    "type": "panel",
+    "animation_name": "Daily Complete Banner",
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "offset": [ 0, 33 ],
+    "layer": 11,
+    "controls": [
+      {
+        "complete_banner_image": {
+          "type": "image",
+          "texture": "textures/ui/complete_banner_large",
+          "controls": [
+            {
+              "completed_label": {
+                "type": "label",
+                "offset": [ 0, 2 ],
+                "text_alignment": "center",
+                "override_height": 25,
+                "font_type": "MinecraftTen",
+                "text": "challenge.notification_complete"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#complete_banner",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "challenge_card": {
+    "size": [ 350, 100 ],
+    "type": "panel",
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "offset": [ 0, 58 ],
+    "animation_name": "Challenge Card",
+    "controls": [
+      {
+        "button_texture": {
+          "type": "panel",
+          "controls": [
+            {
+              "status_card_shadow@genoa_common.white": {
+                "anchor_to": "top_left",
+                "anchor_from": "top_left",
+                "animation_name": "Status Card",
+                "color": "$genoa_button_shadow_color",
+                "size": [ "100%c", 25 ],
+                "offset": [ 0, -10 ],
+                "alpha": 0.5,
+                "layer": 14,
+                "controls": [
+                  {
+                    "status_card": {
+                      "anchor_to": "top_left",
+                      "anchor_from": "top_left",
+                      "type": "image",
+                      "texture": "#challenge_status_texture",
+                      "size": [ "100%c + 30px", 25 ],
+                      "offset": [ -3, -3 ],
+                      "layer": 15,
+                      "bindings": [
+                        {
+                          "binding_name": "#challenge_status_texture",
+                          "binding_name_override": "#texture"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "status_card_stack_panel": {
+                            "type": "stack_panel",
+                            "use_new_layout": true,
+                            "orientation": "horizontal",
+                            "controls": [
+                              {
+                                "status_label_shadow": {
+                                  "type": "label",
+                                  "text": "#challenge_status_label_text",
+                                  "font_type": "MinecraftSeven",
+                                  "override_height": 18,
+                                  "text_alignment": "center",
+                                  "offset": [ 0, -1 ],
+                                  "alpha": 0.3,
+                                  "color": "$genoa_store_purchase_button_shadow_color",
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#challenge_status_label_text"
+                                    }
+                                  ],
+                                  "controls": [
+                                    {
+                                      "status_label": {
+                                        "type": "label",
+                                        "text": "#challenge_status_label_text",
+                                        "font_type": "MinecraftSeven",
+                                        "override_height": 18,
+                                        "text_alignment": "center",
+                                        "offset": [ 0, -2 ],
+                                        "bindings": [
+                                          {
+                                            "binding_name": "#challenge_status_label_text"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "secondary_symbol": {
+                                  "type": "image",
+                                  "texture": "textures/ui/icons/item_icons/locked",
+                                  "size": [ 31, 31 ],
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#show_challenge_status_secondary_icon",
+                                      "binding_name_override": "#visible"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "button_content@genoa_seasons.challenge_card_content": {
+                "layer": 13
+              }
+            },
+            {
+              "available_state": {
+                "size": [ 160, 40 ],
+                "type": "input_panel",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "layer": 41,
+                "offset": [ -9, 15 ],
+                "controls": [
+                  {
+                    "button_texture@genoa_common.default_button_content": {
+                      "$button_content": "genoa_seasons.activate",
+                      "$background_style": "image",
+                      "$button_background_image_texture": "textures/ui/collect_button_gradient",
+                      "$glow_enabled": false
+                    }
+                  }
+                ],
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.activate_challenge",
+                    "mapping_type": "pressed"
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#selected_challenge_available",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "shadow@genoa_common.white": {
+                "color": "$genoa_button_shadow_color",
+                "size": [ "100%", 95 ],
+                "offset": [ 5, 5 ],
+                "alpha": 0.5
+              }
+            },
+            {
+              "background": {
+                "type": "image",
+                "layer": 12,
+                "texture": "#challenge_card_texture",
+                "size": [ "100%", 95 ],
+                "bindings": [
+                  {
+                    "binding_name": "#challenge_card_texture",
+                    "binding_name_override": "#texture"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#hide_challenge_card",
+        "binding_name_override": "(not #visible)"
+      },
+      {
+        "binding_name": "#challenge_card_layer",
+        "binding_name_override": "#layer"
+      }
+    ]
+  },
+
+  "activate": {
+    "type": "label",
+    "text": "menu.start",
+    "font_type": "MinecraftTen",
+    "override_height": 25
+  },
+
+  "challenge_card_content": {
+    "type": "stack_panel",
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+    "animation_name": "Challenge Card Content",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "description_stack": {
+          "type": "stack_panel",
+          "size": [ 244, 76 ],
+          "offset": [ 11, 14 ],
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "controls": [
+            {
+              "description_label": {
+                "type": "label",
+                "size": [ "100%", "default" ],
+                "anchor_from": "top_left",
+                "anchor_to": "top_left",
+                "font_type": "smooth",
+                "override_height": 18,
+                "color": "$genoa_store_pdp_description_text_color",
+                "text": "#challenge_description",
+                "bindings": [
+                  {
+                    "binding_name": "#challenge_description"
+                  }
+                ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "fill", "fill" ]
+              }
+            },
+            {
+              "progress_info@genoa_seasons.progress_info": {
+                "bindings": [
+                  {
+                    "binding_name": "#challenge_progress_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 3, 0 ]
+        }
+      },
+      {
+        "challenge_card_node@node_in_challenge_card": {}
+      }
+    ]
+  },
+
+  "progress_info": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 34 ],
+    "use_new_layout": true,
+    "$progress_bar_texture": "#challenge_progress_bar_texture",
+    "$progress_string": "#challenge_progress_bar_text",
+    "$progress_numeric": "#challenge_progress_bar_clipping",
+    "$progress_bar_bindings": [
+      {
+        "binding_name": "$progress_bar_texture",
+        "binding_name_override": "#texture"
+      },
+      {
+        "binding_name": "$progress_string"
+      },
+      {
+        "binding_name": "$progress_numeric",
+        "binding_name_override": "#clip_ratio"
+      }
+    ],
+    "controls": [
+      // BBITODO: Reimplement this control once the service side code for the info button is in
+      //{
+      //  "progress_button_panel": {
+      //    "type": "stack_panel",
+      //    "size": [ "100%", "100%c" ],
+      //    "orientation": "horizontal",
+      //    "use_new_layout": true,
+      //    "bindings": [
+      //      {
+      //        "binding_name": "#challenge_progress_info_button_visible",
+      //        "binding_name_override": "#visible"
+      //      }
+      //    ],
+      //    "controls": [
+      //      {
+      //        "progress_button@genoa_seasons.progress_info_button": {}
+      //      },
+      //      {
+      //        "pad_0": {
+      //          "type": "panel",
+      //          "size": [ 8, 0 ]
+      //        }
+      //      },
+      //      {
+      //        "progress_bar@genoa_challenges.progress_bar": {
+      //          "offset": [ 0, 5 ],
+      //          "$progress_bar_bg_size": [ "fill", 25 ],
+      //          "$progress_bar_size": [ 192, 15 ]
+      //        }
+      //      }
+      //    ]
+      //  }
+      //},
+      {
+        "no_progress_button_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          // BBITODO: Reimplement this once the service side code for the info button is in
+          //"bindings": [
+          //  {
+          //    "binding_name": "#challenge_progress_info_button_visible",
+          //    "binding_name_override": "(not #visible)"
+          //  }
+          //],
+          "controls": [
+            {
+              "progress_bar@genoa_challenges.progress_bar": {
+                "$progress_bar_bg_size": [ "100%", 25 ],
+                "$progress_bar_size": [ 234, 15 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  // BBITODO: Reimplement this once the service side code for the info button is in
+  //"progress_info_button@genoa_common.button": {
+  //  "size": [ "100%y", 34 ],
+  //  "$background_style": "color",
+  //  "$background_color": "$genoa_button_color",
+  //  "$button_content": "genoa_common.button_content_image",
+  //  "$button_image_color": "$genoa_info_panel_icon_color",
+  //  "$button_image_size": [ "100%y", 21 ],
+  //  "$button_image_texture": "textures/ui/icons/system_icons/info",
+  //  "$glow_style": "white",
+  //  "$pressed_button_name": "button.info_mode",
+  //  "sound_name": "inmenu.child.small.button"
+  //},
+
+  "node_in_challenge_card": {
+    "type": "panel",
+    "size": [ 85, 85 ],
+    "controls": [
+      {
+        "seasons_fading_selection_info_center@genoa_seasons.fading_selection_info_center": {}
+      },
+      {
+        "seasons_fading_selection_info_right@genoa_seasons.fading_selection_info_right": {}
+      },
+      {
+        "node_shadow@genoa_common.white": {
+          "color": "$genoa_button_shadow_color",
+          "size": [ 82, 85 ],
+          "alpha": 0.5,
+          "offset": [ 5, 0 ]
+        }
+      },
+      {
+        "node_content@genoa_seasons.node_content_in_challenge_card": {
+          "layer": 2,
+          "size": [ 85, 85 ],
+          "offset": [ 0, -3 ],
+          "$show_reward_banner": true
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#show_node_in_challenge_card",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "node_content_in_challenge_card": {
+    "type": "input_panel",
+    "layer": 2,
+    "$quantity_binding_name|default": "#challenge_card_reward_item_quantity",
+    "$texture_binding_name|default": "#challenge_card_reward_item_texture",
+    "$frame_texture_binding_name|default": "#challenge_card_selected_item_frame_texture",
+    "$texture_file_system_binding_name|default": "#challenge_card_reward_item_texture_file_system",
+    "button_mappings": "$fading_name_tag_button",
+    "$show_reward_banner|default": false,
+    "controls": [
+      {
+        "reward_banner": {
+          "type": "image",
+          "texture": "textures/ui/9_slice/rewardBanner_9slice",
+          "size": [ 95, 30 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "layer": 25,
+          "visible": "$show_reward_banner",
+          "controls": [
+            {
+              "reward_label_shadow": {
+                "type": "label",
+                "text": "seasons.reward_label",
+                "font_type": "MinecraftTen",
+                "override_height": 17,
+                "offset": [ 0, -4 ],
+                "color": "$genoa_store_purchase_button_shadow_color",
+                "alpha": 0.1,
+                "controls": [
+                  {
+                    "reward_label": {
+                      "type": "label",
+                      "text": "seasons.reward_label",
+                      "font_type": "MinecraftTen",
+                      "override_height": 17,
+                      "offset": [ 0, -2 ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "node_background": {
+          "type": "image",
+          "texture": "$frame_texture_binding_name",
+          "layer": 13,
+          "bindings": [
+            {
+              "binding_name": "$frame_texture_binding_name",
+              "binding_name_override": "#texture"
+            }
+          ],
+          "controls": [
+            {
+              "sub_node_background": {
+                "type": "image",
+                "texture": "textures/ui/makestuff_slot_empty",
+                "size": [ 65, 65 ],
+                "controls": [
+                  {
+                    "item_image": {
+                      "type": "image",
+                      "size": [ "100% - 11px", "100% - 11px" ],
+                      "texture": "#challenge_card_reward_item_texture",
+                      "bindings": "$reward_texture_binding",
+                      "$reward_texture_binding|default": [
+                        {
+                          "binding_name": "$texture_binding_name",
+                          "binding_name_override": "#texture"
+                        },
+                        {
+                          "binding_name": "$texture_file_system_binding_name",
+                          "binding_name_override": "#texture_file_system"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "quantity": {
+                      "type": "label",
+                      "layer": 2,
+                      "offset": [ -5, 0 ],
+                      "anchor_to": "bottom_right",
+                      "anchor_from": "bottom_right",
+                      "shadow": true,
+                      "text": "$quantity_binding_name",
+                      "override_height": 22,
+                      "bindings": "$quantity",
+                      "$quantity|default": [
+                        {
+                          "binding_name": "$quantity_binding_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "frozen_overlay": {
+                      "type": "image",
+                      "texture": "textures/ui/seasons/seasons_task_lock",
+                      "size": [ 75, 75 ],
+                      "visible": false,
+                      "layer": 4,
+                      "bindings": [
+                        {
+                          "binding_name": "#selected_challenge_frozen",
+                          "binding_name_override": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "completed_state@genoa_common.white": {
+                      "color": "black",
+                      "alpha": 0.4,
+                      "layer": 5,
+                      "controls": [
+                        {
+                          "lock_image": {
+                            "type": "image",
+                            "size": [ 40, 40 ],
+                            "texture": "textures/ui/check_small_selected_pixelated_no_background"
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "#selected_challenge_completed",
+                          "binding_name_override": "#visible"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "$fading_name_tag_button|default": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.show_reward_title",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+
+  "graph_stack_panel": {
+    "type": "panel",
+    "size": [ "100%", "fill" ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "scrolling_challenges@common.scrolling_panel": {
+          "$show_background": false,
+          "$scrolling_content_anchor_from": "top_middle",
+          "$scrolling_content_anchor_to": "top_middle",
+          "$scrolling_content": "genoa_seasons.main_scroll_panel_content",
+          "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control"
+        }
+      }
+    ]
+  },
+
+  "main_scroll_panel_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 80 ]
+        }
+      },
+      {
+        "scroll_panel_graph@genoa_seasons.graph_container": {
+          "$graph_size": [ "100%c", "100%c" ],
+          "$grid_item_template": "genoa_seasons.graph_node",
+          "animation_name": "Seasons Graph Container",
+          "$connection_template": "genoa_seasons.white_connection",
+          "$graph_connections": "#graph_connections",
+          "$graph_dimension": "#seasons_graph",
+          "$graph_collection_name": "#seasons_graph"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 100 ]
+        }
+      }
+    ]
+  },
+
+  "graph_node": {
+    "type": "panel",
+    "size": [ 115, 115 ],
+    "animation_name": "Graph Node",
+    "controls": [
+      {
+        "top_decoration@genoa_seasons.node_decoration": {
+          "anchor_from": "top_middle",
+          "anchor_to": "bottom_middle",
+          "layer": 2, //needs to be above the above node
+          "offset": [ 0, 15 ],
+          "$visible_binding_name": "#has_top_decoration"
+        }
+      },
+      {
+        "graph_node_panel": {
+          "type": "panel",
+          "animation_name": "Graph Node Content", //needs own panel to prevent independent scaling of node shadow from rest of node
+          "controls": [
+            {
+              "graph_node_content@genoa_seasons.graph_node_content": {}
+            }
+          ]
+        }
+      },
+      {
+        "bottom_decoration@genoa_seasons.node_decoration": {
+          "anchor_from": "bottom_middle",
+          "anchor_to": "top_middle",
+          "offset": [ 0, -15 ],
+          "$visible_binding_name": "#has_bottom_decoration"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$graph_collection_name"
+      },
+      {
+        "binding_name": "$graph_connections",
+        "binding_type": "collection",
+        "binding_collection_name": "$graph_collection_name",
+        "binding_name_override": "#graph_connections",
+        "binding_condition": "once"
+      },
+      {
+        "binding_name": "#empty_graph_nodes",
+        "binding_condition": "once"
+      },
+      {
+        "binding_name": "#node_visible",
+        "binding_type": "collection",
+        "binding_collection_name": "$graph_collection_name",
+        "binding_name_override": "#visible",
+        "binding_condition": "once"
+      }
+    ]
+  },
+
+  "graph_node_content@genoa_common.white": {
+    "color": "$genoa_button_shadow_color",
+    "animation_name": "Graph Node Content Button",
+    "layer": 1, //required to be above lines
+    "size": [ 85, 85 ],
+    "alpha": 0.5,
+    "offset": [ 3, 3 ],
+    "controls": [
+      {
+        "graph_node_input_panel": {
+          "type": "input_panel",
+          "offset": [ -3, -3 ],
+          "layer": 2,
+          "animation_name": "Reward Icon",
+          "controls": [
+            {
+              "rewards_glow_purple": {
+                "type": "panel",
+                "animation_name": "Reward Glow",
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_name": "#reward_glow_purple",
+                    "binding_name_override": "#visible",
+                    "binding_collection_name": "$graph_collection_name",
+                    "binding_type": "collection"
+                  }
+                ],
+                "controls": [
+                  {
+                    "glowing_square": {
+                      "type": "image",
+                      "animation_name": "Square Glow",
+                      "size": [ "100% + 55px", "100% + 55px" ],
+                      "color": "$season_reward_glow_purple_color",
+                      "texture": "textures/ui/square_glow_256x256",
+                      "fill": true
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "rewards_glow_blue": {
+                "type": "panel",
+                "animation_name": "Reward Glow",
+                "layer": 2,
+                "bindings": [
+                  {
+                    "binding_name": "#reward_glow_blue",
+                    "binding_name_override": "#visible",
+                    "binding_collection_name": "$graph_collection_name",
+                    "binding_type": "collection"
+                  }
+                ],
+                "controls": [
+                  {
+                    "glowing_square": {
+                      "type": "image",
+                      "animation_name": "Square Glow",
+                      "size": [ "100% + 55px", "100% + 55px" ],
+                      "color": "$season_reward_glow_blue_color",
+                      "texture": "textures/ui/square_glow_256x256",
+                      "fill": true
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "reward_glow_plain": {
+                "type": "panel",
+                "animation_name": "Reward Glow",
+                "layer": 1,
+                "bindings": [
+                  {
+                    "binding_name": "#active_highlight",
+                    "binding_name_override": "#visible",
+                    "binding_collection_name": "$graph_collection_name",
+                    "binding_type": "collection"
+                  }
+                ],
+                "controls": [
+                  {
+                    "glowing_square": {
+                      "type": "image",
+                      "animation_name": "Square Glow",
+                      "size": [ "100% + 65px", "100% + 65px" ],
+                      "texture": "textures/ui/square_glow_256x256",
+                      "fill": true
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "season_frame": {
+                "type": "image",
+                "texture": "#frame_texture",
+                "size": [ 85, 85 ],
+                "layer": 3,
+                "bindings": [
+                  {
+                    "binding_name": "#frame_texture",
+                    "binding_name_override": "#texture",
+                    "binding_collection_name": "$graph_collection_name",
+                    "binding_type": "collection"
+                  }
+                ],
+                "controls": [
+                  {
+                    "node_complete_background": {
+                      "size": [ 65, 65 ],
+                      "type": "panel",
+                      "animation_name": "Collect Button Loop",
+                      "bindings": [
+                        {
+                          "binding_name": "#ready_to_collect",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "$graph_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "season_item_complete@genoa_seasons.season_item": {
+                            "$background_texture": "textures/ui/collect_button_gradient_square",
+                            "$genoa_item_button_name": "button.collect_challenge",
+                            "$bevel_texture": "textures/ui/tile_bevel_basic"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node_incomplete_background": {
+                      "type": "panel",
+                      "bindings": [
+                        {
+                          "binding_name": "(not #ready_to_collect)",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "$graph_collection_name",
+                          "binding_type": "collection"
+                        },
+                        {
+                          "binding_name": "#node_layer",
+                          "binding_name_override": "#layer",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$graph_collection_name"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "incomplete_node@genoa_seasons.season_item": {}
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fading_selection_info@genoa_common.fading_selection_info": {
+                      "$layer|default": 10,
+                      "$anchoring_to": "top_middle",
+                      "$anchoring_from": "top_middle",
+                      "$selection_info_text_offset": [ 0, -20 ],
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#season_reward_nameplate_visible",
+                          "binding_name_override": "#visible"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "challenge_node_progress_bar@genoa_challenges.progress_bar": {
+                      "$progress_numeric": "#challenge_progress",
+                      "$progress_string": "#challenge_progress_text",
+                      "$progress_bar_bg_size": [ 65, 15 ],
+                      "$progress_bar_size": [ 55, 5 ],
+                      "offset": [ 0, 10 ],
+                      "layer": 5, //above the rendered item, but below the frozen pane
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "texture": "textures/ui/gradients/progress_bar_bg_seasons",
+                      "$bevel_texture": "textures/ui/slot_bevel_simple",
+                      "$progress_bar_texture": "#progress_fill_texture",
+                      "$progress_bar_bindings": [
+                        {
+                          "binding_name": "$progress_numeric",
+                          "binding_name_override": "#clip_ratio"
+                        },
+                        {
+                          "binding_name": "$progress_bar_texture",
+                          "binding_name_override": "#texture"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "#show_challenges_progress",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "$graph_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "frozen_state": {
+                      "type": "image",
+                      "texture": "textures/ui/seasons/seasons_task_lock",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "size": [ 75, 75 ],
+                      "offset": [ 0, 5 ],
+                      "layer": 6,
+                      "animation_name": "Frozen Pane",
+                      "bindings": [
+                        {
+                          "binding_name": "#frozen",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "$graph_collection_name",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "lock_state@genoa_seasons.lock_icon": {
+                      "layer": 7, //needs to be above selected bevel
+                      "animation_name": "Locked Icon"
+                    }
+                  },
+                  {
+                    "unlock_state@genoa_seasons.lock_icon": {
+                      "layer": 4, //required to be above unlock particles
+                      "animation_name": "Unlocked Icon",
+                      "$lock_texture": "textures/ui/icons/item_icons/unlocked",
+                      "$visible_binding_name": "#animate_unlock"
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.select_challenge",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details"
+            },
+            {
+              "binding_name": "#node_layer",
+              "binding_name_override": "#layer",
+              "binding_type": "collection",
+              "binding_collection_name": "$graph_collection_name"
+            }
+          ]
+        }
+      },
+      {
+        "graph_node_oobe_input_panel": {
+          "type": "input_panel",
+          "offset": [ -3, -3 ],
+          "layer": 200,
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.select_challenge",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_type": "collection_details"
+            },
+            {
+              "binding_name": "#oobe_node_visible",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$graph_collection_name"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details"
+      },
+      {
+        "binding_name": "#node_layer",
+        "binding_name_override": "#layer",
+        "binding_type": "collection",
+        "binding_collection_name": "$graph_collection_name"
+      }
+    ]
+  },
+
+  "season_item@genoa_inventory_common.genoa_item": {
+    "animation_name": "Season Item",
+    "$genoa_item_size": [ 65, 65 ],
+    "$stack_count_overlay_enabled": true,
+    "$durability_bar_overlay_enabled": false,
+    "$genoa_item_button_name|default": "button.select_challenge",
+    "$item_renderer_control": "genoa_seasons.node_element",
+    "$item_collection_name": "$graph_collection_name",
+    "$background_texture|default": "textures/ui/makestuff_slot_empty",
+    "$bevel_texture|default": "textures/ui/slot_bevel_simple",
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_name": "#is_selected",
+        "binding_name_override": "#selected",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "white_connection@genoa_common.white": {
+    "bindings": [
+      {
+        "binding_name": "#line_color",
+        "binding_name_override": "#color",
+        "binding_collection_name": "$graph_collection_name"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "controls": [
+      {
+        "shadow_line": {
+          "type": "image",
+          "texture": "textures/ui/white",
+          "fill": true,
+          "offset": [ 3, 3 ],
+          "layer": -1,
+          "color": "$genoa_settings_gamerpic_shadow_color",
+          "alpha": 0.5
+        }
+      }
+    ]
+  },
+
+  "graph_container": {
+    "type": "graph",
+    "$graph_size|default": [ "100%", "100%" ],
+    "size": "$graph_size",
+    "collection_name": "$graph_collection_name",
+    "grid_item_template": "$grid_item_template",
+    "connection_template": "$connection_template",
+    "connection_size": 5.0,
+    "grid_dimension_binding": "$graph_dimension",
+    "bindings": [
+      {
+        "binding_name": "$graph_dimension"
+      }
+    ]
+  },
+
+  "node_element": {
+    "type": "panel",
+    "controls": [
+      {
+        "item_image": {
+          "type": "image",
+          "layer": 1,
+          "texture": "#item_texture",
+          "size": [ 65, 65 ],
+          "bindings": [
+            {
+              "binding_name": "#item_texture",
+              "binding_name_override": "#texture",
+              "binding_collection_name": "$graph_collection_name",
+              "binding_type": "collection"
+            },
+            {
+              "binding_name": "#item_texture_file_system",
+              "binding_name_override": "#texture_file_system",
+              "binding_collection_name": "$graph_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "rewards_sparkles": {
+          "type": "panel",
+          "animation_name": "Reward Sparkles",
+          "bindings": [
+            {
+              "binding_name": "#reward_sparkles_selected",
+              "binding_name_override": "#selected",
+              "binding_collection_name": "$graph_collection_name",
+              "binding_type": "collection",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "quantity": {
+          "type": "label",
+          "layer": 3,
+          "animation_name": "Stack Count",
+          "offset": [ -40, -30 ],
+          "anchor_to": "bottom_right",
+          "anchor_from": "bottom_right",
+          "shadow": true,
+          "text": "#rewards_quantity_text",
+          "override_height": 22,
+          "bindings": [
+            {
+              "binding_name": "#rewards_quantity_text",
+              "binding_type": "collection",
+              "binding_collection_name": "$graph_collection_name"
+            }
+          ]
+        }
+      },
+      {
+        "completed_state@genoa_common.white": {
+          "color": "black",
+          "alpha": 0.4,
+          "layer": 5,
+          "controls": [
+            {
+              "lock_image": {
+                "type": "image",
+                "size": [ 40, 40 ],
+                "texture": "textures/ui/check_small_selected_pixelated_no_background"
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#completed",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$graph_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "exclusive_rewards_panel": {
+    "type": "panel",
+    "animation_name": "Exclusive Animations",
+    "size": [ 236, 118 ],
+    "controls": [
+      {
+        "exclusive_rewards": {
+          "layer": 31,
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%c", "100%c" ],
+          "collection_name": "#exclusive_rewards_grid",
+          "use_new_layout": true,
+          "factory": {
+            "name": "each_reward",
+            "control_name": "genoa_seasons.exclusive_rewards_node"
+          },
+          "bindings": [
+            {
+              "binding_name": "#exclusive_rewards_grid_size",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "season_info_screen_popup": {
+    "type": "input_panel",
+    "visible": false,
+    "bindings": [
+      {
+        "binding_name": "#show_event_description_popup",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "scrim": {
+          "type": "input_panel",
+          "cancel_all_input": true,
+          "controls": [
+            {
+              "scrim_background@genoa_common.white": {
+                "color": "$seasons_scrim_color",
+                "alpha": 0.7
+              }
+            }
+          ]
+        }
+      },
+      {
+        "info_screen_window": {
+          "type": "panel",
+          "size": [ "100%-40px", "60%" ],
+          "offset": [ 0, 50 ],
+          "controls": [
+            {
+              "top_decorations": {
+                "type": "panel",
+                "anchor_from": "top_middle",
+                "anchor_to": "bottom_middle",
+                "size": [ "100%", 30 ],
+                "controls": [
+                  {
+                    "top_left_decoration": {
+                      "type": "image",
+                      "size": [ 84, "100%" ],
+                      "anchor_from": "bottom_left",
+                      "anchor_to": "bottom_left",
+                      "texture": "#season_info_header_decoration_left",
+                      "bindings": [
+                        {
+                          "binding_name": "#season_info_header_decoration_left",
+                          "binding_name_override": "#texture"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "top_right_decoration": {
+                      "type": "image",
+                      "size": [ 84, "100%" ],
+                      "anchor_from": "bottom_right",
+                      "anchor_to": "bottom_right",
+                      "texture": "#season_info_header_decoration_right",
+                      "bindings": [
+                        {
+                          "binding_name": "#season_info_header_decoration_right",
+                          "binding_name_override": "#texture"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "panel_background@genoa_common.white": {
+                "layer": 1,
+                "color": "#C4C4C4"
+              }
+            },
+            {
+              "scrolling_panel@common.scrolling_panel": {
+                "size": [ "100%-8px", "100%-8px" ],
+                "$show_background": false,
+                "$scrolling_content": "genoa_seasons.season_info_popup_content",
+                "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+                "$max_overshoot_factor": 0.0
+              }
+            },
+            {
+              "bevel": {
+                "type": "image",
+                "texture": "textures/ui/tile_bevel_bright",
+                "layer": 40
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  // BBITODO: Reimplement this once the service-side code for the info button is in
+  //"progress_popup": {
+  //  "type": "input_panel",
+  //  "visible": false,
+  //  "bindings": [
+  //    {
+  //      "binding_name": "#show_challenge_progress_popup",
+  //      "binding_name_override": "#visible"
+  //    }
+  //  ],
+  //  "controls": [
+  //    {
+  //      "scrim": {
+  //        "type": "input_panel",
+  //        "cancel_all_input": true,
+  //        "controls": [
+  //          {
+  //            "scrim_background@genoa_common.white": {
+  //              "color": "$seasons_scrim_color",
+  //              "alpha": 0.7
+  //            }
+  //          }
+  //        ]
+  //      }
+  //    },
+  //    {
+  //      "info_screen_window": {
+  //        "type": "panel",
+  //        "size": [ "100%-40px", "60%" ],
+  //        "offset": [ 0, 50 ],
+  //        "controls": [
+  //          {
+  //            "panel_background@genoa_common.white": {
+  //              "layer": 1,
+  //              "color": "$genoa_dark_modal_background"
+  //            }
+  //          },
+  //          {
+  //            "scrolling_panel@common.scrolling_panel": {
+  //              "size": [ "100%-8px", "100%-8px" ],
+  //              "$show_background": false,
+  //              "$scrolling_content": "genoa_seasons.challenge_progress_popup_content",
+  //              "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control"
+  //            }
+  //          },
+  //          {
+  //            "bevel": {
+  //              "type": "image",
+  //              "texture": "textures/ui/tile_bevel_bright",
+  //              "layer": 40
+  //            }
+  //          }
+  //        ]
+  //      }
+  //    }
+  //  ]
+  //},
+
+  //"challenge_progress_popup_content": {
+  //  "type": "panel",
+  //  "size": [ "100%", "100%c" ],
+  //  "anchor_from": "top_middle",
+  //  "anchor_to": "top_middle",
+  //  "controls": [
+  //    {
+  //      "stack_content": {
+  //        "type": "stack_panel",
+  //        "use_new_layout": true,
+  //        "size": [ "100%", "100%c" ],
+  //        "controls": [
+  //          {
+  //            "close_button_panel": {
+  //              "type": "panel",
+  //              "size": [ "100%", 34 ],
+  //              "offset": [ 0, 13 ],
+  //              "controls": [
+  //                {
+  //                  "challenge_progress_type": {
+  //                    "type": "label",
+  //                    "anchor_from": "top_middle",
+  //                    "anchor_to": "top_middle",
+  //                    "text": "#challenge_progress_type_label",
+  //                    "override_height": 18,
+  //                    "bindings": [
+  //                      {
+  //                        "binding_name": "#challenge_progress_type_label"
+  //                      }
+  //                    ]
+  //                  }
+  //                },
+  //                {
+  //                  "cancel_button": {
+  //                    "type": "input_panel",
+  //                    "size": [ 16, 16 ],
+  //                    "offset": [ -16, 3 ],
+  //                    "anchor_from": "top_right",
+  //                    "anchor_to": "top_right",
+  //                    "button_mappings": [
+  //                      {
+  //                        "from_button_id": "button.menu_select",
+  //                        "to_button_id": "button.close_progress_info",
+  //                        "mapping_type": "pressed"
+  //                      },
+  //                      {
+  //                        "from_button_id": "button.menu_cancel",
+  //                        "to_button_id": "button.close_progress_info",
+  //                        "mapping_type": "global"
+  //                      }
+  //                    ],
+  //                    "sounds": [],
+  //                    "sound_name": "submenu.close.simple.button",
+  //                    "controls": [
+  //                      {
+  //                        "icon@genoa_common.close_icon": {
+  //                          "texture": "textures/ui/icons/system_icons/close_secondary"
+  //                        }
+  //                      }
+  //                    ]
+  //                  }
+  //                }
+  //              ]
+  //            }
+  //          },
+  //          {
+  //            "collected_quantity_label": {
+  //              "type": "label",
+  //              "override_height": 15,
+  //              "color": "$genoa_info_panel_owned_count_color",
+  //              "text": "#challenge_progress_collected_text",
+  //              "bindings": [
+  //                {
+  //                  "binding_name": "#challenge_progress_collected_text"
+  //                }
+  //              ]
+  //            }
+  //          }
+  //          {
+  //            "items_grid": {
+  //              "type": "grid",
+  //              "collection_name": "#collected_items",
+  //              "grid_item_template": "genoa_seasons.node_element",
+  //              "grid_dimension_binding": "#challenge_progress_collected_items",
+  //              "bindings": [
+  //                {
+  //                  "binding_name": "#challenge_progress_collected_items"
+  //                }
+  //              ]
+  //            }
+  //          }
+  //        ]
+  //      }
+  //    }
+  //  ]
+  //},
+
+  "season_info_popup_content": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "stack_content": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "header@genoa_common.white": {
+                "type": "image",
+                "size": [ "100%", 150 ],
+                "texture": "#season_header_background_texture",
+                "bindings": [
+                  {
+                    "binding_name": "#season_header_background_texture",
+                    "binding_name_override": "#texture"
+                  }
+                ],
+                "controls": [
+                  {
+                    "close_button@genoa_common.close_button": {
+                      "size": [ 34, 34 ],
+                      "anchor_from": "top_right",
+                      "anchor_to": "top_right",
+                      "offset": [ -15, 15 ],
+                      "$button_content": "genoa_common.close_button",
+                      "$pressed_button_name": "button.close_event_info",
+                      "sound_name": "submenu.close.button",
+                      "layer": 5
+                    }
+                  },
+                  {
+                    "whats_this_header": {
+                      "type": "label",
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "offset": [ 0, 15 ],
+                      "shadow": true,
+                      "shadow_color": "$genoa_text_title_light_shadow_color",
+                      "size": [ "100%", "default" ],
+                      "font_type": "MinecraftTen",
+                      "override_height": 25,
+                      "text_alignment": "center",
+                      "text": "seasons.info_popup.whats_this"
+                    }
+                  },
+                  {
+                    "exclusive_rewards_banner_container": {
+                      "type": "image",
+                      "texture": "textures/ui/complete_banner_large",
+                      "size": [ "100%-30px", 60 ],
+                      "offset": [ 0, -5 ],
+                      "anchor_to": "center",
+                      "anchor_from": "bottom_middle",
+                      "controls": [
+                        {
+                          "exclusive_rewards_label": {
+                            "type": "label",
+                            "shadow": true,
+                            "shadow_color": "$genoa_text_title_light_shadow_color",
+                            "size": [ "100%", "default" ],
+                            "font_type": "MinecraftTen",
+                            "override_height": 24,
+                            "text_alignment": "center",
+                            "text": "seasons.info_popup.rewards_banner"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 40 ]
+              }
+            },
+            {
+              "rewards_panel@genoa_seasons.exclusive_rewards_panel": {
+                "size": [ 236, 95 ],
+                "$exclusive_reward_node_outer_size": [ 120, 103 ],
+                "$exclusive_reward_node_inner_size": [ 75, 75 ],
+                "$blue_glow_animation_name": "Exclusive Glow Blue Small",
+                "$purple_glow_animation_name": "Exclusive Glow Purple Small"
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ "100%", 5 ]
+              }
+            },
+            {
+              "body": {
+                "type": "label",
+                "size": [ "100%-50px", "default" ],
+                "font_type": "smooth",
+                "override_height": 20,
+                "color": "$genoa_store_pdp_description_text_color",
+                "text": "#event_description_text",
+                "text_alignment": "center",
+                "bindings": [
+                  {
+                    "binding_name": "#event_description_text"
+                  }
+                ]
+              }
+            },
+            {
+              "pad_2": {
+                "type": "panel",
+                "size": [ "100%", 25 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "exclusive_rewards_node": {
+    "type": "panel",
+    "$exclusive_reward_node_outer_size|default": [ 126, 118 ],
+    "size": "$exclusive_reward_node_outer_size",
+    "controls": [
+      {
+        "exclusive_rewards_info_center@genoa_seasons.fading_selection_info_center": {
+          "offset": [ 0, 10 ],
+          "$season_fading_panel_visible_bindings": [
+            {
+              "binding_name": "#exclusive_rewards_name_tag",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "#exclusive_rewards_grid",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "exclusive_rewards_node_stack": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "controls": [
+            {
+              "exclusive_rewards_content": {
+                "type": "panel",
+                "$exclusive_reward_node_inner_size|default": [ 103, 103 ],
+                "size": "$exclusive_reward_node_inner_size",
+                "controls": [
+                  {
+                    "active_node_shadow@genoa_common.white": {
+                      "color": "$genoa_button_shadow_color",
+                      "alpha": 0.5,
+                      "offset": [ 5, 5 ]
+                    }
+                  },
+                  {
+                    "rewards_glow_purple": {
+                      "type": "panel",
+                      "size": [ 10, 10 ],
+                      "$purple_glow_animation_name|default": "Exclusive Glow Purple",
+                      "animation_name": "$purple_glow_animation_name",
+                      "bindings": [
+                        {
+                          "binding_name": "#exclusive_reward_glow_purple",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "#exclusive_rewards_grid",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "rewards_glow_blue": {
+                      "type": "panel",
+                      "$blue_glow_animation_name|default": "Exclusive Glow Blue",
+                      "animation_name": "$blue_glow_animation_name",
+                      "bindings": [
+                        {
+                          "binding_name": "#exclusive_reward_glow_blue",
+                          "binding_name_override": "#visible",
+                          "binding_collection_name": "#exclusive_rewards_grid",
+                          "binding_type": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "frame": {
+                      "type": "image",
+                      "layer": 2,
+                      "bindings": [
+                        {
+                          "binding_name": "#exclusive_rewards_frame",
+                          "binding_type": "collection",
+                          "binding_collection_name": "#exclusive_rewards_grid",
+                          "binding_name_override": "#texture"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "node_content@genoa_seasons.node_content_in_challenge_card": {
+                      "size": [ "100% - 24px", "100% - 24px" ],
+                      "layer": 3,
+                      "$quantity_binding_name": "#exclusive_reward_item_quantity",
+                      "$texture_binding_name": "#exclusive_reward_item_texture",
+                      "$texture_file_system_binding_name": "#exclusive_reward_item_texture_file_system",
+                      "$fading_name_tag_button": [],
+                      "$reward_texture_binding": [
+                        {
+                          "binding_name": "$texture_binding_name",
+                          "binding_name_override": "#texture",
+                          "binding_collection_name": "#exclusive_rewards_grid",
+                          "binding_type": "collection"
+                        },
+                        {
+                          "binding_name": "$texture_file_system_binding_name",
+                          "binding_name_override": "#texture_file_system",
+                          "binding_collection_name": "#exclusive_rewards_grid",
+                          "binding_type": "collection"
+                        }
+                      ],
+                      "$quantity": [
+                        {
+                          "binding_name": "$quantity_binding_name",
+                          "binding_collection_name": "#exclusive_rewards_grid",
+                          "binding_type": "collection"
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "rewards_sparkles": {
+                      "type": "panel",
+                      "animation_name": "Reward Sparkles",
+                      "layer": 7,
+                      "bindings": [
+                        {
+                          "binding_name": "#exclusive_reward_sparkles_selected",
+                          "binding_name_override": "#selected",
+                          "binding_collection_name": "#exclusive_rewards_grid",
+                          "binding_type": "collection",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "fading_selection_info_center@genoa_common.fading_selection_info": {
+    "$anchoring_to": "bottom_middle",
+    "$anchoring_from": "top_middle",
+    "$selection_info_text_offset": [ 0, -5 ],
+    "$season_fading_panel_visible_bindings|default": [],
+    "bindings": "$season_fading_panel_visible_bindings"
+  },
+
+  "fading_selection_info_right@genoa_common.fading_selection_info": {
+    "$anchoring_to": "bottom_right",
+    "$anchoring_from": "top_right",
+    "$selection_info_text_offset": [ 15, -5 ],
+    "$season_fading_panel_visible_bindings|default": []
+  },
+
+  "node_decoration": {
+    "type": "image",
+    "size": [ 84, 30 ],
+    "$visible_binding_name|default": "",
+    "bindings": [
+      {
+        "binding_name": "$visible_binding_name",
+        "binding_name_override": "#visible",
+        "binding_collection_name": "$graph_collection_name",
+        "binding_type": "collection"
+      },
+      {
+        "binding_name": "#decoration_texture",
+        "binding_name_override": "#texture",
+        "binding_collection_name": "$graph_collection_name",
+        "binding_type": "collection"
+      }
+    ]
+  },
+
+  "lock_icon": {
+    "type": "image",
+    "size": [ 31, 31 ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 0, -11 ],
+    "layer": 5,
+    "texture": "$lock_texture",
+    "$lock_texture|default": "textures/ui/icons/item_icons/locked",
+    "$visible_binding_name|default": "#locked",
+    "bindings": [
+      {
+        "binding_name": "$visible_binding_name",
+        "binding_name_override": "#visible",
+        "binding_collection_name": "$graph_collection_name",
+        "binding_type": "collection"
+      }
+    ]
+  },
+
+  "header": {
+    "type": "image",
+    "size": [ "100%", 180 ],
+    "texture": "#season_header_background_texture",
+    "animation_name": "Seasons Header",
+    "fill": true,
+    "controls": [
+      {
+        "header_content@genoa_seasons.header_content": {}
+      },
+      {
+        "complete_banner_panel@genoa_seasons.complete_banner": {}
+      },
+      {
+        "challenge_card_panel@genoa_seasons.challenge_card": {}
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#season_header_background_texture",
+        "binding_name_override": "#texture"
+      },
+      {
+        "binding_name": "#season_active",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "header_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "size": [ "100%", 173 ],
+    "controls": [
+      {
+        "header_content@genoa_seasons.header_content_stack": {}
+      },
+      {
+        "black_bar@genoa_common.white": {
+          "color": "$genoa_button_shadow_color",
+          "alpha": 0.33,
+          "size": [ "100%", 5 ],
+          "screen_fill_left": true,
+          "screen_fill_right": true,
+          "bindings": [
+            {
+              "binding_name": "#waiting_for_challenge_request",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "header_content_stack": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 39 ]
+        }
+      },
+      {
+        "header_info_title@genoa_seasons.header_info_title_stack": {}
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 10 ]
+        }
+      },
+      {
+        "time_panel@genoa_seasons.time_panel": {}
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 0, 60 ]
+        }
+      }
+    ]
+  },
+
+  "header_info_title_stack": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "orientation": "horizontal",
+    "size": [ "100%", "100%cm" ],
+    "controls": [
+      {
+        "header_info_panel": {
+          "type": "panel",
+          "size": [ 327, "100%cm" ],
+          "controls": [
+            {
+              "header_info_content_stack@genoa_seasons.header_info_content_stack": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "header_info_content_stack": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "orientation": "horizontal",
+    "size": [ "100%", "100%cm" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 23, 0 ]
+        }
+      },
+      {
+        "info_button": {
+          "type": "input_panel",
+          "sounds": [],
+          "sound_name": "inmenu.child.small.button",
+          "size": [ 20, 20 ],
+          "controls": [
+            {
+              "info_icon": {
+                "type": "image",
+                "texture": "textures/ui/info_icon"
+              }
+            }
+          ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.event_info",
+              "mapping_type": "pressed"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 5, 0 ]
+        }
+      },
+      {
+        "event_label": {
+          "type": "label",
+          "size": [ 279, "default" ],
+          "font_type": "MinecraftTen",
+          "override_height": 25,
+          "text_alignment": "center",
+          "text": "#event_name",
+          "bindings": [
+            {
+              "binding_name": "#event_name"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#waiting_for_challenge_request",
+        "binding_name_override": "(not #visible)"
+      }
+    ]
+  },
+
+  "coming_soon_screen": {
+    "type": "panel",
+    "controls": [
+      {
+        "coming_soon_container": {
+          "type": "panel",
+          "controls": [
+            {
+              "coming_soon_background": {
+                "type": "image",
+                "fill": true,
+                "texture": "textures/ui/seasons/seasons_coming_soon_bg"
+              }
+            },
+            {
+              "coming_soon_header@genoa_seasons.coming_soon_header": {}
+            },
+            {
+              "coming_soon_text_container@genoa_seasons.coming_soon_text_container": {}
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#season_active",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#waiting_for_challenge_request",
+        "binding_name_override": "(not #visible)"
+      }
+    ]
+  },
+
+  "coming_soon_header@genoa_common.white": {
+    "color": "$genoa_button_shadow_color",
+    "size": [ "100%c", "100%c" ],
+    "offset": [ 3, "12%" ],
+    "layer": 1, //required to be above text container
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "alpha": 0.5,
+    "controls": [
+      {
+        "coming_soon_header": {
+          "type": "image",
+          "texture": "textures/ui/9_slice/status_card_9slice",
+          "offset": [ -3, -3 ],
+          "size": [ "100%c + 55px", 35 ],
+          "controls": [
+            {
+              "coming_soon_header_label": {
+                "type": "label",
+                "size": [ "default", 22 ],
+                "offset": [ 0, -3 ],
+                "font_type": "MinecraftTen",
+                "shadow": true,
+                "shadow_color": "$season_coming_soon_shadow_color",
+                "override_height": 25,
+                "text_alignment": "center",
+                "text": "seasons.coming_soon"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "coming_soon_text_container": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%c", "100%c" ],
+    "controls": [
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 100 ]
+        }
+      },
+      {
+        "text_panel": {
+          "type": "image",
+          "texture": "textures/ui/seasons/seasons_coming_soon_panel",
+          "size": [ 292, 584 ],
+          "controls": [
+            {
+              "description_panel": {
+                "type": "label",
+                "size": [ 180, 303 ],
+                "offset": [ 0, -40 ],
+                "controls": [
+                  {
+                    "description_label": {
+                      "type": "label",
+                      "size": [ 170, "default" ],
+                      "font_type": "smooth",
+                      "override_height": 19,
+                      "text_alignment": "center",
+                      "text": "seasons.coming_soon_description"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "exit_button_panel": {
+    "type": "panel",
+    "size": [ 34, 34 ],
+    "offset": [ -14, 38 ],
+    "anchor_from": "top_right",
+    "anchor_to": "top_right",
+    "controls": [
+      {
+        "exit_button_panel": {
+          "type": "panel",
+          "offset": "@common.header_button_spring",
+          "controls": [
+            {
+              "exit_button@genoa_common.close_button": {
+                "bindings": [
+                  {
+                    "binding_name": "#header_exit_button_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "merl_02_prompt@ftue_common.contextual_base": {
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 0, 153 ],
+    "size": [ 347, 120 ],
+    "$glyph_control": "ftue_common.merl_02",
+    "$glyph_offset": [ -10, 302 ],
+    "$glyph_size": [ 231, 320 ],
+    "$target_text_offset": [ -105, 5 ],
+    "$text_override_height": 18,
+    "$label_size": [ 307, "default" ],
+    "$text_anchor_to": "middle_top",
+    "$text_anchor_from": "middle_top",
+    "$bind_text": false
+  },
+
+  "merl_04_prompt@ftue_common.contextual_base": {
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 0, 153 ],
+    "size": [ 347, 120 ],
+    "$glyph_control": "ftue_common.merl_04",
+    "$glyph_offset": [ 90, 282 ],
+    "$glyph_size": [ 282, 297 ],
+    "$target_text_offset": [ -230, 5 ],
+    "$text_override_height": 18,
+    "$label_size": [ 307, "default" ],
+    "$text_anchor_to": "middle_top",
+    "$text_anchor_from": "middle_top",
+    "$bind_text": false
+  },
+
+  "merl_01_prompt@ftue_common.contextual_base": {
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 0, 153 ],
+    "size": [ 347, 120 ],
+    "$glyph_control": "ftue_common.merl_01",
+    "$glyph_offset": [ -10, 305 ],
+    "$glyph_size": [ 231, 320 ],
+    "$target_text_offset": [ -100, 5 ],
+    "$text_override_height": 18,
+    "$label_size": [ 307, "default" ],
+    "$text_anchor_to": "middle_top",
+    "$text_anchor_from": "middle_top",
+    "$bind_text": false
+  },
+
+  "merl_05_prompt@ftue_common.contextual_base": {
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "size": [ 347, 120 ],
+    "$glyph_control": "ftue_common.merl_05",
+    "$glyph_offset": [ 90, 328 ],
+    "$glyph_size": [ 300, 350 ],
+    "$target_text_offset": [ -238, 5 ],
+    "$text_override_height": 18,
+    "$label_size": [ 307, "default" ],
+    "$text_anchor_to": "middle_top",
+    "$text_anchor_from": "middle_top",
+    "$bind_text": false
+  },
+
+  "completed_tutorial_banner": {
+    "type": "panel",
+    "animation_name": "Genoa FTUE Seasons Complete Banner",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "completed_banner": {
+          "type": "image",
+          "size": [ 230, 51 ],
+          "texture": "textures/ui/rewards_banner_completed",
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "controls": [
+            {
+              "completed_label": {
+                "type": "label",
+                "offset": [ 0, -4 ],
+                "text_alignment": "center",
+                "override_height": 25,
+                "font_type": "MinecraftTen",
+                "text": "challenges.completed"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "ftue_popup": {
+    "type": "input_panel",
+    "$contextual_visible|default": "#seasons_popup_one_visible",
+    "$contextual_text|default": "#seasons_popup_text",
+    "$contextual_background_texture|default": "textures/ui/ftue/ftue_dialog_box",
+    "$contextual_background_texture_bindings": [
+      {
+        "binding_name": "#dialogue_background_texture",
+        "binding_name_override": "#texture"
+      }
+    ],
+    "$text_bindings": [
+      {
+        "binding_name": "#seasons_popup_text"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "$contextual_visible",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.popup_progress",
+        "mapping_type": "pressed"
+      },
+      {
+        "from_button_id": "button.exit",
+        "to_button_id": "button.popup_progress",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+
+  "popup_one@genoa_seasons.ftue_popup": {
+    "$contextual_visible": "#seasons_popup_one_visible",
+    "controls": [
+      {
+        "prompt@genoa_seasons.merl_02_prompt": {}
+      }
+    ]
+  },
+
+  "popup_two@genoa_seasons.ftue_popup": {
+    "$contextual_visible": "#seasons_popup_two_visible",
+    "controls": [
+      {
+        "prompt@genoa_seasons.merl_04_prompt": {}
+      }
+    ]
+  },
+
+  "popup_three@genoa_seasons.ftue_popup": {
+    "$contextual_visible": "#seasons_popup_three_visible",
+    "controls": [
+      {
+        "prompt@genoa_seasons.merl_01_prompt": {}
+      }
+    ]
+  },
+
+  "popup_four@genoa_seasons.ftue_popup": {
+    "$contextual_visible": "#seasons_popup_four_visible",
+    "controls": [
+      {
+        "stack_content": {
+          "type": "stack_panel",
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "use_new_layout": true,
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 20 ]
+              }
+            },
+            {
+              "earth_icon": {
+                "type": "image",
+                "texture": "textures/ui/header_icons/earth",
+                "size": [ 100, 100 ]
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ "100%", 20 ]
+              }
+            },
+            {
+              "title": {
+                "type": "label",
+                "text": "#event_name",
+                "bindings": [
+                  {
+                    "binding_name": "#event_name"
+                  }
+                ],
+                "override_height": 37,
+                "font_type": "MinecraftTen"
+              }
+            },
+            {
+              "pad_2": {
+                "type": "panel",
+                "size": [ "100%", 10 ]
+              }
+            },
+            {
+              "tutorial_complete_banner@genoa_seasons.completed_tutorial_banner": {}
+            },
+            {
+              "pad_3": {
+                "type": "panel",
+                "size": [ "100%", 20 ]
+              }
+            },
+            {
+              "prompt@genoa_seasons.merl_05_prompt": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "popup_five@genoa_seasons.ftue_popup": {
+    "$contextual_visible": "#seasons_popup_background_visible",
+    "controls": [
+      {
+        "prompt@genoa_seasons.merl_01_prompt": {},
+        "prompt@genoa_seasons.merl_04_prompt": {}
+      }
+    ]
+  },
+
+  "background_scrim@ftue_common.scrim_base": {
+    "$contextual_visible": "#seasons_scrim_visible",
+    "cancel_all_input": true,
+    "$button_mappings": [],
+    "$scrim_controls": []
+  }
+}

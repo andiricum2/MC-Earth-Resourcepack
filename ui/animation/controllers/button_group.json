@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "controller": "group",
+
+  "states": {
+    "Deselected": {
+      "default": true,
+      "animation": "Deselected",
+      "properties": [ "!selected" ],
+
+      "transitions": [
+        {
+          "from": "Selected",
+          "animation": "Deselect"
+        },
+        {
+          "from": "Hover",
+          "animation": "Hover_Out"
+        }
+      ]
+    },
+
+    "Selected": {
+      "animation": "Selected",
+      "properties": [ "selected" ],
+      "transitions": [
+        {
+          "from": "Deselected",
+          "animation": "Select"
+        },
+        {
+          "from": "Hover",
+          "animation": "Hover_Select"
+        }
+      ]
+    },
+
+    "Hover": {
+      "animation": "Hover",
+      "properties": [
+        "!selected",
+        "hover"
+      ],
+    
+      "onStateEnter": {
+        "forceProperty": {
+          "scope": "sibling",
+          "selected": false
+        }
+      },
+    
+      "onStateExit": {
+        "removeForcedProperty": {
+          "scope": "sibling",
+          "selected": true
+        }
+      },
+    
+      "transitions": [
+        {
+          "from": "Deselected",
+          "animation": "Hover_In"
+        },
+        {
+          "from": "Hover",
+          "animation": "Hover_Select"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,630 @@
+{
+  "namespace": "genoa_inventory_common",
+
+  "genoa_item_renderer": {
+    "type": "custom",
+    "renderer": "genoa_item_renderer",
+    "$binding_condition|default": "visible",
+    "$drop_shadow_color|default": "#7B0B1432",
+    "$drop_shadow_offset|default": [ 0.0, 3.0 ],
+    "$drop_shadow_on|default": true,
+    "drop_shadow_color": "$drop_shadow_color",
+    "drop_shadow_offset": "$drop_shadow_offset",
+    "drop_shadow_on": "$drop_shadow_on",
+    "$genoa_item_renderer_bindings|default": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_name": "#item_id_aux",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name",
+        "binding_condition": "$binding_condition"
+      },
+      {
+        "binding_name": "#item_id_guid",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name",
+        "binding_condition": "$binding_condition"
+      },
+      {
+        "binding_name": "#item_active",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name",
+        "binding_condition": "$binding_condition"
+      }
+    ],
+    "bindings": "$genoa_item_renderer_bindings"
+  },
+  /*
+  NOTE:
+    Requires:
+      '$item_collection_name'
+
+    Optional Variables:
+      '$genoa_item_size'
+      '$genoa_item_button_name'
+      '$item_renderer'
+      '$item_renderer_size'
+      '$stack_count_overlay_enabled'
+      '$durability_bar_overlay_enabled'
+
+    Events:
+      'button.select_slot' 
+
+    Binds:
+      Binds will be a collection bind under '$item_collection_name'
+
+      '#item_rarity_bevel'    Bevel texture
+      '#item_locked'          Locked state for the item
+      '#item_notification_on' Flag for item not yet seen by player
+
+    Default for '$item_renderer' will need binds:
+      '#item_id_aux'          Item code
+
+    Default for stack count renderer will need binds:
+      '#inventory_stack_count'  Count
+  */
+  "genoa_item": {
+    "type": "input_panel",
+    "$genoa_item_size|default": [ 82, 82 ],
+    "size": "$genoa_item_size",
+    "$genoa_item_button_name|default": "button.select_slot",
+    "layer": 1,
+    "$item_renderer_size|default": [ "100% - 2px", "100% - 2px" ],
+    "$handle_selected_state|default": true,
+    "$show_use_type_state|default": false,
+
+    "$stack_count_overlay_enabled|default": true,
+    "$durability_bar_overlay_enabled|default": true,
+    "$split_feature_enabled|default": false,
+    "$bevel_texture|default": "",
+    "$selected_offset": [ 0, 0 ],
+    "$background_texture|default": "textures/ui/inventory_slot_background",
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "$item_collection_name"
+      },
+      {
+        "binding_name": "#is_selected",
+        "binding_name_override": "#selected",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name",
+        "binding_condition": "always"
+      },
+      {
+        "binding_name": "(1 + 25 * #is_selected)",
+        "binding_name_override": "#layer",
+        "binding_type": "collection",
+        "binding_collection_name": "$item_collection_name",
+        "binding_condition": "always"
+      }
+    ],
+    "$repeating_hold_behavior": {
+      "behavior_type": "once",
+      "initial_delay": 0.5,
+      "cancel_final_button_event": true
+    },
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$genoa_item_button_name",
+        "mapping_type": "pressed",
+        "repeat_behavior": "$repeating_hold_behavior"
+      },
+      {
+        "from_button_id": "button.menu_ok",
+        "to_button_id": "$genoa_item_button_name",
+        "mapping_type": "pressed",
+        "repeat_behavior": "$repeating_hold_behavior"
+      }
+    ],
+    "controls": [
+      {
+        "split_slider@genoa_inventory_common.stack_split_slider": {
+          "ignored": "(not $split_feature_enabled)",
+          "$slider_anchor_from|default": "bottom_middle",
+          "$slider_anchor_to|default": "top_middle",
+          "$slider_offset|default": [ 0, 6 ],
+          "anchor_from": "$slider_anchor_from",
+          "anchor_to": "$slider_anchor_to",
+          "offset": "$slider_offset",
+          //Layer required for the case of selecting an item close to the right edge of screen. Count display occluded by item
+          //Though the count display then occludes the stack count of the item. We may want to move the count display
+          "layer": 500,
+          "visible": false,
+          "bindings": [
+            {
+              "binding_name": "#is_splitting",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$item_collection_name"
+            }
+          ]
+        }
+      },
+      {
+        "item_background_base": {
+          "animation_name": "Slot",
+          "$durability_bar_required|default": true,
+          "propagate_animation": false,
+          "type": "image",
+          "texture": "$background_texture",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "item_bevel": {
+                "type": "image",
+                "size": [ "100%", "100%" ],
+                "layer": 1,
+                "texture": "$bevel_texture",
+                "bindings": [
+                  {
+                    "binding_name": "#item_rarity_bevel",
+                    "binding_name_override": "#texture",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  },
+                  {
+                    "binding_name": "#is_selected_alpha",
+                    "binding_name_override": "#alpha",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ],
+                "controls": [
+                  {
+                    "renderer_background": {
+                      "type": "panel",
+                      "size": [ "100%", "100%" ],
+                      "anchor_from": "center",
+                      "anchor_to": "center",
+                      "controls": [
+                        {
+                          "renderer_content": {
+                            "type": "panel",
+                            "size": [ "100%", "100%" ],
+                            "$item_renderer_control|default": "genoa_inventory_common.genoa_item_renderer",
+                            "controls": [
+                              {
+                                "item_renderer@$item_renderer_control": {
+                                  "animation_name": "Icon",
+                                  "size": "$item_renderer_size",
+                                  "layer": 2
+                                }
+                              },
+                              {
+                                "stack_count@common.stack_count_label": {
+                                  "animation_name": "Stack Count",
+                                  "$stack_count_required": true,
+                                  "ignored": "(not $stack_count_overlay_enabled)",
+                                  "$stack_count_offset|default": [ -3, 2 ],
+                                  "$stack_count_override_height": 24,
+                                  "layer": 3,
+                                  "offset": "$stack_count_offset"
+                                }
+                              },
+                              {
+                                "durability_bar@common.durability_bar": {
+                                  "ignored": "(not $durability_bar_overlay_enabled)",
+                                  "layer": 3,
+                                  "$durability_size|default": [ 60, 5 ],
+                                  "$durability_offset|default": [ 0, 28 ],
+                                  "size": "$durability_size",
+                                  "offset": "$durability_offset",
+                                  "animation_name": "Durability_Bar"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "selected": {
+          "ignored": "(not $handle_selected_state)",
+          "animation_name": "Slot Selected",
+          "propagate_alpha": true,
+          "type": "image",
+          "texture": "$background_texture",
+          "size": [ "100% + 10px", "100% + 10px" ],
+          "offset": "$selected_offset",
+          "controls": [
+            {
+              "shadow@genoa_common.white": {
+                "layer": -1,
+                "offset": [ "5px", "5px" ],
+                "color": "$genoa_button_shadow_color",
+                "alpha": 0.5
+              }
+            },
+            {
+              "selected_bevel": {
+                "type": "image",
+                "texture": "textures/ui/frame_selected",
+                "size": [ "100%", "100%" ],
+                "controls": [
+                  {
+                    "inner_bevel": {
+                      "type": "image",
+                      "size": [ "100% - 10px", "100% - 10px" ],
+                      "texture": "$bevel_texture",
+                      "bindings": [
+                        {
+                          "binding_name": "#item_rarity_bevel",
+                          "binding_name_override": "#texture",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$item_collection_name"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "use_type_state": {
+          "ignored": "(not $show_use_type_state)",
+          "type": "panel",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "top_middle",
+          "size": [ "100%c", "100%c" ],
+          "offset": [ 0, 5 ],
+          "bindings": [
+            {
+              "binding_name": "#item_has_alt_use_type",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$item_collection_name"
+            }
+          ],
+          "controls": [
+            {
+              "primary_state": {
+                "type": "image",
+                "size": [ 15, 5 ],
+                "texture": "textures/ui/icons/system_icons/use_type_primary",
+                "bindings": [
+                  {
+                    "binding_name": "#item_use_state_primary",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ]
+              }
+            },
+            {
+              "alternate_state": {
+                "type": "image",
+                "size": [ 15, 5 ],
+                "texture": "textures/ui/icons/system_icons/use_type_alternate",
+                "bindings": [
+                  {
+                    "binding_name": "#item_use_state_primary",
+                    "binding_name_override": "(not #visible)",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+
+  /*
+  Full inventory control set:
+    Fading clip bar
+    Scrolling inventory pane
+    Item grid
+
+  Using this will require binds for:
+    "genoa_common.genoa_item"
+    "genoa_common.item_container"
+  */
+  "inventory": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "$inv_collection|default": "#inventory_items",
+    "$item_collection_name": "$inv_collection",
+    "controls": [
+      { "fade_bars@genoa_common.fading_scroll_mask_bars": {} },
+      {
+        "inventory@genoa_inventory_common.scrolling_inventory": {
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "size": [ "100%", "100% - 2px" ],
+          "offset": [ 0, -2 ]
+        }
+      }
+    ]
+  },
+
+  /*
+  Scrolling inventory pane
+
+  Will require binds for:
+    "genoa_common.genoa_item"
+    "genoa_common.item_container"
+  */
+  "scrolling_inventory@common.scrolling_panel": {
+    "size": [ "100%", "100%" ],
+    "$show_background": false,
+    "$scroll_fade_distance": 4.0,
+    "$inventory_content|default": "genoa_inventory_common.inventory_content",
+    "$scrolling_content": "$inventory_content",
+    "$jump_to_top_on_update": true,
+    "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+    "$jump_to_top_event_binding_name": "#scroll_inventory_to_top"
+  },
+
+  /*
+  Inventory pane
+
+  Will require binds for:
+    "genoa_common.genoa_item"
+    "genoa_common.item_container"
+  */
+  "inventory_content": {
+    "type": "panel",
+    "offset": [ 0, 125 ],
+    "size": [ 350, "100%c - 250px" ],
+    "$scrolling_content_anchor_from": "top_middle",
+    "$scrolling_content_anchor_to": "top_middle",
+    "controls": [
+      {
+        "glow": {
+          "type": "image",
+          "texture": "textures/ui/glow_yellow",
+          "bilinear": true,
+          "size": [ "100% + 20px", "100%c + 20px" ],
+          "controls": [
+            {
+              "inventory_shadow@genoa_common.white": {
+                "size": [ "100% - 20px", "100%c" ],
+                "offset": [ 3, 3 ],
+                "color": "$genoa_button_shadow_color",
+                "alpha": 0.5,
+                "controls": [
+                  {
+                    "content@genoa_common.white": {
+                      "size": [ "100%", "100%c" ],
+                      "color": "$genoa_inventory_background_color",
+                      "offset": [ -3, -3 ],
+                      "anchor_from": "top_middle",
+                      "anchor_to": "top_middle",
+                      "controls": [
+                        {
+                          "inventory_panel": {
+                            "type": "image",
+                            "size": [ "100%", "100%c + 20px" ],
+                            "texture": "textures/ui/tile_bevel_bright",
+                            "controls": [
+                              {
+                                "container@genoa_inventory_common.item_container": {
+                                  "animation_name": "Genoa Inventory Item Grid",
+                                  "$item_container_size": [ "100% - 20px", "100%c" ],
+                                  "$item_template": "genoa_inventory_common.genoa_item",
+                                  "$genoa_item_size": [ "25%", "100%x" ],
+                                  "offset": [ 0, 10 ],
+                                  "$stack_count_offset": [ -40, -34 ],
+                                  "$durability_offset": [ 0, 0 ],
+                                  "anchor_from": "top_middle",
+                                  "anchor_to": "top_middle"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  /*
+  Will require binds for:
+    "genoa_common.genoa_item"
+  */
+  "hotbar_item@genoa_inventory_common.genoa_item": {
+    "animation_name": "HotbarItem",
+    "$genoa_item_size": [ "14.285%", "100%x" ],
+    "$item_renderer_size": [ 80, 80 ],
+    "$genoa_item_button_name": "button.select_hotbar",
+    "$stack_count_offset": [ -24, -18 ],
+    "$durability_size": [ 33, 3 ],
+    "$durability_offset": [ 0, -1 ]
+  },
+
+  /*
+  Will require binds for:
+    "genoa_common.hotbar_item"
+    "genoa_common.item_container"
+  */
+  "hotbar_content@genoa_inventory_common.item_container": {
+    "animation_name": "Genoa Hotbar Item Grid",
+    "size": [ "100%", "100%c" ],
+    "$item_template": "genoa_inventory_common.hotbar_item",
+    "$item_collection_name": "#hotbar_items",
+    "$slider_anchor_from": "top_middle",
+    "$slider_anchor_to": "bottom_middle",
+    "$slider_offset": [ 0, -30 ]
+  },
+
+  /*
+  Will require binds for:
+    "genoa_common.hotbar_item"
+    "genoa_common.item_container"
+  */
+  "hotbar@genoa_common.footer": {
+    "$footer_background_texture": "textures/ui/hotbar_background",
+    "$footer_base_color": "$genoa_hotbar_background_fill_color",
+    "$footer_base_alpha": 1.0,
+    "$footer_content": "genoa_inventory_common.hotbar_panel"
+  },
+
+  "hotbar_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "offset": [ 0, 10 ],
+    "size": [ 375, "100%" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 12, "100%" ]
+        }
+      },
+      {
+        "offset_panel": {
+          "type": "panel",
+          "size": [ 350, "100%" ],
+          "controls": [
+            {
+              "hotbar_content@genoa_inventory_common.hotbar_content": {
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "offset": [ 0, 9 ],
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 13, "100%" ]
+        }
+      }
+    ]
+  },
+
+  /*
+  Main control for displaying grids of items
+
+  Requires:
+    '$item_collection_name'
+    '$item_template'
+
+  Binds:
+    Grid size bind name is '$item_collection_name'
+  */
+  "item_container": {
+    "type": "grid",
+    "$item_container_size|default": [ "100%", "100%" ],
+    "size": "$item_container_size",
+    "collection_name": "$item_collection_name",
+    "grid_item_template": "$item_template",
+    "grid_dimension_binding": "$item_collection_name",
+    "bindings": [
+      {
+        "binding_name": "$item_collection_name"
+      }
+    ]
+  },
+
+  "stack_split_slider": {
+    "type": "panel",
+    "size": [ 170, 48 ],
+    "clamp_to_screen": true,
+    "controls": [
+      {
+        "shadow": {
+          "type": "image",
+          "fill": true,
+          "texture": "textures/ui/white",
+          "offset": [ 2, 2 ],
+          "alpha": 0.5,
+          "color": "$genoa_button_shadow_color",
+          "controls": [
+            {
+              "background": {
+                "type": "image",
+                "texture": "textures/ui/label",
+                "offset": [ -2, -2 ],
+                "controls": [
+                  {
+                    "count_display": {
+                      "type": "image",
+                      "texture": "textures/ui/9_slice/label_simple",
+                      "size": [ 30, 30 ],
+                      "offset": [ -3, 6 ],
+                      "anchor_from": "top_right",
+                      "anchor_to": "bottom_right",
+                      "controls": [
+                        {
+                          "count_text": {
+                            "type": "label",
+                            "override_height": 15,
+                            "text": "#split_count_text",
+                            "bindings": [
+                              {
+                                "binding_name": "#split_count_text"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "slider@common.slider": {
+                      "size": [ "100% - 40px", 10 ],
+                      "$slider_box_size": [ 20, 30 ],
+                      "enabled": true,
+                      "$slider_enabled_binding_type": "none",
+                      "$slider_steps_binding_type": "none",
+                      "$slider_tts_text_value": "#split_count_text",
+                      "$slider_tts_header": "#split_count_text",
+                      "$slider_tts_header_binding_type": "global",
+                      "$slider_name": "stack_split_slider",
+                      "$slider_value_binding_name": "#split_count_value",
+                      "$slider_box_layout": "genoa_settings_common.slider_box",
+                      "$slider_box_hover_layout": "genoa_settings_common.slider_box",
+                      "$slider_box_locked_layout": "genoa_settings_common.slider_box",
+                      "$slider_box_indent_layout": "genoa_settings_common.slider_box",
+                      "$background_control": "genoa_settings_common.slider_bar_background",
+                      "$progress_control": "genoa_settings_common.slider_bar_fill",
+                      "sounds": [
+                        {
+                          "sound_name": "inmenu.child.button",
+                          "sound_volume": 1.0,
+                          "sound_pitch": 1.0,
+                          "event_type": "button_event"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

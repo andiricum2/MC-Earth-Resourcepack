@@ -1,0 +1,68 @@
+{
+  "namespace": "promo_content",
+
+  "buildplate_banner@genoa_common.button": {
+    "size": [ 350, 60 ],
+    "$button_content": "promo_content.buildplate_banner_content",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_height": 26,
+    "$button_text": "buildplate.promo.default",
+    "$button_text_color": "white",
+    "$bevel_texture": "textures/ui/tile_bevel_bright",
+    "$pressed_button_name": "button.buildplate_store",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/gradients/button_confirm",
+    "$glow_style": "white",
+    "sound_name": "menu.enter.simple.button"
+  },
+
+  "buildplate_banner_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ "100%", "100%" ],
+    "$icon_size": [ 72, 72 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 5, "100%" ]
+        }
+      },
+      {
+        "image_mirror_pad": {
+          "type": "panel",
+          "size": "$icon_size"
+        }
+      },
+      {
+        "fill_panel": {
+          "type": "panel",
+          "size": [ "fill", "100%" ],
+          "controls": [
+            {
+              "text@genoa_common.button_content_text": {
+                "size": [ "100%", "default" ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "icon": {
+          "type": "image",
+          "size": "$icon_size",
+          "texture": "textures/ui/header_icons/store",
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 5, "100%" ]
+        }
+      }
+    ]
+  }
+}

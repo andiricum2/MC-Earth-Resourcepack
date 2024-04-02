@@ -1,0 +1,40 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:sheep",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "sheep" },
+      "textures": {
+        "default": "mobs/sheep/genoa_sheep/sheep"
+      },
+      "geometry": {
+        "default": "geometry.genoa.sheep"
+      },
+      "animations": {
+        "setup": "animation.sheep.setup",
+        "grazing": "animation.sheep.grazing",
+        "walk": "animation.quadruped.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "baby_transform": "animation.sheep.baby_transform",
+        "move": "controller.animation.sheep.move",
+        "blink": "controller.animation.sheep.blink"
+      },
+      "scripts": {
+        "animate": [
+          "setup",
+          "look_at_target",
+          "move",
+          { "baby_transform": "query.is_baby" },
+          "blink"
+        ],
+        "initialization": [ "variable.is_blinking = 0;", "variable.return_from_blink = 0;", "variable.last_blink_time = 0;" ]
+      },
+      "render_controllers": [ "controller.render.sheep" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 3
+      }
+    }
+  }
+}

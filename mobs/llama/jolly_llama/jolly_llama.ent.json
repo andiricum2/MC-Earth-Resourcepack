@@ -1,0 +1,53 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:jolly_llama",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "jolly_llama" },
+      "textures": {
+        "default": "mobs/llama/jolly_llama/jolly_llama"
+      },
+      "geometry": {
+        "default": "geometry.genoa.jolly_llama"
+      },
+      "animations": {
+        "setup": "animation.llama.setup",
+        "walk": "animation.quadruped.walk",
+        "grazing": "animation.jolly_llama.graze",
+        "prance": "animation.jolly_llama.prance",
+        "fern_detected": "animation.jolly_llama.detectfern",
+        "look_at_target": "animation.jolly_llama.lookattarget",
+        "move": "controller.animation.jolly_llama.move",
+        "blink": "controller.animation.jolly_llama.blink"
+      },
+      "scripts": {
+        "animate": [
+          "look_at_target",
+          "move",
+          "blink"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.prancing = 0;",
+          "variable.grazing = 0;",
+          "variable.fern_detected = 0;"
+        ],
+        "should_update_bones_and_effects_offscreen": true,
+        "should_update_effects_offscreen": true
+      },
+      "sound_effects": {
+        "detect": "mob.jolly_llama.detect.fern",
+        "graze": "mob.jolly_llama.eat",
+        "prance": "mob.jolly_llama.prance.01"
+      },
+      "render_controllers": [ "controller.render.jolly_llama" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 61
+      }
+    }
+  }
+}

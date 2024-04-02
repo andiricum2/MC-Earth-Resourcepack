@@ -1,0 +1,199 @@
+{
+  "format_version": "1.8.0",
+  "vignette": {
+    "name": "genoa:adventure_preview_vignette",
+    "loop": false,
+    "cameras": [
+      {
+        "name": "default",
+        "position": [ 8.809, 8.789, 8.809 ],
+        "target": [ 5.688, 6.442, 5.688 ],
+        "up": [ 0, 1, 0 ],
+        "fov": 50.0,
+        "far_clip": 100.0
+      }
+    ],
+    "entities": [
+      { 
+          "name" : "persona",
+          "entity_definition" : "genoa:player_dressing_room"
+      },
+      {
+        "name": "backdrop",
+        "entity_definition": "genoa:adventure_preview_backdrop"
+      },
+      {
+        "name": "adventure_icon",
+        "entity_definition": "genoa:adventure_generic_map"
+      }
+    ],
+    "effects": [
+      {
+        "name": "ambient_motion",
+        "effect_definition": "genoa:adventure_preview_ambient_moat"
+      },
+      {
+        "name": "ambient_glow",
+        "effect_definition": "genoa:adventure_preview_ambient_glow"
+      },
+      {
+        "name": "ground_impact",
+        "effect_definition": "genoa:adventure_preview_impact"
+      }
+    ],
+    "keyframes": [
+      {
+        "0": [
+          {
+            "command": "create_entity",
+            "entity": "backdrop",
+            "position": [0, 4, 0],
+            "label": "start"
+          },
+          {
+            "command": "play_animation",
+            "entity": "backdrop",
+            "animation": "backdrop_setup_225_deg"
+          },
+          {
+            "command": "create_entity",
+            "entity": "adventure_icon",
+            "position": [ 0, 0.5, 0 ]
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "adventure_icon",
+            "parameter": 0.0,
+            "label": "variable.is_outline"
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "adventure_icon",
+            "parameter": 2.0,
+            "label": "variable.is_vignette"
+          },
+          {
+            "command": "play_animation",
+            "entity": "adventure_icon",
+            "animation": "idle"
+          },
+          {
+            "command": "create_entity",
+            "entity": "persona",
+            "position": [ 0.5, 0.5, 2.5 ],
+            "rotation": [ 0, -100, 0 ],
+            "scale": [0, 0, 0]
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "persona",
+            "label": "variable.is_riding",
+            "parameter": 0.0
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "persona",
+            "label": "variable.modified_distance_moved",
+            "parameter": 0.0
+          },
+          {
+            "command": "set_molang_variable",
+            "entity": "persona",
+            "label": "variable.modified_move_speed",
+            "parameter": 0.0
+          },
+          {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.is_blinking",
+            "parameter" : 0.0
+          },
+          {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.is_bored",
+            "parameter" : 0.0
+          },
+           {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.return_from_blink",
+            "parameter" : 0.0
+          },
+          {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.last_blink_time",
+            "parameter" : 0.0
+          },
+          {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.react_state",
+            "parameter" : 0.0
+          },
+          {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.react_select",
+            "parameter" : 0.0
+          },
+          {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.confirm_selection",
+            "parameter" : 0
+          },
+          {
+            "command" : "set_molang_variable",
+            "entity" : "persona",
+            "label" : "variable.last_bored",
+            "parameter" : 0
+          },
+          {
+            "command": "create_effect",
+            "entity": "ambient_motion",
+            "position": [ -3.126, -1.0, -3.126 ]
+          },
+          {
+            "command": "create_effect",
+            "entity": "ambient_glow",
+            "position": [ -3.126, -1.0, -3.126 ]
+          },
+          {
+            "command": "play_animation",
+            "entity": "adventure_icon",
+            "animation": "enter"
+          },
+          {
+            "command": "play_sound",
+            "entity": "adventure.model.drop"
+          }
+        ],
+        "0.3": [
+          {
+            "command": "create_effect",
+            "entity": "ground_impact",
+            "position": [ 0, 0, 0 ]
+          },
+          {
+            "command": "set_scale",
+            "entity": "persona",
+            "scale": [1, 1, 1],
+            "interpolate_time": 0.2
+          }
+        ],
+        "1.1": [
+          {
+            "command": "play_animation",
+            "entity": "adventure_icon",
+            "animation": "idle"
+          },
+          {
+            "command": "pause"
+          }
+        ]
+      }
+    ]
+  }
+}

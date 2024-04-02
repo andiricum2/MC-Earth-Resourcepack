@@ -1,0 +1,41 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.bouldering_zombie.climbing": {
+      "states": {
+        "default": {
+          "animations": [ "zombie_attack_bare_hand" ],
+          "transitions": [
+            { "climb_prep": "variable.climb_prep" },
+            { "climb": "variable.climb" },
+            { "climb_exit": "variable.climb_exit" }
+          ]
+        },
+        "climb_prep": {
+          "animations": [ "climb_prep" ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ],
+          "on_exit": [
+            "variable.climb_prep = 0;"
+          ]
+        },
+        "climb": {
+          "animations": [ "climb" ],
+          "transitions": [
+            { "default": "!variable.climb" }
+          ]
+        },
+        "climb_exit": {
+          "animations": [ "climb_exit" ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ],
+          "on_exit": [
+            "variable.climb_exit = 0;"
+          ]
+        }
+      }
+    }
+  }
+}

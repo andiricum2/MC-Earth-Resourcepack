@@ -1,0 +1,123 @@
+{
+  "namespace": "persona_mob_selection",
+
+  "persona_mob_selection_hud@genoa_common.genoa_base_screen": {
+    "$screen_animations": [
+      "@common.screen_exit_animation_pop_down_offset",
+      "@common.screen_exit_animation_push_down_offset",
+      "@common.screen_entrance_animation_push_up_offset",
+      "@common.screen_entrance_animation_pop_up_offset",
+      "@common.screen_exit_animation_push_fade",
+      "@common.screen_exit_animation_pop_fade",
+      "@common.screen_entrance_animation_push_fade",
+      "@common.screen_entrance_animation_pop_fade"
+    ],
+    "is_showing_menu": false,
+    "screen_visibility": "default",
+    "$use_background": false,
+    "should_steal_mouse": false,
+    "$steal_all_input": false,
+    "$screen_content": "persona_mob_selection.root_panel",
+    "animation_name": "Adventure Screen" // Uses same animation as adventure screen, so re-use it
+  },
+
+  "root_panel": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "selection@persona_mob_selection.persona_mob_selection": {
+        }
+      }
+    ]
+  },
+
+  "persona_mob_selection": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ "100%", "fill" ]
+        }
+      },
+      {
+        "persona_mob_selection": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "anchor_to": "bottom_middle",
+          "anchor_from": "bottom_middle",
+          "use_new_layout": true,
+          "size": [ "100%", 162 ],
+          "controls": [
+            {
+              "exit@genoa_common.button": {
+                "size": [ 60, 34 ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "$pressed_button_name": "button.exit",
+                "$button_content": "persona_mob_selection.collapse_icon",
+                "$background_style": "color",
+                "$background_color": "$genoa_button_color",
+                "$glow_style": "white",
+                "layer": 10,
+                "sound_name": "panel.collapse.button"
+              }
+            },
+            {
+              "background_panel@genoa_common.footer": {
+                "offset": [ 0, -30 ],
+                "$footer_content": "persona_mob_selection.main_panel"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "main_panel": {
+    "type": "stack_panel",
+    "size": [ "100%", "fill" ],
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 35 ]
+        }
+      },
+      {
+        "persona_grid@genoa_profile_persona.persona_grid_panel": {
+          "offset": [ 0, 28 ],
+          "layer": 8,
+          "$paperdoll_size": [ 42, 70 ],
+          "$paperdoll_offset": [ 0, -14 ],
+          "$asset_offer_size": [ 60, 80 ],
+          "$selected_size": [ 66, 86 ],
+          "size": [ 350, 50 ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 5 ]
+        }
+      }
+    ]
+  },
+
+  "collapse_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "texture": "textures/ui/collapse_icon",
+    "size": [ 24, 24 ]
+  }
+}

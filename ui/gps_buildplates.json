@@ -1,0 +1,1403 @@
+{
+  "namespace": "genoa_gps_buildplates",
+
+  "gps_buildplates_overlay@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_gps_buildplates.gps_buildplates_content",
+    "$screen_background_texture": "textures/ui/background_blurred",
+    "$background_scrim_visible": false,
+    "screen_visibility": "opaque"
+  },
+
+  "buildplate_renderer": {
+    "type": "input_panel",
+    "gesture_tracking_button": "button.turn_structure",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.turn_structure",
+        "mapping_type": "pressed",
+        "button_up_right_of_first_refusal": true
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#structure_renderer_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "renderer": {
+          "type": "custom",
+          "renderer": "buildplate_renderer",
+          "animation_reset_name": "screen_animation_reset",
+          "anims": [
+            "@common.screen_exit_size_animation_push",
+            "@common.screen_exit_size_animation_pop",
+            "@common.screen_entrance_size_animation_push",
+            "@common.screen_entrance_size_animation_pop"
+          ],
+          "bindings": [
+            {
+              "binding_name": "#buildplate_instance_id",
+              "binding_type": "collection",
+              "binding_collection_name": "buildplates",
+              "binding_condition": "always"
+            },
+            {
+              "binding_type": "view",
+              "resolve_sibling_scope": true,
+              "source_control_name": "buildplate_renderer_panel",
+              "source_property_name": "#gesture_delta_source",
+              "target_property_name": "#gesture_delta_source"
+            },
+            {
+              "binding_type": "view",
+              "resolve_sibling_scope": true,
+              "source_control_name": "buildplate_renderer_panel",
+              "source_property_name": "#gesture_mouse_delta_x",
+              "target_property_name": "#gesture_mouse_delta_x"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "gps_buildplates_content": {
+    "type": "panel",
+    "allow_clipping": false,
+    "controls": [
+      {
+        "buildplate_stack_panel": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "header_panel@genoa_common.header": {
+                "$header_text": "buildplate.header",
+                "$header_image": "textures/ui/header_icons/buildplate"
+              }
+            },
+            {
+              "pad_filter": {
+                "type": "panel",
+                "size": [ "100%", 14 ]
+              }
+            },
+            {
+              "content": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "use_new_layout": true,
+                "size": [ "100%", "100%" ],
+                "controls": [
+                  {
+                    "tab_selection@genoa_common.tab_selection_panel": {
+                      "$tab_button_controls": [
+                        {
+                          "buildplates_tab@genoa_common.tab_button": {
+                            "$pressed_button_name": "button.buildplates_tab",
+                            "$tab_button_texture": "textures/ui/icons/pixel_icons/7x8/buildplate",
+                            "$tab_button_visible_binding_name": "#buildplate_tab_active"
+                          }
+                        },
+                        {
+                          "options_tab@genoa_common.tab_button": {
+                            "$pressed_button_name": "button.options_tab",
+                            "$tab_button_texture": "textures/ui/icons/pixel_icons/8x8/scan",
+                            "$tab_button_visible_binding_name": "#options_tab_active"
+                          }
+                        }
+                      ],
+                      "$text": "#current_tab_name",
+                      "$text_binding": [
+                        {
+                          "binding_name": "$text",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "pad_0": {
+                      "type": "panel",
+                      "size": [ "100%", 10 ]
+                    }
+                  },
+                  {
+                    "tab_content": {
+                      "type": "panel",
+                      "size": [ "100%", "fill" ],
+                      "controls": [
+                        {
+                          "buildplate_tab@genoa_gps_buildplates.buildplates_tab_content": {
+                            "bindings": [
+                              {
+                                "binding_name": "#buildplate_tab_active",
+                                "binding_name_override": "#visible"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "options_tab@genoa_gps_buildplates.join_and_scan_stack": {
+                            "size": [ 351, "100%c" ],
+                            "offset": [0, 7],
+                            "anchor_from": "top_middle",
+                            "anchor_to": "top_middle",
+                            "bindings": [
+                              {
+                                "binding_name": "#options_tab_active",
+                                "binding_name_override": "#visible"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      { "fading_selection_info@genoa_common.fading_selection_info": {} }
+    ]
+  },
+
+  "buildplates_tab_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "store_banner_pad": {
+          "type": "panel",
+          "size": [ "100%", "100%c + 20px" ],
+          "controls": [
+            {
+              "store_banner@promo_content.buildplate_banner": {}
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#store_enabled",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "sort_dropdown_pad": {
+          "type": "panel",
+          "size": [ "100%", "100%c + 10px" ],
+          "ignored": true, //TODO: remove this to enable sort dropdown
+          "controls": [
+            {
+              "sort_dropdown@genoa_gps_buildplates.grid_control_panel": {
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "scroll_mask@genoa_common.fading_scroll_mask_bars": {}
+      },
+      {
+        "body_panel": {
+          "type": "panel",
+          "size": [ "100%", "fill" ],
+          "controls": [
+            {
+              "scroll_wrapper": {
+                "type": "panel",
+                "size": [ "100%", "100%" ],
+                "bindings": [
+                  {
+                    "binding_name": "#show_buildplates",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ],
+                "controls": [
+                  {
+                    "scrolling_panel@common.scrolling_panel": {
+                      "clips_children": true,
+                      "allow_clipping": true,
+                      "offset": [ 0, -3 ],
+                      "$scrolling_pane_size": [ "100%", "100%" ],
+                      "$scrolling_content": "genoa_gps_buildplates.buildplate_grid",
+                      "$scroll_fade_distance": 4.0,
+                      "$scroll_size": [ 0, "100%" ],
+                      "$show_background": false
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "loading_content_stack_panel@genoa_common.loading_content_stack_panel": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "$loading_text": "buildplate.loading",
+                "$loading_content_bindings": [
+                  {
+                    "binding_name": "#show_loading",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "join_and_scan_stack": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/gradients/button_confirm",
+    "$button_content": "genoa_adventure_crystals.image_and_text_button_content",
+    "$button_font_height": 26,
+    "$button_font_type": "MinecraftTen",
+    "controls": [
+      {
+        "join_friend_button@genoa_common.button": {
+          "size": [ "100%", 60 ],
+          "$pressed_button_name": "button.join_friend",
+          "$button_content_image_texture": "textures/ui/header_icons/friends",
+          "$button_text": "adventure.crystals.joinFriend"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 20 ]
+        }
+      },
+      {
+        "scan_code_button@genoa_common.button": {
+          "size": [ "100%", 60 ],
+          "$pressed_button_name": "button.scan_code",
+          "$button_content_image_texture": "textures/ui/header_icons/scan_code",
+          "$button_text": "adventure.crystals.scanCode"
+        }
+      }
+    ]
+  },
+
+  "grid_control_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", "100%cm" ],
+    "controls": [
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "fill", 0 ]
+        }
+      },
+      {
+        "sort_dropdown@genoa_common.dropdown": {
+          "size": [ 60, 46 ],
+          "$use_scrolling": false,
+          "$dropdown_content_panel_size": [ 300, "100%c" ],
+          "$dropdown_content_panel_offset": [ 0, -10 ], //Yellow glow is 10px high
+          "$dropdown_button_content": "genoa_common.filter_icon",
+          "$dropdown_name": "sort_dropdown",
+          "$dropdown_content": "genoa_gps_buildplates.sort_dropdown_content"
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ "3.5%", 0 ]
+        }
+      }
+    ]
+  },
+
+  "sort_dropdown_option_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 36 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 15, 0 ]
+        }
+      },
+      {
+        "option_image": {
+          "type": "image",
+          "size": [ 50, 36 ],
+          "texture": "$option_image"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 15, 0 ]
+        }
+      },
+      {
+        "label_panel": {
+          "type": "panel",
+          "size": [ "fill", 36 ],
+          "controls": [
+            {
+              "option_label": {
+                "type": "label",
+                "size": [ "100%", "default" ],
+                "font_type": "MinecraftTen",
+                "override_height": 25,
+                "color": "$option_text_color",
+                "text": "$option_text"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "arrow_panel": {
+          "type": "panel",
+          "size": [ 36, 36 ],
+          "controls": [
+            {
+              "sort_order_arrow": {
+                "type": "image",
+                "visible": "$arrow_visible",
+                "bindings": [
+                  {
+                    "binding_name": "('#' + $option_name + '_order')",
+                    "binding_name_override": "#texture"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 15, 0 ]
+        }
+      }
+    ]
+  },
+
+  "sort_button_panel": {
+    "type": "panel",
+    "size": [ "100%", 60 ],
+    "controls": [
+      {
+        "unselected@genoa_common.button": {
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_option",
+          "$button_content": "genoa_gps_buildplates.sort_dropdown_option_content",
+          "$option_image": "$option_icon",
+          "$option_text_color": "$genoa_sort_option_text_color",
+          "$arrow_visible": false,
+          "bindings": [
+            {
+              "binding_name": "('#' + $option_name + '_selected')",
+              "binding_name_override": "(not #visible)"
+            }
+          ],
+          "sound_name": "item.sort"
+        }
+      },
+      {
+        "selected@genoa_common.button": {
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_option_selected",
+          "$button_content": "genoa_gps_buildplates.sort_dropdown_option_content",
+          "$option_image": "$option_icon_selected",
+          "$option_text_color": "white",
+          "$bevel_texture": "textures/ui/slot_bevel_simple",
+          "$arrow_visible": true,
+          "bindings": [
+            {
+              "binding_name": "('#' + $option_name + '_selected')",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "sound_name": "item.sort"
+        }
+      }
+    ]
+  },
+
+  "sort_dropdown_content": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "content": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "lastplayed@genoa_gps_buildplates.sort_button_panel": {
+                "layer": 2,
+                "$option_name": "sort_lastplayed",
+                "$option_text": "options.genoa.sort.lastplayed",
+                "$option_icon": "textures/ui/sort_last_played",
+                "$option_icon_selected": "textures/ui/sort_last_played_selected",
+                "$pressed_button_name": "('button.' + $option_name)"
+              }
+            },
+            {
+              "size@genoa_gps_buildplates.sort_button_panel": {
+                "layer": 1,
+                "$option_name": "sort_size",
+                "$option_text": "options.genoa.sort.size",
+                "$option_icon": "textures/ui/size",
+                "$option_icon_selected": "textures/ui/size_selected",
+                "$pressed_button_name": "('button.' + $option_name)"
+              }
+            },
+            {
+              "alphabetized@genoa_gps_buildplates.sort_button_panel": {
+                "$option_name": "sort_alphabetized",
+                "$option_text": "options.genoa.sort.alphabetized",
+                "$option_icon": "textures/ui/sort_alphabetical",
+                "$option_icon_selected": "textures/ui/sort_alphabetical_selected",
+                "$pressed_button_name": "('button.' + $option_name)"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "header": {
+          "type": "label",
+          "text": "options.genoa.sort.header",
+          "font_type": "MinecraftTen",
+          "color": "white",
+          "font_size": "large",
+          "anchor_from": "top_left",
+          "anchor_to": "bottom_left"
+        }
+      }
+    ]
+  },
+
+  "item_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "share_button@genoa_gps_buildplates.share_button": {
+          "offset": [ 0, -4 ],
+          "layer": 5,
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "enabled": "#enabled",
+          "visible": false,
+          "bindings": [
+            {
+              "binding_collection_name": "buildplates",
+              "binding_type": "collection_details"
+            },
+            {
+              "binding_name": "#is_share_visible",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_condition": "always",
+              "binding_collection_name": "buildplates"
+            },
+            {
+              "binding_name": "(not #currently_busy)",
+              "binding_name_override": "#enabled",
+              "binding_type": "collection",
+              "binding_condition": "always",
+              "binding_collection_name": "buildplates"
+            },
+            {
+              "binding_name": "(not #is_locked)",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_condition": "once",
+              "binding_collection_name": "buildplates"
+            }
+          ]
+        }
+      },
+      {
+        "info_panel": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ 280, "100%c" ],
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "offset": [ 5, 5 ],
+          "$label_text_max_size": [ 320, 0 ],
+          "controls": [
+            {
+              "name_pad": {
+                "ignored": true, //remove to enable buildplate names (and editing)
+                "type": "panel",
+                "size": [ "100%", 25 ],
+                "controls": [
+                  {
+                    "name_button": {
+                      "type": "input_panel",
+                      "size": [ "100%c", "100%c" ],
+                      "layer": 5,
+                      "offset": [ 5, 5 ],
+                      "anchor_to": "bottom_left",
+                      "anchor_from": "bottom_left",
+                      "button_mappings": [
+                        {
+                          "from_button_id": "button.menu_select",
+                          "to_button_id": "button.buildplate_edit_name",
+                          "mapping_type": "pressed"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "name_field": {
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [ "100%c", "100%cm" ],
+                            "controls": [
+                              {
+                                "name": {
+                                  "type": "label",
+                                  "font_type": "MinecraftTen",
+                                  "font_size": "large",
+                                  "font_scale_factor": 1.2,
+                                  "text": "#buildplate_name",
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#buildplate_name",
+                                      "binding_type": "collection",
+                                      "binding_condition": "visible",
+                                      "binding_collection_name": "buildplates"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "pad": {
+                                  "type": "panel",
+                                  "size": [ 2, 1 ]
+                                }
+                              },
+                              {
+                                "edit_icon_buffer": {
+                                  "type": "panel",
+                                  "size": [ "100%c", 30 ],
+                                  "controls": [
+                                    {
+                                      "edit_icon": {
+                                        "type": "image",
+                                        "visible": false,
+                                        "size": [ 22, 22 ],
+                                        "texture": "textures/ui/edit",
+                                        "bilinear": true,
+                                        "bindings": [
+                                          {
+                                            "binding_collection_name": "buildplates",
+                                            "binding_type": "collection_details"
+                                          },
+                                          {
+                                            "binding_name": "(not #is_locked)",
+                                            "binding_name_override": "#visible",
+                                            "binding_condition": "once",
+                                            "binding_type": "collection",
+                                            "binding_collection_name": "buildplates"
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_collection_name": "buildplates",
+                          "binding_type": "collection_details"
+                        },
+                        {
+                          "binding_name": "(not #is_locked)",
+                          "binding_name_override": "#enabled",
+                          "binding_type": "collection",
+                          "binding_condition": "once",
+                          "binding_collection_name": "buildplates"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "last_edited_pad": {
+                "type": "panel",
+                "size": [ "100%", 41 ],
+                "layer": 6,
+                "visible": false,
+                "controls": [
+                  {
+                    "last_edited_label@genoa_common.boxed_icon_label": {
+                      "offset": [ -10, 0 ],
+                      "anchor_to": "bottom_left",
+                      "anchor_from": "bottom_left",
+                      "$box_texture": "textures/ui/9_slice/label_simple",
+                      "$label_icon": "textures/ui/last_played_small_selected",
+                      "$label_text": "#last_edited",
+                      "$propagate_alpha": false,
+                      "$label_alpha": 0.6,
+                      "$shadow_alpha": 0,
+                      "$text_bindings": [
+                        {
+                          "binding_name": "#last_edited",
+                          "binding_type": "collection",
+                          "binding_condition": "visible",
+                          "binding_collection_name": "buildplates"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "(not #is_locked)",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_condition": "once",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            },
+            {
+              "size_pad": {
+                "type": "panel",
+                "size": [ "100%", 41 ],
+                "layer": 6,
+                "visible": false,
+                "controls": [
+                  {
+                    "size_label@genoa_common.boxed_icon_label": {
+                      "offset": [ -10, 0 ],
+                      "anchor_to": "bottom_left",
+                      "anchor_from": "bottom_left",
+                      "$box_texture": "textures/ui/9_slice/label_simple",
+                      "$label_icon": "textures/ui/size_small_selected",
+                      "$label_text": "#plate_size",
+                      "$propagate_alpha": false,
+                      "$label_alpha": 0.6,
+                      "$shadow_alpha": 0,
+                      "$text_bindings": [
+                        {
+                          "binding_name": "#plate_size",
+                          "binding_type": "collection",
+                          "binding_condition": "visible",
+                          "binding_collection_name": "buildplates"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "(not #is_locked)",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_condition": "once",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            },
+            {
+              "night_pad": {
+                "type": "panel",
+                "size": [ "100%", 41 ],
+                "layer": 6,
+                "visible": false,
+                "controls": [
+                  {
+                    "night_label@genoa_common.boxed_icon_label": {
+                      "offset": [ -10, 0 ],
+                      "anchor_to": "bottom_left",
+                      "anchor_from": "bottom_left",
+                      "$box_texture": "textures/ui/9_slice/label_simple",
+                      "$label_icon": "textures/ui/night_mode_small",
+                      "$label_text": "buildplates.night_mode",
+                      "$propagate_alpha": false,
+                      "$label_alpha": 0.6,
+                      "$shadow_alpha": 0
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#is_night_valid",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_condition": "once",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            },
+            {
+              "new_pad": {
+                "type": "panel",
+                "size": [ "100%", 41 ],
+                "layer": 6,
+                "visible": false,
+                "controls": [
+                  {
+                    "new_shadow@genoa_common.white": {
+                      "size": [ "100%c", "100%c" ],
+                      "color": "$genoa_button_shadow_color",
+                      "alpha": 0.5,
+                      "anchor_to": "bottom_left",
+                      "anchor_from": "bottom_left",
+                      "offset": [ -5, 5 ],
+                      "controls": [
+                        {
+                          "new_tag@genoa_common.white": {
+                            "size": [ "100%c + 20px", 30 ],
+                            "color": "$genoa_buildplates_new_tag_color",
+                            "offset": [ -5, -5 ],
+                            "controls": [
+                              {
+                                "new_label": {
+                                  "type": "label",
+                                  "text": "buildplate.newtag",
+                                  "font_type": "MinecraftTen",
+                                  "font_size": "large",
+                                  "font_scale_factor": 1.2,
+                                  "color": "black"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#is_new",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_condition": "always",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "image_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%" ],
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "controls": [
+            {
+              "glow": {
+                "type": "image",
+                "texture": "textures/ui/profile/spotlight",
+                "size": [ "100%", "100%" ]
+              }
+            },
+            {
+              "progress_loading_bars@genoa_common.progress_loading": {
+                "visible": false,
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "bindings": [
+                  {
+                    "binding_name": "(not #has_model)",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_condition": "always",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            },
+            {
+              "night_scrim@genoa_common.white": {
+                "layer": 4,
+                "color": "$night_scrim_color",
+                "alpha": 0.55,
+                "size": [ "100%", "100%" ],
+                "visible": false,
+                "bindings": [
+                  {
+                    "binding_name": "#is_night_valid",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_condition": "always",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            },
+            {
+              "buildplate_renderer_panel@genoa_gps_buildplates.buildplate_renderer": {
+                "visible": false,
+                "bindings": [
+                  {
+                    "binding_name": "#has_model",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_condition": "always",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "button_content_image_and_text_bindable": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", "100%" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "fill", "100%" ]
+        }
+      },
+      {
+        "image@genoa_common.button_content_image": {
+          "anchor_from": "center",
+          "anchor_to": "center"
+        }
+      },
+      {
+        "text@genoa_common.button_content_text_bindable": {
+          "anchor_from": "center",
+          "anchor_to": "center"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "fill", "100%" ]
+        }
+      }
+    ]
+  },
+
+  "grid_item": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "buildplate_panel": {
+          "type": "panel",
+          "size": [ "100%", 375 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "controls": [
+            {
+              "debug_info@genoa_gps_buildplates.debug_buildplate_info": {
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "ignored": "(not $show_buildplate_debug_info)"
+              }
+            },
+            {
+              "grid_item_content": {
+                "type": "image",
+                "offset": [ 0, 40 ],
+                "size": [ 350, 340 ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "texture": "textures/ui/9_slice/slot_buildplate",
+                "controls": [
+                  {
+                    "content@genoa_gps_buildplates.item_content": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "active_panel": {
+          "type": "panel",
+          "size": [ "100%", 30 ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "visible": false,
+          "controls": [
+            {
+              "build_button_holder": {
+                "type": "panel",
+                "size": [ 231, 60 ],
+                "offset": [ -40, 0 ],
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "layer": 5, //Above buildplate bevel
+                "controls": [
+                  { "build_button@genoa_gps_buildplates.build_button": {} },
+                  {
+                    "ftue_build_button_callout@ftue_common.button_callout": {
+                      "size": [ "100% + 30px", "100% + 30px" ],
+                      "layer": 3,
+                      "visible": false,
+                      "bindings": [
+                        {
+                          "binding_name": "#build_button_callout_visible",
+                          "binding_name_override": "#visible",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "play_button@genoa_common.button": {
+                "size": [ 60, 60 ],
+                "offset": [ 125, 0 ],
+                "layer": 5, //Above buildplate bevel
+                "$locked_control": "genoa_gps_buildplates.disabled_play_button",
+                "$button_content": "genoa_common.button_content_image",
+                "$button_content_shadow_enabled": true,
+                "$button_image_texture": "textures/ui/icons/system_icons/play_mode",
+                "$button_image_size": [ 27, 27 ],
+                "$pressed_button_name": "button.buildplate_play",
+                "$background_style": "image",
+                "$button_background_image_texture": "textures/ui/button_confirm",
+                "$button_text_binding_type": "collection",
+                "$button_binding_condition": "always",
+                "$button_text_collection_name": "buildplates",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "$shadow_style": "soft_large",
+                "enabled": "#enabled",
+                "bindings": [
+                  {
+                    "binding_collection_name": "buildplates",
+                    "binding_type": "collection_details"
+                  },
+                  {
+                    "binding_name": "#play_button_enabled",
+                    "binding_name_override": "#enabled",
+                    "binding_type": "collection",
+                    "binding_condition": "always",
+                    "binding_collection_name": "buildplates"
+                  }
+                ],
+                "sound_name": "inmenu.general.button"
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_collection_name": "buildplates",
+              "binding_type": "collection_details"
+            },
+            {
+              "binding_name": "(not #is_locked)",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_condition": "once",
+              "binding_collection_name": "buildplates"
+            }
+          ]
+        }
+      },
+      {
+        "inactive_panel": {
+          "type": "panel",
+          "size": [ "100%", 30 ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "visible": false,
+          "controls": [
+            {
+              "locked_button@genoa_common.button": {
+                "size": [ 311, 60 ],
+                "layer": 5, //Above buildplate bevel
+                "$button_content": "genoa_gps_buildplates.button_content_image_and_text_bindable",
+                "$button_font_type": "MinecraftTen",
+                "$button_font_height": 40,
+                "$button_text": "#lock_level",
+                "$button_text_color": "white",
+                "$button_image_texture": "textures/ui/icons/item_icons/locked",
+                "$button_image_size": [ 36, 36 ],
+                "$button_image_bilinear": true,
+                "$pressed_button_name": "button.buildplate_locked",
+                "$background_style": "color",
+                "$background_color": "$genoa_buildplates_locked_button_color",
+                "$button_text_binding_type": "collection",
+                "$button_binding_condition": "always",
+                "$button_text_collection_name": "buildplates",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "$glow_enabled": false,
+                "$shadow_enabled": false,
+                "sound_name": "inmenu.general.button",
+                "bindings": [
+                  {
+                    "binding_collection_name": "buildplates",
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_collection_name": "buildplates",
+              "binding_type": "collection_details"
+            },
+            {
+              "binding_name": "#is_locked",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_condition": "once",
+              "binding_collection_name": "buildplates"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "disabled_play_button@genoa_common.default_button_content": {
+    "$glow_enabled": false,
+    "$background_style": "color",
+    "$background_color": "$genoa_buildplates_locked_button_color"
+  },
+
+  "build_button@genoa_common.button": {
+    "$button_content": "genoa_common.button_content_text_bindable",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_height": 40,
+    "$button_text": "#build_button_text",
+    "$button_text_color": "white",
+    "$pressed_button_name": "button.buildplate_build",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/button_confirm",
+    "$button_text_binding_type": "collection",
+    "$button_binding_condition": "always",
+    "$button_text_collection_name": "buildplates",
+    "$shadow_style": "soft_large",
+    "enabled": "#enabled",
+    "bindings": [
+      {
+        "binding_collection_name": "buildplates",
+        "binding_type": "collection_details"
+      },
+      {
+        "binding_name": "(not #currently_busy)",
+        "binding_name_override": "#enabled",
+        "binding_type": "collection",
+        "binding_condition": "always",
+        "binding_collection_name": "buildplates"
+      }
+    ],
+    "sound_name": "inmenu.general.button"
+  },
+
+  "reset_icon": {
+    "type": "image",
+    "layer": 2,
+    "texture": "textures/ui/gps/buildplate/reset_icon",
+    "size": [ 13, 13 ]
+  },
+  "block_icon": {
+    "type": "image",
+    "layer": 2,
+    "texture": "textures/ui/gps/buildplate/block_icon",
+    "size": [ 13, 13 ]
+  },
+  "buildplate_grid": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c + 110px" ], //110px for padding when scrolled to the bottom
+    "collection_name": "buildplates",
+    "factory": {
+      "name": "buildplate_grid_factory",
+      "control_name": "genoa_gps_buildplates.grid_item"
+    },
+    "bindings": [
+      {
+        "binding_name": "#buildplate_count",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+
+  "debug_buildplate_info": {
+    "type": "input_panel",
+    "size": [ "100%", "100%c" ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.buildplateinfo.copy",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details",
+        "binding_collection_name": "buildplates"
+      }
+    ],
+    "controls": [
+      {
+        "text_stack_panel": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "buildplate_instance_id": {
+                "layer": 100,
+                "type": "label",
+                "anchor_from": "top_middle",
+                "anchor_to": "bottom_middle",
+                "size": [ "100%", "default" ],
+                "text_alignment": "center",
+                "text": "#text",
+                "override_height": 15,
+                "bindings": [
+                  {
+                    "binding_name": "('Instance ID: ' + #buildplate_instance_id)",
+                    "binding_name_override": "(#text)",
+                    "binding_type": "collection",
+                    "binding_condition": "always",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            },
+            {
+              "buildplate_template_id": {
+                "layer": 100,
+                "type": "label",
+                "anchor_from": "top_middle",
+                "anchor_to": "bottom_middle",
+                "size": [ "100%", "default" ],
+                "text_alignment": "center",
+                "text": "#text",
+                "override_height": 15,
+                "bindings": [
+                  {
+                    "binding_name": "('Template ID: ' + #buildplate_template_id)",
+                    "binding_name_override": "(#text)",
+                    "binding_type": "collection",
+                    "binding_condition": "always",
+                    "binding_collection_name": "buildplates"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "share_button": {
+    "type": "button",
+    "size": [ "100%cm", 46 ],
+
+    "locked_control": "locked",
+    "hover_control": "hover",
+    "default_control": "default",
+    "pressed_control": "pressed",
+
+    "sound_name": "inmenu.general.button",
+
+    "controls": [
+      { "default@genoa_gps_buildplates.share_button_panel": {} },
+      { "hover@genoa_gps_buildplates.share_button_panel": {} },
+      {
+        "pressed@genoa_gps_buildplates.share_button_panel": {
+          "offset": [ 0, 1 ]
+        }
+      },
+      {
+        "locked@genoa_common.empty": {
+          "size": [ 0, 0 ]
+        }
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.buildplate_share",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+
+  "share_button_panel": {
+    "type": "panel",
+    "size": [ "100%c", "100%" ],
+    "controls": [
+      {
+        "glow": {
+          "type": "image",
+          "size": [ "100%cm + 20px", "100% + 20px" ],
+          "layer": 1,
+          "texture": "textures/ui/glow_yellow",
+          "bilinear": true,
+          "controls": [
+            {
+              "shadow@genoa_common.white": {
+                "type": "image",
+                "size": [ "100%c", "100% - 20px" ],
+                "layer": 1,
+                "offset": [ 3, 3 ],
+                "color": "$genoa_button_shadow_color",
+                "bilinear": true,
+                "controls": [
+                  {
+                    "background@genoa_common.button_background_image": {
+                      "size": [ "100%c", "100%" ],
+                      "offset": [ -3, -3 ],
+                      "layer": 1,
+                      "alpha": 1.0,
+                      "$button_background_image_texture": "textures/ui/gradients/button_option",
+                      "controls": [
+                        {
+                          "bevel": {
+                            "type": "image",
+                            "size": [ "100%c", "100%" ],
+                            "layer": 1,
+                            "alpha": 1.0,
+                            "texture": "textures/ui/tile_bevel_basic",
+                            "controls": [
+                              {
+                                "content@genoa_gps_buildplates.share_button_content": {
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }            
+          ]
+        }
+      }      
+    ]
+  },
+
+  "share_button_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%c", "100%" ],
+    "controls": [
+      {
+        "pad_front": {
+          "type": "panel",
+          "size": [ 8, 0 ]
+        }
+      },
+      {
+        "icon_panel": {
+          "type": "panel",
+          "size": [ 36, "100%" ],
+          "controls": [
+            {
+              "icon": {
+                "type": "image",
+                "size": [ 36, 36 ],
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "layer": 1,
+                "texture": "textures/ui/share"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_seperator": {
+          "type": "panel",
+          "size": [ 0, 0 ]
+        }
+      },
+      {
+        "text_panel": {
+          "type": "panel",
+          "size": [ "50%c", "100%" ],
+          "controls": [
+            {
+              "text": {
+                "type": "label",
+                "size": [ "default", 24 ],
+                "override_height": 20,
+                "font_type": "MinecraftTen",
+                "color": "$genoa_text_title_color",
+                "layer": 2,
+                "text": "buildplate.share",
+                "text_alignment": "center"
+              }
+            },
+            {
+              "text_shadow": {
+                "type": "label",
+                "size": [ "default", 24 ],
+                "override_height": 20,
+                "font_type": "MinecraftTen",
+                "color": "$genoa_text_title_shadow_color",
+                "layer": 1,
+                "text": "buildplate.share",
+                "text_alignment": "center",
+                "offset": [ 0, 2 ],
+                "alpha": 0.2
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_tail": {
+          "type": "panel",
+          "size": [ 12, 0 ]
+        }
+      }
+    ]
+  }
+}

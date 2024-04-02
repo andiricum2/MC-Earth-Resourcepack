@@ -1,0 +1,635 @@
+{
+    "format_version": "1.8.0",
+    "vignette" : {
+        "name" : "genoa:squid_tappable_sequence_epic_vignette",
+        "loop" : false,
+        "cameras" : [
+            {
+                "name" : "default",
+                "position" : [-4.507, 4.938, -4.507],
+                "target" : [-1.611, 2.071, -1.611],
+                "up" : [0,1,0],
+                "fov" : 50,
+                "far_clip" : 100
+            }
+        ],
+        "entities" : [ 
+            { 
+                "name" : "squid",
+                "entity_definition" : "genoa:squid_tappable_sequence"
+            },
+            {
+                "name" : "backdrop",
+                "entity_definition" : "genoa:backdrop_vignette"
+            }
+        ],
+        "effects" : [
+            {
+                "name" : "tap_impact",
+                "effect_definition" : "genoa:tappable_tap_impact"
+            },
+            {
+                "name" : "tap_mob_impact",
+                "effect_definition" : "genoa:tappable_tap_mob_impact"
+            },
+            {
+                "name" : "tap_impact_rare",
+                "effect_definition" : "genoa:tappable_tap_impact_rare"
+            },
+            {
+                "name" : "tap_mob_impact_rare",
+                "effect_definition" : "genoa:tappable_tap_mob_impact_rare"
+            },
+            {
+                "name" : "tap_impact_epic",
+                "effect_definition" : "genoa:tappable_tap_impact_epic"
+            },
+            {
+                "name" : "tap_mob_impact_epic",
+                "effect_definition" : "genoa:tappable_tap_mob_impact_epic"
+            },
+            {
+                "name" : "tap_rubble",
+                "effect_definition" : "genoa:tappable_tap_rubble"
+            },
+            {
+                "name" : "tap_rubble_rare",
+                "effect_definition" : "genoa:tappable_tap_rubble_rare"
+            },
+            {
+                "name" : "tap_rubble_epic",
+                "effect_definition" : "genoa:tappable_tap_rubble_epic"
+            },
+            {
+                "name" : "tap_foreground_glow",
+                "effect_definition" : "genoa:tappable_foreground_glow"
+            },
+            {
+                "name" : "tap_clear_flash",
+                "effect_definition" : "genoa:tappable_flash_black"
+            },
+            {
+                "name" : "tap_clear_flash_white_fade",
+                "effect_definition" : "genoa:tappable_flash_white_fade"
+            },
+            {
+                "name" : "ambient_motion",
+                "effect_definition" : "genoa:tappable_ambient_moat"
+            },
+            {
+                "name" : "ambient_motion_rare",
+                "effect_definition" : "genoa:tappable_ambient_moat_rare"
+            },
+            {
+                "name" : "ambient_motion_epic",
+                "effect_definition" : "genoa:tappable_ambient_moat_epic"
+            },
+            {
+                "name" : "ambient_glow",
+                "effect_definition" : "genoa:tappable_ambient_glow"
+            },
+            {
+                "name" : "ambient_glow_rare",
+                "effect_definition" : "genoa:tappable_ambient_glow_rare"
+            },
+            {
+                "name" : "ambient_glow_epic",
+                "effect_definition" : "genoa:tappable_ambient_glow_epic"
+            },
+            {
+                "name" : "award_loop_mob_ray_epic",
+                "effect_definition" : "genoa:tappable_award_loop_mob_ray_epic"
+            },
+            {
+                "name" : "award_loop_rubble_epic",
+                "effect_definition" : "genoa:tappable_award_loop_rubble_epic"
+            },
+            {
+                "name" : "award_loop_impact_epic",
+                "effect_definition" : "genoa:tappable_award_loop_mob_impact_epic"
+            },
+            {
+                "name" : "ambient_sparkle_epic",
+                "effect_definition" : "genoa:tappable_ambient_sparkle_epic"
+            },
+            {
+                "name" : "ambient_sunburst_epic",
+                "effect_definition" : "genoa:tappable_ambient_sunburst_epic"
+            }
+        ],
+        "keyframes" : [
+            {
+                "0" : [
+                    {
+                        "command" : "create_entity",
+                        "entity" : "squid",
+                        "label" : "start"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 0.0
+                    },                    
+                    {
+                        "command" : "create_entity",
+                        "entity" : "backdrop"
+                    },
+                    {
+                        "command" : "play_animation",
+                        "entity" : "backdrop",
+                        "animation" : "backdrop_setup_mobs"
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "ambient_motion",
+                        "position" : [2.923,-1.401, 2.923]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "ambient_glow",
+                        "position" : [2.923,-2.0, 2.923]
+                    },
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "enter"
+                    }
+                ],
+                "0.3" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "idle"
+                    },
+                    {
+                        "command" : "pause"
+                    } 
+                ],
+                "1.0" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "tap_1",
+                        "label" : "tap_1" 
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 1.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash",
+                        "position" : [-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_impact",
+                        "position" : [-1.71,2.5,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_mob_impact",
+                        "position" : [-1.71,2.0,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command": "create_effect",
+                        "entity": "tap_foreground_glow",
+                        "position": [ -1.71, 2.76, -1.79 ]
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.tap.sequence.01"
+                    },
+                    {
+                        "command" : "pause"
+                    } 
+                ],
+                "2.0" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "tap_2",
+                        "label" : "tap_2"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 2.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash",
+                        "position" : [-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_impact",
+                        "position" : [-1.71,2.5,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_mob_impact",
+                        "position" : [-1.71,2.0,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command": "create_effect",
+                        "entity": "tap_foreground_glow",
+                        "position": [ -1.71, 2.76, -1.79 ]
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.tap.sequence.02"
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "3.0" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "tap_3",
+                        "label" : "tap_3"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 3.0
+                    },                    
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "ambient_motion"
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "ambient_glow"
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "ambient_motion_rare",
+                        "position" : [2.923,-1.401, 2.923]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "ambient_glow_rare",
+                        "position" :[2.923,-2.0, 2.923]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash",
+                        "position" : [-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_impact_rare",
+                        "position" :  [-1.71,2.5,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_mob_impact_rare",
+                        "position" : [-1.71,2.0,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble_rare",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_foreground_glow",
+                        "position" :[-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.tap.sequence.03"
+                    },
+                    {
+                        "command":"play_sound",
+                        "entity":"tappable.particle.color.change"
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "4.0" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "tap_4",
+                        "label" : "tap_4" 
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 4.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash",
+                        "position" : [-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_impact_rare",
+                        "position" :  [-1.71,2.5,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_mob_impact_rare",
+                        "position" : [-1.71,2.0,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble_rare",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_foreground_glow",
+                        "position" :[-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.tap.sequence.04"
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "5.0" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "tap_5",
+                        "label" : "tap_5" 
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 5.0
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "ambient_motion_rare"
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "ambient_glow_rare"
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "ambient_motion_epic",
+                        "position" : [2.923,-1.401, 2.923]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "ambient_glow_epic",
+                        "position" :[2.923,-2.0, 2.923]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash",
+                        "position" : [-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_impact_epic",
+                        "position" :  [-1.71,2.5,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_mob_impact_epic",
+                        "position" : [-1.71,2.0,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble_epic",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_foreground_glow",
+                        "position" :[-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.tap.sequence.05"
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.particle.color.change"
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "6.0" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "tap_6",
+                        "label" : "tap_6" 
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 6.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash",
+                        "position" : [-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_impact_epic",
+                        "position" :  [-1.71,2.5,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_mob_impact_epic",
+                        "position" : [-1.71,2.0,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble_epic",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_foreground_glow",
+                        "position" :[-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.tap.sequence.06"
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "7.0" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "tap_7",
+                        "label" : "tap_7" 
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "squid",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 7.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash_white_fade",
+                        "position" : [-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_impact_epic",
+                        "position" :  [-1.71,2.5,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_mob_impact_epic",
+                        "position" :  [-1.71,2.0,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble_epic",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_foreground_glow",
+                        "position" :[-1.71,2.76,-1.79]
+                    },
+                    {
+                        "command": "create_effect",
+                        "entity": "ambient_sparkle_epic",
+                        "position" :[-1.79,2.25,-1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "ambient_sunburst_epic",
+                        "position" : [2.923,-2.0, 2.923]
+                    },
+                    {
+                        "command": "create_effect",
+                        "entity": "award_loop_mob_ray_epic",
+                        "position": [ 0, 0.5, 0 ]
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.tap.sequence.07"
+                    }
+                ],
+                "7.96667" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "award_transition"
+                    },
+                    {
+                        "command": "destroy_effect",
+                        "entity": "ambient_motion_epic"
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.award.transition"
+                    }
+                ],
+                "8.63333" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "award_loop"
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.award.loop"
+                    },
+                    {
+                        "command" : "wait_for_service"
+                    }
+                ],
+                "8.8" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "squid",
+                        "animation" : "award"
+                    },
+                    {
+                        "command": "stop_sound",
+                        "entity": "tappable.squid.award.loop"
+                    },
+                    {
+                        "command": "play_sound",
+                        "entity": "tappable.squid.award"
+                    }
+                ],
+                "9.16667" : [
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_clear_flash",
+                        "position" : [-1.71,2.76,1.79]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rubble",
+                        "position" : [0,1.5,0]
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_foreground_glow",
+                        "position" :[-1.71,2.76,1.79]
+                    },
+                    {
+                        "command" : "destroy_entity",
+                        "entity" : "squid"    
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "ambient_glow_epic"
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "ambient_sparkle_epic"
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "ambient_sunburst_epic"
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "award_loop_mob_ray_epic"
+                    },
+                    {
+                        "command" : "play_ui_sequence",
+                        "entity" : "tappable_sequence"
+                    }
+                ]
+             }
+        ]
+    }
+}

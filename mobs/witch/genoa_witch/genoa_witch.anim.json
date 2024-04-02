@@ -1,0 +1,33 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+
+    "animation.witch.folded_arms": {
+      "loop": true,
+      "bones": {
+        "arms": {
+          "position": [ 0.0, -1.0, -1.0 ],
+          "rotation" : [ "-42.97 - this", 0.0, 0.0 ]
+        }
+      }
+    },
+
+    "animation.witch.nose": {
+      "loop": true,
+      "bones": {
+        "nose": {
+          "rotation": [ "(variable.IsHoldingItem ? -25.7831 : (Math.sin(query.life_time * 57.296) * 4.5)) - this", 0.0, "(Math.cos(query.life_time * 57.296) * 2.5) - this" ]
+        }
+      }
+    },
+
+    "animation.witch.move": {
+      "anim_time_update": "query.modified_distance_moved",
+      "loop": true,
+      "bones": {
+        "leg0": { "rotation": [ "(Math.cos(query.anim_time * 38.17) * 40.0) - this", "-this", 0.0 ] },
+        "leg1": { "rotation": [ "(Math.cos(query.anim_time * 38.17 + 180) * 40.0) - this", "-this", 0.0 ] }
+      }
+    }
+  }
+} 

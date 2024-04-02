@@ -1,0 +1,1862 @@
+/********************************************************
++*   (c) Mojang. All rights reserved                       *
++*   (c) Microsoft. All rights reserved.                   *
++*********************************************************/
+
+{
+  "namespace": "genoa_dev_settings",
+
+  "genoa_dev_settings_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_dev_settings.main_panel",
+    "$background_scrim_visible": false,
+    "screen_visibility": "opaque"
+  },
+
+  "main_panel": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "controls": [
+      {
+        "content_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "header@genoa_common.header": {
+                "$header_text": "options.genoa.dev.header",
+                "$header_image": "textures/ui/header_icons/settings"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 6 ]
+              }
+            },
+            {
+              "scrolling_panel@common.scrolling_panel": {
+                "size": [ "100%", "fill" ],
+                "$scrolling_content": "genoa_dev_settings.genoa_dev_settings_panel",
+                "$scrolling_pane_size": [ "100%", "100%" ],
+                "$show_background": false,
+                "$scroll_size": [ "10px", "100%" ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "fading_selection_info@genoa_common.fading_selection_info": {
+          "$selection_info_text_offset": [ 0, -60 ]
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_settings_panel": {
+    "type": "stack_panel",
+    "size": [ "100% - 26px", "100%c + 50px" ], //50px for padding when scrolled to the bottom
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 13, 0 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      },
+      {
+        "service_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.service",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_service_settings"
+        }
+      },
+      { "break_0@genoa_settings.section_break": {} },
+      {
+        "cache_clean_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.cache",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_cache_cleaners"
+        }
+      },
+      { "break_1@genoa_settings.section_break": {} },
+      {
+        "rendering_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.rendering",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_rendering_settings"
+        }
+      },
+      { "break_2@genoa_settings.section_break": {} },
+      {
+        "ar_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.ar",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_ar_settings"
+        }
+      },
+      { "break_2.1@genoa_settings.section_break": {} },
+      {
+        "server_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.server",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_server_settings"
+        }
+      },
+      { "break_2.2@genoa_settings.section_break": {} },
+      {
+        "asa_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.asa",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_asa_settings"
+        }
+      },
+      { "break_3@genoa_settings.section_break": {} },
+      {
+        "gps_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.map",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_gps_settings"
+        }
+      },
+      { "break_4@genoa_settings.section_break": {} },
+      {
+        "store_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.store",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_store_settings"
+        }
+      },
+      { "break_5@genoa_settings.section_break": {} },
+      {
+        "pack_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "Main Pack Debug Options",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_debug_pack_settings"
+        }
+      },
+      { "break_5_and_a_half@genoa_settings.section_break": {} },
+      {
+        "persona_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.persona",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_persona_settings"
+        }
+      },
+      { "break_6@genoa_settings.section_break": {} },
+      {
+        "content_validation_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.contentValidation",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_content_validation_settings"
+        }
+      },
+      { "break_7@genoa_settings.section_break": {} },
+      {
+        "debug_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.debug",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_debug_settings"
+        }
+      },
+      { "break_8@genoa_settings.section_break": {} },
+      { "build_info@genoa_dev_settings.build_info_label_panel": {} },
+      { "break_9@genoa_settings.section_break": {} },
+      {
+        "haptics_triggers_section@genoa_dev_settings.dev_setting_section": {
+          "$section_title": "options.genoa.dev.section.hapticsTriggers",
+          "$section_content_control": "genoa_dev_settings.genoa_dev_haptics_triggers"
+        }
+      },
+      { "break_10@genoa_settings.section_break": {} },
+      {
+        "benchmark@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.benchmark_game",
+          "$button_text": "options.genoa.dev.benchmarkGame"
+        }
+      }
+    ]
+  },
+
+  "dev_setting_section": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "title": {
+          "type": "label",
+          "size": [ "100%", "default" ],
+          "text": "$section_title",
+          "font_type": "MinecraftTen",
+          "override_height": 20,
+          "text_alignment": "center"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 6 ]
+        }
+      },
+      { "section_content@$section_content_control": {} }
+    ]
+  },
+
+  "genoa_dev_service_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "reset_profile@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.reset_profile",
+          "$button_text": "options.genoa.dev.resetProfile"
+        }
+      },
+      {
+        "option_genoa_enable_custom_service_environment@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_enable_custom_service_environment",
+          "$setting_name": "options.genoa.dev.customEnvironment"
+        }
+      },
+      {
+        "service_environment_settings": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%c" ],
+          "bindings": [
+            {
+              "binding_name": "#custom_service_environment_enabled",
+              "binding_type": "global",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "service_environment_dropdown@genoa_dev_settings.service_environment_dropdown": {}
+            },
+            {
+              "option_genoa_custom_service_environment_uri@genoa_settings_common.genoa_text_edit": {
+                "$show_copy_paste_buttons": true,
+                "$option_label": "options.genoa.dev.customEnvironment.uri",
+                "$text_box_name": "genoa_custom_service_environment_uri",
+                "$option_binding_name": "#genoa_custom_service_environment_uri",
+                "$max_text_edit_length": 255
+              }
+            }
+          ]
+        }
+      },
+      {
+        "option_genoa_bypass_sign_in@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_bypass_sign_in",
+          "$setting_name": "options.genoa.dev.bypass.signin"
+        }
+      },
+      {
+        "option_reset_client_id@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "dev_reset_client_id",
+          "$setting_name": "options.genoa.dev.resetID"
+        }
+      },
+      {
+        "option_genoa_use_offline_service_api@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_use_offline_service_api",
+          "$setting_name": "options.genoa.dev.onebox.useOfflineServiceApi"
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_cache_cleaners": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "cache_clear_collection": {
+          "type": "stack_panel",
+          "anchor_from": "top_left",
+          "anchor_to": "top_left",
+          "size": [ "100%", "100%c" ],
+          "orientation": "vertical",
+          "collection_name": "cache_locations",
+          "factory": {
+            "name": "cache_clear_collection_factory",
+            "control_name": "genoa_settings.clear_cache_entry"
+          },
+          "bindings": [
+            {
+              "binding_name": "#cache_locations_size",
+              "binding_type": "global",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "option_clear_store_cache_button@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "options.genoa.dev.storeCache",
+          "$pressed_button_name": "dev_clear_store_cache_button"
+        }
+      },
+      {
+        "option_clear_all_cache_button@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "options.genoa.dev.storeCache.all",
+          "$pressed_button_name": "dev_clear_all_cache_button"
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_rendering_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "option_genoa_post_fx@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_post_fx_enabled",
+          "$setting_name": "options.genoa.dev.postFX"
+        }
+      },
+      {
+        "option_genoa_use_font_overrides@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_use_font_overrides",
+          "$setting_name": "options.genoa.dev.ttfOverrides"
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_content_validation_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "validate_item_catalog@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.validate_item_catalog",
+          "$button_text": "options.genoa.dev.validateItemCatalog"
+        }
+      },
+      {
+        "validate_item_catalog_blocks@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.validate_item_catalog_blocks",
+          "$button_text": "options.genoa.dev.validateItemCatalogBlocks"
+        }
+      }
+    ]
+  },
+
+  "treatment_action_button_content": {
+    "type": "image",
+    "size": [ "100% - 8px", "100% - 8px" ],
+    "$treatment_action_image_bind": "#treatment_action_image",
+    "texture": "$treatment_action_image"
+  },
+
+  "genoa_dev_treatment_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 32 ],
+    "controls": [
+      {
+        "treatment_label_panel": {
+          "type": "image",
+          "size": [ "fill", "100%" ],
+          "texture": "textures/ui/box_simple",
+          "controls": [
+            {
+              "treatment_label": {
+                "type": "label",
+                "size": [ "100% - 12px", 20 ],
+                "override_height": 20,
+                "text_alignment": "left",
+                "$treatment_label_binding": "#treatment_id",
+                "text": "$treatment_label_binding",
+                "bindings": [
+                  {
+                    "binding_type": "collection",
+                    "binding_collection_name": "$treatment_collection_name",
+                    "binding_name": "$treatment_label_binding"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "treatment_action_button@genoa_common.button": {
+          "size": [ "100%y", "100%" ],
+          "$button_content": "genoa_dev_settings.treatment_action_button_content",
+          "$pressed_button_name": "$treatment_action_button_name",
+          "$bevel_texture": "textures/ui/tile_bevel_dark",
+          "$shadow_enabled": false,
+          "$background_style": "color",
+          "$background_color": "$genoa_nav_bar_background_color",
+          "$glow_enabled": false,
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$treatment_collection_name",
+              "binding_condition": "visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "treatment_grid_section": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "bindings": [
+      {
+        "binding_name": "$treatment_grid_section_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "treatments_label_panel": {
+          "type": "image",
+          "size": [ "100%", 18 ],
+          "texture": "textures/ui/Banners",
+          "controls": [
+            {
+              "treatments_label": {
+                "type": "label",
+                "offset": [ 3, 0 ],
+                "text": "$treatment_grid_section_label",
+                "text_alignment": "left",
+                "color": "$body_text_color",
+                "layer": 1
+              }
+            }
+          ]
+        }
+      },
+      {
+        "treatment_grid": {
+          "type": "grid",
+          "size": [ "100%", "100%c" ],
+          "grid_item_template": "genoa_dev_settings.genoa_dev_treatment_content",
+          "grid_dimension_binding": "$treatment_grid_dimension_binding",
+          "collection_name": "$treatment_collection_name",
+          "bindings": [
+            {
+              "binding_name": "$treatment_grid_dimension_binding"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "treatment_display": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "spacer_0": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      },
+      {
+        "override_treatment_options_panel": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%c" ],
+          "bindings": [
+            {
+              "binding_name": "#override_treatment_options_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "add_treatments_panel": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%cm" ],
+                "orientation": "horizontal",
+                "controls": [
+                  {
+                    "text_edit_treatment@genoa_settings_common.genoa_text_edit": {
+                      "size": [ "fill", "100%c" ],
+                      "$option_label": "options.dev_addTreatmentId",
+                      "$text_box_name": "dev_treatment_id",
+                      "$option_binding_name": "#dev_treatment_id",
+                      "$option_enabled_binding_name": "#dev_treatment_id_enabled",
+                      "$show_copy_paste_buttons": true,
+                      "$max_text_edit_length": 50
+                    }
+                  },
+                  {
+                    "add_button_panel": {
+                      "type": "panel",
+                      "size": [ 40, 40 ],
+                      "controls": [
+                        {
+                          "add_button@genoa_settings_common.genoa_button_setting": {
+                            "$pressed_button_name": "button.add_treatment_by_name",
+                            "size": [ "100%", 30 ],
+                            "offset": [ 0, 4 ],
+                            "anchor_from": "bottom_right",
+                            "anchor_to": "bottom_right",
+                            "$button_text": "options.dev_addLabel"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "in_use_treatment_grid_section@genoa_dev_settings.treatment_grid_section": {
+          "$treatment_grid_section_label": "options.dev_currentTreatmentsTitle",
+          "$treatment_grid_section_visible": "#treatment_grid_section_visible",
+          "$treatment_grid_dimension_binding": "#treatments_grid_dimension",
+          "$treatment_collection_name": "treatment_collection",
+          "$treatment_action_button_name": "button.remove_treatment",
+          "$treatment_action_image": "textures/ui/red_x"
+        }
+      },
+      {
+        "spacer_1": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      },
+      {
+        "treatment_cache_management_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%", 30 ],
+          "controls": [
+            {
+              "reset_to_default@genoa_settings_common.genoa_button_setting": {
+                "size": [ "fill", "100%" ],
+                "$pressed_button_name": "button.reset_to_default_treatments",
+                "$button_text": "Default"
+              }
+            },
+            {
+              "center_padding": {
+                "type": "panel",
+                "size": [ 10, "100%" ]
+              }
+            },
+            {
+              "clear_treatments@genoa_settings_common.genoa_button_setting": {
+                "size": [ "fill", "100%" ],
+                "$pressed_button_name": "button.clear_treatment_list",
+                "$button_text": "Clear All"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "spacer_2": {
+          "type": "panel",
+          "size": [ "100%", 2 ]
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_store_treatment_options": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "display_treatments_toggle@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "dev_display_treatments",
+          "$setting_name": "Display Treatments"
+        }
+      },
+      {
+        "display_panel": {
+          "type": "image",
+          "size": [ "100%", "100%c + 24px" ],
+          "texture": "textures/ui/White",
+          "color": "$9_color_format",
+          "alpha": 0.4,
+          "keep_ratio": false,
+          "bindings": [
+            {
+              "binding_name": "#treatment_section_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "indent_panel": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "size": [ "100% - 24px", "100%c" ],
+                "controls": [
+                  {
+                    "override_treatments_toggle@genoa_settings_common.genoa_setting_main": {
+                      "$setting_type": "bool",
+                      "$bool_option_id": "dev_override_treatments",
+                      "$setting_name": "Override Treatments"
+                    }
+                  },
+                  {
+                    "treatment_display@genoa_dev_settings.treatment_display": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "dropdown_label": {
+    "type": "label",
+    "$dropdown_text_binding": "('#' + $dropdown_name + '_dropdown_label')",
+    "text": "$dropdown_text_binding",
+    "color": "$genoa_header_text_color",
+    "font_type": "MinecraftTen",
+    "override_height": 20,
+    "bindings": [
+      {
+        "binding_name": "$dropdown_text_binding"
+      }
+    ]
+  },
+
+  "dropdown_option_content": {
+    "type": "panel",
+    "size": [ "100%", 40 ],
+    "controls": [
+      {
+        "dropdown_option_button@genoa_common.button": {
+          "$background_style": "color",
+          "$background_color": "$genoa_dark_button_color",
+
+          "$pressed_button_name": "('button.' + $dropdown_name + '_option')",
+          "$button_text": "('#' + $dropdown_name + '_option_text_binding')",
+          "$button_content": "genoa_common.button_content_text_bindable",
+          "$button_text_collection_name": "$dropdown_collection_name",
+          "$button_font_height": 20,
+          "$button_text_binding_type": "collection",
+
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$dropdown_collection_name"
+            }
+          ]
+        }
+      },
+      {
+        "active_image@genoa_dev_settings.service_environment_supported_image": {
+          "offset": [ 6, 0 ],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "layer": 25,
+
+          "bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "$dropdown_collection_name"
+            },
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "$dropdown_collection_name",
+              "binding_name": "('#is_' + $dropdown_name + '_option_active')",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "dropdown_grid": {
+    "type": "grid",
+    "size": [ "100%", "100%c" ],
+    "grid_item_template": "genoa_dev_settings.dropdown_option_content",
+    "$dropdown_grid_dimension_binding|default": "('#' + $dropdown_name + '_grid_dimension_binding')",
+    "grid_dimension_binding": "$dropdown_grid_dimension_binding",
+    "$dropdown_collection_name|default": "($dropdown_name + '_collection')",
+    "collection_name": "$dropdown_collection_name",
+
+    "bindings": [
+      {
+        "binding_name": "$dropdown_grid_dimension_binding"
+      }
+    ]
+  },
+
+  "override_date_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", "100%cm" ],
+    "$one_line_layout": false,
+    "$text_edit_box_text_type": "NumberChars",
+    "$option_text_edit_control_size": [ 30, 30 ],
+    "$option_generic_panel_size": [ 30, "100%c" ],
+    "$option_label_alignment": "center",
+    "controls": [
+      {
+        "year_text_box@genoa_settings_common.genoa_text_edit": {
+          "size": "$option_generic_panel_size",
+          "$option_label": "Year",
+          "$text_box_name": "dev_date_year_override_text_box",
+          "$option_binding_name": "#dev_date_year_override",
+          "$max_text_edit_length": 4
+        }
+      },
+      {
+        "year_month_slash": {
+          "type": "label",
+          "size": [ 16, "default" ],
+          "text": " / ",
+          "text_alignment": "center",
+          "color": "$main_header_text_color"
+        }
+      },
+      {
+        "month_text_box@genoa_settings_common.genoa_text_edit": {
+          "size": "$option_generic_panel_size",
+          "$option_label": "Month",
+          "$text_box_name": "dev_date_month_override_text_box",
+          "$option_binding_name": "#dev_date_month_override",
+          "$max_text_edit_length": 2
+        }
+      },
+      {
+        "month_day_slash": {
+          "type": "label",
+          "size": [ 16, "default" ],
+          "text": " / ",
+          "text_alignment": "center",
+          "color": "$main_header_text_color"
+        }
+      },
+      {
+        "day_text_box@genoa_settings_common.genoa_text_edit": {
+          "size": "$option_generic_panel_size",
+          "$option_label": "Day",
+          "$text_box_name": "dev_date_day_override_text_box",
+          "$option_binding_name": "#dev_date_day_override",
+          "$max_text_edit_length": 2
+        }
+      },
+      {
+        "day_hour_slash": {
+          "type": "label",
+          "size": [ 16, "default" ],
+          "text": " / ",
+          "text_alignment": "center",
+          "color": "$main_header_text_color"
+        }
+      },
+      {
+        "hour_text_box@genoa_settings_common.genoa_text_edit": {
+          "size": "$option_generic_panel_size",
+          "$option_label": "Hour",
+          "$text_box_name": "dev_date_hour_override_text_box",
+          "$option_binding_name": "#dev_date_hour_override",
+          "$max_text_edit_length": 2
+        }
+      },
+      {
+        "hour_minute_slash": {
+          "type": "label",
+          "size": [ 16, "default" ],
+          "text": " / ",
+          "text_alignment": "center",
+          "color": "$main_header_text_color"
+        }
+      },
+      {
+        "minute_text_box@genoa_settings_common.genoa_text_edit": {
+          "size": "$option_generic_panel_size",
+          "$option_label": "Minute",
+          "$text_box_name": "dev_date_minute_override_text_box",
+          "$option_binding_name": "#dev_date_minute_override",
+          "$max_text_edit_length": 2
+        }
+      }
+    ]
+  },
+
+  "override_date_options_panel": {
+    "type": "image",
+    "size": [ "100%", "100%c + 24px" ],
+    "texture": "textures/ui/White",
+    "color": "$9_color_format",
+    "alpha": 0.4,
+    "keep_ratio": false,
+    "controls": [
+      {
+        "override_date_options_background_panel": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "90%", "100%c" ],
+          "$enabled": true,
+          "controls": [
+            {
+              "date_laod_type_options": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%c" ],
+                "controls": [
+                  {
+                    "date_load_mode_dropdown@genoa_common.dropdown": {
+                      "size": [ "100%", 40 ],
+                      "$use_scrolling": false,
+                      "$option_label": "Date Load Mode",
+
+                      "$dropdown_name": "date_load_mode",
+                      "$dropdown_content_panel_size": [ "100%", "100%c" ],
+                      "$dropdown_content_panel_offset": [ 0, 5 ],
+                      "$dropdown_button_content": "genoa_dev_settings.dropdown_label",
+                      "$dropdown_content": "genoa_dev_settings.dropdown_grid"
+                    }
+                  },
+                  {
+                    "padding0": {
+                      "type": "panel",
+                      "size": [ "100%", 4 ]
+                    }
+                  },
+                  {
+                    "scale_elapsed_time_panel": {
+                      "type": "panel",
+                      "size": [ "100%", "100%c" ],
+                      "bindings": [
+                        {
+                          "binding_name": "#scale_elapsed_time_option_visible",
+                          "binding_name_override": "#visible"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "scale_elapsed_time_option_toggle@genoa_settings_common.genoa_setting_main": {
+                            "$setting_type": "bool",
+                            "$bool_option_id": "dev_scale_elapsed_override_time",
+                            "$setting_name": "Scale Elasped Time On Load"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "padding0": {
+                "type": "panel",
+                "size": [ "100%", 4 ]
+              }
+            },
+            {
+              "date_time_zone_mode_dropdown@genoa_common.dropdown": {
+                "size": [ "100%", 40 ],
+                "$use_scrolling": false,
+                "$option_label": "Date Timezone Mode",
+
+                "$dropdown_name": "date_time_zone_mode",
+                "$dropdown_content_panel_size": [ "100%", "100%c" ],
+                "$dropdown_content_panel_offset": [ 0, 5 ],
+                "$dropdown_button_content": "genoa_dev_settings.dropdown_label",
+                "$dropdown_content": "genoa_dev_settings.dropdown_grid"
+              }
+            },
+            {
+              "padding1": {
+                "type": "panel",
+                "size": [ "100%", 4 ]
+              }
+            },
+            { "override_date_panel@genoa_dev_settings.override_date_panel": {} },
+            {
+              "padding2": {
+                "type": "panel",
+                "size": [ "100%", 2 ]
+              }
+            },
+            {
+              "override_time_scale_option@genoa_settings_common.genoa_text_edit": {
+                "$option_text_edit_control_size": [ 40, 30 ],
+                "$option_label": "Scale Speed That Time Passes (Min: 1, Default: 1)",
+                "$option_label_alignment": "left",
+                "$max_text_edit_length": 5,
+                "$text_box_name": "dev_override_time_scale_text_box",
+                "$option_binding_name": "#dev_override_time_scale",
+                "$text_edit_box_text_type": "NumberChars"
+              }
+            },
+            {
+              "reset_time_button@genoa_settings_common.genoa_button_setting": {
+                "size": [ "100%", 30 ],
+                "$pressed_button_name": "dev_reset_date_button",
+                "$button_text": "options.dev_resetOverrideDate"
+              }
+            },
+            {
+              "padding3": {
+                "type": "panel",
+                "size": [ "100%", 4 ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#override_date_options_visible",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "date_modification_options": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "display_override_datetime_option_toggle@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "dev_display_override_datetime",
+          "$setting_name": "Display Date Time"
+        }
+      },
+      {
+        "option_toggle_date_override@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "dev_use_override_date",
+          "$setting_name": "Override Date Time"
+        }
+      },
+      {
+        "override_date_options_panel@genoa_dev_settings.override_date_options_panel": {}
+      }
+    ]
+  },
+
+  "genoa_dev_store_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "option_toggle_retail_sandbox@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "dev_use_retail_xbox_sandbox",
+          "$setting_name": "options.genoa.dev.sanbox.retailXbox"
+        }
+      },
+      {
+        "treatment_section@genoa_dev_settings.genoa_dev_store_treatment_options": {}
+      },
+      {
+        "date_modification_section@genoa_dev_settings.date_modification_options": {}
+      }
+    ]
+  },
+
+  "genoa_dev_debug_pack_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "options_allow_staging_pack@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_staging_pack",
+          "$setting_name": "Allow Genoa Staging Pack"
+        }
+      },
+      {
+        "option_clear_downloaded_main_pack@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "Delete Downloaded Main Pack",
+          "$pressed_button_name": "button.delete_main_pack"
+        }
+      },
+      {
+        "options_enable_store@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_in_package_pack",
+          "$setting_name": "Use In-package Pack"
+        }
+      },
+      {
+        "option_toggle_retail_sandbox@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_import_pack_everytime",
+          "$setting_name": "Import Pack on Every Boot"
+        }
+      },
+      {
+        "download_pack@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_download_pack",
+          "$setting_name": "Download the Genoa Pack"
+        }
+      },
+      {
+        "simulate_failed_download@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_simulate_download_fail",
+          "$setting_name": "Simulate a failed pack download next boot"
+        }
+      },
+      {
+        "simulate_no_storage_space@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_simulate_storage_space_fail",
+          "$setting_name": "Simulate no storage space available next boot"
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_debug_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "option_show_build_info@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "dev_show_build_info",
+          "$setting_name": "options.genoa.dev.buildInfo"
+        }
+      },
+      {
+        "option_toggle_dev_console_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "dev_show_dev_console_button",
+          "$setting_name": "options.genoa.dev.console"
+        }
+      },
+      {
+        "option_toggle_show_user_input@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_dev_show_user_input",
+          "$setting_name": "options.genoa.dev.show_user_input"
+        }
+      },
+      {
+        "option_perf_turtle@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "perf_turtle",
+          "$setting_name": "options.genoa.dev.perfTurtle"
+        }
+      },
+      {
+        "options_enable_old_tappable_rewards@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_disable_vignette_tappables",
+          "$setting_name": "options.genoa.dev.disable.tappableVignettes"
+        }
+      },
+      {
+        "option_genoa_enable_remote_imgui@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_enable_remote_imgui",
+          "$setting_name": "options.genoa.dev.imgui.relay"
+        }
+      },
+      {
+        "option_genoa_remote_imgui_room@genoa_settings_common.genoa_text_edit": {
+          "$show_copy_paste_buttons": true,
+          "$option_label": "options.genoa.dev.imgui.relay.room",
+          "$text_box_name": "genoa_remote_imgui_room",
+          "$option_binding_name": "#genoa_remote_imgui_room"
+        }
+      },
+      {
+        "vignette_test_button@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "options.genoa.dev.imgui.vignette",
+          "$pressed_button_name": "button.vignette_test_button"
+        }
+      },
+      {
+        "auth_expire_button@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "options.genoa.dev.auth.expire.button",
+          "$pressed_button_name": "button.auth_expire_button"
+        }
+      }
+    ]
+  },
+
+  "build_info_text": {
+    "type": "label",
+    "size": [ "100%", "default" ],
+    "text": "$info_text_bind",
+    "$build_info_text_override_height|default": 10,
+    "override_height": "$build_info_text_override_height",
+    "anchor_from": "left_middle",
+    "anchor_to": "left_middle",
+    "$info_text_bind_condition|default": "none",
+    "bindings": [
+      {
+        "binding_name": "$info_text_bind",
+        "binding_condition": "$info_text_bind_condition"
+      }
+    ]
+  },
+
+  "build_info_label_panel": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "build_id_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#build_id"
+        }
+      },
+      {
+        "protocol_version_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#protocol_version"
+        }
+      },
+      {
+        "device_id_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#device_id"
+        }
+      },
+      {
+        "MinecraftAccount_id_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#MinecraftAccount_id"
+        }
+      },
+      {
+        "commerce_id_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#commerce_id"
+        }
+      },
+      {
+        "build_date_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#build_date"
+        }
+      },
+      {
+        "tappable_radius_info@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#tappable_radius_text",
+          "$info_text_bind_condition": "once"
+        }
+      },
+      {
+        "device_lat@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#device_location_lat",
+          "$info_text_bind_condition": "always_when_visible"
+        }
+      },
+      {
+        "device_lon@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#device_location_lon",
+          "$info_text_bind_condition": "always_when_visible"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      },
+      {
+        "copy_to_clipboard@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.copy_build_info",
+          "$button_text": "options.genoa.dev.buildInfo.copy"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 16 ]
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_ar_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "option_genoa_enable_debug_buildplates@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_enable_debug_buildplates",
+          "$setting_name": "options.genoa.dev.debugBuildplates"
+        }
+      },
+      {
+        "dropdown_debug_game_mode@genoa_dev_settings.debug_game_mode_dropdown": {
+        }
+      },
+      {
+        "option_debug_remote_buildplates_as_host@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_debug_remote_buildplates_as_host",
+          "$setting_name": "options.genoa.dev.hostRemote"
+        }
+      },
+      {
+        "genoa_test_server@genoa_settings_common.genoa_text_edit": {
+          "$show_copy_paste_buttons": true,
+          "$option_label": "options.genoa.dev.test.serverAddress",
+          "$text_box_name": "genoa_test_server_text_box",
+          "$option_binding_name": "#genoa_test_server_text_box"
+        }
+      },
+      {
+        "genoa_test_server_instance_id@genoa_settings_common.genoa_text_edit": {
+          "$show_copy_paste_buttons": true,
+          "$option_label": "options.genoa.dev.test.serverInstanceId",
+          "$text_box_name": "genoa_test_server_instance_id_text_box",
+          "$option_binding_name": "#genoa_test_server_instance_id_text_box",
+          "$max_text_edit_length": 36
+        }
+      },
+      {
+        "option_genoa_constraint_blocks_visible@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_constraint_blocks_visible",
+          "$setting_name": "options.genoa.dev.constraintBlocks"
+        }
+      },
+      {
+        "ar_placement_button@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "options.genoa.dev.ar.placement",
+          "$pressed_button_name": "button.ar_placement_button"
+        }
+      },
+      {
+        "option_genoa_enable_replay_recording@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_enable_replay_recording",
+          "$setting_name": "options.genoa.dev.replayRecording"
+        }
+      },
+      {
+        "option_genoa_force_render_nametags@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_force_render_nametags",
+          "$setting_name": "options.genoa.dev.force_render_nametags"
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_server_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "genoa_remote_server_id@genoa_settings_common.genoa_text_edit": {
+          "$show_copy_paste_buttons": true,
+          "$option_label": "options.genoa.dev.remote_server_id",
+          "$text_box_name": "genoa_server_id_text_box",
+          "$option_binding_name": "#genoa_server_id_text_box",
+          "$max_text_edit_length": 36
+        }
+      },
+      {
+        "remote_server_join@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "options.genoa.dev.join_remote_server",
+          "$pressed_button_name": "button.join_remote_server_button"
+        }
+      },
+      {
+        "remote_server_scan@genoa_settings_common.genoa_full_button_setting": {
+          "$button_text": "options.genoa.dev.scan_remote_server",
+          "$pressed_button_name": "button.scan_remote_server_button"
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_asa_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "genoa_enable_asa@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$setting_control_name": "genoa_enable_asa_toggle",
+          "$bool_option_id": "genoa_enable_asa",
+          "$setting_name": "options.genoa.dev.enableAsa"
+        }
+      },
+      {
+        "genoa_asa_test_location@genoa_settings_common.genoa_text_edit": {
+          "$show_copy_paste_buttons": true,
+          "$option_label": "options.genoa.dev.test.asaLocation",
+          "$text_box_name": "genoa_test_asa_location_text_box",
+          "$option_binding_name": "#genoa_test_asa_location_text_box",
+          "bindings": [
+            {
+              "binding_name": "#genoa_enable_asa",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_gps_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "option_genoa_enable_gps_override@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_enable_gps_override",
+          "$setting_name": "options.genoa.dev.gps.override"
+        }
+      },
+      {
+        "option_genoa_gps_override_lat@genoa_settings_common.genoa_text_edit": {
+          "$show_copy_paste_buttons": true,
+          "$option_label": "options.genoa.dev.lat.override",
+          "$text_box_name": "genoa_gps_override_lat",
+          "$option_binding_name": "#genoa_gps_override_lat"
+        }
+      },
+      {
+        "option_genoa_gps_override_lon@genoa_settings_common.genoa_text_edit": {
+          "$show_copy_paste_buttons": true,
+          "$option_label": "options.genoa.dev.lon.override",
+          "$text_box_name": "genoa_gps_override_lon",
+          "$option_binding_name": "#genoa_gps_override_lon"
+        }
+      }
+    ]
+  },
+
+  "genoa_dev_persona_settings": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "options_enable_persona_skin@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "persona_skin",
+          "$setting_name": "options.genoa.dev.persona.skin"
+        }
+      },
+      {
+        "options_enable_persona_catalog_testing@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "persona_catalog_testing",
+          "$setting_name": "options.genoa.dev.persona.catalogTesting"
+        }
+      },
+      {
+        "options_enable_persona_capes@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "persona_capes",
+          "$setting_name": "options.genoa.dev.persona.capes"
+        }
+      },
+      {
+        "options_enable_persona_service@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "persona_service_backend_enabled",
+          "$setting_name": "options.genoa.dev.persona.personaService"
+        }
+      },
+      {
+        "option_delete_all_personas@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.delete_all_personas",
+          "$button_text": "options.genoa.dev.deleteAllPersonas"
+        }
+      }
+    ]
+  },
+  "debug_game_mode_dropdown_content": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "layer": 2,
+    "controls": [
+      {
+        "content": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%c" ],
+          "collection_name": "debug_game_mode",
+          "controls": [
+            {
+              "panel_0": {
+                "type": "panel",
+                "size": [ "100%", 40 ],
+                "collection_index": 0,
+                "controls": [
+                  {
+                    "build_dropdown_button@genoa_common.button": {
+                      "$button_text": "options.genoa.dev.build.gamemode",
+                      "$button_content": "genoa_common.button_content_text",
+                      "$pressed_button_name": "button.debug_game_mode",
+                      "$background_style": "color",
+                      "$background_color": "$genoa_dark_button_color",
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "debug_game_mode"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "active_image@genoa_dev_settings.service_environment_supported_image": {
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "layer": 25,
+                      "bindings": [
+                        {
+                          "binding_name": "#gamemode_set",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "debug_game_mode"
+                        },
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "debug_game_mode"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "panel_1": {
+                "type": "panel",
+                "size": [ "100%", 40 ],
+                "collection_index": 1,
+                "controls": [
+                  {
+                    "play_dropdown_button@genoa_common.button": {
+                      "$button_text": "options.genoa.dev.play.gamemode",
+                      "$button_content": "genoa_common.button_content_text",
+                      "$pressed_button_name": "button.debug_game_mode",
+                      "$background_style": "color",
+                      "$background_color": "$genoa_dark_button_color",
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "debug_game_mode"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "active_image@genoa_dev_settings.service_environment_supported_image": {
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "layer": 25,
+                      "bindings": [
+                        {
+                          "binding_name": "#gamemode_set",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "debug_game_mode"
+                        },
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "debug_game_mode"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "panel_2": {
+                "type": "panel",
+                "size": [ "100%", 40 ],
+                "collection_index": 2,
+                "controls": [
+                  {
+                    "play_dropdown_button@genoa_common.button": {
+                      "$button_text": "options.genoa.dev.adventure.gamemode",
+                      "$button_content": "genoa_common.button_content_text",
+                      "$pressed_button_name": "button.debug_game_mode",
+                      "$background_style": "color",
+                      "$background_color": "$genoa_dark_button_color",
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "debug_game_mode"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "active_image@genoa_dev_settings.service_environment_supported_image": {
+                      "anchor_from": "left_middle",
+                      "anchor_to": "left_middle",
+                      "layer": 25,
+                      "bindings": [
+                        {
+                          "binding_name": "#gamemode_set",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "debug_game_mode"
+                        },
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "debug_game_mode"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "debug_game_mode_dropdown_button": {
+    "type": "label",
+    "text": "Debug Game Mode",
+    "color": "$genoa_header_text_color",
+    "font_type": "MinecraftTen",
+    "override_height": 20
+  },
+  "debug_game_mode_dropdown": {
+    "type": "stack_panel",
+    "controls": [
+      {
+        "dropdown@genoa_common.dropdown": {
+          "size": [ "100%", 40 ],
+          "$use_scrolling": false,
+          "$dropdown_content_panel_size": [ "100%", "100%c" ],
+          "$dropdown_content_panel_offset": [ 0, 5 ],
+          "$dropdown_button_content": "genoa_dev_settings.debug_game_mode_dropdown_button",
+          "$dropdown_name": "debug_game_mode_dropdown",
+          "$dropdown_content": "genoa_dev_settings.debug_game_mode_dropdown_content"
+        }
+      },
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ 0, 8 ]
+        }
+      }
+    ]
+  },
+  "genoa_dev_haptics_triggers": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "layer": 2,
+    "controls": [
+      {
+        "content": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%c" ],
+          "collection_name": "haptics_trigger",
+          "$genoa_full_button_bindings": [
+            {
+              "binding_type": "collection_details",
+              "binding_collection_name": "haptics_trigger"
+            }
+          ],
+          "controls": [
+            {
+              "selection_button@genoa_settings_common.genoa_full_button_setting": {
+                "collection_index": 0,
+                "$button_text": "Selection",
+                "$pressed_button_name": "button.haptics_trigger"
+              }
+            },
+            {
+              "impact_light_dropdown_button@genoa_settings_common.genoa_full_button_setting": {
+                "collection_index": 1,
+                "$button_text": "Impact Light",
+                "$pressed_button_name": "button.haptics_trigger"
+              }
+            },
+            {
+              "impact_medium_dropdown_button@genoa_settings_common.genoa_full_button_setting": {
+                "collection_index": 2,
+                "$button_text": "Impact Medium",
+                "$pressed_button_name": "button.haptics_trigger"
+              }
+            },
+            {
+              "impact_heavy_dropdown_button@genoa_settings_common.genoa_full_button_setting": {
+                "collection_index": 3,
+                "$button_text": "Impact Heavy",
+                "$pressed_button_name": "button.haptics_trigger"
+              }
+            },
+            {
+              "notification_success_dropdown_button@genoa_settings_common.genoa_full_button_setting": {
+                "collection_index": 4,
+                "$button_text": "Notification Success",
+                "$pressed_button_name": "button.haptics_trigger"
+              }
+            },
+            {
+              "notification_warning_dropdown_button@genoa_settings_common.genoa_full_button_setting": {
+                "collection_index": 5,
+                "$button_text": "Notification Warning",
+                "$pressed_button_name": "button.haptics_trigger"
+              }
+            },
+            {
+              "notification_error_dropdown_button@genoa_settings_common.genoa_full_button_setting": {
+                "collection_index": 6,
+                "$button_text": "Notification Error",
+                "$pressed_button_name": "button.haptics_trigger"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  ///
+  // Service Environment
+  ///
+  "service_environment_supported_image": {
+    "type": "image",
+    "texture": "textures/ui/green_check",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "size": [ 25, 18 ]
+  },
+  "service_environment_unsupported_image": {
+    "type": "image",
+    "texture": "textures/ui/red_x",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "size": [ 25, 18 ]
+  },
+  "sort_dropdown_option_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 36 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 15, 0 ]
+        }
+      },
+      {
+        "image_centering_panel": {
+          "type": "panel",
+          "size": [ "100%c", "100%" ],
+          "controls": [
+            {
+              "supported@genoa_dev_settings.service_environment_supported_image": {
+                "bindings": [
+                  {
+                    "binding_name": "#service_environment_supported",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "service_environments"
+                  }
+                ]
+              }
+            },
+            {
+              "unsupported@genoa_dev_settings.service_environment_unsupported_image": {
+                "bindings": [
+                  {
+                    "binding_name": "#service_environment_supported",
+                    "binding_name_override": "(not #visible)",
+                    "binding_type": "collection",
+                    "binding_collection_name": "service_environments"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 15, 0 ]
+        }
+      },
+      {
+        "label_panel": {
+          "type": "panel",
+          "size": [ "fill", 36 ],
+          "controls": [
+            {
+              "option_label": {
+                "type": "label",
+                "size": [ "100%", "default" ],
+                "font_size": "large",
+                "color": "$option_text_color",
+                "text": "#service_environment_text",
+                "bindings": [
+                  {
+                    "binding_name": "#service_environment_text",
+                    "binding_type": "collection",
+                    "binding_collection_name": "service_environments"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 15, 0 ]
+        }
+      }
+    ]
+  },
+  "service_environment_button_panel": {
+    "type": "panel",
+    "size": [ "100%", 60 ],
+
+    "$option_text": "#service_environment_text",
+    "$option_icon": "textures/ui/sort_rarity",
+    "$option_icon_selected": "textures/ui/sort_rarity_selected",
+    "$pressed_button_name": "button.service_environment_selected",
+
+    "controls": [
+      {
+        "unselected@genoa_common.button": {
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_option",
+          "$button_content": "genoa_dev_settings.sort_dropdown_option_content",
+          "$option_image": "$option_icon",
+          "$option_text_color": "$genoa_sort_option_text_color",
+          "$arrow_visible": false,
+          "bindings": [
+            {
+              "binding_name": "#service_environment_selected",
+              "binding_name_override": "(not #visible)",
+              "binding_type": "collection",
+              "binding_collection_name": "service_environments"
+            },
+            {
+              "binding_collection_name": "service_environments",
+              "binding_type": "collection_details"
+            }
+          ],
+          "sound_name": "item.sort"
+        }
+      },
+      {
+        "selected@genoa_common.button": {
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/gradients/button_option_selected",
+          "$button_content": "genoa_dev_settings.sort_dropdown_option_content",
+          "$option_image": "$option_icon_selected",
+          "$option_text_color": "white",
+          "$bevel_texture": "textures/ui/slot_bevel_simple",
+          "$arrow_visible": true,
+
+          "bindings": [
+            {
+              "binding_name": "#service_environment_selected",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "service_environments"
+            },
+            {
+              "binding_collection_name": "service_environments",
+              "binding_type": "collection_details"
+            }
+          ],
+          "sound_name": "item.sort"
+        }
+      }
+    ]
+  },
+  "service_environment_dropdown_content": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "layer": 2,
+    "controls": [
+      {
+        "content": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%c" ],
+
+          "collection_name": "service_environments",
+          "factory": {
+            "name": "service_environment_dropdown_factory",
+            "control_name": "genoa_dev_settings.service_environment_button_panel"
+          },
+          "bindings": [
+            {
+              "binding_name": "#service_environment_count",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "service_environment_dropdown_button": {
+    "type": "label",
+    "text": "Service Environment",
+    "color": "$genoa_header_text_color",
+    "font_type": "MinecraftTen",
+    "override_height": 20
+  },
+  "service_environment_dropdown": {
+    "type": "stack_panel",
+    "controls": [
+      {
+        "dropdown@genoa_common.dropdown": {
+          "size": [ "100%", 40 ],
+          "$use_scrolling": false,
+          "$dropdown_content_panel_size": [ "100%", 200 ],
+          "$dropdown_content_panel_offset": [ 0, 21 ],
+          "$dropdown_button_content": "genoa_dev_settings.service_environment_dropdown_button",
+          "$dropdown_name": "service_environment_dropdown",
+          "$dropdown_content": "genoa_dev_settings.service_environment_dropdown_content"
+        }
+      },
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ 0, 8 ]
+        }
+      }
+    ]
+  }
+  ///
+  // End Service Environment
+  ///
+
+}

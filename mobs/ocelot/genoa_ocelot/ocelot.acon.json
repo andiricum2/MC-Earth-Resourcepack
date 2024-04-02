@@ -1,0 +1,81 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.ocelot.blink": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "blink": "variable.is_blinking = 0; variable.return_from_blink = query.life_time + math.random(0, 0.2); variable.last_blink_time = variable.last_blink_time ? variable.last_blink_time : query.life_time; return query.life_time > (variable.last_blink_time + math.random(3, 40));" }
+          ]
+        },
+        "blink": {
+          "transitions": [
+            { "default": "variable.is_blinking = 1; variable.last_blink_time = query.life_time; return query.all_animations_finished && (query.life_time > variable.return_from_blink);" }
+          ]
+        }
+      }
+    },
+    "controller.animation.ocelot.move" : {
+			"initial_state" : "sitting",
+			"states" : {
+				"sitting" : {
+					"animations" : [ "sit" ],
+					"transitions" : [
+						{
+							"sneaking" : "variable.state == 0"
+						},
+						{
+							"sprinting" : "variable.state == 1"
+						},
+						{
+							"walking" : "variable.state == 3"
+						}
+					]
+				},
+				"sneaking" : {
+					"animations" : [ "sneak" ],
+					"transitions" : [
+						{
+							"sprinting" : "variable.state == 1"
+						},
+						{
+							"sitting" : "variable.state == 2"
+						},
+						{
+							"walking" : "variable.state == 3"
+						}
+					]
+				},
+				"sprinting" : {
+					"animations" : [ "sprint" ],
+					"transitions" : [
+						{
+							"sneaking" : "variable.state == 0"
+						},
+						{
+							"sitting" : "variable.state == 2"
+						},
+						{
+							"walking" : "variable.state == 3"
+						}
+					]
+				},
+				"walking" : {
+					"animations" : [ "walk" ],
+					"transitions" : [
+						{
+							"sneaking" : "variable.state == 0"
+						},
+						{
+							"sprinting" : "variable.state == 1"
+						},
+						{
+							"sitting" : "variable.state == 2"
+						}
+					]
+				}
+			}
+		}
+
+  }
+}

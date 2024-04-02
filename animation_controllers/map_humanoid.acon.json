@@ -1,0 +1,33 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    
+    "controller.animation.map.humanoid.bob": {
+      "states": {
+        "default": {
+          "animations": [ { "bob": [] } ]
+        }
+      }
+    },
+
+    "controller.animation.map.humanoid.move": {
+      "states": {
+        "default": {
+          "animations": [ { "move": [] } ],
+          "transitions": [
+            { "riding": "variable.is_riding" }
+          ]
+        },
+        "riding": {
+          "animations": [
+            { "riding.arms": [] },
+            { "riding.legs": [] }
+          ],
+          "transitions": [
+            { "default": "!variable.is_riding" }
+          ]
+        }
+      }
+    }
+  }
+}

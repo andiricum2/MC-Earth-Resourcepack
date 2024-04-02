@@ -1,0 +1,40 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:moolip",
+      "min_engine_version": "1.8.0",
+      "materials": { 
+        "default": "cow",
+        "flowers": "entity_alphatest"},
+      "textures": {
+        "default": "mobs/cow/moolip/moolip"
+      },
+      "geometry": {
+        "default": "geometry.genoa.moolip"
+      },
+      "animations": {
+        "setup": "animation.moo_bloom.setup",
+        "walk": "animation.quadruped.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "baby_transform": "animation.moo_bloom.baby_transform",
+        "blink": "controller.animation.moo_bloom.blink"
+      },
+      "scripts": {
+        "animate": [
+          "setup",
+          { "walk": "query.modified_move_speed" },
+          "look_at_target",
+          { "baby_transform": "query.is_baby" },
+          "blink"
+        ],
+        "initialization": [ "variable.is_blinking = 0;", "variable.return_from_blink = 0;", "variable.last_blink_time = 0;" ]
+      },
+      "render_controllers": [ "controller.render.moolip" ],
+      "spawn_egg": {
+        "base_color": "#EA3483",
+        "overlay_color": "#EA67A0"
+      }
+    }
+  }
+}

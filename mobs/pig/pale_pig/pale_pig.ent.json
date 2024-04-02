@@ -1,0 +1,41 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:pale_pig",
+      "materials": { "default": "entity" },
+      "textures": {
+        "default": "mobs/pig/pale_pig/pale_pig",
+        "saddled": "mobs/pig/pale_pig/pale_pig"
+      },
+      "geometry": {
+        "default": "geometry.genoa.pig"
+      },
+      "animations": {
+        "walk": "animation.quadruped.walk",
+        "look_at_target": "animation.shared.look_at_target",
+        "blink": "controller.animation.shared.mob_blink"
+      },
+      "scripts": {
+        "animate": [
+          { "walk": "query.modified_move_speed" },
+          "look_at_target",
+          "blink"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.3;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;"
+        ]
+      },
+      "render_controllers": [ "controller.render.genoa_pig" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 2
+      }
+    }
+  }
+}

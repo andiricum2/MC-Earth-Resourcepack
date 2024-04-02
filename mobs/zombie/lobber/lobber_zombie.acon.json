@@ -1,0 +1,24 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.lobber_zombie.shoot": {
+      "states": {
+        "default": {
+          "animations": [ "zombie_attack_bare_hand" ],
+          "transitions": [
+            { "throw": "variable.shots_preparing" }
+          ]
+        },
+        "throw": {
+          "animations": [ "throw" ],
+          "transitions": [
+            { "default": "query.all_animations_finished" }
+          ],
+          "on_exit": [
+            "variable.shots_preparing = 0;"
+          ]
+        }
+      }
+    }
+  }
+}

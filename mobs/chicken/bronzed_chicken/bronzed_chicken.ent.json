@@ -1,0 +1,47 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:bronzed_chicken",
+      "materials": {
+        "default": "entity",
+        "legs": "entity_alphatest"
+      },
+      "textures": {
+        "default": "mobs/chicken/bronzed_chicken/bronzed_chicken"
+      },
+      "geometry": {
+        "default": "geometry.genoa.chicken"
+      },
+      "animations": {
+        "move": "animation.chicken.move",
+        "general": "animation.chicken.general",
+        "look_at_target": "animation.shared.look_at_target",
+        "baby_transform": "animation.chicken.baby_transform",
+        "blink": "controller.animation.shared.mob_blink"
+      },
+      "scripts": {
+        "animate": [
+          "general",
+          { "move": "query.modified_move_speed" },
+          "look_at_target",
+          { "baby_transform": "query.is_baby" },
+          "blink"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.3;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;"
+        ]
+      },
+      "render_controllers": [ "controller.render.genoa_chicken" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 0
+      }
+    }
+  }
+}

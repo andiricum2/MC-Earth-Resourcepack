@@ -1,0 +1,31 @@
+{
+	"format_version": "1.8.0",
+	"animation_controllers": {
+		"controller.animation.persona_mob.react": {
+			"states": {
+				"default": {
+					"transitions": [
+						{ "react_head_1": "return variable.react_sub_state == 1;" },
+						{ "react_head_2": "return variable.react_sub_state == 2;" }
+					]
+				},
+				"react_head_1": {
+					"animations": [
+						{ "react_head_1": [] }
+					],
+					"transitions": [
+						{ "default": "variable.react_sub_state = 0; return query.all_animations_finished;" }
+					]
+				},
+				"react_head_2": {
+					"animations": [
+						{ "react_head_2": [] }
+					],
+					"transitions": [
+						{ "default": "variable.react_sub_state = 0; return query.all_animations_finished;" }
+					]
+				}
+			}
+		}
+	}
+}

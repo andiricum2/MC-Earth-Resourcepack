@@ -1,0 +1,1155 @@
+{
+  "namespace": "genoa_crafting",
+
+  "crafting_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_crafting.crafting_content",
+    "$screen_background_texture": "textures/ui/background_blurred",
+    "$background_scrim_visible": false,
+    "animation_name": "Crafting Screen",
+    "screen_visibility": "opaque"
+  },
+
+  //Main crafting screen
+  "crafting_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "scrim@genoa_crafting_smelting_common.ruby_animation_panel": {}
+      },
+      {
+        "crafting_boost_popup@genoa_crafting_smelting_common.crafting_smelting_panel": {
+          "layer": 114,
+          "$panel_content": "genoa_crafting.crafting_boost_panel_content",
+          "bindings": [
+            {
+              "binding_name": "#craft_boost_popup_on",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "collect_popup@genoa_crafting_smelting_common.collect_popup": {
+          "$tool_tip_on": "#crafting_collect_popup"
+        }
+      },
+      {
+        "content_stack_panel": {
+          "type": "stack_panel",
+          "layer": 1,
+          "size": [ "100%", "100%" ], // required
+          "use_new_layout": true,
+          "controls": [
+            {
+              "header_panel@genoa_common.header": {
+                "layer": 10,
+                "$header_text": "makinghub.skill.crafting",
+                "$header_icon_control": "genoa_crafting.crafting_header_icon_control"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 14 ]
+              }
+            },
+            {
+              "crafting_main_panel": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "layer": 56,
+                "controls": [
+                  {
+                    "loading_contents@genoa_crafting_smelting_common.loading_contents": {
+                      "$loading_text": "crafting.loading"
+                    }
+                  },
+                  {
+                    "crafting_contents": {
+                      "type": "stack_panel",
+                      "layer": 1,
+                      "size": [ "100%", "100%" ], // required
+                      "use_new_layout": true,
+                      "bindings": [
+                        {
+                          "binding_name": "#show_screen_contents",
+                          "binding_name_override": "#visible"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "filter_panel@genoa_crafting_smelting_common.filter_panel": {}
+                        },
+                        {
+                          "pad_1": {
+                            "type": "panel",
+                            "size": [ "100%", 8 ]
+                          }
+                        },
+                        {
+                          "sunset_information_buttton@genoa_common.button": {
+                            "$glow_style": "white",
+                            "$button_content": "genoa_common.button_content_text",
+                            "$button_text": "sunset.settings.button",
+                            "$button_font_type": "MinecraftTen",
+                            "$button_font_height": 24,
+                            "$pressed_button_name": "button.sunset_info",
+                            "size": [ 351, 60 ],
+                            "anchor_from": "center",
+                            "anchor_to": "center",
+                            "$background_style": "image",
+                            "$button_background_image_texture": "textures/ui/button_confirm"
+                          }
+                        },
+                        {
+                          "pad_1_1": {
+                            "type": "panel",
+                            "size": [ "100%", 20 ]
+                          }
+                        },
+                        {
+                          "search_bar@genoa_common.search_sort_panel": {
+                            "$ignore_toggle_all_button": false,
+                            "$ignore_duration": false
+                          }
+                        },
+                        {
+                          "pad_2": {
+                            "type": "panel",
+                            "size": [ "100%", 7 ]
+                          }
+                        },
+                        {
+                          "recipe_panel@genoa_crafting_smelting_common.recipe_panel": {}
+                        },
+                        {
+                          "crafting_tables": {
+                            "type": "panel",
+                            "layer": 56,
+                            "size": [ "100%", 134 ],
+                            "controls": [
+                              {
+                                "crafting_table_panel@genoa_crafting_smelting_common.crafting_table_panel": {
+                                  "$table_background_texture": "textures/ui/crafting_grid",
+                                  "$table_background_size": [ 50, 50 ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tap_recipe_prompt@genoa_crafting_smelting_common.tap_recipe_prompt": {
+          "layer": 65,
+          "offset": [ 0, -154 ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle"
+        }
+      },
+      {
+        "recipe_inventory_info@genoa_crafting_smelting_common.fading_selection_inventory_info": {
+          "$layer": 71,
+          "$selection_info_text_offset": [ 0, -153 ]
+        }
+      },
+      {
+        "crafting_panel@genoa_crafting_smelting_common.crafting_smelting_panel": {
+          "layer": 124,
+          "$panel_content": "genoa_crafting.crafting_panel_content",
+          "$panel_background_color": "$genoa_crafting_background_color",
+          "$crafting_smelting_button_text": "crafting.craft_button_text",
+          "$crafting_smelting_button_name": "button.craft",
+          "$crafting_smelting_button_sound_name": "craft.button",
+          "$craft_smelting_bindings_enable": [
+            {
+              "binding_name": "#craft_button_enabled",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "$craft_smelting_bindings_disable": [
+            {
+              "binding_name": "#craft_button_enabled",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      },
+      {
+        "back_input_panel": {
+          "type": "input_panel",
+          "layer": 202,
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.close_craft_and_boost_panel",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#ingredient_options_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "ingredient_options@genoa_crafting.ingredient_options_panel": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  //!Main crafting screen
+
+  //Crafting panel
+  "crafting_panel_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ 305, "100%c" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 15 ]
+        }
+      },
+      {
+        "header@genoa_crafting_smelting_common.crafting_smelting_panel_header": {}
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 2 ]
+        }
+      },
+      {
+        "grid_output_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%", "100%cm" ],
+          "controls": [
+            {
+              "grid@genoa_crafting.grid_panel": {
+                "$background_visible_binding": [
+                  {
+                    "binding_name": "#missing_ingredient",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ],
+                "$replaceable_icon_visible_binding": [
+                  {
+                    "binding_name": "#replaceable",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 11, 0 ]
+              }
+            },
+            {
+              "arrow_panel@genoa_crafting_smelting_common.arrow_panel": {
+                "$show_time_and_stop": false,
+                "$top_padding": [ 0, 66 ]
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 12, 0 ]
+              }
+            },
+            {
+              "ingredient_output@genoa_crafting_smelting_common.item_output": {
+                "$item_bindings": [
+                  {
+                    "binding_name": "#recipe_item_id_aux",
+                    "binding_name_override": "#item_id_aux"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ "100%", 15 ]
+        }
+      },
+      {
+        "craft_button@genoa_crafting_smelting_common.craft_button_panel": {
+          "bindings": [
+            {
+              "binding_name": "#craft_button_has_insufficient_materials",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      },
+      {
+        "craft_button_insufficient_materials@genoa_crafting_smelting_common.craft_button_panel": {
+          "$button_disable_content": "genoa_crafting_smelting_common.insufficient_materials_craft_button_content",
+          "bindings": [
+            {
+              "binding_name": "#craft_button_has_insufficient_materials",
+              "binding_name_override": "(#visible)"
+            }
+          ]
+        }
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ "100%", 20 ]
+        }
+      }
+    ]
+  },
+
+  "grid_panel": {
+    "type": "stack_panel",
+    "size": [ 150, "100%c" ],
+    "$background_visible_binding|default": [],
+    "$replaceable_icon_visible_binding|default": [],
+    "controls": [
+      {
+        "grid_header": {
+          "type": "panel",
+          "size": [ "100%", 20 ],
+          "controls": [
+            {
+              "ingredients_label": {
+                "type": "label",
+                "anchor_to": "left_middle",
+                "anchor_from": "left_middle",
+                "text": "crafting.ingredients",
+                "override_height": 18,
+                "color": "$genoa_header_text_color",
+                "bindings": [
+                  {
+                    "binding_name": "(not #recipe_selection_visible)",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "recipe_selection": {
+                "type": "stack_panel",
+                "orientation": "horizontal",
+                "size": [ "100%", "100%" ], //required
+                "bindings": [
+                  {
+                    "binding_name": "#recipe_selection_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ],
+                "controls": [
+                  {
+                    "left_button@genoa_crafting.recipe_selection_button": {
+                      "$button_texture": "textures/ui/arrow_left",
+                      "$pressed_button_name": "button.recipe_selection_decrease"
+                    }
+                  },
+                  {
+                    "pad_0": {
+                      "type": "panel",
+                      "size": [ "fill", 0 ]
+                    }
+                  },
+                  {
+                    "recipe_title": {
+                      "type": "label",
+                      "size": [ "default", 18 ],
+                      "override_height": 18,
+                      "color": "$genoa_header_text_color",
+                      "text": "#selected_recipe_title",
+                      "bindings": [
+                        {
+                          "binding_name": "#selected_recipe_title"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "pad_1": {
+                      "type": "panel",
+                      "size": [ "fill", 0 ]
+                    }
+                  },
+                  {
+                    "right_button@genoa_crafting.recipe_selection_button": {
+                      "$button_texture": "textures/ui/arrow_right",
+                      "$pressed_button_name": "button.recipe_selection_increase"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 4 ]
+        }
+      },
+      {
+        "ingredients_grid": {
+          "type": "panel",
+          "size": [ 150, 100 ],
+          "controls": [
+            {
+              "crafting_grid": {
+                "type": "grid",
+                "$item_collection_name": "#ingredients_items",
+                "collection_name": "$item_collection_name",
+                "$ingredient_button_name": "button.ingredient_options_replace",
+                "$quantity_offset": [ 2, 2 ],
+                "grid_item_template": "genoa_crafting_smelting_common.ingredients_button_padding",
+                "grid_dimensions": [ 3, 2 ],
+                "$ingredient_name_panel_visible_binding": [
+                  {
+                    "binding_name": "#ingredient_name_panel_visible",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$item_collection_name"
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#ingredients_items"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "recipe_selection_button": {
+    "type": "panel",
+    "size": [ 11, 20 ],
+    "controls": [
+      {
+        "input_panel": {
+          "type": "input_panel",
+          "button_mappings": [
+            {
+              "to_button_id": "$pressed_button_name",
+              "mapping_type": "pressed"
+            }
+          ],
+          "controls": [
+            {
+              "button_image": {
+                "type": "image",
+                "fill": true,
+                "texture": "$button_texture"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "ingredients_panel_grid_background": {
+    "type": "image",
+    "size": [ 50, 50 ],
+    "texture": "textures/ui/makestuff_slot_empty"
+  },
+
+  "crafting_boost_panel_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ 305, "100%c" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 15 ]
+        }
+      },
+      {
+        "header@genoa_crafting_smelting_common.crafting_smelting_panel_header": {}
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 2 ]
+        }
+      },
+      {
+        "grid_output_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%", "100%cm" ],
+          "controls": [
+            {
+              "grid@genoa_crafting.grid_panel": {
+                "$text_binding_name": "#decrementing_ingredient_stack_count"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 11, 0 ]
+              }
+            },
+            {
+              "arrow_panel@genoa_crafting_smelting_common.arrow_panel": {
+                "$show_time_and_stop": true,
+                "$item_progress": "#next_crafting_item_progress",
+                "$boost_color": "#next_making_item_color",
+                "$top_padding": [ 0, 66 ]
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 12, 0 ]
+              }
+            },
+            {
+              "item_output@genoa_crafting_smelting_common.crafted_item_output": {
+                "$top_padding": [ 0, 23 ],
+                "$item_bindings": [
+                  {
+                    "binding_name": "#recipe_item_id_aux",
+                    "binding_name_override": "#item_id_aux"
+                  },
+                  {
+                    "binding_name": "#item_slot_alpha",
+                    "binding_name_override": "#alpha"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 0, 30 ]
+        }
+      },
+      {
+        "finish_or_collect_button@genoa_crafting_smelting_common.finish_rubies_or_collect_partial": {}
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ 0, 20 ]
+        }
+      }
+    ]
+  },
+
+  "stop_button_content": {
+    "type": "label",
+    "color": "white",
+    "text": "crafting.stop_crafting",
+    "font_type": "MinecraftTen",
+    "override_height": 25
+  },
+  //!Crafting panel
+
+  //Ingredient Options panel-------------------------------------
+  "ingredient_options_panel@genoa_crafting_smelting_common.sub_panel": {
+    "$pressed_button_name": "button.ingredient_options_close_panel",
+    "$panel_content": "genoa_crafting.ingredient_options_panel_content",
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "offset": [ 0, -169 ],
+    "$button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.deselect_ingredient_option",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+
+  "materials_available_inset": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ 180, "100%c" ],
+    "controls": [
+      {
+        "materials_available_header@genoa_crafting_smelting_common.sub_panel_inset_header": {
+          "$title_text": "crafting.materials_available"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 3 ]
+        }
+      },
+      {
+        "materials_available@genoa_crafting_smelting_common.sub_panel_inset": {
+          "size": [ "100%", 125 ],
+          "$content_controls": [
+            {
+              "fading_selection_info@genoa_common.fading_selection_info": {
+                "$anchoring_from": "top_left",
+                "$anchoring_to": "bottom_left",
+                "$selection_info_text_offset": [ -5, -5 ]
+              }
+            },
+            {
+              "materials_grid": {
+                "type": "grid",
+                "size": [ "100%c", "100%c" ],
+                "$item_collection_name": "#ingredient_options_selection",
+                "collection_name": "$item_collection_name",
+                "grid_item_template": "genoa_crafting.padding_ingredient_options_content",
+                "grid_dimensions": [ 3, 2 ],
+                "$button_map_panel_name": "button.ingredient_option_selected_materials_panel_active",
+                "$content_size": [ 50, 50 ],
+                "$padding_size": [ "100%c", "100%c" ],
+                "$id_aux_to_render_content": "#ingredient_options_inventory_items_id",
+                "$is_panel_selected": "#ingredient_options_inventory_items_active",
+                "$rarity_bevel_texture": "#ingredient_options_items_rarity_bevel_texture",
+                "$quantity_is_visible_name": "#ingredient_options_items_quantity_text_visible"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "ingredient_options_panel_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "header@genoa_crafting_smelting_common.sub_panel_header": {
+          "$title_text": "crafting.replace_material"
+        }
+      },
+      {
+        "ingredient_text": {
+          "type": "label",
+          "size": [ "100%", 20 ],
+          "text_alignment": "center",
+          "font_type": "MinecraftSeven",
+          "override_height": 20,
+          "text": "#ingredient_options_get_ingredient_name",
+          "bindings": [
+            {
+              "binding_name": "#ingredient_options_get_ingredient_name"
+            }
+          ]
+        }
+      },
+      {
+        "ingredient_needed_quantity_text": {
+          "type": "label",
+          "size": [ 246, 18 ],
+          "offset": [ -27, 0 ],
+          "override_height": 18,
+          "text": "#ingredient_needed_text",
+          "bindings": [
+            {
+              "binding_name": "#ingredient_needed_text"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 3 ]
+        }
+      },
+      {
+        "ingredient_needed_grid": {
+          "type": "panel",
+          "size": [ "100%", 50 ],
+          "controls": [
+            {
+              "ingredient_needed_inventory_info@genoa_crafting_smelting_common.fading_selection_inventory_info": {
+                "$anchoring_from": "top_left",
+                "$anchoring_to": "bottom_left",
+                "$layer": 20,
+                "$selection_info_text_offset": [ 8, -5 ]
+              }
+            },
+            {
+              "ingredient_options_display_grid": {
+                "type": "grid",
+                "size": [ "100%c", "100%c" ],
+                "$item_collection_name": "#ingredient_options",
+                "collection_name": "$item_collection_name",
+                "grid_item_template": "genoa_crafting.padding_ingredient_options_content",
+                "grid_dimensions": [ 6, 1 ],
+                "$button_map_panel_name": "button.ingredient_options_inventory_panel_active",
+                "$content_size": [ 50, 50 ],
+                "$padding_size": [ "100%c", "100%c" ],
+                "$id_aux_to_render_content": "#ingredient_options_selected_items_id",
+                "$is_panel_selected": "#ingredient_options_selected_items_active",
+                "$rarity_bevel_texture": "#ingredient_options_items_rarity_bevel_texture",
+                "$quantity_is_visible_name": "#ingredient_options_items_quantity_text_visible"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 0, 6 ]
+        }
+      },
+      {
+        "materials_available_text_and_increase_decrease_button_stack": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%c", "100%cm" ],
+          "controls": [
+            {
+              "materials_available@genoa_crafting.materials_available_inset": {}
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 30, 0 ]
+              }
+            },
+            {
+              "panel_increase_decrease@genoa_crafting_smelting_common.increase_and_decrease_button_panel": {
+                "$item_bindings": [
+                  {
+                    "binding_name": "#selected_ingredient_id_aux",
+                    "binding_name_override": "#item_id_aux"
+                  }
+                ],
+                "$item_slot_size": [ 50, "100%x" ],
+                "$item_size": [ 38, "100%x" ],
+                "$quantity_increase_enabled_binding_name": "#ingredient_options_increment_button_enabled",
+                "$quantity_decrease_enabled_binding_name": "#ingredient_options_decrement_button_enabled",
+                "$quantity_increase_button_name": "button.ingredient_options_increment_selected_ingredient",
+                "$quantity_decrease_button_name": "button.ingredient_options_decrement_selected_ingredient",
+                "$panel_background_color": "$genoa_crafting_background_color",
+                "$item_quantity_text_binding_name": "#ingredient_options_selected_quantity_string",
+                "offset": [ 0, 10 ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ "100%", 8 ]
+        }
+      },
+      {
+        "confirm_button@genoa_common.button": {
+          "size": [ 290, 50 ],
+          "$button_text": "modal.imset",
+          "$button_content": "genoa_crafting.ingredient_options_confirm_button_content",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/collect_button_gradient",
+          "$shadow_alpha": 0.3,
+          "$glow_enabled": false,
+          "$pressed_button_name": "button.ingredient_options_insufficient_materials",
+          "sound_name": "confirm.button",
+          "bindings": [
+            {
+              "binding_name": "#ingredient_options_confirm_button_enabled",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "confirm_button_locked@genoa_common.button": {
+          "size": [ 290, 50 ],
+          "$button_text": " ",
+          "$button_content": "genoa_crafting_smelting_common.confirm_button_disabled_content",
+          "$background_style": "image",
+          "$background_alpha": 0.5,
+          "$glow_enabled": false,
+          "$shadow_enabled": false,
+          "$bevel_alpha": 0.5,
+          "$button_background_image_texture": "textures/ui/collect_button_gradient",
+          "$pressed_button_name": "button.ingredient_options_insufficient_materials",
+          "sound_name": "cancel.button",
+          "bindings": [
+            {
+              "binding_name": "#ingredient_options_confirm_button_enabled",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      },
+      {
+        "pad_4": {
+          "type": "panel",
+          "size": [ 0, 12 ]
+        }
+      }
+    ]
+  },
+
+  "padding_ingredient_options_content": {
+    "type": "panel",
+    "size": "$padding_size",
+    "controls": [
+      {
+        "panel_content@ingredient_options_grid_item_content": {
+        }
+      }
+    ]
+  },
+
+  "ingredient_options_grid_item_content": {
+    "type": "panel",
+    "size": "$content_size",
+    "$input_panel_button_name": "$button_map_panel_name",
+    "$id_aux_to_render": "$id_aux_to_render_content",
+    "$is_panel_selected": "$is_panel_selected",
+    "$rarity_bevel": "$rarity_bevel_texture",
+    "$quantity_visible": "$quantity_is_visible_name",
+    "controls": [
+      {
+        "content_selected": {
+          "type": "panel",
+          "controls": [
+            {
+              "shadow@genoa_common.white": {
+                "color": "$genoa_button_shadow_color",
+                "alpha": 0.5,
+                "layer": 1,
+                "size": [ 60, "100%x" ],
+                "$shadow_offset": [ 5, 5 ],
+                "offset": "$shadow_offset"
+              }
+            },
+            {
+              "back_gray_selection": {
+                "type": "image",
+                "texture": "textures/ui/inventory_slot_background",
+                "size": [ "100%", "100%x" ],
+                "layer": 2,
+                "controls": [
+                  {
+                    "rarity_panel": {
+                      "type": "image",
+                      "size": [ "100%", "100%x" ],
+                      "texture": "$rarity_bevel",
+                      "bindings": [
+                        {
+                          "binding_name": "$rarity_bevel",
+                          "binding_name_override": "#texture",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$item_collection_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "bevel_white_selection": {
+                      "type": "image",
+                      "texture": "textures/ui/frame_selected",
+                      "size": [ 60, "100%x" ],
+                      "controls": [
+                        {
+                          "ingredient_options_item_renderer@genoa_inventory_common.genoa_item_renderer": {
+                            "size": [ 64, "100%x" ],
+                            "offset": [ 0, -5 ],
+                            "bindings": [
+                              {
+                                "binding_name": "$id_aux_to_render",
+                                "binding_name_override": "#item_id_aux",
+                                "binding_type": "collection",
+                                "binding_collection_name": "$item_collection_name"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "quantity_text_shadow": {
+                            "type": "label",
+                            "layer": 2,
+                            "offset": [ -4, -1 ],
+                            "anchor_from": "bottom_right",
+                            "anchor_to": "bottom_right",
+                            "text_alignment": "center",
+                            "override_height": 20,
+                            "text": "#ingredient_options_items_quantity_text",
+                            "color": "black",
+                            "bindings": [
+                              {
+                                "binding_name": "$quantity_visible",
+                                "binding_name_override": "#visible",
+                                "binding_type": "collection",
+                                "binding_collection_name": "$item_collection_name"
+                              },
+                              {
+                                "binding_name": "#ingredient_options_items_quantity_text",
+                                "binding_type": "collection",
+                                "binding_collection_name": "$item_collection_name"
+                              }
+                            ],
+                            "controls": [
+                              {
+                                "quantity_text_white": {
+                                  "type": "label",
+                                  "offset": [ -2, -2 ],
+                                  "text_alignment": "center",
+                                  "override_height": 20,
+                                  "text": "#ingredient_options_items_quantity_text",
+                                  "bindings": [
+                                    {
+                                      "binding_name": "$quantity_visible",
+                                      "binding_name_override": "#visible",
+                                      "binding_type": "collection",
+                                      "binding_collection_name": "$item_collection_name"
+                                    },
+                                    {
+                                      "binding_name": "#ingredient_options_items_quantity_text",
+                                      "binding_type": "collection",
+                                      "binding_collection_name": "$item_collection_name"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "button_ingredient_option": {
+                            "type": "input_panel",
+                            "size": [ 64, "100%" ],
+                            "button_mappings": [
+                              {
+                                "from_button_id": "button.menu_select",
+                                "to_button_id": "$input_panel_button_name",
+                                "mapping_type": "pressed"
+                              }
+                            ],
+                            "bindings": [
+                              {
+                                "binding_type": "collection_details"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$is_panel_selected",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$item_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "content_not_selected": {
+          "type": "panel",
+          "controls": [
+            {
+              "back_gray_selection": {
+                "type": "image",
+                "texture": "textures/ui/inventory_slot_background",
+                "size": [ "100%", "100%x" ],
+                "controls": [
+                  {
+                    "rarity_panel": {
+                      "type": "image",
+                      "size": [ "100%", "100%x" ],
+                      "texture": "$rarity_bevel",
+                      "bindings": [
+                        {
+                          "binding_name": "$rarity_bevel",
+                          "binding_name_override": "#texture",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$item_collection_name"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "ingredient_options_item_renderer@genoa_inventory_common.genoa_item_renderer": {
+                            "size": [ 38, "100%x" ],
+                            "bindings": [
+                              {
+                                "binding_name": "$id_aux_to_render",
+                                "binding_name_override": "#item_id_aux",
+                                "binding_type": "collection",
+                                "binding_collection_name": "$item_collection_name"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "quantity_text_shadow": {
+                            "type": "label",
+                            "offset": [ -3, 2 ],
+                            "layer": 2,
+                            "anchor_from": "bottom_right",
+                            "anchor_to": "bottom_right",
+                            "text_alignment": "center",
+                            "override_height": 20,
+                            "text": "#ingredient_options_items_quantity_text",
+                            "color": "black",
+                            "bindings": [
+                              {
+                                "binding_name": "$quantity_visible",
+                                "binding_name_override": "#visible",
+                                "binding_type": "collection",
+                                "binding_collection_name": "$item_collection_name"
+                              },
+                              {
+                                "binding_name": "#ingredient_options_items_quantity_text",
+                                "binding_type": "collection",
+                                "binding_collection_name": "$item_collection_name"
+                              }
+                            ],
+                            "controls": [
+                              {
+                                "quantity_text": {
+                                  "type": "label",
+                                  "offset": [ -2, -2 ],
+                                  "text_alignment": "center",
+                                  "override_height": 20,
+                                  "text": "#ingredient_options_items_quantity_text",
+                                  "bindings": [
+                                    {
+                                      "binding_name": "$quantity_visible",
+                                      "binding_name_override": "#visible",
+                                      "binding_type": "collection",
+                                      "binding_collection_name": "$item_collection_name"
+                                    },
+                                    {
+                                      "binding_name": "#ingredient_options_items_quantity_text",
+                                      "binding_type": "collection",
+                                      "binding_collection_name": "$item_collection_name"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "button_ingredient_option": {
+                      "type": "input_panel",
+                      "button_mappings": [
+                        {
+                          "from_button_id": "button.menu_select",
+                          "to_button_id": "$input_panel_button_name",
+                          "mapping_type": "pressed"
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$is_panel_selected",
+              "binding_name_override": "(not #visible)",
+              "binding_collection_name": "$item_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "ingredient_options_confirm_button_content": {
+    "type": "label",
+    "text": "$button_text",
+    "override_height": 25,
+    "font_type": "MinecraftTen"
+  },
+  //!Ingredient Options panel
+
+  "crafting_header_icon_control": {
+    "type": "panel",
+    "controls": [
+      {
+        "static_header_image": {
+          "type": "image",
+          "texture": "textures/ui/header_icons/crafting",
+          "bindings": [
+            {
+              "binding_name": "#make_in_progress",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      },
+      {
+        "animated_header_image@genoa_crafting.crafting_in_progress_animation": {
+          "bindings": [
+            {
+              "binding_name": "#make_in_progress",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "crafting_in_progress_animation@genoa_crafting_smelting_common.making_in_progress_animation": {
+    "texture": "textures/ui/crafting_active",
+    "uv": "@genoa_crafting.crafting_in_progress_uv"
+  },
+
+  "crafting_in_progress_uv@genoa_crafting_smelting_common.making_in_progress_uv": {
+    "frame_count": 20,
+    "frame_step": 20,
+    "fps": 10
+  }
+}

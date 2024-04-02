@@ -1,0 +1,854 @@
+
+{
+  "namespace": "genoa_profile",
+
+  // SCREEN DEFINITION
+  "profile_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_profile.main_content",
+    "$background_scrim_visible": false,
+    "$screen_background_texture": "textures/ui/background_blurred"
+  },
+
+  "hanger_image": {
+    "type": "image",
+    "size": [ 50, 36 ],
+    "texture": "textures/ui/profile/menu_change-skin"
+  },
+
+  // CONTENT PANEL
+  "main_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "screen_input_panel": {
+          "type": "input_panel",
+          "size": [ "100%", "100%" ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.disable_tool_tip_screen_fill",
+              "mapping_type": "pressed"
+            }
+          ]
+        }
+      },
+      {
+        "main_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              // HEADER
+              "header_section@genoa_common.header": {
+                "$header_text": "profile.header",
+                "$header_icon_control": "genoa_common.profile_head",
+                "size": [ "100%", 93 ],
+                "layer": 4
+              }
+              // END OF HEADER
+            },
+            {
+              "pad_skin": {
+                "type": "panel",
+                "size": [ "100%", 20 ]
+              }
+            },
+            // GAMER TAG
+            {
+              "skin_title_background_panel": {
+                "type": "panel",
+                "anchor_to": "top_middle",
+                "anchor_from": "top_middle",
+                "size": [ "100%", 36 ],
+                "layer": 7,
+                "controls": [
+                  {
+                    "gamer_tag_label@genoa_common.boxed_icon_label": {
+                      "$label_text": "#player_name",
+                      "$label_text_max_size": [ 320, 0 ],
+                      "$text_bindings": [
+                        {
+                          "binding_name": "#player_name",
+                          "binding_condition": "once"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "skin_panel": {
+                "type": "panel",
+                "size": [ "100%", 274 ],
+                "controls": [
+                  {
+                    "preview@genoa_profile.skin_viewer_panel": {
+                      "layer": 1
+                    }
+                  }
+                ]
+              }
+            },
+            // SKIN PICKER BUTTON
+            {
+              "skin_pick_button_panel": {
+                "type": "panel",
+                "size": [ "100%", 60 ],
+                "anchor_to": "bottom_middle",
+                "anchor_from": "bottom_middle",
+                "controls": [
+                  {
+                    "skin_pick@genoa_common.button": {
+                      "size": [ 349, "100%" ],
+                      "layer": 1,
+                      "$pressed_button_name": "button.navigate_skin_picker",
+                      "$button_content": "genoa_profile.change_skin_button_content",
+                      "$locked_control": "genoa_profile.change_skin_button_content_locked",
+                      "$background_style": "color",
+                      "$background_color": "$light_button_locked_text_color",
+                      "sound_name": "inmenu.general.button",
+                      "bindings": [
+                        {
+                          "binding_name": "#skin_picker_button_active",
+                          "binding_name_override": "#enabled"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            // END OF SKIN PICKER BUTTON
+            {
+              "pad_xp": {
+                "type": "panel",
+                "size": [ "100%", 10 ]
+              }
+            },
+            // XP BAR
+            {
+              "xp_panel": {
+                "type": "panel",
+                "size": [ "100%", 42 ],
+                "controls": [
+                  {
+                    "xp_bound_box": {
+                      "type": "panel",
+                      "size": [ 350, "100%" ],
+                      "controls": [
+                        {
+                          "xp_label": {
+                            "type": "label",
+                            "font_type": "MinecraftTen",
+                            "override_height": 20,
+                            "anchor_from": "top_left",
+                            "anchor_to": "top_left",
+                            "text": "profile.level"
+                          }
+                        },
+                        {
+                          "xp_tally": {
+                            "type": "label",
+                            "font_type": "MinecraftSeven",
+                            "override_height": 18,
+                            "anchor_from": "top_right",
+                            "anchor_to": "top_right",
+                            "text": "#xp_tally",
+                            "bindings": [
+                              {
+                                "binding_name": "#xp_tally",
+                                "binding_condition": "always"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "bar_box": {
+                            "type": "image",
+                            "size": [ 350, 20 ],
+                            "layer": 1,
+                            "texture": "textures/ui/9_slice/box_simple",
+                            "anchor_from": "bottom_middle",
+                            "anchor_to": "bottom_middle",
+                            "controls": [
+                              {
+                                "xp_bar_color@genoa_common.white": {
+                                  "anchor_from": "left_middle",
+                                  "anchor_to": "left_middle",
+                                  "layer": 2,
+                                  "offset": [ 5, 0 ],
+                                  "size": [ 340, 10 ],
+                                  "color": "$genoa_hud_experience_bar_color",
+                                  "clip_direction": "left",
+                                  "clip_pixelperfect": false,
+                                  "controls": [
+                                    {
+                                      "xp_bar_gradient": {
+                                        "type": "image",
+                                        "size": [ "100%", "100%" ],
+                                        "texture": "textures/ui/bar_bevel_basic"
+                                      }
+                                    }
+                                  ],
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#xp_bar_size",
+                                      "binding_name_override": "#clip_ratio",
+                                      "binding_condition": "always"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "xp_overlay_grid": {
+                                  "type": "grid",
+                                  "layer": 3,
+                                  "size": [ "100% - 5px", 10 ],
+                                  "offset": [ 5, 0 ],
+                                  "anchor_from": "left_middle",
+                                  "anchor_to": "left_middle",
+                                  "grid_item_template": "genoa_profile.xp_overlay_grid_item",
+                                  "$grid_name": "#xp_overlay",
+                                  "collection_name": "$grid_name",
+                                  "grid_dimension_binding": "$grid_name",
+                                  "bindings": [
+                                    {
+                                      "binding_name": "$grid_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              {
+                                "player_level@genoa_profile.player_level_display": {
+                                  "layer": 6,
+                                  "$offset_size": "large",
+                                  "offset": [ 0, -18 ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad_stats": {
+                "type": "panel",
+                "size": [ "100%", 20 ]
+              }
+            },
+            //END OF XP BAR
+            {
+              "stats_panel": {
+                "type": "panel",
+                "size": [ "100%", 110 ],
+                "controls": [
+                  {
+                    "stats_background": {
+                      "type": "image",
+                      "size": [ 349, "100%" ],
+                      "fill": true,
+                      "texture": "textures/ui/profile/stat_box",
+                      "controls": [
+                        {
+                          "stats@genoa_profile.stat_display": {
+                            "size": [ "100% - 10px", "100%" ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "tooltip": {
+                      "type": "panel",
+                      "anchor_to": "top_middle",
+                      "anchor_from": "top_middle",
+                      "size": [ 330, 90 ],
+                      "controls": [
+                        {
+                          "tooltip@genoa_profile.new_tool_tip": {
+                            "size": [ "100%", "100%" ],
+                            "offset": [ 0, -80 ],
+                            "layer": 12,
+                            "bindings": [
+                              {
+                                "binding_name": "#tool_tip_on",
+                                "binding_name_override": "#visible"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad_end": {
+                "type": "panel",
+                "size": [ "100%", 20 ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pButton": {
+          "type": "panel",
+          "size": [ "100%", 60 ],
+          "layer": 10,
+          "controls": [
+            {
+              "p@genoa_common.button": {
+                "size": [ 349, "100%" ],
+                "layer": 1,
+                "$pressed_button_name": "button.navigate_p",
+                "$button_content": "genoa_profile.p_button_content",
+                "$background_style": "color",
+                "$background_color": "$light_button_locked_text_color"
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#p_button_enabled",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "change_skin_button_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "text": {
+          "type": "label",
+          "color": "$light_button_default_text_color",
+          "anchor_to": "center",
+          "anchor_from": "center",
+          "text": "profile.change_skin",
+          "font_type": "MinecraftTen",
+          "override_height": 25
+        }
+      },
+      {
+        "hanger@genoa_profile.hanger_image": {
+          "anchor_to": "right_middle",
+          "anchor_from": "right_middle",
+          "offset": [ -14, 0 ]
+        }
+      }
+    ]
+  },
+
+  "p_button_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "text": {
+          "type": "label",
+          "color": "$light_button_default_text_color",
+          "anchor_to": "center",
+          "anchor_from": "center",
+          "text": "profile.p_label",
+          "font_type": "MinecraftTen",
+          "override_height": 25
+        }
+      },
+      {
+        "hanger@genoa_profile.hanger_image": {
+          "anchor_to": "right_middle",
+          "anchor_from": "right_middle",
+          "offset": [ -14, 0 ]
+        }
+      }
+    ]
+  },
+
+  "change_skin_button_content_locked@genoa_common.default_button_content": {
+    "size": [ 349, "100%" ],
+    "layer": 1,
+    "$pressed_button_name": "",
+    "$button_content": "genoa_profile.change_skin_button_content",
+    "$background_style": "color",
+    "$background_color": "$light_button_locked_text_color"
+  },
+
+  // PROFILE HEAD ICON
+  "head_icon@genoa_common.profile_head": {
+    "layer": 6
+  },
+  // END OF HEAD ICON
+
+  // SKIN VIEWER PANEL
+  "skin_viewer_panel": {
+    "type": "input_panel",
+    "size": [ "100%", "100%" ],
+    "gesture_tracking_button": "button.disable_tool_tip_screen_fill",
+    "always_handle_controller_direction": true,
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.disable_tool_tip_screen_fill",
+        "mapping_type": "pressed"
+      }
+    ],
+    "controls": [
+      {
+        "skin_model_panel": {
+          "type": "panel",
+          "size": [ "110%", "110%" ],
+          "offset": [ 0, 0 ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "controls": [
+            {
+              "shadow": {
+                "type": "image",
+                "fill": true,
+                "size": [ 112, 30 ],
+                "offset": [ 0, -5 ],
+                "texture": "textures/ui/profile/profile_shadow",
+                "anchor_to": "bottom_middle",
+                "anchor_from": "bottom_middle"
+              }
+            },
+            {
+              "spotlight": {
+                "type": "image",
+                "size": [ 279, 279 ],
+                "texture": "textures/ui/profile/spotlight"
+              }
+            },
+            {
+              "skin_model": {
+                "type": "custom",
+                "layer": 2,
+                "renderer": "paper_doll_renderer",
+                "use_selected_skin": false,
+                "use_skin_gui_scale": true,
+                "start_rotation": -30,
+                "rotation": "gesture_x",
+                "offset": [ 0, -40 ],
+                "animation_reset_name": "screen_animation_reset",
+                "anims": [
+                  "@common.screen_exit_size_animation_push",
+                  "@common.screen_exit_size_animation_pop",
+                  "@common.screen_entrance_size_animation_push",
+                  "@common.screen_entrance_size_animation_pop"
+                ],
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_name": "#preview_skin"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "preview",
+                    "source_property_name": "#gesture_delta_source",
+                    "target_property_name": "#gesture_delta_source"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_control_name": "preview",
+                    "source_property_name": "#gesture_mouse_delta_x",
+                    "target_property_name": "#gesture_mouse_delta_x"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // END OF SKIN VIEWER PANEL
+  "stat_info": {
+    "type": "stack_panel",
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "icon_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "icon": {
+                "anchor_to": "center",
+                "anchor_from": "center",
+                "type": "image",
+                "size": [ 64, 64 ],
+                "texture": "$icon"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 3 ]
+        }
+      },
+      {
+        "text_panel": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "collected_text": {
+                "type": "label",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "layer": 2,
+                "font_type": "MinecraftSeven",
+                "text_alignment": "center",
+                "override_height": 18,
+                "color": "white",
+                "text": "$stat_binding",
+                "bindings": [
+                  {
+                    "binding_name": "$stat_binding",
+                    "binding_condition" : "always"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "xp_overlay_grid_item": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "fill", "100%" ],
+    "controls": [
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ "fill", 0 ]
+        }
+      },
+      {
+        "tick": {
+          "type": "image",
+          "texture": "textures/ui/9_slice/box_simple",
+          "size": [ 5, 10 ],
+          "layer": 2,
+          "alpha": 0.5,
+          "bindings": [
+            {
+              "binding_name": "#xp_tick_visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$grid_name",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  //This implementation is required due to lack of font functionality for making a black border around text
+  "xp_level_shadow": {
+    "type": "label",
+    "shadow": false,
+    "text": "#player_level",
+    "font_type": "MinecraftSeven",
+    "$font_height|default": 34,
+    "override_height": "$font_height",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "color": "black",
+    "bindings": [
+      {
+        "binding_name": "#player_level",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "player_level_display": {
+    "type": "panel",
+    "size": [ "100%cm + 5px", "100%cm + 5px" ],
+    "$offset_size|default": "large",
+    "variables": [
+      {
+        "requires": "($offset_size = 'large')",
+        "$top_left_offset": [ -3, -3 ],
+        "$top_center_offset": [ 0, -3 ],
+        "$top_right_offset": [ 3, -3 ],
+        "$center_left_offset": [ -3, 0 ],
+        "$center_right_offset": [ 3, 0 ],
+        "$bottom_left_offset": [ -3, 3 ],
+        "$bottom_center_offset": [ 0, 3 ],
+        "$bottom_right_offset": [ 3, 3 ],
+        "$font_scaling": 1.5,
+        "$font_height": 34
+      },
+      {
+        "requires": "($offset_size = 'small')",
+        "$top_left_offset": [ -2, -2 ],
+        "$top_center_offset": [ 0, -2 ],
+        "$top_right_offset": [ 2, -2 ],
+        "$center_left_offset": [ -2, 0 ],
+        "$center_right_offset": [ 2, 0 ],
+        "$bottom_left_offset": [ -2, 2 ],
+        "$bottom_center_offset": [ 0, 2 ],
+        "$bottom_right_offset": [ 2, 2 ],
+        "$font_scaling": 1.0,
+        "$font_height": 22
+      }
+    ],
+    "controls": [
+      {
+        "level_shadow1@genoa_profile.xp_level_shadow": {
+          "offset": "$top_left_offset"
+        }
+      },
+      {
+        "level_shadow2@genoa_profile.xp_level_shadow": {
+          "offset": "$top_center_offset"
+        }
+      },
+      {
+        "level_shadow3@genoa_profile.xp_level_shadow": {
+          "offset": "$top_right_offset"
+        }
+      },
+      {
+        "level_shadow4@genoa_profile.xp_level_shadow": {
+          "offset": "$center_left_offset"
+        }
+      },
+      {
+        "level_shadow5@genoa_profile.xp_level_shadow": {
+          "offset": "$center_right_offset"
+        }
+      },
+      {
+        "level_shadow6@genoa_profile.xp_level_shadow": {
+          "offset": "$bottom_left_offset"
+        }
+      },
+      {
+        "level_shadow7@genoa_profile.xp_level_shadow": {
+          "offset": "$bottom_center_offset"
+        }
+      },
+      {
+        "level_shadow8@genoa_profile.xp_level_shadow": {
+          "offset": "$bottom_right_offset"
+        }
+      },
+      {
+        "level_number@genoa_profile.xp_level_shadow": {
+          "color": "$genoa_hud_experience_bar_color",
+          "offset": [ 0, 0 ]
+        }
+      }
+    ]
+  },
+
+  "blocks_collected@genoa_profile.stat_info": {
+    "$icon": "textures/ui/profile/blocks-collected",
+    "$stat_binding": "#blocks_collected"
+  },
+
+  "mobs_collected@genoa_profile.stat_info": {
+    "$icon": "textures/ui/profile/mobs-collected",
+    "$stat_binding": "#mobs_collected"
+  },
+
+  "blocks_placed@genoa_profile.stat_info": {
+    "$icon": "textures/ui/profile/blocks-placed",
+    "$stat_binding": "#blocks_placed"
+  },
+
+  "time_played@genoa_profile.stat_info": {
+    "$icon": "textures/ui/profile/time-played",
+    "$stat_binding": "#time_played"
+  },
+
+  // Requires $icon
+  "stat_item": {
+    "type": "panel",
+    "size": [ 81, "100%" ],
+    "controls": [
+      {
+        "icon_button@genoa_common.button": {
+          "$pressed_button_name": "$button_name_pressed",
+          "$button_content": "$button_control",
+          "$background_control": "genoa_common.empty",
+          "$shadow_enabled": false,
+          "$glow_enabled": false,
+          "$bevel_texture": "",
+          "sound_name": "stat.button",
+          "sound_volume": 1.0
+        }
+      },
+      {
+        "tool_tip_tail": {
+          "type": "image",
+          "layer": 17,
+          "anchor_from": "top_middle",
+          "anchor_to": "bottom_middle",
+          "texture": "textures/ui/info_tail",
+          "size": [ 35, 25 ],
+          "offset": [ 0, 30 ],
+          "bindings": [
+            {
+              "binding_name": "$tail_binding_name",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "stat_display": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "blocks_collected@genoa_profile.stat_item": {
+          "$button_name_pressed": "button.blocks_collected_tool_tip",
+          "$button_control": "genoa_profile.blocks_collected",
+          "$tail_binding_name": "#blocks_collected_tail"
+        }
+      },
+      {
+        "pad_1@genoa_profile.stat_pad": {}
+      },
+      {
+        "blocks_placed@genoa_profile.stat_item": {
+          "$button_name_pressed": "button.blocks_placed_tool_tip",
+          "$button_control": "genoa_profile.blocks_placed",
+          "$tail_binding_name": "#blocks_placed_tail"
+        }
+      },
+      {
+        "pad_2@genoa_profile.stat_pad": {}
+      },
+      {
+        "mobs_collected@genoa_profile.stat_item": {
+          "$button_name_pressed": "button.mobs_collected_tool_tip",
+          "$button_control": "genoa_profile.mobs_collected",
+          "$tail_binding_name": "#mobs_tail"
+        }
+      },
+      {
+        "pad_3@genoa_profile.stat_pad": {}
+      },
+      {
+        "time_played@genoa_profile.stat_item": {
+          "$button_name_pressed": "button.time_played_tool_tip",
+          "$button_control": "genoa_profile.time_played",
+          "$tail_binding_name": "#time_tail"
+        }
+      }
+    ]
+  },
+
+  "stat_pad": {
+    "type": "panel",
+    "size": [ 5, "100% - 10px" ],
+    "controls": [
+      {
+        "pad_image@genoa_common.white": {
+          "offset": [ 0, 5 ],
+          "alpha": 0.1
+        }
+      }
+    ]
+  },
+
+  "new_tool_tip@genoa_common.default_button_content": {
+    "$background_style": "color",
+    "$background_color": [ 0.2, 0.2, 0.2 ],
+    "$glow_style": "white",
+    "$bevel_texture": "textures/ui/tile_bevel_dark",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "$button_content": "genoa_profile.tool_tip_stack"
+  },
+
+  "tool_tip_stack": {
+    "type": "stack_panel",
+    "size": [ 300, 59 ],
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", "8.85%" ]
+        }
+      },
+      {
+        "tool_tip_title": {
+          "type": "label",
+          "size": [ 300, 31 ],
+          "text": "#tool_tip_title",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "override_height": 24,
+          "color": "$genoa_tool_tip_title_font_color",
+          "font_type": "MinecraftSeven",
+          "bindings": [
+            {
+              "binding_name": "#tool_tip_title"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 3 ]
+        }
+      },
+      {
+        "tool_tip_text": {
+          "type": "label",
+          "size": [ 300, 34 ],
+          "text": "#tool_tip_text",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "override_height": 18,
+          "offset": [ 0, -18 ],
+          "font_type": "smooth",
+          "bindings": [
+            {
+              "binding_name": "#tool_tip_text"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

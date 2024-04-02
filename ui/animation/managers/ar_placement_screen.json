@@ -1,0 +1,22 @@
+{
+  "managed_screen_name": "AR Placement Screen",
+  "version": 1,
+
+  "animations": [
+    {
+      "control": "Plane Animation",
+      "animation_name": "instructional_animation",
+      "controller_name": "simple_enter_looping"
+    },
+    {
+      "control": "OOBE Arrow",
+      "animation_name": "callout_03",
+      "controller_name": "simple_enter_looping"
+    },
+    {
+      "control": "Rotate Swipe",
+      "animation_name": "ftue_rotate",
+      "controller_name": "simple_looping"
+    }
+  ]
+}

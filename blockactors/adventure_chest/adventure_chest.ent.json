@@ -1,0 +1,42 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:adventure_chest",
+      "materials": {
+        //"default": "entity_glint.skinning"
+        "default": "entity.skinning"
+      },
+      "textures": {
+        "default": "blockactors/adventure_chest/common/adventure_chest_common",
+        "glint": "textures/misc/enchanted_item_glint",
+        "common": "blockactors/adventure_chest/common/adventure_chest_common",
+        "uncommon": "blockactors/adventure_chest/uncommon/adventure_chest_uncommon",
+        "rare": "blockactors/adventure_chest/rare/adventure_chest_rare",
+        "epic": "blockactors/adventure_chest/epic/adventure_chest_epic",
+        "legendary": "blockactors/adventure_chest/legendary/adventure_chest_legendary"
+      },
+      "geometry": {
+        "default": "geometry.adventure_chest_common.default",
+        "common": "geometry.adventure_chest_common.default",
+        "uncommon": "geometry.adventure_chest_uncommon.default",
+        "rare": "geometry.adventure_chest_rare.default",
+        "epic": "geometry.adventure_chest_epic.default",
+        "legendary": "geometry.adventure_chest_legendary.default"
+      },
+      "particle_effects": {
+        "common_ambient": "genoa:chest_ambient_common",
+        "common_sparkles": "genoa:chest_ambient_sparkle_common",
+        "uncommon_ambient": "genoa:chest_ambient_uncommon",
+        "uncommon_sparkles": "genoa:chest_ambient_sparkle_uncommon",
+        "rare_ambient": "genoa:chest_ambient_rare",
+        "rare_sparkles": "genoa:chest_ambient_sparkle_rare",
+        "epic_ambient": "genoa:chest_ambient_epic",
+        "epic_sparkles": "genoa:chest_ambient_sparkle_epic",
+        "legendary_ambient": "genoa:chest_ambient_legendary",
+        "legendary_sparkles": "genoa:chest_ambient_sparkle_legendary"
+      },
+      "render_controllers": [ "controller.render.adventure_chest" ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.genoa_chicken": {
+      "geometry": "Geometry.default",
+      "materials": [
+        { "*": "Material.default" },
+        { "leg*": "Material.legs" }
+      ],
+      "textures": ["Texture.default"],
+      "part_visibility": [ 
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking"} ]
+    }
+  }
+}

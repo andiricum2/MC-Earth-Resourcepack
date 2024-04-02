@@ -1,0 +1,180 @@
+{
+  "managed_screen_name": "AR End Screen",
+  "version": 1,
+
+//  Reference data from tappable_sequence.js
+//  Here are the colors per tier.
+//    let AnimationColor = {
+//      Common_Light : parseInt("D4D7EE", 16),
+//      Common_Medium : parseInt("ADB1CF", 16),
+//      Common_Dark : parseInt("989BB5", 16),
+//      Screen_Flash_Common : parseInt("DFE9FF", 16),
+//
+//      Uncommon_Light : parseInt("A6FABD", 16),
+//      Uncommon_Medium : parseInt("77CC8E", 16),
+//      Uncommon_Dark : parseInt("3DC657", 16),
+//      Screen_Flash_Uncommon : parseInt("C9FAD6", 16),
+//
+//      Rare_Light : parseInt("AEEBF8", 16),
+//      Rare_Medium : parseInt("5CCDE6", 16),
+//      Rare_Dark : parseInt("29A4CE", 16),
+//      Screen_Flash_Rare : parseInt("CAFFFE", 16),
+//
+//      Epic_Light : parseInt("C4A3F6", 16),
+//      Epic_Medium : parseInt("975CE6", 16),
+//      Epic_Dark : parseInt("7E24F7", 16),
+//      Screen_Flash_Epic : parseInt("E7D6FF", 16),
+//
+//      Text : parseInt("FFFFFF", 16)
+//    }
+
+  "animations": [
+    // Boosts Used effect
+    {
+      "controls": "(Item Grid).#boosts_used_collection.(Item Sparkles)",
+      "animation_name": "boost_particles_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "position_offset": [ 0, -38 ]
+    },
+    // Rare Effects
+    {
+      "controls": "(Item Grid).#rare_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Smoke_Small_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Smoke_Small_01_Color": "#0xFFAEEBF8"
+      }
+    },
+    {
+      "controls": "(Item Grid).#rare_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Smoke_Small_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Smoke_Small_01_Color": "#0xFFAEEBF8"
+      }
+    },
+
+
+    // Epic Effects
+    {
+      "controls": "(Item Grid).#epic_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Sparkle_Fire_01_Color": "#0xFFC4A3F6"
+      },
+
+      "position_offset": [ 0, 40 ]
+    },
+    {
+      "controls": "(Item Grid).#epic_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Sparkle_Fire_01_Color": "#0xFFC4A3F6"
+      },
+
+      "position_offset": [ 0, 40 ]
+    },
+    {
+      "controls": "(Item Grid).#epic_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Sparkle_01",
+      "controller_name": "reward_vfx_controller",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Sparkle_01": "0xFFC4A3F6",
+        "Sparkle_01_Glow_Color": "#0xFFC4A3F6"
+      }
+    },
+
+    // Legendary Effects
+    {
+      "controls": "(Item Grid).#legendary_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Sparkle_Fire_01_Color": "#0xFFFFC700"
+      },
+
+      "position_offset": [ 0, 40 ]
+    },
+    {
+      "controls": "(Item Grid).#legendary_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Sparkle_Fire_01_Color": "#0xFFFFC700"
+      },
+
+      "position_offset": [ 0, 40 ]
+    },
+    {
+      "controls": "(Item Grid).#legendary_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Sparkle_Fire_01_Color": "#0xFFFFC700"
+      },
+
+      "position_offset": [ 0, 40 ]
+    },
+    {
+      "controls": "(Item Grid).#legendary_items.(Item Sparkles)",
+      "animation_name": "VFX_Components/Sparkle_01",
+      "controller_name": "reward_vfx_controller",
+
+      "control_layers": {
+        "Origin": "this"
+      },
+
+      "properties": {
+        "Sparkle_01": "#0xFFFFC700",
+        "Sparkle_01_Glow_Color": "#0xFFFFC700"
+      }
+    }
+  ]
+}

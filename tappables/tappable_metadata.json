@@ -1,0 +1,146 @@
+{
+  "tags": {
+    "Default": [
+      "genoa:dummy_tappable_map"
+    ],
+    "Stone_Mine": [
+      "genoa:stone_mound_a_tappable_map",
+      "genoa:stone_mound_b_tappable_map",
+      "genoa:stone_mound_c_tappable_map"
+    ],
+    "Grassy_Mine": [
+      "genoa:grass_mound_a_tappable_map",
+      "genoa:grass_mound_b_tappable_map",
+      "genoa:grass_mound_c_tappable_map"
+    ],
+    "Tree_Oak": [
+      "genoa:tree_oak_a_tappable_map",
+      "genoa:tree_oak_b_tappable_map",
+      "genoa:tree_oak_c_tappable_map",
+      "genoa:tree_birch_a_tappable_map",
+      "genoa:tree_spruce_a_tappable_map"
+    ],
+    "Chest": [
+      "genoa:chest_tappable_map"
+    ],
+    "Chest_Gift": [
+      "genoa:chest_gift_tappable_map"
+    ],
+    "Sheep": [
+      "genoa:sheep_tappable_map"
+    ],
+    "Cow": [
+      "genoa:cow_tappable_map"
+    ],
+    "Pig": [
+      "genoa:pig_tappable_map"
+    ],
+    "Chicken": [
+      "genoa:chicken_tappable_map"
+    ],
+    "Squid": [
+      "genoa:squid_tappable_map"
+    ]
+  },
+  // Format is an icon with the three different vignettes to use:
+  // { tappable_icon, [ common_vignette_name, rare_vignette_name, epic_vignette_name ]}
+  // if it doesn't find an entry the dummy vignette is substituted for broken content
+  "vignettes": {
+    // Default tappable - used if a vignette cannot be found below
+    "genoa:dummy_tappable_map": [
+      "genoa:dummy_tappable_sequence_vignette",
+      "genoa:dummy_tappable_sequence_rare_vignette",
+      "genoa:dummy_tappable_sequence_epic_vignette"
+    ],
+    "genoa:stone_mound_a_tappable_map": [
+      "genoa:stone_mound_a_tappable_sequence_vignette",
+      "genoa:stone_mound_a_tappable_sequence_rare_vignette",
+      "genoa:stone_mound_a_tappable_sequence_epic_vignette"
+    ],
+    "genoa:stone_mound_b_tappable_map": [
+      "genoa:stone_mound_b_tappable_sequence_vignette",
+      "genoa:stone_mound_b_tappable_sequence_rare_vignette",
+      "genoa:stone_mound_b_tappable_sequence_epic_vignette"
+    ],
+    "genoa:stone_mound_c_tappable_map": [
+      "genoa:stone_mound_c_tappable_sequence_vignette",
+      "genoa:stone_mound_c_tappable_sequence_rare_vignette",
+      "genoa:stone_mound_c_tappable_sequence_epic_vignette"
+    ],
+    "genoa:grass_mound_a_tappable_map": [
+      "genoa:grass_mound_a_tappable_sequence_vignette",
+      "genoa:grass_mound_a_tappable_sequence_rare_vignette",
+      "genoa:grass_mound_a_tappable_sequence_epic_vignette"
+    ],
+    "genoa:grass_mound_b_tappable_map": [
+      "genoa:grass_mound_b_tappable_sequence_vignette",
+      "genoa:grass_mound_b_tappable_sequence_rare_vignette",
+      "genoa:grass_mound_b_tappable_sequence_epic_vignette"
+    ],
+    "genoa:grass_mound_c_tappable_map": [
+      "genoa:grass_mound_c_tappable_sequence_vignette",
+      "genoa:grass_mound_c_tappable_sequence_rare_vignette",
+      "genoa:grass_mound_c_tappable_sequence_epic_vignette"
+    ],
+    "genoa:tree_oak_a_tappable_map": [
+      "genoa:tree_oak_a_tappable_sequence_vignette",
+      "genoa:tree_oak_a_tappable_sequence_rare_vignette",
+      "genoa:tree_oak_a_tappable_sequence_epic_vignette"
+    ],
+    "genoa:tree_oak_b_tappable_map": [
+      "genoa:tree_oak_b_tappable_sequence_vignette",
+      "genoa:tree_oak_b_tappable_sequence_rare_vignette",
+      "genoa:tree_oak_b_tappable_sequence_epic_vignette"
+    ],
+    "genoa:tree_oak_c_tappable_map": [
+      "genoa:tree_oak_c_tappable_sequence_vignette",
+      "genoa:tree_oak_c_tappable_sequence_rare_vignette",
+      "genoa:tree_oak_c_tappable_sequence_epic_vignette"
+    ],
+    "genoa:tree_birch_a_tappable_map": [
+      "genoa:tree_birch_a_tappable_sequence_vignette",
+      "genoa:tree_birch_a_tappable_sequence_rare_vignette",
+      "genoa:tree_birch_a_tappable_sequence_epic_vignette"
+    ],
+    "genoa:tree_spruce_a_tappable_map": [
+      "genoa:tree_spruce_a_tappable_sequence_vignette",
+      "genoa:tree_spruce_a_tappable_sequence_rare_vignette",
+      "genoa:tree_spruce_a_tappable_sequence_epic_vignette"
+    ],
+    "genoa:chest_tappable_map": [
+      "genoa:chest_tappable_sequence_vignette",
+      "genoa:chest_tappable_sequence_rare_vignette",
+      "genoa:chest_tappable_sequence_epic_vignette"
+    ],
+    "genoa:chest_gift_tappable_map": [
+      "genoa:chest_gift_uncommon_tappable_sequence_vignette",
+      "genoa:chest_gift_rare_tappable_sequence_vignette",
+      "genoa:chest_gift_epic_tappable_sequence_vignette"
+    ],
+    "genoa:sheep_tappable_map": [
+      "genoa:sheep_tappable_sequence_vignette",
+      "genoa:sheep_tappable_sequence_rare_vignette",
+      "genoa:sheep_tappable_sequence_epic_vignette"
+    ],
+    "genoa:cow_tappable_map": [
+      "genoa:cow_tappable_sequence_vignette",
+      "genoa:cow_tappable_sequence_rare_vignette",
+      "genoa:cow_tappable_sequence_epic_vignette"
+    ],
+    "genoa:pig_tappable_map": [
+      "genoa:pig_tappable_sequence_vignette",
+      "genoa:pig_tappable_sequence_rare_vignette",
+      "genoa:pig_tappable_sequence_epic_vignette"
+    ],
+    "genoa:chicken_tappable_map": [
+      "genoa:chicken_tappable_sequence_vignette",
+      "genoa:chicken_tappable_sequence_rare_vignette",
+      "genoa:chicken_tappable_sequence_epic_vignette"
+    ],
+    "genoa:squid_tappable_map": [
+      "genoa:squid_tappable_sequence_vignette",
+      "genoa:squid_tappable_sequence_rare_vignette",
+      "genoa:squid_tappable_sequence_epic_vignette"
+    ]
+  }
+}

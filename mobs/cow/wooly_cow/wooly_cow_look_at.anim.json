@@ -1,0 +1,14 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.wooly_cow.lookattarget": {
+      "loop": true,
+      "bones": {
+        "head": {
+          "relative_to": { "rotation": "entity" },
+          "rotation": [ "query.target_x_rotation - this", "(query.target_y_rotation/1.5) - this", 0.0 ]
+        }
+      }
+    }
+  }
+}

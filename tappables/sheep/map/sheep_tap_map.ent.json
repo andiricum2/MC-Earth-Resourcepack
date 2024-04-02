@@ -1,0 +1,30 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:sheep_tappable_map",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default": "tappables/sheep/sheep_tappable"
+      },
+      "geometry": {
+        "default": "geometry.sheep_tappable_map"
+      },
+      "animations": {
+        "tapped": "animation.sheep.tappable.tapped",
+        "map_spawn": "animation.sheep.tappable.mapSpawn",
+        "map_despawn": "animation.sheep.tappable.mapDespawn",
+        "award_transition": "animation.sheep.tappable.awardTransition",
+        "idle": "animation.sheep.tappable.mapIdle"
+      },
+      "animation_controllers": [
+        { "idle_controller" : "controller.animation.tappable.map.idle"}
+      ],
+      "render_controllers": [ "controller.render.tappable" ]
+    }
+  }
+}

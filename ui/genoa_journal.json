@@ -1,0 +1,2161 @@
+{
+  "namespace": "genoa_journal",
+
+  "journal_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_journal.journal_screen_content",
+    "$screen_background_texture": "textures/ui/background_blurred",
+    "$background_scrim_visible": false,
+    "animation_name": "Journal Screen",
+    "screen_visibility": "opaque"
+  },
+
+  "journal_screen_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "main_page@genoa_journal.journal_main_page_content": {}
+      },
+      {
+        "details_page@genoa_journal.collection_item_details_page": {
+          "layer": 500, //high layer because this needs to be on top of the filter panel, which needs to be on top of fading nameplates
+          "bindings": [
+            {
+              "binding_name": "#details_page_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "back_to_top_button@genoa_journal.back_to_top_button": {
+          "anchor_from": "bottom_right",
+          "anchor_to": "bottom_right",
+          "offset": [ -34, -13 ],
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_control_name": "main_journal_scroll_view",
+              "source_property_name": "(not #scrollbar_hit_top)",
+              "target_property_name": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "oobe_transition_button": {
+          "type": "input_panel",
+          "layer": 428,
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "button.progress_merl_diag_2",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#show_transition_button",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "journal_main_page_content": {
+    "type": "stack_panel",
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "size": [ "100%", "100%" ], //required
+    "controls": [
+      {
+        "header@genoa_common.header": {
+          "$header_text": "genoa.nav.journal",
+          "$header_image": "textures/ui/header_icons/journal_open"
+        }
+      },
+      {
+        "content_panel": {
+          "type": "panel",
+          "size": [ "100%", "fill" ],
+          "controls": [
+            {
+              "loader_panel": {
+                "type": "panel",
+                "controls": [
+                  {
+                    "loading_contents@genoa_common.loading_content_stack_panel": {
+                      "$loading_text": "journal.loading",
+                      "$loading_content_bindings": [
+                        {
+                          "binding_name": "#show_loading",
+                          "binding_name_override": "#visible",
+                          "binding_condition": "always"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "content@genoa_journal.main_content": {
+                "bindings": [
+                  {
+                    "binding_name": "(not #show_loading)",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "main_content": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ], //required
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 14 ]
+        }
+      },
+      {
+        "filter_panel@genoa_journal.filter_button_panel": {}
+      },
+      {
+        "filter_divider@genoa_common.divider_label": {
+          "$text_alignment": "center",
+          "$text_height": 16,
+          "$left_text_pad_size": [ 9, 0 ],
+          "$right_text_pad_size": [ 9, 0 ],
+          "$text": "#divider_label_text",
+          "$text_binding": [
+            {
+              "binding_name": "$text"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 10 ]
+        }
+      },
+      {
+        "search_sort_panel@genoa_common.search_sort_panel": {
+          "layer": 375,
+          "$dropdown_content": "genoa_journal.sort_dropdown_content"
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "categories_panel": {
+          "type": "panel",
+          "size": [ "100%", "fill" ],
+          "controls": [
+            {
+              "scroll_panel@genoa_journal.scrolling_journal_panel": {
+                "bindings": [
+                  {
+                    "binding_name": "#show_no_search_result",
+                    "binding_name_override": "(not #visible)"
+                  }
+                ]
+              }
+            },
+            {
+              "no_result_panel@genoa_journal.no_search_result_panel": {
+                "bindings": [
+                  {
+                    "binding_name": "#show_no_search_result",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "journal_filter_button": {
+    "type": "panel",
+    "size": [ "fill", "100%cm" ],
+    "controls": [
+      {
+        "filter_button@genoa_common.tab_button": {
+          "size": [ "100%", 36 ]
+        }
+      },
+      {
+        "notification@genoa_common.colored_notification": {
+          "layer": 4,
+          "$notification_color": "$genoa_green_notification_color",
+          "$notification_offset": [ 12, 3 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle"
+        }
+      }
+    ]
+  },
+
+  "filter_button_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%-20px", "100%cm" ],
+    "use_new_layout": true,
+    "$button_selected_texture": "textures/ui/9_slice/label_simple",
+    "controls": [
+      {
+        "all_category@genoa_journal.journal_filter_button": {
+          "$tab_button_visible_binding_name": "#filter_all",
+          "$pressed_button_name": "button.filter_all",
+          "$tab_button_texture": "textures/ui/icons/pixel_icons/all",
+          "$notification_visible_bind_name": "#notification_visible_all"
+        }
+      },
+      {
+        "mobs_category@genoa_journal.journal_filter_button": {
+          "$tab_button_visible_binding_name": "#filter_mobs",
+          "$pressed_button_name": "button.filter_mobs",
+          "$tab_button_texture": "textures/ui/icons/pixel_icons/creeper_head",
+          "$notification_visible_bind_name": "#notification_visible_mobs"
+        }
+      },
+      {
+        "construction_category@genoa_journal.journal_filter_button": {
+          "$tab_button_visible_binding_name": "#filter_construction",
+          "$pressed_button_name": "button.filter_construction",
+          "$tab_button_texture": "textures/ui/icons/pixel_icons/construction",
+          "$notification_visible_bind_name": "#notification_visible_construction"
+        }
+      },
+      {
+        "nature_category@genoa_journal.journal_filter_button": {
+          "$tab_button_visible_binding_name": "#filter_nature",
+          "$pressed_button_name": "button.filter_nature",
+          "$tab_button_texture": "textures/ui/icons/pixel_icons/tree",
+          "$notification_visible_bind_name": "#notification_visible_nature"
+        }
+      },
+      {
+        "equipment_category@genoa_journal.journal_filter_button": {
+          "$tab_button_visible_binding_name": "#filter_equipment",
+          "$pressed_button_name": "button.filter_equipment",
+          "$tab_button_texture": "textures/ui/icons/pixel_icons/sword",
+          "$notification_visible_bind_name": "#notification_visible_equipment"
+        }
+      },
+      {
+        "items_category@genoa_journal.journal_filter_button": {
+          "$tab_button_visible_binding_name": "#filter_items",
+          "$pressed_button_name": "button.filter_items",
+          "$tab_button_texture": "textures/ui/icons/pixel_icons/sign",
+          "$notification_visible_bind_name": "#notification_visible_items"
+        }
+      }
+    ]
+  },
+
+  "sort_dropdown_content": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "content": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "new@genoa_inventory.sort_button_panel": {
+                "$option_name": "sort_new",
+                "$option_text": "options.genoa.sort.dateadded",
+                "$option_icon": "textures/ui/sort_calendar",
+                "$option_icon_selected": "textures/ui/sort_calendar_selected",
+                "$pressed_button_name": "('button.' + $option_name)"
+              }
+            },
+            {
+              "rarity@genoa_inventory.sort_button_panel": {
+                "$option_name": "sort_rarity",
+                "$option_text": "options.genoa.sort.rarity",
+                "$option_icon": "textures/ui/sort_rarity_small",
+                "$option_icon_selected": "textures/ui/sort_rarity_small_selected",
+                "$pressed_button_name": "('button.' + $option_name)"
+              }
+            },
+            {
+              "alphabetical@genoa_inventory.sort_button_panel": {
+                "$option_name": "sort_alphabetized",
+                "$option_text": "options.genoa.sort.alphabetized",
+                "$option_icon": "textures/ui/sort_alphabetical_small",
+                "$option_icon_selected": "textures/ui/sort_alphabetical_small_selected",
+                "$pressed_button_name": "('button.' + $option_name)"
+              }
+            },
+            {
+              "category@genoa_inventory.sort_button_panel": {
+                "$option_name": "sort_default",
+                "$option_text": "options.genoa.sort.category",
+                "$option_icon": "textures/ui/sort_category",
+                "$option_icon_selected": "textures/ui/sort_category_selected",
+                "$pressed_button_name": "('button.' + $option_name)"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "header": {
+          "type": "label",
+          "text": "options.genoa.sort.header",
+          "font_type": "MinecraftTen",
+          "font_size": "large",
+          "anchor_from": "top_left",
+          "anchor_to": "bottom_left"
+        }
+      }
+    ]
+  },
+
+  "no_search_result_panel": {
+    "type": "panel",
+    "controls": [
+      {
+        "result_sub_panel": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "offset": [ 0, -70 ],
+          "controls": [
+            {
+              "icon": {
+                "type": "image",
+                "size": [ 24, 24 ],
+                "texture": "textures/ui/icons/pixel_icons/creeper_head"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 0, 10 ]
+              }
+            },
+            {
+              "no_result_text": {
+                "type": "label",
+                "text": "journal.search.no_result",
+                "font_type": "MinecraftSeven",
+                "override_height": 15
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "scrolling_journal_panel": {
+    "type": "panel",
+    "controls": [
+      {
+        "journal_scroll_stack": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%" ], //required
+          "use_new_layout": true,
+          "controls": [
+            {
+              "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                "$source_control_name_override": "main_journal_scroll_view"
+              }
+            },
+            {
+              "scrolling_challenges@common.scrolling_panel": {
+                "$show_background": false,
+                "$scroll_fade_distance": 4.0,
+                "$scrolling_content": "genoa_journal.scroll_content",
+                "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+                "offset": [ 0, -2 ],
+                "$scroll_view_name": "main_journal_scroll_view",
+                "$jump_to_top_on_update": true,
+                "$jump_to_top_event_binding_name": "#scroll_inventory_to_top"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "scroll_content": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "new_category@genoa_journal.journal_category": {
+          "animation_name": "New Items Category",
+          "$show_challenges": false,
+          "$is_animated": true,
+          "$grid_collection_name": "#new_items_collection",
+          "$item_id_aux_binding_name": "#new_item_aux_id",
+          "$locked_item_id_aux_binding_name": "#new_locked_item_aux_id",
+          "$locked_item_visible_binding_name": "#new_locked_item_visible",
+          "$item_exists_binding_name": "#new_item_exists",
+          "$locked_item_background_binding_name": "#none",
+          "$locked_item_alpha_binding_name": "#new_locked_item_alpha",
+          "$category_header_text": "journal.category.new",
+          "$items_grid_dimensions_binding_name": "#new_items_grid_binding",
+          "$items_grid_bindings": [
+            {
+              "binding_name": "$items_grid_dimensions_binding_name"
+            }
+          ],
+          "$new_items_notification_visible_bind_name": "#none",
+          "$new_items_notification_visible_bindings": [],
+          "bindings": [
+            {
+              "binding_name": "#new_items_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "category_factory": {
+          "type": "stack_panel",
+          "animation_name": "Category Factory",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "$category_collection_name": "#category_collection",
+          "$category_header_text": "#category_label_text",
+          "collection_name": "$category_collection_name",
+          "$grid_collection_name": "#item_collection",
+          "$category_header_text_bindings": [
+            {
+              "binding_name": "$category_header_text",
+              "binding_type": "collection",
+              "binding_collection_name": "$category_collection_name"
+            }
+          ],
+          "$items_grid_dimensions_binding_name": "#item_grid_binding",
+          "$items_grid_bindings": [
+            {
+              "binding_name": "$items_grid_dimensions_binding_name"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "$item_id_aux_binding_name": "#category_item_aux_id",
+          "$item_exists_binding_name": "#category_item_exists",
+          "$new_items_notification_visible_bind_name": "#new_items_notification_visible",
+          "$new_items_notification_visible_bindings": [
+            {
+              "binding_name": "$new_items_notification_visible_bind_name",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$category_collection_name"
+            }
+          ],
+          "$locked_item_background_binding_name": "#category_item_unlocked",
+          "$locked_item_alpha_binding_name": "#locked_item_alpha",
+          "factory": {
+            "name": "category",
+            "control_name": "genoa_journal.journal_category"
+          },
+          "bindings": [
+            {
+              "binding_name": "#num_categories",
+              "binding_name_override": "#collection_length"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 20 ]
+        }
+      }
+    ]
+  },
+
+  "page_border": {
+    "type": "panel",
+    "$show_ribbon|default": true,
+    "$ribbon_bindings|default": [],
+    "$content": "genoa_common.empty",
+    "$fill_background_texture|default": "textures/ui/paper_background_dark",
+    "size": [ "100%cm", "100%cm" ],
+    "controls": [
+      {
+        "items_panels_border": {
+          "type": "image",
+          "size": [ "100%c + 40px", "100%c + 40px" ],
+          "texture": "textures/ui/book_cover",
+          "controls": [
+            {
+              "items_panels": {
+                "type": "image",
+                "size": [ "100%c - 20px", "100%c - 20px" ],
+                "texture": "$fill_background_texture",
+                "fill": true,
+                "offset": [ -5, -5 ],
+                "controls": [
+                  {
+                    "items_panels": {
+                      "type": "image",
+                      "size": [ "100%c + 18px", "100%c + 18px" ],
+                      "offset": [ 5, 5 ],
+                      "texture": "textures/ui/book_paper",
+                      "fill": true,
+                      "controls": [
+                        {
+                          "content_panel": {
+                            "type": "panel",
+                            "size": [ "100%c + 1px", "100%c + 2px" ],
+                            "offset": [ -5, -5 ],
+                            "controls": [
+                              {
+                                "content@$content": {}
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "page_ribbon": {
+          "ignored": "(not $show_ribbon)",
+          "type": "image",
+          "size": [ 18, 68 ],
+          "texture": "textures/ui/book_ribbon_common",
+          "anchor_to": "top_left",
+          "anchor_from": "top_left",
+          "offset": [ 15, 5 ],
+          "bindings": "$ribbon_bindings",
+          "layer": 1
+        }
+      }
+    ]
+  },
+
+  // Requires:
+  //  $category_header_text
+  //  $grid_collection_name
+  //  $items_grid_dimensions_binding_name
+  //  $items_grid_bindings
+  //  $item_exists_binding_name
+  //  $item_id_aux_binding_name
+
+  //Require IF $show_challenges == true
+  //  $category_collection_name
+
+  //optional
+  //  $category_header_text_bindings
+  //  $new_items_notification_visible_bind_name -OR-
+  //  ($new_items_notification_visible_bind_name -AND- $new_items_notification_visible_bindings)
+  "journal_category": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "use_new_layout": true,
+    "$show_challenges|default": true,
+    "$category_header_text_bindings|default": [],
+    "$new_items_notification_visible_bind_name|default": "",
+    "$new_items_notification_visible_bindings|default": [],
+    "$is_animated|default": false,
+    "controls": [
+      {
+        "header_stack_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ 355, "100%cm" ],
+          "use_new_layout": true,
+          "controls": [
+            {
+              "notification@genoa_common.colored_notification": {
+                "$notification_color": "$genoa_green_notification_color",
+                "anchor_from": "center", //required
+                "anchor_to": "top_left",
+                "$notification_visible_bind_name": "$new_items_notification_visible_bind_name",
+                "$notification_visible_bindings": "$new_items_notification_visible_bindings"
+              }
+            },
+            {
+              "header_divider@genoa_common.divider_label": {
+                "size": [ "fill", "100%cm" ],
+                "$text_alignment": "left",
+                "$text_height": 16,
+                "$right_text_pad_size": [ 14, 0 ],
+                "$right_bar_pad_size": [ 9, 0 ],
+                "$left_text_pad_size": [ 6, 0 ],
+                "$text": "$category_header_text",
+                "$text_binding": "$category_header_text_bindings"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "challenge_container": {
+          "ignored": "(not $show_challenges)",
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "bindings": [
+            {
+              "binding_name": "#is_challenge_visible",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$category_collection_name",
+              "binding_type": "collection"
+            }
+          ],
+          "controls": [
+            {
+              "challenge_card@genoa_journal.challenge_card": {}
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ "100%", 10 ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "items_panel@genoa_journal.page_border": {
+          "offset": [ 3, 0 ],
+          "$content": "genoa_journal.item_grid_panel"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 6 ]
+        }
+      }
+    ]
+  },
+
+  "item_grid_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%c", "100%c" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 10, 0 ]
+        }
+      },
+      {
+        "item_grid_panel": {
+          "type": "stack_panel",
+          "size": [ "100%c", "100%c" ],
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 0, 10 ]
+              }
+            },
+            {
+              "items_grid": {
+                "type": "grid",
+                "collection_name": "$grid_collection_name",
+                "animation_name": "Item Grid",
+                "grid_item_template": "genoa_journal.item_grid_template",
+                "grid_dimension_binding": "$items_grid_dimensions_binding_name",
+                "bindings": "$items_grid_bindings"
+              }
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 0, 10 ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 10, 0 ]
+        }
+      }
+    ]
+  },
+
+  "item_grid_template": {
+    "type": "input_panel",
+    "size": [ 100, 100 ],
+    "animation_name": "Grid Item",
+    "controls": [
+      {
+        "item_panel": {
+          "type": "panel",
+          "size": [ 95, 95 ],
+          "bindings": [
+            {
+              "binding_name": "$item_exists_binding_name",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$grid_collection_name"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "controls": [
+            {
+              "particles": {
+                "type": "panel",
+                "controls": [
+                  {
+                    "rare": {
+                      "type": "panel",
+                      "animation_name": "Rare Particles",
+                      "bindings": [
+                        {
+                          "binding_name": "#rare_particle_visible",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$grid_collection_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "legendary": {
+                      "type": "panel",
+                      "animation_name": "Legendary Particles",
+                      "bindings": [
+                        {
+                          "binding_name": "#legendary_particle_visible",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$grid_collection_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "epic": {
+                      "type": "panel",
+                      "animation_name": "Epic Particles",
+                      "bindings": [
+                        {
+                          "binding_name": "#epic_particle_visible",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$grid_collection_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "locked_item@genoa_inventory_common.genoa_item_renderer": { // Primarily used for stamping animation
+                "ignored": "(not $is_animated)",
+                "$drop_shadow_on": false,
+                "alpha": 0.3,
+                "bindings": [
+                  {
+                    "binding_name": "$locked_item_id_aux_binding_name"
+                  },
+                  {
+                    "binding_name": "$locked_item_visible_binding_name",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always_when_visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            },
+            {
+              "locked_item_background@genoa_common.white": {
+                "size": [ 95, 95 ],
+                "color": "$genoa_journal_locked_item_background_color",
+                "visible": false,
+                "alpha": 0.66,
+                "bindings": [
+                  {
+                    "binding_name": "(not $locked_item_background_binding_name)",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            },
+            {
+              "unlocked_item_panel": {
+                "type": "panel",
+                "propagate_alpha": true,
+                "controls": [
+                  {
+                    "unlocked_item@genoa_inventory_common.genoa_item_renderer": {
+                      "layer": 25, //Needs to be high so animation vfx can appear underneath
+                      "outline_scale": 0.04,
+                      "alpha_clip": 0.9,
+                      "$drop_shadow_on": false,
+                      "animation_name": "Item Icon",
+                      "bindings": [
+                        {
+                          "binding_name": "$item_id_aux_binding_name"
+                        },
+                        {
+                          "binding_name": "$locked_item_alpha_binding_name",
+                          "binding_name_override": "#alpha",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$grid_collection_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "animated_unlocked_item@genoa_inventory_common.genoa_item_renderer": {
+                      "layer": 25, //Needs to be high so animation vfx can appear underneath
+                      "outline_scale": 0.04,
+                      "alpha_clip": 0.9,
+                      "animation_name": "Animated Item Icon",
+                      "alpha": 0,
+                      "bindings": [
+                        {
+                          "binding_name": "$item_id_aux_binding_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "$locked_item_alpha_binding_name",
+                    "binding_name_override": "#alpha"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            },
+            {
+              "fading_selection_info@genoa_common.fading_selection_info": {
+                "$anchoring_to": "top_middle",
+                "$anchoring_from": "top_middle",
+                "$selection_info_text_offset": [ 0, -10 ],
+                "$ingredient_name_panel_visible_binding": [
+                  {
+                    "binding_name": "#unavailable_item_nameplate_visible",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#enable_grid_item_animation",
+        "binding_name_override": "#selected"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.select_journal_item",
+        "mapping_type": "pressed"
+      }
+    ]
+  },
+
+  // -- COLLECTION ITEM DETAILS PAGE -- //
+  "collection_item_details_page": {
+    "type": "input_panel",
+    "cancel_all_input": true,
+    "$item_stats_collection_name": "#item_stats_collection",
+    "$item_profile_collection_name": "#item_profile_collection",
+    "$item_player_stats_collection_name": "#player_stats_collection",
+    "controls": [
+      {
+        "screen_background": {
+          "type": "image",
+          "fill": true,
+          "texture": "textures/ui/journal_detail_background"
+        }
+      },
+      {
+        "close_button@genoa_common.back_button": {
+          "size": [ 24, 24 ],
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "offset": [ -26, 44 ],
+          "$button_content": "genoa_common.white_close_icon",
+          "$pressed_button_name": "button.close_item_details",
+          "sound_name": "submenu.close.button"
+        }
+      },
+      {
+        "collection_item_details_page_content": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%" ], //required
+          "use_new_layout": true,
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 39 ]
+              }
+            },
+            {
+              "icon_header@genoa_journal.item_details_icon_header": {}
+            },
+            {
+              "fade_bars@genoa_common.fading_scroll_mask_bars": {
+                "$source_control_name_override": "item_details_scroll_view"
+              }
+            },
+            {
+              "scroll_container": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "controls": [
+                  {
+                    "item_details_scroll_content@common.scrolling_panel": {
+                      "$show_background": false,
+                      "$scroll_fade_distance": 25.0,
+                      "$scrolling_content": "genoa_journal.collection_item_details_scroll_content",
+                      "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control",
+                      "$scroll_view_name": "item_details_scroll_view",
+                      "offset": [ 0, -2 ],
+                      "$jump_to_top_on_update": true
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_details_icon_header": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "title": {
+          "type": "label",
+          "size": [ 275, "default" ],
+          "text": "#details_item_name",
+          "font_type": "MinecraftTen",
+          "override_height": 25,
+          "text_alignment": "center",
+          "bindings": [
+            {
+              "binding_name": "#details_item_name"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      },
+      {
+        "rarity_label_tag": {
+          "type": "panel",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "rarity_background": {
+                "type": "image",
+                "size": [ "100%c + 20px", "100%c + 5px" ],
+                "texture": "textures/ui/9_slice/label_simple",
+                "controls": [
+                  {
+                    "rarity_label": {
+                      "type": "label",
+                      "size": [ "default", "default" ],
+                      "text": "#details_item_rarity_text",
+                      "offset": [ 0, -2 ],
+                      "font_type": "MinecraftSeven",
+                      "override_height": 16,
+                      "bindings": [
+                        {
+                          "binding_name": "#details_item_rarity_text"
+                        },
+                        {
+                          "binding_name": "#details_item_rarity_color",
+                          "binding_name_override": "#color"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 5 ]
+        }
+      },
+      {
+        "date_added_label": {
+          "type": "label",
+          "text": "#details_item_date_added",
+          "font_type": "MinecraftSeven",
+          "override_height": 14,
+          "alpha": 0.5,
+          "bindings": [
+            {
+              "binding_name": "#details_item_date_added",
+              "binding_condition": "visibility_changed"
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ "100%", 5 ]
+        }
+      }
+    ]
+  },
+
+  "collection_item_details_scroll_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "offset": [ 1, 0 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 15 ]
+        }
+      },
+      {
+        "item_icon@genoa_inventory_common.genoa_item_renderer": {
+          "size": [ 180, 180 ],
+          "animation_name": "Journal Details Item",
+          "bindings": [
+            {
+              "binding_name": "#details_item_id_aux",
+              "binding_name_override": "#item_id_aux",
+              "binding_condition": "visibility_changed"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ],
+          "controls": [
+            {
+              "play_item_sound_button": {
+                "type": "input_panel",
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.select_journal_item_icon",
+                    "mapping_type": "pressed"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 10 ]
+        }
+      },
+      {
+        "mob_stats": {
+          "type": "panel",
+          "size": [ "100%c", "100%c" ],
+          "bindings": [
+            {
+              "binding_name": "#horizontal_item_stats_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 0, 4 ]
+              }
+            },
+            {
+              "item_stats_panel@genoa_journal.item_details_stats": {
+                "$stat_orientation": "horizontal"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "tool_stats": {
+          "type": "panel",
+          "size": [ "100%c", "100%c" ],
+          "bindings": [
+            {
+              "binding_name": "#vertical_item_stats_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "item_stats_panel@genoa_journal.item_details_stats": {
+                "$stat_orientation": "vertical"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ 0, 7 ]
+        }
+      },
+      {
+        "description_box@genoa_journal.item_details_description_box": {}
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ 0, 6 ]
+        }
+      },
+      {
+        // item profile - "Carrots", "Dandelions", "Rabbit Fur" ...
+        "item_profile_container@genoa_journal.item_details_profile": {}
+      },
+      {
+        "pad_4": {
+          "type": "panel",
+          "size": [ 0, 6 ]
+        }
+      },
+      {
+        // player stats - #Collected / #Killed / #Destroyed ...
+        "player_stats@genoa_journal.item_details_player_stats": {}
+      },
+      {
+        "pad_5": {
+          "type": "panel",
+          "size": [ 0, 10 ]
+        }
+      }
+    ]
+  },
+
+  "item_details_stats": {
+    "type": "stack_panel",
+    "size": [ "100%c", "100%cm" ],
+    "use_new_layout": true,
+    "orientation": "horizontal",
+    "collection_name": "$item_stats_collection_name",
+    "factory": {
+      "name": "item_stats",
+      "control_name": "genoa_journal.item_stat_template",
+      "factory_variables": [
+        "$stat_orientation"
+      ]
+    },
+    "bindings": [
+      {
+        "binding_name": "#num_item_stats",
+        "binding_name_override": "#collection_length"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "item_details_profile": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "info_divider_label@genoa_common.divider_label": {
+          "size": [ "100%", 16 ],
+          "$text_alignment": "left",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$text_height": 16,
+          "$text": "journal.item_details.info",
+          "$font_type": "MinecraftSeven",
+          "$font_size": "medium"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "profile_panel@genoa_journal.page_border": {
+          "$show_ribbon": false,
+          "$content": "genoa_journal.item_details_profile_panel",
+          "$fill_background_texture|default": "textures/ui/paper_background_light"
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#info_panel_visible",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "item_details_profile_panel": {
+    "type": "stack_panel",
+    "size": [ 325, "100%c" ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 5 ]
+        }
+      },
+      {
+        "item_details_profile_factory": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%c" ],
+          "use_new_layout": true,
+          "collection_name": "$item_profile_collection_name",
+          "factory": {
+            "name": "item_profile",
+            "control_name": "genoa_journal.item_details_profile_entry"
+          },
+          "bindings": [
+            {
+              "binding_name": "#num_profile_stats",
+              "binding_name_override": "#collection_length"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_details_player_stats": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "stats_divider_label@genoa_common.divider_label": {
+          "size": [ "100%", 16 ],
+          "$text_alignment": "left",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$text_height": 16,
+          "$text": "journal.item_details.stats",
+          "$font_type": "MinecraftSeven",
+          "$font_size": "medium"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "items_panels_border": {
+          "type": "image",
+          "size": [ "100%c + 20px", "100%c + 20px" ],
+          "texture": "textures/ui/book_cover",
+          "controls": [
+            {
+              "stats_container@genoa_journal.item_details_player_stats_container": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_details_player_stats_container": {
+    "type": "panel",
+    "size": [ "100%c", "100%c" ],
+    "controls": [
+      {
+        "collection_stats_grid": {
+          "size": [ "100%c", "100%c" ],
+          "type": "grid",
+          "grid_dimensions": [ 3, 1 ],
+          "$grid_collection_name": "$item_player_stats_collection_name",
+          "collection_name": "$grid_collection_name",
+          "grid_item_template": "genoa_journal.item_details_player_stats_entry_container"
+        }
+      }
+    ]
+  },
+
+  "item_details_description_box": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "about_me_divider_label@genoa_common.divider_label": {
+          "size": [ "100%", 16 ],
+          "$text_alignment": "left",
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$text_height": 16,
+          "$text": "journal.item_details.aboutme",
+          "$font_type": "MinecraftSeven",
+          "$font_size": "medium"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "profile_panel@genoa_journal.page_border": {
+          "$content": "genoa_journal.item_details_description",
+          "$fill_background_texture|default": "textures/ui/paper_background_light",
+          "$ribbon_bindings": [
+            {
+              "binding_name": "#item_details_rarity_ribbon",
+              "binding_name_override": "#texture"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_details_description": {
+    "type": "panel",
+    "size": [ 325, "100%c+10px" ],
+    "controls": [
+      {
+        "description_label": {
+          "type": "label",
+          "size": [ 300, "default" ],
+          "text": "#details_item_description",
+          "font_type": "smooth",
+          "color": "$genoa_header_text_color",
+          "override_height": 19,
+          "anchor_to": "right_middle",
+          "anchor_from": "right_middle",
+          "bindings": [
+            {
+              "binding_name": "#details_item_description"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "labelled_hexagon_icon_container": {
+    "type": "panel",
+    "size": [ 95, 105 ],
+    "controls": [
+      {
+        "button@genoa_journal.item_details_stat_button": {}
+      },
+      {
+        "content": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "$binding_collection_name|default": "",
+          "controls": [
+            {
+              "icon": {
+                "type": "image",
+                "texture": "#stat_texture",
+                "size": [ 65, 65 ],
+                "bindings": [
+                  {
+                    "binding_name": "#stat_texture",
+                    "binding_name_override": "#texture",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$binding_collection_name"
+                  }
+                ],
+                "controls": [
+                  {
+                    "fading_selection_info@genoa_common.fading_selection_info": {
+                      "$anchoring_to": "bottom_middle",
+                      "$anchoring_from": "top_middle",
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#item_property_details_enabled",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$binding_collection_name"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 5 ]
+              }
+            },
+            {
+              "label": {
+                "type": "label",
+                "text": "#stat_text_value",
+                "font_type": "Minecraft",
+                "override_height": 11,
+                "bindings": [
+                  {
+                    "binding_name": "#stat_text_value",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$binding_collection_name"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_stat_template": {
+    "type": "panel",
+    "size": [ "100%cm", "100%cm" ],
+    "$binding_collection_name": "$item_stats_collection_name",
+    "$selection_info_text_offset": [ 0, 22 ],
+    "controls": [
+      {
+        "button@genoa_journal.item_details_stat_button": {
+          "size": [ 0, 0 ], // Forcing sizing based on siblings.
+          "inherit_max_sibling_width": true,
+          "inherit_max_sibling_height": true
+        }
+      },
+      {
+        "vertical_content": {
+          "type": "stack_panel",
+          "size": [ 82, 78 ], // 54 width + 28px for padding between items
+          "ignored": "(not ($stat_orientation = 'vertical'))",
+          "use_new_layout": true,
+          "controls": [
+            {
+              "icon": {
+                "type": "image",
+                "texture": "#stat_texture",
+                "size": [ 54, 54 ],
+                "bindings": [
+                  {
+                    "binding_name": "#stat_texture",
+                    "binding_name_override": "#texture",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$binding_collection_name"
+                  }
+                ],
+                "controls": [
+                  {
+                    "fading_selection_info@genoa_common.fading_selection_info": {
+                      "$anchoring_to": "bottom_middle",
+                      "$anchoring_from": "top_middle",
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#item_property_details_enabled",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$binding_collection_name"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 0, 5 ]
+              }
+            },
+            {
+              "vertical_item_stat_label": {
+                "type": "label",
+                "size": [ "default", "default" ],
+                "text": "#stat_text_value",
+                "font_type": "Minecraft",
+                "override_height": 16,
+                "shadow": true,
+                "shadow_offset": [ 1, 1 ],
+                "bindings": [
+                  {
+                    "binding_name": "#stat_text_value",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$binding_collection_name"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "horizontal_content": {
+          "type": "stack_panel",
+          "ignored": "(not ($stat_orientation = 'horizontal'))",
+          "size": [ "100%c + 18px", 32 ],
+          "use_new_layout": true,
+          "orientation": "horizontal",
+          "controls": [
+            {
+              "icon": {
+                "type": "image",
+                "texture": "#stat_texture",
+                "size": [ 32, 32 ],
+                "bindings": [
+                  {
+                    "binding_name": "#stat_texture",
+                    "binding_name_override": "#texture",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$binding_collection_name"
+                  }
+                ],
+                "controls": [
+                  {
+                    "fading_selection_info@genoa_common.fading_selection_info": {
+                      "$anchoring_to": "bottom_middle",
+                      "$anchoring_from": "top_middle",
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#item_property_details_enabled",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$binding_collection_name"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 5, 0 ]
+              }
+            },
+            {
+              "horizontal_item_stat_label": {
+                "type": "label",
+                "size": [ "default", 22 ],
+                "text": "#stat_text_value",
+                "font_type": "Minecraft",
+                "override_height": 16,
+                "shadow": true,
+                "shadow_offset": [ 1, 1 ],
+                "bindings": [
+                  {
+                    "binding_name": "#stat_text_value",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$binding_collection_name"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_details_profile_stat_label": {
+    "type": "image",
+    "texture": "textures/ui/9_slice/label_paper_5",
+    "controls": [
+      {
+        "label": {
+          "size": [ "100% - 10px", "default" ],
+          "type": "label",
+          "text": "#stat_name",
+          "font_type": "MinecraftSeven",
+          "override_height": 16,
+          "offset": [ 0, -4 ],
+          "bindings": [
+            {
+              "binding_name": "#stat_name",
+              "binding_type": "collection",
+              "binding_collection_name": "$binding_collection_name"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_details_profile_entry": {
+    "type": "panel",
+    "size": [ 315, "100%cm+5px" ],
+    "$binding_collection_name": "$item_profile_collection_name",
+    "controls": [
+      {
+        "text_panel": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%cm" ],
+          "orientation": "horizontal",
+          "bindings": [
+            {
+              "binding_name": "#stat_text_value_visible",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$binding_collection_name"
+            }
+          ],
+          "controls": [
+            {
+              "stat_label@genoa_journal.item_details_profile_stat_label": {
+                "size": [ "fill", 35 ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 5, 0 ]
+              }
+            },
+            {
+              "value_panel": {
+                "type": "panel",
+                "size": [ "fill", 35 ],
+                "controls": [
+                  {
+                    "text_value": {
+                      "type": "label",
+                      "size": [ "100%", "default" ],
+                      "text": "#stat_text_value",
+                      "color": "$genoa_header_text_color",
+                      "override_height": 16,
+                      "font_type": "MinecraftSeven",
+                      "offset": [ 0, -4 ],
+                      "bindings": [
+                        {
+                          "binding_name": "#stat_text_value",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$binding_collection_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "divider@genoa_common.white": {
+                      "size": [ "100%", 3 ],
+                      "color": "$genoa_journal_divider_color",
+                      "anchor_to": "bottom_middle",
+                      "anchor_from": "bottom_middle"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "item_grid_panel": {
+          "type": "stack_panel",
+          "size": [ "100%", "100%cm" ],
+          "orientation": "horizontal",
+          "bindings": [
+            {
+              "binding_name": "#stat_texture_grid_visible",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$binding_collection_name"
+            }
+          ],
+          "controls": [
+            {
+              "stat_label@genoa_journal.item_details_profile_stat_label": {
+                "size": [ "fill", 50 ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 5, 0 ]
+              }
+            },
+            {
+              "value_panel": {
+                "type": "panel",
+                "size": [ "fill", "100%cm" ],
+                "controls": [
+                  {
+                    "item_grid_panel": {
+                      "type": "grid",
+                      "size": [ "100%c", "100%c" ],
+                      "collection_name": "#item_profile_grid_collection",
+                      "grid_item_template": "genoa_journal.item_profile_stat_renderer",
+                      "$item_profile_grid_dimensions_binding_name": "#item_profile_grid_dimensions",
+                      "grid_dimension_binding": "$item_profile_grid_dimensions_binding_name",
+                      "bindings": [
+                        {
+                          "binding_name": "#stat_texture_grid_visible",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$binding_collection_name"
+                        },
+                        {
+                          "binding_name": "$item_profile_grid_dimensions_binding_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_profile_stat_renderer": {
+    "type": "input_panel",
+    "size": [ 50, 50 ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.item_stat_value_icon_button",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "$genoa_item_renderer_bindings": [
+      {
+        "binding_name": "#item_profile_stat_aux_id",
+        "binding_name_override": "#item_id_aux",
+        "binding_condition": "visibility_changed"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "controls": [
+      {
+        "item_renderer@genoa_inventory_common.genoa_item_renderer": {}
+      },
+      {
+        "fading_selection_info@genoa_common.fading_selection_info": {
+          "$anchoring_from": "top_middle",
+          "$anchoring_to": "bottom_middle",
+          "$selection_info_text_offset": [ 0, 0 ],
+          "$ingredient_name_panel_visible_binding": [
+            {
+              "binding_name": "#item_profile_stat_nameplate_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_details_stat_button": {
+    "type": "input_panel",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.item_stat_button",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "item_details_player_stats_entry_container": {
+    "type": "stack_panel",
+    "size": [ 115, 125 ],
+    "use_new_layout": true,
+    "orientation": "horizontal",
+    "controls": [
+      {
+        "page_border": {
+          "type": "image",
+          "size": [ "100%c-20px", "100%c-20px" ],
+          "texture": "textures/ui/paper_background_dark",
+          "fill": true,
+          "offset": [ 5, -5 ],
+          "propagate_alpha": true,
+          "bindings": [
+            {
+              "binding_name": "#stat_container_alpha",
+              "binding_name_override": "#alpha",
+              "binding_type": "collection",
+              "binding_collection_name": "$grid_collection_name"
+            }
+          ],
+          "controls": [
+            {
+              "page_background": {
+                "type": "image",
+                "size": [ "100%c + 20px", "100%c + 20px" ],
+                "texture": "textures/ui/book_paper",
+                "fill": true,
+                "offset": [ 5, 5 ],
+                "controls": [
+                  {
+                    "content@genoa_journal.labelled_hexagon_icon_container": {
+                      "offset": [ -5, -5 ],
+                      "$selection_info_text_offset": [ 0, 12 ],
+                      "$binding_collection_name": "$grid_collection_name"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // -- !COLLECTION ITEM DETAILS PAGE -- //
+
+  // -- CHALLENGE CARD -- //
+  "challenge_card@genoa_journal.page_border": {
+    "type": "panel",
+    "$show_ribbon": false,
+    "$content": "genoa_journal.challenge_content",
+    "$fill_background_texture|default": "textures/ui/paper_background_light",
+    "offset": [ 2, 0 ]
+  },
+
+  "challenge_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ 325, "100%c" ],
+    "controls": [
+      {
+        "title": {
+          "size": [ "100% - 10px", "default" ],
+          "type": "label",
+          "text": "#challenge_description",
+          "font_type": "MinecraftTen",
+          "override_height": 20,
+          "color": "$genoa_header_text_color",
+          "bindings": [
+            {
+              "binding_name": "#challenge_description",
+              "binding_type": "collection",
+              "binding_collection_name": "$category_collection_name"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 5 ]
+        }
+      },
+      {
+        "progress_bar@genoa_challenges.progress_bar": {
+          "size": [ "100%", 25 ],
+          "$progress_string": "#challenge_progress_text",
+          "$progress_numeric": "#challenge_progress",
+          "$progress_bar_texture": "#progress_fill_visible",
+          "$progress_bar_size": [ 315, 16 ],
+          "$progress_bar_bindings": [
+            {
+              "binding_name": "$progress_string",
+              "binding_collection_name": "$category_collection_name",
+              "binding_type": "collection"
+            },
+            {
+              "binding_name": "$progress_numeric",
+              "binding_name_override": "#clip_ratio"
+            },
+            {
+              "binding_name": "$progress_bar_texture",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      },
+      {
+        "completion_container@genoa_journal.challenge_reward_container": {}
+      },
+      {
+        "pad_2": {
+          "type": "panel",
+          "size": [ "100%", 5 ]
+        }
+      }
+    ]
+  },
+
+  "challenge_reward_container": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 50 ],
+    "controls": [
+      {
+        "banner_collect_toggle": {
+          "type": "panel",
+          "size": [ 170, "100%" ],
+          "controls": [
+            {
+              "rewards_banner": {
+                "type": "image",
+                "size": [ 195, 55 ],
+                "offset": [ -20, 0 ],
+                "texture": "textures/ui/rewards_banner",
+                "anchor_to": "top_left",
+                "anchor_from": "top_left",
+                "controls": [
+                  {
+                    "rewards_label": {
+                      "type": "label",
+                      "offset": [ -7, -4 ],
+                      "override_height": 25,
+                      "font_type": "MinecraftTen",
+                      "text": "challenges.rewards_exclamation"
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "#collect_button_visible",
+                    "binding_name_override": "(not #visible)"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            },
+            {
+              "collect_button_panel@genoa_challenges.collect_button": {
+                "sound_name": "challenge.complete.big",
+                "bindings": [
+                  {
+                    "binding_name": "#collect_button_visible",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 5, "100%" ]
+        }
+      },
+      {
+        "rewards_panel": {
+          "type": "panel",
+          "size": [ "100%c", "100%" ],
+          "controls": [
+            {
+              "rewards_grid": {
+                "type": "grid",
+                "grid_dimensions": [ 3, 1 ],
+                "grid_item_template": "genoa_challenges.reward",
+                "collection_name": "#challenge_rewards",
+                "animation_name": "Rewards Bar",
+                "$reward_title_bindings": [
+                  {
+                    "binding_name": "#reward_title_center",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ],
+                "$reward_title_overflow_bindings": [
+                  {
+                    "binding_name": "#reward_title_overflow",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ],
+                "$reward_quantity": "#reward_quantity",
+                "$reward_quantity_bindings": [
+                  {
+                    "binding_name": "#reward_quantity"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ],
+                "$reward_image": "#reward_texture",
+                "$reward_image_bindings": [
+                  {
+                    "binding_name": "#reward_texture",
+                    "binding_name_override": "#texture"
+                  },
+                  {
+                    "binding_name": "#reward_texture_file_system",
+                    "binding_name_override": "#texture_file_system"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ],
+                "$animate_reward_binding_name": "#animate_reward",
+                "$button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.challenge_reward_selected",
+                    "mapping_type": "pressed"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  // -- !CHALLENGE CARD -- //
+
+  // -- BACK TO TOP BUTTON -- //
+  "back_to_top_button@genoa_common.button": {
+    "size": [ 36, 36 ],
+    "layer": 450, //high layer because this needs to be on top of the filter panel, which needs to be on top of fading nameplates, while remaining below item details panel
+    "$pressed_button_name|default": "button.back_to_top",
+    "$button_content": "genoa_common.up_icon",
+    "$background_style": "color",
+    "$background_color": "$genoa_button_color",
+    "$glow_style": "white",
+    "$sound_name|default": "menu.close.button",
+    "sound_name": "$sound_name",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "$pressed_button_name",
+        "mapping_type": "pressed"
+      }
+    ]
+  }
+}

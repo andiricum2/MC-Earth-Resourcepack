@@ -1,0 +1,37 @@
+{
+  "managed_screen_name": "Making Hub Screen",
+  "version": 2,
+
+  "animations": [
+    {
+      "controls": "(Utility Block).children",
+      "animation_name": "Collect_Items/collect_item_only",
+      "controller_name": "collect_items_controller",
+      "control_layers": {
+        "item": "Table Icon"
+      }
+    },
+    {
+      "controls": "(Utility Block Entice)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop_always",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "controls": "(Boosted Time)",
+      "animation_name": "boosted_pulse_01",
+      "controller_name": "boosted_time_controller",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    },
+    {
+      "controls": "(Boosted Time)",
+      "animation_name": "boost_particles_01",
+      "controller_name": "boosted_time_controller",
+      "position_offset": [ 0, -10 ]
+    }
+  ]
+}

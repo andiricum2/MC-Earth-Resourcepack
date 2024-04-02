@@ -1,0 +1,280 @@
+{
+    "format_version": "1.8.0",
+    "vignette" : {
+        "name" : "genoa:dummy_tappable_sequence_epic_vignette",
+        "loop" : false,
+        "cameras" : [
+            {
+                "name" : "default",
+                "position" : [-3.0, 3.0, -3.0],
+                "target" : [0, 1, 0],
+                "up" : [0,1,0],
+                "fov" : 85,
+                "far_clip" : 100
+            }
+        ],
+        "entities" : [ 
+            { 
+                "name" : "dummy",
+                "entity_definition" : "genoa:dummy_tappable_sequence"
+            },
+            {
+                "name" : "backdrop",
+                "entity_definition" : "genoa:backdrop_vignette"
+            }
+        ],
+        "effects" : [
+            {
+                "name" : "tap_fx",
+                "effect_definition" : "genoa:tappable_tap_rubble"
+            },
+            {
+                "name" : "tap_rare_fx",
+                "effect_definition" : "genoa:tappable_tap_rubble_rare"
+            },
+            {
+                "name" : "tap_epic_fx",
+                "effect_definition" : "genoa:tappable_tap_rubble_epic"
+            },
+            {
+                "name" : "loop_award_fx",
+                "effect_definition" : "genoa:tappable_award_loop_ray_epic"
+            },
+            {
+                "name" : "award_rubble_fx",
+                "effect_definition" : "genoa:tappable_award_loop_rubble_epic"
+            }
+        ],
+        "keyframes" : [
+            {
+                "0" : [
+                    {
+                        "command" : "create_entity",
+                        "entity" : "dummy",
+                        "label" : "start"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 0.0
+                    },                    
+                    {
+                        "command" : "create_entity",
+                        "entity" : "backdrop"
+                    },
+                    {
+                        "command" : "play_animation",
+                        "entity" : "backdrop",
+                        "animation" : "backdrop_setup_225_deg"
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "0.03333" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "tap_1",
+                        "label" : "tap_1" 
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 1.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_fx",
+                        "position" : [ -0.56, 1.674, -0.474]
+                    },
+                    {
+                        "command" : "pause"
+                    } 
+                ],
+                "0.23333" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "tap_2",
+                        "label" : "tap_2"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 2.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_fx",
+                        "position" : [ -0.56, 1.674, -0.474]
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "0.43333" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "tap_3",
+                        "label" : "tap_3"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 3.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_fx",
+                        "position" : [ -0.56, 1.674, -0.474]
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "0.7" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "tap_4",
+                        "label" : "tap_4"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 4.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rare_fx",
+                        "position" : [ -0.56, 1.674, -0.474]
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "0.9" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "tap_5",
+                        "label" : "tap_5"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 5.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_rare_fx",
+                        "position" : [ -0.56, 1.674, -0.474]
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "1.16667" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "tap_6",
+                        "label" : "tap_6"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 6.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_epic_fx",
+                        "position" : [ -0.56, 1.674, -0.474]
+                    },
+                    {
+                        "command" : "pause"
+                    }
+                ],
+                "1.36667" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "tap_7",
+                        "label" : "tap_7"
+                    },
+                    {
+                        "command" : "set_molang_variable",
+                        "entity" : "dummy",
+                        "label" : "variable.number_of_taps",
+                        "parameter" : 7.0
+                    },                    
+                    {
+                        "command" : "create_effect",
+                        "entity" : "tap_epic_fx",
+                        "position" : [ -0.56, 1.674, -0.474]
+                    }
+                ],                                
+                "1.66667" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "award_transition"
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "award_rubble_fx"
+                    },
+                    {
+                        "command" : "create_effect",
+                        "entity" : "loop_award_fx"
+                    }
+                ],
+                "2.36667" : [
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "award_loop"
+                    }
+                ],
+                "2.4" : [
+                    {
+                        "command" : "wait_for_service"
+                    },
+                    {
+                        "command" : "play_animation",
+                        "entity" : "dummy",
+                        "animation" : "award",
+                        "label" : "award"
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "loop_award_fx"
+                    },
+                    {
+                        "command" : "destroy_effect",
+                        "entity" : "award_rubble_fx"
+                    }
+                ],
+                "2.63333" : [
+                    {
+                        "command" : "destroy_entity",
+                        "entity" : "dummy"    
+                    },
+                    {
+                        "command" : "play_ui_sequence",
+                        "entity" : "tappable_sequence"
+                    }
+                ]
+             }
+        ]
+    }
+}

@@ -1,0 +1,63 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "genoa:wooly_cow_shake",
+      "basic_render_parameters": {
+        "material": "particles_blend",
+        "texture": "textures/particle/particles"
+      }
+    },
+    "components": {
+      "minecraft:emitter_initialization": {
+        "creation_expression": "variable.minSize = 0.07; variable.maxSize=0.1; variable.life = 0.75;"
+      },
+      "minecraft:emitter_rate_steady": {
+        "spawn_rate":25,
+        "max_particles": 100
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 1.25
+      },
+      "minecraft:emitter_shape_entity_aabb": {
+        "direction": "outwards",
+        "surface_only": true
+      },
+      "minecraft:particle_initial_speed": "Math.random(0.25, 0.5)",
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": "variable.life"
+      },
+      "minecraft:particle_motion_dynamic": {
+        "linear_acceleration": [ 0, -0.1, 0 ],
+        "linear_drag_coefficient": 0.5
+      },        
+      "minecraft:particle_appearance_billboard": {
+        "size": [ "math.clamp(variable.particle_random_1, variable.minSize, variable.maxSize)", "math.clamp(variable.particle_random_1, variable.minSize, variable.maxSize)"],
+        "facing_camera_mode": "lookat_xyz",
+        "uv": {
+          "texture_width": 128,
+          "texture_height": 128,
+          "flipbook": {
+            "base_UV": [ 0, 80 ],
+            "size_UV": [ 8, 8 ],
+            "step_UV": [ 8, 0 ],
+            "frames_per_second": 1,
+            "max_frame": 1,
+            "stretch_to_lifetime": true,
+            "loop": false
+          }
+        }
+      },
+      "minecraft:particle_appearance_tinting": {
+        "color":{
+          "gradient":{
+            "0.0": ["255/255","228/255","200/255", "math.clamp(1.0 - variable.particle_age/variable.life, 0, 1)"],
+            "0.5": ["255/255","219/255","182/255", "math.clamp(1.0 - variable.particle_age/variable.life, 0, 1)"],
+            "1.0": ["255/255","205/255","154/255", "math.clamp(1.0 - variable.particle_age/variable.life, 0, 1)"]
+          },
+          "interpolant": "Math.random(0.0, 1.0)"
+        }
+      }
+    }
+  }
+}

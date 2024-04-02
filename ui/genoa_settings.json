@@ -1,0 +1,652 @@
+/********************************************************
++*   (c) Mojang. All rights reserved                       *
++*   (c) Microsoft. All rights reserved.                   *
++*********************************************************/
+
+{
+  "namespace": "genoa_settings",
+
+  "genoa_settings_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_settings.main_panel",
+    "$background_scrim_visible": false,
+    "screen_visibility": "opaque"
+  },
+
+  "main_panel": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "anchor_from": "top_left",
+    "anchor_to": "top_left",
+    "controls": [
+      {
+        "content_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "header@genoa_common.header": {
+                "$header_text": "options.genoa.settings",
+                "$header_image": "textures/ui/header_icons/settings"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ "100%", 6 ]
+              }
+            },
+            {
+              "scrolling_panel@common.scrolling_panel": {
+                "size": [ "100%", "fill" ],
+                "$scrolling_content": "genoa_settings.genoa_settings_panel",
+                "$scrolling_pane_size": [ "100%", "100%" ],
+                "$show_background": false,
+                "$scroll_size": [ "10px", "100%" ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "full_screen_controls@genoa_settings.settings_full_screen_controls": {}
+      }
+    ]
+  },
+
+  "settings_full_screen_controls": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "fading_selection_info@genoa_common.fading_selection_info": {
+          "$selection_info_text_offset": [ 0, -60 ]
+        }
+      },
+      {
+        "restoring_purchases_panel@genoa_common.white": {
+          "layer": 110,
+          "size": [ "100%", "100%" ],
+          "color": "black",
+          "alpha": 0.5,
+          "screen_fill_left": true,
+          "screen_fill_right": true,
+          "screen_fill_up": true,
+          "screen_fill_down": true,
+          "bindings": [
+            {
+              "binding_name": "#restoring_purchases",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+          "controls": [
+            {
+              "consume_input_panel": {
+                "type": "input_panel",
+                "size": [ "100%", "100%" ]
+              }
+            },
+            {
+              "loading_stack_panel": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%c" ],
+                "use_new_layout": true,
+                "controls": [
+                  {
+                    "loading_animation@genoa_common.progress_loading": {
+                    }
+                  },
+                  {
+                    "restoring_label": {
+                      "type": "label",
+                      "override_height": 24,
+                      "font_type": "MinecraftSeven",
+                      "text": "options.genoa.restore_purchases.restoring"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "restored_purchases_panel@genoa_common.white": {
+          "layer": 110,
+          "size": [ "100%", "100%" ],
+          "color": "black",
+          "alpha": 0.5,
+          "screen_fill_left": true,
+          "screen_fill_right": true,
+          "screen_fill_up": true,
+          "screen_fill_down": true,
+          "bindings": [
+            {
+              "binding_name": "#purchases_restored",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+          "controls": [
+            {
+              "consume_input_panel": {
+                "type": "input_panel",
+                "size": [ "100%", "100%" ]
+              }
+            },
+            {
+              "loading_stack_panel": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%c" ],
+                "use_new_layout": true,
+                "controls": [
+                  {
+                    "checkmark": {
+                      "type": "image",
+                      "anchor_to": "top_middle",
+                      "anchor_from": "top_middle",
+                      "size": [ 30, 20 ],
+                      "texture": "textures/ui/check_white"
+                    }
+                  },
+                  {
+                    "restored_label": {
+                      "type": "label",
+                      "override_height": 24,
+                      "font_type": "MinecraftSeven",
+                      "text": "options.genoa.restore_purchases.success"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "clear_cache_entry": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "button@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.clear_cache",
+          "$button_text": "#button_text",
+          "$full_button_content": "genoa_common.button_content_text_bindable",
+          "$button_text_binding_type": "collection",
+          "$button_text_collection_name": "cache_locations",
+          "$genoa_button_setting_binds": [
+            {
+              "binding_collection_name": "cache_locations",
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "padding_panel": {
+          "type": "panel",
+          "size": [ "100%", 3 ]
+        }
+      }
+    ]
+  },
+
+  "genoa_settings_panel": {
+    "type": "stack_panel",
+    "size": [ "100% - 26px", "100%c + 50px" ], //50px for padding when scrolled to the bottom
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "offset": [ 13, 0 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      },
+      {
+        "dev_settings@genoa_settings_common.genoa_full_button_setting": {
+          "ignored": "$is_publish",
+          "$pressed_button_name": "button.dev_settings",
+          "$button_text": "options.genoa.dev.settings"
+        }
+      },
+      { "game_settings@genoa_settings.genoa_game_settings": {} },
+      {
+        "break_0@genoa_settings.section_break_with_pic": {
+          "$section_break_texture": "#gamerpic",
+          "$section_break_texture_binds": [
+            {
+              "binding_name": "#gamerpic",
+              "binding_name_override": "#texture"
+            },
+            {
+              "binding_name": "#gamerpic_file_system",
+              "binding_name_override": "#texture_file_system"
+            }
+          ]
+        }
+      },
+      { "social_settings@genoa_settings.genoa_social_settings": {} },
+      {
+        "break_1@genoa_settings.section_break": {
+          "visible": "$requires_restore_button"
+        }
+      },
+      { "store_settings@genoa_settings.genoa_store_settings": {} },
+      { "break_2@genoa_settings.section_break": {} },
+      { "version_section@genoa_settings.genoa_version_section": {} },
+      { "break_3@genoa_settings.section_break": {} },
+      { "legal_section@genoa_settings.genoa_legal_section": {} },
+      { "break_4@genoa_settings.section_break": {} },
+      { "build_info_section@genoa_settings.genoa_build_info_section": {} }
+    ]
+  },
+
+  "genoa_game_settings": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "music_slider@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "slider",
+          "$setting_name": "options.genoa.volume.music",
+          "$slider_name": "music_volume"
+        }
+      },
+      {
+        "sfx_slider@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "slider",
+          "$setting_name": "options.genoa.volume.sound",
+          "$slider_name": "sound_volume"
+        }
+      },
+      {
+        "option_genoa_vibrations@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_vibrations",
+          "$setting_name": "options.genoa.vibrations"
+        }
+      },
+      {
+        "genoa_split_controls@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_split_controls",
+          "$setting_name": "options.genoa.split_controls"
+        }
+      },
+      {
+        "genoa_bright_mode@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_bright_mode",
+          "$setting_name": "options.genoa.bright_mode"
+        }
+      },
+      {
+        "genoa_people_occlusion@genoa_settings_common.genoa_setting_main": {
+          "ignored": "(not $platform_people_occlusion_supported)",
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_people_occlusion",
+          "$setting_name": "options.genoa.people_occlusion"
+        }
+      },
+      {
+        "genoa_wideangle@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_wideangle",
+          "$setting_name": "options.genoa.wideangle"
+        }
+      },
+      {
+        "genoa_battery_saver@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_battery_saver",
+          "$setting_name": "options.genoa.battery_saver"
+        }
+      },
+      {
+        "option_toggle_show_user_input@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "bool",
+          "$bool_option_id": "genoa_show_user_input",
+          "$setting_name": "options.genoa.show_user_input"
+        }
+      },
+      {
+        "option_dropdown_language@genoa_settings_common.labeled_full_button_setting": {
+          "$pressed_button_name": "button.language_select",
+          "$full_button_content": "genoa_settings.language_button_content",
+          "$full_button_size": [ "100%", 50 ],
+          "$button_text": "#current_language_description"
+        }
+      }
+    ]
+  },
+
+  "genoa_social_settings": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "sign_out@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.sign_out",
+          "$button_text": "options.sign_out",
+          "$setting_name": "#gamertag",
+          "$setting_name_binding": [
+            {
+              "binding_name": "#gamertag"
+            }
+          ]
+        }
+      },
+      {
+        "safety_video_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.safety_video",
+          "$button_text": "options.genoa.watch",
+          "$setting_name": "options.genoa.safety_video"
+        }
+      },
+      {
+        "credits_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.credits",
+          "$button_text": "options.genoa.view",
+          "$setting_name": "options.genoa.credits"
+        }
+      }
+    ]
+  },
+
+  "genoa_store_settings": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "visible": "$requires_restore_button",
+    "controls": [
+      {
+        "sign_out@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.restore_purchases",
+          "$button_text": "options.genoa.restore_purchases.button",
+          "$setting_name": "options.genoa.restore_purchases.title"
+        }
+      }
+    ]
+  },
+
+  "genoa_legal_section": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "sunset_information@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.sunset_info",
+          "$button_text": "options.genoa.read",
+          "$setting_name": "sunset.settings.button"
+        }
+      },
+      {
+        "privacy_policy_popup_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.privacy_policy_popup",
+          "$button_text": "options.genoa.read",
+          "$setting_name": "options.genoa.privacy"
+        }
+      },
+      {
+        "eula_popup_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.eula_popup",
+          "$button_text": "options.genoa.read",
+          "$setting_name": "options.genoa.eula"
+        }
+      },
+      {
+        "terms_and_conditions_content_popup_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.terms_and_conditions_popup",
+          "$button_text": "options.genoa.read",
+          "$setting_name": "options.genoa.terms"
+        }
+      },
+      {
+        "licensed_content_popup_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.licensed_content_popup",
+          "$button_text": "options.genoa.read",
+          "$setting_name": "options.licensed_content"
+        }
+      },
+      {
+        "attribution_popup_button@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.attribution_popup",
+          "$button_text": "options.genoa.read",
+          "$setting_name": "options.attribution"
+        }
+      }
+    ]
+  },
+
+  "genoa_version_section": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "bug_report@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.bug_report",
+          "$button_text": "options.genoa.report",
+          "$setting_name": "options.genoa.bug"
+        }
+      },
+      {
+        "feedback@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.feedback",
+          "$button_text": "options.genoa.report",
+          "$setting_name": "options.genoa.feedback"
+        }
+      },
+      {
+        "support@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.support",
+          "$button_text": "options.genoa.support_button",
+          "$setting_name": "options.genoa.support"
+        }
+      },
+      {
+        "report_location@genoa_settings_common.genoa_setting_main": {
+          "$setting_type": "button",
+          "$pressed_button_name": "button.report_location",
+          "$button_text": "options.genoa.report",
+          "$setting_name": "options.genoa.report_location"
+        }
+      }
+    ]
+  },
+
+  "genoa_build_info_section": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "$build_info_text_height": 14,
+    "controls": [
+      {
+        "version_number@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#version_string",
+          "$info_text_bind_condition": "once",
+          "$build_info_text_override_height": "$build_info_text_height"
+        }
+      },
+      {
+        "build_id_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#build_id",
+          "$info_text_bind_condition": "once",
+          "$build_info_text_override_height": "$build_info_text_height"
+        }
+      },
+      {
+        "genoa_pack_version_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#pack_version_id",
+          "$info_text_bind_condition": "once",
+          "$build_info_text_override_height": "$build_info_text_height"
+        }
+      },
+      {
+        "MinecraftAccount_id_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#MinecraftAccount_id",
+          "$info_text_bind_condition": "once",
+          "$build_info_text_override_height": "$build_info_text_height"
+        }
+      },
+      {
+        "commerce_id_label@genoa_dev_settings.build_info_text": {
+          "$info_text_bind": "#commerce_id",
+          "$info_text_bind_condition": "once",
+          "$build_info_text_override_height": "$build_info_text_height"
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 4 ]
+        }
+      },
+      {
+        "copy_to_clipboard@genoa_settings_common.genoa_full_button_setting": {
+          "$pressed_button_name": "button.copy_build_info",
+          "$button_text": "options.genoa.buildInfo.copy"
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", 16 ]
+        }
+      }
+    ]
+  },
+
+  "section_break": {
+    "type": "panel",
+    "size": [ "100%", 25 ],
+    "controls": [
+      {
+        "line@genoa_common.white": {
+          "size": [ "100%", 5 ],
+          "alpha": 0.2,
+          "anchor_from": "center",
+          "anchor_to": "center"
+        }
+      }
+    ]
+  },
+
+  "section_break_with_pic": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", 50 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", "fill" ]
+        }
+      },
+      {
+        "section_break": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%", 40 ],
+          "use_new_layout": true,
+          "controls": [
+            {
+              "pic_shadow@genoa_common.white": {
+                "size": [ "100%y", "100%" ],
+                "color": "$genoa_settings_gamerpic_shadow_color",
+                "alpha": 0.5,
+                "offset": [ 3, 3 ],
+                "controls": [
+                  {
+                    "pic": {
+                      "type": "image",
+                      "offset": [ -3, -3 ],
+                      "texture": "$section_break_texture",
+                      "$section_break_texture_binds|default": [],
+                      "bindings": "$section_break_texture_binds"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 6, "100%" ]
+              }
+            },
+            {
+              "line@genoa_common.white": {
+                "size": [ "fill", 5 ],
+                "alpha": 0.2,
+                "anchor_from": "center",
+                "anchor_to": "center"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "100%", "fill" ]
+        }
+      }
+    ]
+  },
+
+  "language_button_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", "100%" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "fill", "100%" ]
+        }
+      },
+      {
+        "language@genoa_common.button_content_text_bindable": {
+          "offset": [ 0, -2 ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ "fill", "100%" ],
+          "controls": [
+            {
+              "arrow": {
+                "type": "image",
+                "size": [ 24, 24 ],
+                "texture": "textures/ui/arrow_right",
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [ -18, 0 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

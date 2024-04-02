@@ -1,0 +1,53 @@
+{
+  "managed_screen_name": "Buildplate Hud Screen",
+  "version": 1,
+
+  "animations": [
+    {
+      "controls": "(Genoa Hotbar Item Grid).children",
+      "animation_name": "slot_animations",
+      "controller_name": "no_hover_button_group", //"button_group" temporarily not using hover state, cuz mc input is bad
+
+      "control_layers": {
+        "Text": "Stack Count",
+        "durability": "Durability_Bar",
+        "icon": "Icon",
+        "slot_selected": "Slot Selected",
+        "slot": "Slot"
+      }
+    },
+    {
+      "control": "Settings Button",
+      "animation_name": "entice_update",
+      "controller_name": "entice_update_controller",
+      "control_layers": {
+        "target_asset_after": "this",
+        "target_asset_before": "entice_animation_after_target"
+      }
+    },
+    {
+      "control": "Entice Box",
+      "animation_name": "entice_update_box",
+      "controller_name": "entice_box_controller"
+    },
+    {
+      "control": "Exit Button",
+      "animation_name": "callout_03",
+      "controller_name": "simple_enter_looping"
+    },
+    {
+      "control": "OOBE Arrow",
+      "animation_name": "callout_03",
+      "controller_name": "simple_enter_looping"
+    },
+    {
+      "control": "Status Effect Icon",
+      "animation_name": "bounce_in_02",
+      "controller_name": "bounce_in",
+      "control_layers": {
+        "target_asset": "status_effect_icon"
+      }
+    }
+
+  ]
+}

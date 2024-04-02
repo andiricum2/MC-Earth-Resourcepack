@@ -1,0 +1,31 @@
+{
+  "version": 1,
+
+  "states": {
+    "WaitForTrigger": {
+      "default": true,
+      "animation": "Default",
+      "triggers": {
+        "TriggerEnterAnimation": "Enter"
+      }
+    },
+
+    "Enter": {
+      "animation": "Enter",
+      "triggers": {
+        "onAnimationFinished": "Set"
+      }
+    },
+
+    "Set": {
+      "animation": "Set",
+      "triggers": {
+        "onPress": "Press"
+      }
+    },
+
+    "Press": {
+      "animation": "Press"
+    }
+  }
+}

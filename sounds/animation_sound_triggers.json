@@ -1,0 +1,272 @@
+{
+  "Peaceful": {
+    "actor_names": [
+      "genoa:adventure_generic_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "adventure.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "adventure.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_summon": {
+        "0.0": {
+          "sound_name": "adventure.summon.peaceful",
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Hostile": {
+    "actor_names": [
+      "genoa:adventure_generic_map_b"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "adventure.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "adventure.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_summon": {
+        "0.0": {
+          "sound_name": "adventure.summon.hostile",
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Hard": {
+    "actor_names": [
+      "genoa:adventure_generic_map_c"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "adventure.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "adventure.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_summon": {
+        "0.0": {
+          "sound_name": "adventure.summon.hard",
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Stone_Mine": {
+    "actor_names": [
+      "genoa:stone_mound_a_tappable_map",
+      "genoa:stone_mound_b_tappable_map",
+      "genoa:stone_mound_c_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.stone.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.stone.expire",
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Grassy_Mine": {
+    "actor_names": [
+      "genoa:grass_mound_a_tappable_map",
+      "genoa:grass_mound_b_tappable_map",
+      "genoa:grass_mound_c_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.dirt.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.dirt.expire",
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Tree_Oak": {
+    "actor_names": [
+      "genoa:tree_oak_a_tappable_map",
+      "genoa:tree_oak_b_tappable_map",
+      "genoa:tree_oak_c_tappable_map",
+      "genoa:tree_birch_a_tappable_map",
+      "genoa:tree_spruce_a_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.tree.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.tree.expire",
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Chest": {
+    "actor_names": [
+      "genoa:chest_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.chest.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.chest.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "default": {
+        "0.0": {
+          "sound_name": "tappable.chest.idle",
+          "end_on_owner_death": true,
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Chicken": {
+    "actor_names": [
+      "genoa:chicken_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.chicken.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.chicken.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "default": {
+        "0.0": {
+          "sound_name": "tappable.chicken.idle",
+          "end_on_owner_death": true,
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Cow": {
+    "actor_names": [
+      "genoa:cow_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.cow.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.cow.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "default": {
+        "0.0": {
+          "sound_name": "tappable.cow.idle",
+          "end_on_owner_death": true,
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Pig": {
+    "actor_names": [
+      "genoa:pig_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.pig.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.pig.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "default": {
+        "0.0": {
+          "sound_name": "tappable.pig.idle",
+          "end_on_owner_death": true,
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  },
+  "Sheep": {
+    "actor_names": [
+      "genoa:sheep_tappable_map"
+    ],
+    "animation_states": {
+      "map_spawn": {
+        "0.0": {
+          "sound_name": "tappable.sheep.spawn",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "map_despawn": {
+        "0.0": {
+          "sound_name": "tappable.sheep.expire",
+          "max_meters_from_player": 150.0
+        }
+      },
+      "default": {
+        "0.0": {
+          "sound_name": "tappable.sheep.idle",
+          "end_on_owner_death": true,
+          "max_meters_from_player": 150.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "namespace": "levelup",
+
+  "main_screen@genoa_common.genoa_base_screen": {
+    "$screen_animations": "genoa_common.genoa_screen_anims",
+    "$background_animations": "genoa_common.genoa_screen_background_anims",
+    "$screen_content": "levelup.content",
+    "animation_name": "Level Up Screen",
+    "screen_visibility": "opaque",
+    "$use_background": false
+  },
+
+  "content": {
+    "type": "panel",
+    "size": ["100%", "100%"],
+
+    "controls": [
+      {
+        "input_steal": {
+          "type": "input_panel",
+          "size": [ "100%", "100%" ]
+        }
+      },
+      {
+        "vignette": {
+          "type": "custom",
+          "size": [ "100%", "100%"],
+          "renderer": "vignette",
+          "vignette_scene": "$vignette_scene",
+          "property_bag": {
+            "vignette_skins": "$vignette_skins"
+          },
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_property_name": "#vignette_id",
+              "target_property_name": "#vignette_id",
+              "invoke_screen_controller": true
+            }
+          ]
+        }
+      },
+      {
+        "main_content": {
+          "type": "panel",
+          "animation_name": "Fade Out Button",
+          "propagate_alpha": true,
+          "controls": [
+            {
+              "button@genoa_common.button": {
+                "$glow_style": "white",
+                "animation_name": "Exit Button",
+                "$button_content": "genoa_common.button_content_text",
+                "$button_font_type": "MinecraftTen",
+                "$button_font_size": "extra_large",
+                "size": [ 345, 70 ],
+                "offset": [ 0, -15 ],
+                "propagate_alpha": true,
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "$background_style": "image",
+                "$button_background_image_texture": "textures/ui/button_confirm",
+                "$pressed_button_name": "button.menu_exit",
+                "$button_text": "levelup.exit"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

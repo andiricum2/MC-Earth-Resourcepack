@@ -1,0 +1,16 @@
+{
+  "version": 2,
+
+  "states": {
+    "Inactive":{
+      "default": true,
+      "triggers":{
+        "onTriggerAnimation": "Loop"
+      }
+    },
+   "Loop": {
+      "animation": "Loop",
+      "loop": true
+    }
+  }
+}

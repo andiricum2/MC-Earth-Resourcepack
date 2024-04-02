@@ -1,0 +1,131 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    "animation.jumbo_rabbit.baby": {
+      "loop": false,
+      "bones": {
+        "world": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "head": {
+          "position": {
+            "0": [ 0, -0.525938, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1.75, 1.75, 1.75 ]
+          }
+        },
+        "frontLegLeft": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "frontLegRight": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "body": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "tail": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "rearFootRight": {
+          "position": {
+            "0": [ -3, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "haunchRight": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "rearFootLeft": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "haunchLeft": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 1, 1, 1 ]
+          }
+        },
+        "root": {
+          "position": {
+            "0": [ 0, 0, 0 ]
+          },
+          "rotation": {
+            "0": [ 0, 0, 0 ]
+          },
+          "scale": {
+            "0": [ 0.5, 0.5, 0.5 ]
+          }
+        }
+      }
+    }
+  }
+}

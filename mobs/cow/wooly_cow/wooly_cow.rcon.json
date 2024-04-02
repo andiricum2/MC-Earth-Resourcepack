@@ -1,0 +1,22 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.wooly_cow": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [ "Texture.default", "Texture.sheared" ]
+        },
+        "geometries": {
+          "Array.geos": [ "Geometry.default", "Geometry.sheared" ]
+        }
+      },
+      "geometry": "Array.geos[query.is_sheared]",
+      "textures": [ "Array.skins[query.is_sheared]" ],
+      "materials": [ { "*": "Material.default" } ],
+      "part_visibility": [
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking" }
+      ]
+    }
+  }
+}

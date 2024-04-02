@@ -1,0 +1,104 @@
+{
+  "managed_screen_name": "Smelting Screen",
+  "version": 2,
+
+  "animations": [
+    {
+      "controls": "(Crafting Tables).(Completed Content)",
+      "animation_name": "Collect_Items/collect_item_only",
+      "controller_name": "collect_items_controller",
+      "control_layers": {
+        "item": "Table Icon"
+      }
+    },
+    {
+      "controls": "(Crafting Tables Entice)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "controls": "(Start Crafting Button)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "controls": "(Collect Button Entice)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop_always",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "controls": "(Tap a Recipe Prompt Entice)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop_always",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "controls": "(Crafting Tables).children.(Collect Button Loop)",
+      "animation_name": "Ruby_Reward/collect_item",
+      "controller_name": "ruby_spent_controller",
+      "control_layers": {
+        "item": "this"
+      }
+    },
+    {
+      "controls": "(Crafting Tables).(Active Content)",
+      "animation_name": "job_start_transition",
+      "controller_name": "start_making_controller",
+      "control_layers": {
+        "item": "Table Icon"
+      }
+    },
+    {
+      "controls": "(Recipe Grid).children",
+      "animation_name": "recipe_slot",
+      "controller_name": "no_hover_button_group",
+
+      "control_layers": {
+        "Text": "Stack Count",
+        "icon": "Uncraftable Icon",
+        "item": "Item",
+        "frame_selected": "Slot Selected",
+        "slot": "Slot"
+      }
+    },
+    {
+      "controls": "(Boosted Time)",
+      "animation_name": "boosted_pulse_01",
+      "controller_name": "boosted_time_controller",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    },
+    {
+      "controls": "(Boosted Time)",
+      "animation_name": "boost_particles_01",
+      "controller_name": "boosted_time_controller",
+      "position_offset": [ 0, 10 ]
+    },
+    {
+      "controls": "(Boost Particles)",
+      "animation_name": "boost_particles_01",
+      "controller_name": "boosted_time_controller",
+      "position_offset": [ 0, -20 ]
+    },
+    {
+      "controls": "(OOBE Box Callout)",
+      "animation_name": "whitebox_callout",
+      "controller_name": "whitebox_callout_controller",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    }
+  ]
+}

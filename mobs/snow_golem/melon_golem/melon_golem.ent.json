@@ -1,0 +1,44 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:melon_golem",
+      "materials": {
+        "default": "snow_golem"
+      },
+      "textures": {
+        "default": "mobs/snow_golem/melon_golem/melon_golem"
+      },
+      "geometry": {
+        "default": "geometry.genoa.melon_golem"
+      },
+      "animations": {
+        "attack": "animation.melon_golem.attack",
+        "blink": "controller.animation.shared_mob.blink",
+        "shot_controller": "controller.animation.melon_golem.shots"
+      },
+      "scripts": {
+        "animate": [ "blink", "shot_controller" ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.2;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;",
+          "variable.is_attacking = 0;",
+          "variable.shots_fired = 0;"
+        ]
+      },
+      "sound_effects": {
+        "prep": "mob.melon_golem.spit.charge",
+        "spit": "mob.melon_golem.spit"
+      },
+      "render_controllers": [ "controller.render.melon_golem" ],
+      "spawn_egg": {
+        "base_color": "#c1c1c0",
+        "overlay_color": "#9b9b9b"
+      }  
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:adventure_jungle_a",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline",
+        "vignette" : "entity_alphatest"
+      },
+      "textures": {
+        "base":  "adventures/generic/adventure_jungle_a",
+        "tree":  "adventures/generic/tree_jungle_a",
+        "sign":  "adventures/generic/sign",
+        "chest":  "adventures/generic/chest_small",
+        "temple": "adventures/generic/stone_temple_a",
+        "dispenser": "adventures/generic/dispenser",
+        "grass": "adventures/generic/double_plant_grass",
+        "tallgrass":"adventures/generic/tallgrass",
+        "vines": "adventures/generic/vines",
+        "zombie" : "adventures/generic/zombie_map"
+      },
+      "geometry": {
+        "base": "geometry.adventure_jungle_a_base",
+        "tree": "geometry.adventure_jungle_a_tree",
+        "sign": "geometry.adventure_jungle_a_sign",
+        "chest": "geometry.adventure_jungle_a_chest",
+        "temple": "geometry.adventure_jungle_a_temple",
+        "dispenser": "geometry.adventure_jungle_a_dispenser",
+        "grass": "geometry.adventure_jungle_a_grass",
+        "tallgrass":"geometry.adventure_jungle_a_tallgrass",
+        "vines": "geometry.adventure_jungle_a_vines",
+        "zombie" : "geometry.adventure_jungle_a_zombie"
+      },
+      "animations": {
+        "map_spawn": "animation.adventure_jungle_a_map_spawn",
+        "map_summon": "animation.adventure_jungle_a_map_summon",
+        "map_despawn": "animation.adventure.map_despawn",
+        "tapped": "animation.adventure.map_tapped",
+        "award_transition": "animation.adventure.map_setup",
+        "idle": "animation.adventure_jungle_a_preview_idle",
+        "enter": "animation.adventure_jungle_a_preview_enter"
+      },
+      "animation_controllers": [
+        { "setup_controller" : "controller.animation.adventure" }
+      ],
+      "render_controllers": [ 
+        "controller.render.adventure_jungle_a_base",
+        "controller.render.adventure_jungle_a_tree", 
+        "controller.render.adventure_jungle_a_sign", 
+        "controller.render.adventure_jungle_a_chest",
+        "controller.render.adventure_jungle_a_temple",
+        "controller.render.adventure_jungle_a_dispenser",
+        "controller.render.adventure_jungle_a_grass",
+        "controller.render.adventure_jungle_a_tallgrass",
+        "controller.render.adventure_jungle_a_vines",
+        "controller.render.adventure_jungle_a_zombie"
+      ]
+    }
+  }
+}

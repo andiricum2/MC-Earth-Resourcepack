@@ -1,0 +1,76 @@
+{
+  "format_version": "1.10.0",
+  "animation_controllers": {
+    "controller.animation.horned_sheep.move": {
+      "states": {
+        "default": {
+          "animations": [
+            { "walk": "query.modified_move_speed" }
+          ],
+          "transitions": [
+            { "grazing": "variable.grazing" },
+            { "pre_prepare_ram": "variable.prepare_ram" }
+          ]
+        },
+        "grazing": {
+          "animations": [ "grazing" ],
+          "transitions": [
+            { "default": "query.all_animations_finished" }
+          ]
+        },
+        "pre_prepare_ram": {
+          "animations": [ "prep_transition" ],
+          "transitions": [
+            { "prepare_ram": "query.all_animations_finished" }
+          ]
+        },
+        "prepare_ram": {
+          "animations": [ "prep_ram" ],
+          "particle_effects" : [
+						{
+              "effect" : "hoof_scuff",
+              "locator": "horned_sheep_foot_fx"
+						}
+					],          
+          "transitions": [
+            { "charging": "!variable.prepare_ram && variable.ramming" },
+            { "default": "!variable.prepare_ram && !variable.ramming" }
+          ]
+        },
+        "charging": {
+          "animations": [ "charge" ],
+          "transitions": [
+            { "ramming_done": "!variable.prepare_ram && !variable.ramming" },
+            { "ramming_again": "variable.prepare_ram && !variable.ramming" }
+          ]
+        },
+        "ramming_done": {
+          "animations": [ "ramming" ],
+          "transitions": [
+            { "default": "query.all_animations_finished" }
+          ]
+        },
+        "ramming_again": {
+          "animations": [ "ramming" ],
+          "transitions": [
+            { "pre_prepare_ram": "query.all_animations_finished" }
+          ]
+        }
+      }
+    },
+    "controller.animation.horned_sheep.blink": {
+      "states": {
+        "default": {
+          "transitions": [
+            { "blink": "variable.is_blinking = 0; variable.return_from_blink = query.life_time + math.random(0, 0.2); variable.last_blink_time = variable.last_blink_time ? variable.last_blink_time : query.life_time; return query.life_time > (variable.last_blink_time + math.random(3, 40));" }
+          ]
+        },
+        "blink": {
+          "transitions": [
+            { "default": "variable.is_blinking = 1; variable.last_blink_time = query.life_time; return query.all_animations_finished && (query.life_time > variable.return_from_blink);" }
+          ]
+        }
+      }
+    }
+  }
+}

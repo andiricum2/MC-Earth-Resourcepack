@@ -1,0 +1,33 @@
+{
+  "managed_screen_name": "Inventory Screen",
+  "version": 1,
+
+  "animations": [
+    {
+      "controls": "(Genoa Hotbar Item Grid).children",
+      "animation_name": "slot_animations",
+      "controller_name": "no_hover_button_group",//"button_group" temporarily not using hover state, cuz mc input is bad
+
+      "control_layers": {
+        "Text": "Stack Count",
+        "durability": "Durability_Bar",
+        "icon": "Icon",
+        "slot_selected": "Slot Selected",
+        "slot": "Slot"
+      }
+    },
+    {
+      "controls": "(Genoa Inventory Item Grid).children",
+      "animation_name": "inventory_slot",
+      "controller_name": "no_hover_button_group",
+
+      "control_layers": {
+        "Text": "Stack Count",
+        "durability": "Durability_Bar",
+        "item": "Icon",
+        "frame_selected": "Slot Selected",
+        "slot": "Slot"
+      }
+    }
+  ]
+}

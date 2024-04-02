@@ -1,0 +1,128 @@
+{
+  "managed_screen_name": "Challenges Screen",
+  "version": 2,
+
+  "animations": [
+    {
+      "controls": "(Main Challenges).(Rewards Bar).children",
+      "animation_name": "Collect_Items/collect_item_only",
+      "controller_name": "collect_items_controller",
+      "control_layers": {
+        "item": "Reward Icon"
+      }
+    },
+    {
+      "controls": "(Main Challenges).(Children List).(Child Reward)",
+      "animation_name": "Collect_Items/collect_item_only",
+      "controller_name": "collect_items_controller",
+      "control_layers": {
+        "item": "Reward Icon"
+      }
+    },
+    {
+      "controls": "(Collect Button Loop)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop_always",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "controls": "(Reward Complete)",
+      "animation_name": "Collect_Items/collect_item_only",
+      "controller_name": "collect_items_controller",
+      "control_layers": {
+        "item": "Reward Icon"
+      }
+    },
+    {
+      "controls": "(Daily Complete Banner)",
+      "animation_name": "banner_complete_particles",
+      "controller_name": "challenge_complete_particles_controller"
+    },
+    {
+      "controls": "(Reward Sparkles)",
+      "animation_name": "sparkle_01",
+      "controller_name": "sparkle_node_offset"
+    },
+    {
+      "controls": "(Season Item)",
+      "animation_name": "inventory_slot_center",
+      "controller_name": "no_hover_button_group",
+
+      "control_layers": {
+        "Text": "Stack Count",
+        "durability": "Durability_Bar",
+        "item": "Icon",
+        "frame_selected": "Slot Selected",
+        "slot": "Slot"
+      }
+    },
+    {
+      "controls": "(Reward Glow)",
+      "animation_name": "square_glow_fixedpos_01",
+      "controller_name": "simple_looping",
+      "control_layers": {
+        "square_glow": "Square Glow"
+      }
+    },
+    {
+      "controls": "(Exclusive Glow Purple)",
+      "animation_name": "square_glow_02",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 12074208 // B83CE0
+      }
+    },
+    {
+      "controls": "(Exclusive Glow Blue)",
+      "animation_name": "square_glow_02",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 3984873 // 3CCDE9
+      }
+    },
+    {
+      "controls": "(Exclusive Glow Purple Small)",
+      "animation_name": "square_glow_01",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 12074208 // B83CE0
+      }
+    },
+    {
+      "controls": "(Exclusive Glow Blue Small)",
+      "animation_name": "square_glow_01",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 3984873 // 3CCDE9
+      }
+    },
+    {
+      "controls": "(Exclusive Animations)",
+      "animation_name": "twinkle_ambient_03",
+      "controller_name": "simple_looping"
+    },
+    {
+      "controls": "(Exclusive Animations)",
+      "animation_name": "float_01",
+      "controller_name": "simple_looping",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    },
+    {
+      "control": "Genoa FTUE Seasons Complete Banner",
+      "animation_name": "banner_complete_particles",
+      "controller_name": "simple_looping"
+    },
+    {
+      "control": "Exit Button",
+      "animation_name": "entice_scale_square",
+      "controller_name": "entice_button_loop_controller",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    }
+  ]
+}

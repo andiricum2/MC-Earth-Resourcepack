@@ -1,0 +1,16 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.skeleton_wolf": {
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [
+        "query.is_angry ? Texture.angry : Texture.default"
+      ],
+      "part_visibility": [
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking" }
+      ]
+    }
+  }
+}

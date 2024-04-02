@@ -1,0 +1,49 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:bone_spider",
+      "materials": {
+        "default": "spider",
+        "invisible": "spider_invisible"
+      },
+      "textures": {
+        "default": "mobs/spider/bone_spider/bone_spider"
+      },
+      "geometry": {
+        "default": "geometry.genoa.bone_spider"
+      },
+      "animations": {
+        "default_leg_pose": "animation.spider.default_leg_pose",
+        "look_at_target": "animation.spider.look_at_target",
+        "walk": "animation.spider.walk",
+        "spit": "animation.bone_spider.spit",
+        "blink_controller": "controller.animation.shared_mob.blink",
+        "move_controller": "controller.animation.bone_spider.move"
+      },
+      "scripts": {
+        "animate": [
+          "move_controller",
+          "blink_controller"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.shots_fired = 0;",
+          "variable.max_blink_time = 0.2;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;"
+        ]
+      },
+      "sound_effects": {
+        "spit": "mob.bone_spider.spit"
+      },
+      "render_controllers": [ "controller.render.bone_spider" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 11
+      }
+    }
+  }
+}

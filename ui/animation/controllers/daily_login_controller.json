@@ -1,0 +1,15 @@
+{
+  "version": 1,
+
+  "states": {
+    "Enter": {
+      "animation": "Enter",
+      "properties": [ "selected" ]
+    },
+    "Set": {
+      "animation": "Set",
+      "properties": [ "!selected" ],
+      "default": true
+    }
+  }
+}

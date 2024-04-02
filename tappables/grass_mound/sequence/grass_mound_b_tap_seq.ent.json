@@ -1,0 +1,40 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:grass_mound_b_tappable_sequence",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "entity"
+      },
+      "textures": {
+        "default":  "tappables/grass_mound/grass_mound_b",
+        "tap_1" : "tappables/grass_mound/sequence/grass_mound_b_02",
+        "tap_2" : "tappables/grass_mound/sequence/grass_mound_b_03",
+        "tap_3" : "tappables/grass_mound/sequence/grass_mound_b_04"
+      },
+      "geometry": {
+        "default": "geometry.grass_mound_b_tappable_sequence"
+      },
+      "animations": {
+        "setup": "animation.genoa_tappable_sequence_setup",
+        "tap_1": "animation.grass_mound_tappable_tap_1",
+        "tap_2": "animation.grass_mound_tappable_tap_2",
+        "tap_3": "animation.grass_mound_tappable_tap_3",
+        "tap_4": "animation.grass_mound_tappable_tap_4",
+        "tap_5": "animation.grass_mound_tappable_tap_5",
+        "tap_6": "animation.grass_mound_tappable_tap_6",
+        "tap_7": "animation.grass_mound_tappable_tap_7",
+        "enter": "animation.grass_mound_tappable_enter",
+        "idle" : "animation.grass_mound_tappable_idle",
+        "award_transition": "animation.grass_mound_tappable_award_transition",
+        "award_loop": "animation.grass_mound_tappable_award_loop",
+        "award": "animation.grass_mound_tappable_award"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.genoa_tappable_sequence_setup" }
+      ],
+      "render_controllers": [ "controller.render.genoa_tappable_sequence_texture_array"  ]
+    }
+  }
+}

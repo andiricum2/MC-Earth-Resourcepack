@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:minecart",
+      "materials": {
+        "default": "genoa_map_actor_alphatest"
+      },
+      "textures": {
+        "default": "textures/entity/genoa_minecart"
+      },
+      "geometry": {
+        "default": "geometry.genoa.minecart"
+      },
+      "render_controllers": [ "controller.render.genoa_player" ]
+    }
+  }
+}

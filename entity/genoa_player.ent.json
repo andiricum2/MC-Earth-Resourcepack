@@ -1,0 +1,37 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:player",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "animated": "player_animated"
+      },
+      "textures": {
+        "default": "textures/entity/steve"
+      },
+      "geometry": {
+        "default": "geometry.humanoid.custom"
+      },
+      "render_controllers": [ "controller.render.genoa_player" ],
+      "animations": {
+        "bob": "animation.map.humanoid.bob",
+        "move": "animation.map.humanoid.move",
+        "riding.arms": "animation.map.humanoid.riding.arms",
+        "riding.legs": "animation.map.humanoid.riding.legs"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.tcos0 = (Math.cos(variable.modified_distance_moved * 38.17) * variable.modified_move_speed) * 28.65;",
+          "variable.tcos1 = -variable.tcos0;"
+        ]
+      },
+      "animation_controllers": [
+        { "bob": "controller.animation.map.humanoid.bob" },
+        { "move": "controller.animation.map.humanoid.move" },
+        { "blink": "controller.animation.persona.blink" }
+      ]
+    }
+  }
+}

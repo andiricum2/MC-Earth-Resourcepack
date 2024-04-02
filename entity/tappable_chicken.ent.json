@@ -1,0 +1,29 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:tappable_chicken",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default": "textures/entity/chicken_tappable"
+      },
+      "geometry": {
+        "default": "geometry.chicken_tappable"
+      },
+      "animations": {
+        "tapped": "animation.chicken.tappable.tapped",
+        "map_spawn": "animation.chicken.tappable.mapSpawn",
+        "map_despawn": "animation.chicken.tappable.mapDespawn",
+        "award_transition": "animation.chicken.tappable.awardTransition"
+      },
+      "animation_controllers": [
+        { "tappable" : "controller.animation.tappable" }
+      ],
+      "render_controllers": [ "controller.render.tappable"]
+    }
+  }
+}

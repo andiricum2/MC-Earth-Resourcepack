@@ -1,0 +1,15 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.melon_golem": {
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Texture.default" ],
+      "part_visibility": [
+        { "face_blink": "variable.is_blinking && !variable.is_attacking" },
+        { "face": "!variable.is_blinking && !variable.is_attacking" },
+        { "face_attack": "variable.is_attacking" }
+      ]
+    }
+  }
+}

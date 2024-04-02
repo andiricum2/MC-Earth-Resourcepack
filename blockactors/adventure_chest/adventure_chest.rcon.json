@@ -1,0 +1,12 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.adventure_chest": {
+      "geometry": "Geometry.common",
+      "materials": [
+        { "*": "Material.default" }
+      ],
+      "textures": ["Texture.default"]
+    }
+  }
+}

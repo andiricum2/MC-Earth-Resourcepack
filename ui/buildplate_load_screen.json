@@ -1,0 +1,102 @@
+{
+  "namespace": "buildplate_load",
+
+  "buildplate_loading_screen@genoa_common.genoa_base_screen": {
+    "screen_visibility": "$screen_visiblity",
+    "$screen_content": "buildplate_load.load_content",
+    "$screen_background_texture": "textures/ui/splash",
+    "$background_scrim_visible": false,
+    "$background_animations": []
+  },
+
+  "load_content": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "anchor_to": "bottom_middle",
+    "anchor_from": "bottom_middle",
+    "size": [ "100%", "default" ],
+    "orientation": "vertical",
+    "bindings": [
+      {
+        "binding_name": "#screen_background_visible",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "loading_status_text": {
+          "type": "label",
+          "size": [ "90%", "default" ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "text": "#progress_text",
+          "text_alignment": "center",
+          "font_size": "large",
+          "shadow": true,
+          "shadow_color": "black",
+          "color": "white",
+          "bindings": [
+            {
+              "binding_name": "#progress_text",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "loading_bar_background": {
+          "type": "image",
+          "texture": "textures/ui/square_8x8",
+          "color": "$genoa_loading_bar_background",
+          "size": [ "90%", 5 ],
+          "fill": true,
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [ 0, 5 ],
+          "controls": [
+            {
+              "loading_bar": {
+                "type": "image",
+                "texture": "textures/ui/square_8x8",
+                "color": "$genoa_loading_bar_foreground",
+                "clip_direction": "left",
+                "clip_pixelperfect": false,
+                "fill": true,
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "bindings": [
+                  {
+                    "binding_name": "#loading_progress",
+                    "binding_name_override": "#clip_ratio",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "padding": {
+          "type": "panel",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "size": [ 10, 50 ]
+        }
+      },
+      {
+        "beta_text": {
+          "type": "label",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "alpha": 0.5,
+          "offset": [ -2, -14 ],
+          "text": "beta.text",
+          "text_alignment": "center",
+          "font_type": "MinecraftTen",
+          "override_height": 22
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "namespace": "genoa_build_with_friends",
+
+  "build_with_friends_screen@genoa_common.genoa_base_screen": {
+    "$use_background": true,
+    "$screen_content": "genoa_build_with_friends.content",
+    "$background_animations": [],
+    "screen_visibility": "opaque"
+  },
+
+  "banner_background": {
+    "type": "image",
+    "size": [ "100%", "100%" ],
+    "fill": true,
+    "texture": "textures/ui/banner/banner",
+    "layer": 1
+  },
+
+  "warning_icon": {
+    "type": "image",
+    "size": [ 36, 36 ],
+    "texture": "textures/ui/alert"
+  },
+
+  "banner_content": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%", 39 ],
+    "offset": [ 0, -17 ],
+    "controls": [
+      {
+        "padding0": {
+          "type": "panel",
+          "size": [ 17, 0 ]
+        }
+      },
+      {
+        "icon@genoa_build_with_friends.warning_icon": {
+        }
+      },
+      {
+        "padding1": {
+          "type": "panel",
+          "size": [ 19, 0 ]
+        }
+      },
+      {
+        "text_centering_panel": {
+          "type": "panel",
+          "size": [ "fill", "default" ],
+          "controls": [
+            {
+              "banner_text": {
+                "type": "label",
+                "size": [ "100%", "default" ],
+                "anchor_to": "left_middle",
+                "anchor_from": "left_middle",
+                "override_height": 14,
+                "font_type": "smooth",
+                "text": "#text",
+                "bindings": [
+                  {
+                    "binding_name": "#invite_text",
+                    "binding_name_override": "#text"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "padding2": {
+          "type": "panel",
+          "size": [ 12, 0 ]
+        }
+      }
+    ]
+  },
+
+  "content": {
+    "type": "panel",
+    "controls": [
+      {
+        "exit_button@genoa_common.close_button": {
+          "size": [ 34, 34 ],
+          "offset": [ -28, 54 ],
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "bindings": [
+            {
+              "binding_name": "#header_exit_button_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "frame_scan_guide": {
+          "type": "image",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [ 288, 454 ],
+          "texture": "textures/ui/ar/frame_scan_in-progress",
+          "bindings": [
+            {
+              "binding_name": "#scan_frame_guide_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "qr_guide": {
+                "type": "image",
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "size": [ "100% - 10px", "100% - 40px" ],
+                "texture": "textures/ui/ar/qr_guide"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "banner": {
+          "type": "panel",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "size": [ 352, 70 ],
+          "offset": [ 0, -34 ],
+          "bindings": [
+            {
+              "binding_name": "#banner_visible",
+              "binding_name_override": "#visible"
+            }
+          ],
+          "controls": [
+            {
+              "background@genoa_common.default_button_content": {
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "$background_style": "color",
+                "$background_color": "$genoa_banner_background_color",
+                "$button_content": "genoa_build_with_friends.banner_content",
+                "$bevel_texture": "textures/ui/tile_bevel_dark",
+                "$glow_style": "white"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,800 @@
+{
+  "namespace": "genoa_makinghub",
+
+  "makinghub_screen@genoa_common.genoa_base_screen": {
+    "$screen_background_texture": "textures/ui/background_blurred",
+    "$background_scrim_visible": false,
+    "$screen_content": "genoa_makinghub.makinghub_content",
+    "animation_name": "Making Hub Screen",
+    "screen_visibility": "opaque"
+  },
+  "makinghub_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "main_stack": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "header@genoa_common.header": {
+                "anchor_from": "top_middle",
+                "anchor_to": "top_middle",
+                "$header_text": "makinghub.header",
+                "$header_image": "textures/ui/header_icons/makinghub",
+                "$genoa_header_background_color": "white"
+              }
+            },
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 0, 10 ]
+              }
+            },
+            {
+              "makinghub_main_panel": {
+                "type": "panel",
+                "size": [ "100%", "fill" ],
+                "controls": [
+                  {
+                    "waiting_makinghub_contents@genoa_makinghub.waiting_makinghub_contents": {
+                      "bindings": [
+                        {
+                          "binding_name": "(not #fetch_complete)",
+                          "binding_name_override": "#visible"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "options@genoa_makinghub.options_panel_main": {
+                      "anchor_to": "top_middle",
+                      "anchor_from": "top_middle",
+                      "bindings": [
+                        {
+                          "binding_name": "#fetch_complete",
+                          "binding_name_override": "#visible"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "waiting_makinghub_contents": {
+    "type": "panel",
+    "controls": [
+      {
+        "loading_contents@genoa_common.loading_content_stack_panel": {
+          "$loading_text": "makinghub.loading",
+          "$loading_content_bindings": [
+            {
+              "binding_name": "#show_loading",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "options_panel_main": {
+    "type": "panel",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "options_stack": {
+          "type": "stack_panel",
+          "size": [ 351, "100%c" ],
+          "orientation": "vertical",
+          "$crafting_type_collection_name": "#crafting_type_list",
+          "collection_name": "$crafting_type_collection_name",
+          "controls": [
+            {
+              "crafting@genoa_makinghub.option_element": {
+                "$option_table_collection_name": "#crafting_list",
+                "$option_table_animating_binding": "#collecting_crafting_table",
+                "$header_icon_control": "genoa_crafting.crafting_in_progress_animation",
+                "collection_index": 0
+              }
+            },
+            {
+              "smelting@genoa_makinghub.option_element": {
+                "$option_table_collection_name": "#smelting_list",
+                "$option_table_animating_binding": "#collecting_smelting_table",
+                "$header_icon_control": "genoa_smelting.smelting_in_progress_animation",
+                "$current_sprite_sheet": "#smelting_furnace_texture",
+                "$header_icon_binding": [
+                  {
+                    "binding_name": "#smelting_furnace_texture",
+                    "binding_name_override": "#texture"
+                  }
+                ],
+                "collection_index": 1
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "option_element": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "orientation": "vertical",
+    "controls": [
+      {
+        "pad0": {
+          "type": "panel",
+          "size": [ 0, 10 ]
+        }
+      },
+      {
+        "option_panel": {
+          "type": "panel",
+          "size": [ "100%", 150 ],
+          "controls": [
+            {
+              "crafting_unlocked@genoa_makinghub.basic_option": {
+                "$collect_show_hide": "#collect_show",
+                "$recipe_item_id_aux": "#recipe_item_id_aux",
+                "$item_empty": "#item_empty",
+                "$item_all_completed_count": "#item_all_completed_count",
+                "$time_remaining": "#time_remaining",
+                "$boost_font_color": "#boost_font_color",
+                "$time_show": "#time_show",
+                "$items_remaining_count": "#items_remaining_count",
+                "$item_inprogress": "#item_inprogress",
+                "$item_locked": "#item_locked",
+                "$item_active": "#item_active",
+                "$option_image": "#option_image",
+                "$option_title_text": "#option_title_text",
+                "$pressed_button_name": "button.collect"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "divider@genoa_common.white": {
+          "size": [ 351, 5 ],
+          "alpha": 0.2
+        }
+      }
+    ]
+  },
+
+  "basic_option": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%" ],
+    "propagate_alpha": true,
+    "bindings": [
+      {
+        "binding_name": "#option_alpha",
+        "binding_name_override": "#alpha",
+        "binding_type": "collection",
+        "binding_collection_name": "$crafting_type_collection_name"
+      }
+    ],
+    "controls": [
+      {
+        "base_button_panel": {
+          "type": "panel",
+          "size": [ "100%", 60 ],
+          "controls": [
+            {
+              "base_button@genoa_makinghub.base_button": {
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "$crafting_type_collection_name"
+                  }
+                ]
+              }
+            },
+            {
+              "ftue_callout@ftue_common.callout_arrow": {
+                "layer": 53,
+                "anchor_from": "top_middle",
+                "anchor_to": "bottom_middle",
+                "visible": false,
+                "bindings": [
+                  {
+                    "binding_name": "#is_callout",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$crafting_type_collection_name"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad0": {
+          "size": [ 0, 5 ],
+          "type": "panel"
+        }
+      },
+      {
+        "option_items": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%c", "100%cm" ],
+          "controls": [
+            {
+              "pad1": {
+                "type": "panel",
+                "size": [ 8, 0 ]
+              }
+            },
+            {
+              "option_icon_control@genoa_makinghub.crafting_type_icon_button": {
+                "size": [ 80, 80 ],
+                "bindings": [
+                  {
+                    "binding_type": "collection_details",
+                    "binding_collection_name": "$crafting_type_collection_name"
+                  }
+                ]
+              }
+            },
+            {
+              "pad2": {
+                "size": [ 10, 0 ],
+                "type": "panel"
+              }
+            },
+            {
+              "options@genoa_makinghub.option_table_stack": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "option_table_stack": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%c", "100%cm" ],
+    "collection_name": "$option_table_collection_name",
+    "use_new_layout": true,
+    "animation_name": "Utility Block",
+    "factory": {
+      "name": "each_slot",
+      "control_name": "genoa_makinghub.option_table_contents"
+    },
+    "bindings": [
+      {
+        "binding_name": "#making_slots_count",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+
+  "option_table_contents": {
+    "type": "input_panel",
+    "offset": [ 0, 5 ],
+    "size": [ "100%cm", "100%cm" ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.table_selected",
+        "mapping_type": "pressed"
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#animate_utility_block",
+        "binding_name_override": "#selected"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "controls": [
+      {
+        "option_with_item": {
+          "type": "panel",
+          "size": [ 80, 70 ],
+          "controls": [
+            {
+              "option_item_image_bg@genoa_makinghub.option_item_image_bg": {}
+            },
+            {
+              "option_item_image@genoa_makinghub.genoa_item_renderer": {
+                "layer": 3,
+                "size": [ 53, 53 ],
+                "animation_name": "Table Icon",
+                "bindings": [
+                  {
+                    "binding_name": "$recipe_item_id_aux",
+                    "binding_name_override": "#item_id_aux"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ],
+                "controls": [
+                  {
+                    "items_remaining_count@genoa_makinghub.items_remaining_count": {
+                      "offset": [ 4, 4 ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "option_item_time_remaining": {
+                "type": "panel",
+                "controls": [
+                  {
+                    "time_remaining_with_boost@genoa_makinghub.time_remaining_panel": {
+                      "animation_name": "Boosted Time",
+                      "$size": [ 76, 24 ],
+                      "bindings": [
+                        {
+                          "binding_name": "#is_boosted",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$option_table_collection_name"
+                        },
+                        {
+                          "binding_name": "#is_boosted",
+                          "binding_name_override": "#selected",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$option_table_collection_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "time_remaining_no_boost@genoa_makinghub.time_remaining_panel": {
+                      "bindings": [
+                        {
+                          "binding_name": "(not #is_boosted)",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$option_table_collection_name"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "bindings": [
+                  {
+                    "binding_name": "$time_show",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_type": "collection_details"
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$item_inprogress",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "option_item_locked": {
+          "type": "panel",
+          "size": [ 80, 70 ],
+          "controls": [
+            {
+              "option_item_image_bg@genoa_makinghub.option_item_image_bg": {}
+            },
+            {
+              "option_item_image": {
+                "type": "image",
+                "layer": 3,
+                "size": [ 48, 48 ],
+                "bilinear": true,
+                "texture": "textures/ui/icons/item_icons/locked"
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$item_locked",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "option_item_empty": {
+          "type": "panel",
+          "size": [ 80, 70 ],
+          "controls": [
+            {
+              "option_item_image_bg@genoa_makinghub.option_item_image_bg": {}
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$item_empty",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "option_item_all_completed": {
+          "type": "panel",
+          "size": [ 80, 70 ],
+          "animation_name": "Utility Block Entice",
+          "controls": [
+            {
+              "collect_button_panel": {
+                "type": "panel",
+                "size": [ 70, 70 ],
+                "controls": [
+                  {
+                    "collect_button@genoa_makinghub.collect_button": {
+                      "bindings": [
+                        {
+                          "binding_type": "collection_details",
+                          "binding_collection_name": "$option_table_collection_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "ftue_callout@ftue_common.callout_arrow": {
+                      "layer": 5,
+                      "anchor_from": "top_middle",
+                      "anchor_to": "bottom_middle",
+                      "visible": false,
+                      "bindings": [
+                        {
+                          "binding_name": "#is_callout",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$option_table_collection_name"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$collect_show_hide",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "time_remaining_panel": {
+    "type": "image",
+    "$size|default": [ 70, 24 ],
+    "size":  "$size",
+    "offset": [ 0, 8 ],
+    "layer": 4,
+    "anchor_from": "top_middle",
+    "alpha": 0.8,
+    "texture": "textures/ui/9_slice/label_simple",
+    "fill": true,
+    "controls": [
+      {
+        "time_remaining_stack_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%c", "100%" ],
+          "controls": [
+            {
+              "boost_bolt_image": {
+                "type": "image",
+                "size": [ 15, 15 ],
+                "texture": "textures/ui/icons/graphic_icons/boosts_active",
+                "bindings": [
+                  {
+                    "binding_name": "#is_boosted",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$option_table_collection_name"
+                  }
+                ]
+              }
+            },
+            {
+              "time_remaining@genoa_makinghub.time_remaining": {}
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "time_remaining": {
+    "type": "label",
+    "text": "$time_remaining",
+    "offset": [ 0, -3 ],
+    "text_alignment": "center",
+    "font_type": "MinecraftSeven",
+    "override_height": 14,
+    "bindings": [
+      {
+        "binding_name": "$time_remaining"
+      },
+      {
+        "binding_name": "$boost_font_color",
+        "binding_name_override": "#color"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "option_item_image_bg": {
+    "type": "panel",
+    "size": [ 70, 70 ],
+    "controls": [
+      {
+        "bg_slot_panel": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg_slot": {
+                "type": "image",
+                "texture": "textures/ui/inventory_slot_background"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "bg_slot_bevel": {
+          "type": "panel",
+          "controls": [
+            {
+              "bg_bevel": {
+                "type": "image",
+                "layer": 1,
+                "texture": "textures/ui/slot_bevel_simple"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "base_button@genoa_common.button": {
+    "$button_content": "genoa_makinghub.base_content",
+    "$pressed_button_name": "button.goToOptionScreen",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/gradients/button_option",
+    "$glow_style": "white"
+  },
+
+  "crafting_type_icon_button@genoa_common.button": {
+    "$button_content": "genoa_makinghub.crafting_type_icon_button_content",
+    "$pressed_button_name": "button.goToOptionScreen",
+    "$background_style": "color",
+    "$glow_enabled": false,
+    "$shadow_enabled": false,
+    "$background_alpha": 0,
+    "$bevel_texture": ""
+  },
+
+  "crafting_type_icon_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "idle_icon": {
+          "type": "image",
+          "bindings": [
+            {
+              "binding_name": "$option_image",
+              "binding_name_override": "#texture",
+              "binding_collection_name": "$crafting_type_collection_name",
+              "binding_type": "collection"
+            },
+            {
+              "binding_name": "$item_active",
+              "binding_name_override": "(not #visible)",
+              "binding_collection_name": "$crafting_type_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      },
+      {
+        "busy_icon_animation": {
+          "type": "panel",
+          "controls": [
+            {
+              "header_icon_control@$header_icon_control": {
+                "$current_sprite_sheet|default": "",
+                "$header_icon_binding|default": [],
+                "bindings": "$header_icon_binding"
+              }
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "$item_active",
+              "binding_name_override": "#visible",
+              "binding_collection_name": "$crafting_type_collection_name",
+              "binding_type": "collection"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "base_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "option_title_label@genoa_common.shadow_text_panel_collection": {
+          "offset": [ 15, 2 ],
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "$override_height": 24,
+          "$text_binding_name": "$option_title_text",
+          "$text_color": "$genoa_dark_button_color",
+          "$text_shadow_color": "$genoa_text_shadow_color",
+          "$text_shadow_alpha": 0.1,
+          "$font_type": "MinecraftTen",
+          "$collection_name": "$crafting_type_collection_name",
+          "$label_offset": [ 0, -2 ],
+          "$text_shadow_offset": [ 0, 2 ],
+          "$shadow_alpha": 0.3
+        }
+      },
+      {
+        "right_arrow_panel": {
+          "type": "panel",
+          "size": [ 30, 60 ],
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "controls": [
+            {
+              "right_arrow_image": {
+                "type": "image",
+                "size": [ 25, 25 ],
+                "offset": [ -10, 0 ],
+                "texture": "textures/ui/arrow_right"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "collect_button@genoa_common.button": {
+    "$pressed_button_name": "button.collect",
+    "$button_content": "genoa_makinghub.collect_button_content",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/collect_button_gradient",
+    "$glow_style": "white"
+  },
+
+  "collect_button_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "item_all_completed_count@item_all_completed_count": {
+          "bindings": [
+            {
+              "binding_name": "$item_all_completed_count"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "item_renderer@genoa_makinghub.genoa_item_renderer": {
+          "size": [ 53, 53 ],
+          "bindings": [
+            {
+              "binding_name": "$recipe_item_id_aux",
+              "binding_name_override": "#item_id_aux"
+            },
+            {
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "item_all_completed_count": {
+    "type": "label",
+    "anchor_from": "bottom_right",
+    "anchor_to": "bottom_right",
+    "shadow": true,
+    "text_alignment": "right",
+    "text": "$item_all_completed_count",
+    "font_type": "MinecraftSeven",
+    "override_height": 22,
+    "layer": 2,
+    "offset": [ -5, -5 ]
+  },
+
+  "option_icon_lock_img": {
+    "type": "image",
+    "size": [ 50, 50 ],
+    "bilinear": true,
+    "texture": "textures/ui/lock"
+  },
+
+  "item_renderer": {
+    "type": "custom",
+    "renderer": "inventory_item_renderer",
+    "size": [ 16, 16 ],
+    "anchor_to": "top_left",
+    "anchor_from": "top_left"
+  },
+
+  "genoa_item_renderer": {
+    "type": "custom",
+    "renderer": "genoa_item_renderer",
+    "bindings": [
+      {
+        "binding_name": "#item_id_aux"
+      }
+    ]
+  },
+
+  "items_remaining_count@genoa_common.shadow_text_panel": {
+    "$text_binding_name": "$items_remaining_count",
+    "anchor_from": "bottom_right",
+    "anchor_to": "bottom_right",
+    "$text_alignment": "right",
+    "offset": [ -5, 0 ],
+    "$bindings": [
+      {
+        "binding_name": "$text_binding_name"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  }
+}

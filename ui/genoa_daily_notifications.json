@@ -1,0 +1,1016 @@
+{
+  "namespace": "genoa_daily_notifications",
+
+  "daily_notification": {
+    "type": "input_panel",
+    "controls": [
+      {
+        "scrim@genoa_common.white": {
+          "texture": "textures/ui/background_blurred",
+          "propagate_alpha": true,
+          "animation_name": "Daily Login Notification",
+          "controls": [
+            {
+              "content": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%" ], // Required
+                "controls": [
+                  {
+                    "content@common.scrolling_panel": {
+                      "$show_background": false,
+                      "$auto_scroll_speed": 50.0,
+                      "size": [ "100%", "fill" ],
+                      "$scrolling_content": "genoa_daily_notifications.daily_notification_content",
+                      "$scroll_size": [ 5, "100% - 4px" ],
+                      "$scrolling_pane_size": [ "100% - 4px", "100%" ],
+                      "$scrolling_pane_offset": [ 2, 0 ],
+                      "$scroll_bar_right_padding_size": [ 0, 0 ]
+                    }
+                  },
+                  {
+                    "collect@genoa_daily_notifications.daily_notification_collect": {}
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "daily_notification_header": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ 0, 32 ]
+        }
+      },
+      {
+        "title_bar": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%c", "100%cm" ],
+          "offset": [ -13, 0 ],
+          "controls": [
+            {
+              "title_image@genoa_common.white": {
+                "texture": "textures/ui/header_icons/challenges",
+                "animation_name": "Daily Header Icon",
+                "size": [ 68, 68 ],
+                "bindings": [
+                  {
+                    "binding_name": "#daily_notifications_title_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "title_label": {
+                "type": "label",
+                "animation_name": "Daily Header Title",
+                "size": [ "default", 38 ],
+                "font_type": "MinecraftTen",
+                "override_height": 37,
+                "text_alignment": "center",
+                "text": "daily_login.title",
+                "bindings": [
+                  {
+                    "binding_name": "#daily_notifications_title_visible",
+                    "binding_name_override": "#visible"
+                  },
+                  {
+                    "binding_name": "#daily_notifications_title_visible",
+                    "binding_name_override": "#selected"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "daily_notification_content": {
+    "type": "stack_panel",
+    "controls": [
+      {
+        "header@genoa_daily_notifications.daily_notification_header": {}
+      },
+      {
+        "login_bonus@genoa_daily_notifications.login_bonus": {}
+      },
+      {
+        "adventure_crystal@genoa_daily_notifications.adventure_crystal": {}
+      },
+      {
+        "things_to_do@genoa_daily_notifications.things_to_do": {}
+      }
+    ]
+  },
+
+  "daily_notification_collect": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "fade_bar_top@genoa_common.fading_scroll_mask_bars": {
+          "offset": [ 0, 3 ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "collect_button_panel": {
+          "type": "panel",
+          "animation_name": "Daily Zoom Notification",
+          "size": [ "100%c", "100%c" ],
+          "bindings": [
+            {
+              "binding_name": "#daily_collect_button_visible",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_name": "#daily_collect_button_visible",
+              "binding_name_override": "#selected"
+            }
+          ],
+          "controls": [
+            {
+              "collect_button@genoa_common.button": {
+                "size": [ 351, 60 ],
+                "animation_name": "Collect Button Entice",
+                "sound_name": "confirm.button",
+                "$button_text": "modal.gimme_gimme",
+                "$button_content": "genoa_daily_notifications.close_button_content",
+                "$background_style": "image",
+                "$pressed_button_name": "button.close_daily_login_panel",
+                "$button_background_image_texture": "textures/ui/collect_button_gradient",
+                "$glow_texture": "textures/ui/glow_simple",
+                "$glow_size": [ "100% + 12px", "100% + 12px" ],
+                "$shadow_alpha": 0.15,
+                "$soft_shadow_enabled": false,
+                "$shadow_enabled": true
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 35 ]
+        }
+      }
+    ]
+  },
+
+  "close_button_content": {
+    "type": "label",
+    "text": "$button_text",
+    "override_height": 25,
+    "font_type": "MinecraftTen",
+    "text_alignment": "center"
+  },
+
+  "login_bonus": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "animation_name": "Login Bonus Slide In",
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "title@genoa_common.divider_label": {
+          "$text_alignment": "left",
+          "$text": "daily_login.login_bonus",
+          "bindings": [
+            {
+              "binding_name": "#login_bonus_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 15 ]
+        }
+      },
+      {
+        "login_bonus_panel@genoa_daily_notifications.login_bonus_panel": {}
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 13 ]
+        }
+      }
+    ]
+  },
+
+  "login_bonus_panel": {
+    "type": "panel",
+    "size": [ 355, "100%cm" ],
+    "controls": [
+      {
+        "panel_background@genoa_common.white": {
+          "color": "$genoa_button_shadow_color",
+          "alpha": 0.7,
+          "size": [ "100%", 168 ],
+          "bindings": [
+            {
+              "binding_name": "#login_bonus_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "panel_contents": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "pad_0": {
+                "type": "panel",
+                "size": [ 0, 12 ]
+              }
+            },
+            {
+              "login_rewards@genoa_daily_notifications.login_rewards": {}
+            },
+            {
+              "pad_1": {
+                "type": "panel",
+                "size": [ 0, 10 ]
+              }
+            },
+            {
+              "day_7_rewards@genoa_daily_notifications.day_7_rewards": {}
+            },
+            {
+              "pad_2": {
+                "type": "panel",
+                "size": [ 0, 7 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "login_rewards": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "size": [ "100%c", "100%cm" ],
+    "$reward_collection_name": "#daily_login_reward_list",
+    "collection_name": "$reward_collection_name",
+    "factory": {
+      "name": "each_reward",
+      "control_ids": {
+        "controlId": "genoa_daily_notifications.daily_reward_element"
+      }
+    },
+    "bindings": [
+      {
+        "binding_name": "#num_daily_rewards",
+        "binding_name_override": "#collection_length"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "daily_reward_element": {
+    "type": "input_panel",
+    "size": [ "100%c", "100%c" ],
+    "$reward_collection_name": "#daily_login_reward_list",
+    "$reward_image_bindings": [
+      {
+        "binding_name": "#reward_texture",
+        "binding_name_override": "#texture"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "$reward_quantity_binding_name": "#reward_quantity",
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.daily_reward_fading_name_tag",
+        "mapping_type": "pressed"
+      }
+    ],
+    "controls": [
+      {
+        "reward_slot_background@genoa_common.white": {
+          "texture": "textures/ui/crafting_smelting_recipe_grid_none_bg",
+          "size": [ 57, 57 ],
+          "controls": [
+            {
+              "slot_bevel@genoa_common.white": {
+                "texture": "textures/ui/slot_bevel_simple",
+                "controls": [
+                  {
+                    "green_collecting_bg@genoa_common.white": {
+                      "texture": "textures/ui/collect_button_gradient",
+                      "controls": [
+                        {
+                          "green_bevel@genoa_common.white": {
+                            "texture": "textures/ui/button_bevel"
+                          }
+                        }
+                      ],
+                      "bindings": [
+                        {
+                          "binding_name": "#collecting_daily_reward",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$reward_collection_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "reward@genoa_daily_notifications.reward": {
+                      "layer": 2, // reward icon is 1 layer above the green box shown when collecting
+                      "animation_name": "('Daily Reward ' + $factory_collection_index)"
+                    }
+                  },
+                  {
+                    "reward_quantity": {
+                      "type": "label",
+                      "text": "$reward_quantity_binding_name",
+                      "override_height": 22,
+                      "layer": 3, // reward quantity is 1 layer above the reward icon
+                      "anchor_from": "bottom_right",
+                      "anchor_to": "bottom_right",
+                      "offset": [ -4, 1 ],
+                      "shadow": true,
+                      "bindings": [
+                        {
+                          "binding_name": "$reward_quantity_binding_name"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "collected_scrim@genoa_common.white": {
+                      "color": "black",
+                      "alpha": 0.5,
+                      "layer": 4, // dark veil shown for collected daily login reward is 1 layer above the quantity
+                      "bindings": [
+                        {
+                          "binding_name": "#collected_daily_reward",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$reward_collection_name"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "collected_check@genoa_common.white": {
+                            "animation_name": "('Daily Checkmark ' + $factory_collection_index)",
+                            "texture": "textures/ui/check_small_selected_pixelated_no_background",
+                            "size": [ 34, 34 ],
+                            "bindings": [
+                              {
+                                "binding_name": "#daily_checkmark",
+                                "binding_name_override": "#visible",
+                                "binding_type": "collection",
+                                "binding_collection_name": "$reward_collection_name"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "reward_burst": {
+                      "type": "panel",
+                      "layer": 5,
+                      "size": [ 32, 32 ],
+                      "animation_name": "('Daily Burst ' + $factory_collection_index)",
+                      "bindings": [
+                        {
+                          "binding_name": "#daily_burst",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$reward_collection_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fading_selection_info_daily_reward@genoa_common.fading_selection_info": {
+                      "$selection_info_text_offset": [ 0, 0 ],
+                      "$anchoring_to": "bottom_middle",
+                      "$anchoring_from": "top_middle",
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#login_fading_name_tag_visible",
+                          "binding_name_override": "#visible"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fading_selection_info_daily_reward_overflow_left@genoa_common.fading_selection_info": {
+                      "$anchoring_to": "bottom_left",
+                      "$anchoring_from": "top_left",
+                      "$selection_info_text_offset": [ 0, 0 ],
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#login_fading_name_tag_visible_overflow_left",
+                          "binding_name_override": "#visible"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fading_selection_info_daily_reward_overflow_right@genoa_common.fading_selection_info": {
+                      "$anchoring_to": "bottom_right",
+                      "$anchoring_from": "top_right",
+                      "$selection_info_text_offset": [ 0, 0 ],
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#login_fading_name_tag_visible_overflow_right",
+                          "binding_name_override": "#visible"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#login_bonus_visible",
+        "binding_name_override": "#visible"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "day_7_rewards": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "use_new_layout": true,
+    "size": [ "100%c", "100%cm" ],
+    "anchor_to": "top_left",
+    "anchor_from": "top_left",
+    "controls": [
+      {
+        "banner@genoa_daily_notifications.day_7_banner": {
+          "animation_name": "Day 7 Banner",
+          "offset": [ -5, 0 ],
+          "bindings": [
+            {
+              "binding_name": "#login_bonus_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "rewards": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "size": [ "100%c", "100%cm" ],
+          "offset": [ -2, 0 ],
+          "$reward_collection_name": "#daily_login_final_reward_list",
+          "collection_name": "$reward_collection_name",
+          "factory": {
+            "name": "each_final_reward",
+            "control_ids": {
+              "controlId": "genoa_daily_notifications.day_7_reward"
+            }
+          },
+          "bindings": [
+            {
+              "binding_name": "#num_daily_final_rewards",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "day_7_banner": {
+    "type": "image",
+    "size": [ 185, 55 ],
+    "texture": "textures/ui/rewards_banner",
+    "controls": [
+      {
+        "text": {
+          "type": "label",
+          "size": [ 160, 25 ],
+          "offset": [ -7, -4 ],
+          "text_alignment": "center",
+          "override_height": 25,
+          "font_type": "MinecraftTen",
+          "text": "daily_login.day_7"
+        }
+      }
+    ]
+  },
+
+  "day_7_reward": {
+    "type": "input_panel",
+    "size": [ "100%c", "100%c" ],
+    "$reward_collection_name": "#daily_login_final_reward_list",
+    "$reward_image_bindings": [
+      {
+        "binding_name": "#final_reward_texture",
+        "binding_name_override": "#texture"
+      },
+      {
+        "binding_name": "#daily_reward_alpha",
+        "binding_name_override": "#alpha",
+        "binding_type": "collection",
+        "binding_collection_name": "$reward_collection_name",
+        "binding_condition": "visible"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ],
+    "button_mappings": [
+      {
+        "from_button_id": "button.menu_select",
+        "to_button_id": "button.day_7_reward_fading_name_tag",
+        "mapping_type": "pressed"
+      }
+    ],
+    "$reward_quantity_binding_name": "#final_reward_quantity",
+    "controls": [
+      {
+        "reward_panel": {
+          "type": "panel",
+          "size": [ "100%cm", "100%cm" ],
+          "controls": [
+            {
+              "reward@genoa_daily_notifications.reward": {
+                "size": [ 82, 82 ],
+                "controls": [
+                  {
+                    "reward_quantity": {
+                      "type": "label",
+                      "text": "$reward_quantity_binding_name",
+                      "override_height": 22,
+                      "layer": 2,
+                      "anchor_from": "bottom_right",
+                      "anchor_to": "bottom_right",
+                      "offset": [ -11, -5 ],
+                      "shadow": true,
+                      "bindings": [
+                        {
+                          "binding_name": "$reward_quantity_binding_name"
+                        },
+                        {
+                          "binding_name": "#daily_reward_alpha",
+                          "binding_name_override": "#alpha",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$reward_collection_name",
+                          "binding_condition": "visible"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "reward_burst": {
+                      "type": "panel",
+                      "size": [ 45, 45 ],
+                      "animation_name": "('Final Burst ' + $factory_collection_index)",
+                      "bindings": [
+                        {
+                          "binding_name": "#final_burst",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$reward_collection_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "collected_check@genoa_common.white": {
+                      "animation_name": "('Final Checkmarks '+ $factory_collection_index)",
+                      "texture": "textures/ui/check_small_selected_pixelated_no_background",
+                      "size": [ 34, 34 ],
+                      "bindings": [
+                        {
+                          "binding_name": "#final_checkmark",
+                          "binding_name_override": "#visible",
+                          "binding_type": "collection",
+                          "binding_collection_name": "$reward_collection_name"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "fading_selection_info_day_7_reward@genoa_common.fading_selection_info": {
+                      "$selection_info_text_offset": [ 0, -65 ],
+                      "$ingredient_name_panel_visible_binding": [
+                        {
+                          "binding_name": "#login_final_fading_name_tag_visible",
+                          "binding_name_override": "#visible"
+                        },
+                        {
+                          "binding_type": "collection_details"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "bindings": [
+      {
+        "binding_name": "#login_bonus_visible",
+        "binding_name_override": "#visible"
+      },
+      {
+        "binding_type": "collection_details"
+      }
+    ]
+  },
+
+  "reward@genoa_common.white": {
+    "size": [ 51, 51 ],
+    "$reward_image_bindings|default": [],
+    "bindings": "$reward_image_bindings"
+  },
+
+  "things_to_do": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%c" ],
+    "bindings": [
+      {
+        "binding_name": "#daily_challenges_available",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "title@genoa_common.divider_label": {
+          "animation_name": "Things To Do Header",
+          "$text_alignment": "left",
+          "$text": "daily_login.todo",
+          "bindings": [
+            {
+              "binding_name": "#daily_challenge_title_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 15 ]
+        }
+      },
+      {
+        "daily_challenges_factory": {
+          "type": "stack_panel",
+          "use_new_layout": true,
+          "size": [ "100%", "100%c" ],
+          "$challenge_collection_name": "#daily_login_challenges",
+          "collection_name": "$challenge_collection_name",
+          "factory": {
+            "name": "daily_challenge",
+            "control_ids": {
+              "controlId": "genoa_daily_notifications.challenge_item"
+            }
+          },
+          "bindings": [
+            {
+              "binding_name": "#daily_challenge_collection_length",
+              "binding_name_override": "#collection_length"
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 13 ]
+        }
+      }
+    ]
+  },
+
+  "challenge_item": {
+    "type": "stack_panel",
+    "animation_name": "('Things To Do ' + $factory_collection_index)",
+    "$challenge_collection_name": "#daily_login_challenges",
+    "size": [ 355, "100%c" ],
+    "bindings": [
+      {
+        "binding_name": "#daily_challenge_visible",
+        "binding_name_override": "#visible",
+        "binding_collection_name": "$challenge_collection_name",
+        "binding_type": "collection"
+      }
+    ],
+    "controls": [
+      {
+        "pad": {
+          "type": "panel",
+          "size": [ "100%", 3 ]
+        }
+      },
+      {
+        "challenge_content@genoa_common.white": {
+          "size": [ "100%", 68 ],
+          "color": "$genoa_button_shadow_color",
+          "alpha": 0.75,
+          "controls": [
+            {
+              "challenge_content_stack_panel": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%" ], // unsolved layout rule when removed
+                "orientation": "horizontal",
+                "controls": [
+                  {
+                    "challenge_detail_panel": {
+                      "type": "panel",
+                      "size": [ "fill", "100%" ],
+                      "controls": [
+                        {
+                          "challenge_title": {
+                            "type": "label",
+                            "anchor_to": "left_middle",
+                            "anchor_from": "left_middle",
+                            "text_alignment": "left",
+                            "offset": [ 17, 0 ],
+                            "override_height": 20,
+                            "font_type": "MinecraftTen",
+                            "text": "#daily_challenge_title",
+                            "bindings": [
+                              {
+                                "binding_name": "#daily_challenge_title",
+                                "binding_collection_name": "$challenge_collection_name",
+                                "binding_type": "collection"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "challenge_reward_panel": {
+                      "type": "input_panel",
+                      "size": [ 74, "100%" ],
+                      "controls": [
+                        {
+                          "reward@genoa_challenges.reward": {
+                            "$reward_quantity": "#daily_challenge_reward_quantity",
+                            "$reward_quantity_bindings": [
+                              {
+                                "binding_name": "$reward_quantity",
+                                "binding_collection_name": "$challenge_collection_name",
+                                "binding_type": "collection"
+                              }
+                            ],
+                            "$reward_image": "#daily_challenge_reward_texture",
+                            "$reward_image_bindings": [
+                              {
+                                "binding_name": "$reward_image",
+                                "binding_name_override": "#texture",
+                                "binding_collection_name": "$challenge_collection_name",
+                                "binding_type": "collection"
+                              }
+                            ],
+                            "button_mappings": [
+                              {
+                                "from_button_id": "button.menu_select",
+                                "to_button_id": "button.challenge_reward_fading_name_tag",
+                                "mapping_type": "pressed"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "fading_selection_info_challenge_reward@genoa_common.fading_selection_info": {
+                            "$selection_info_text_offset": [ -80, -50 ],
+                            "$ingredient_name_panel_visible_binding": [
+                              {
+                                "binding_name": "#challenge_fading_name_tag_visible",
+                                "binding_name_override": "#visible"
+                              },
+                              {
+                                "binding_type": "collection_details"
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "adventure_crystal": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "controls": [
+      {
+        "title@genoa_common.divider_label": {
+          "animation_name": "Crystal Slide In",
+          "$text_alignment": "left",
+          "$text": "daily_login.adventure_crystal",
+          "bindings": [
+            {
+              "binding_name": "#daily_crystal_visible",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 22 ]
+        }
+      },
+      {
+        "adventure_crystal_element": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "use_new_layout": true,
+          "size": [ "100%c", "100%cm" ],
+          "controls": [
+            {
+              "adventure_crystal_spotlight": {
+                "type": "image",
+                "texture": "textures/ui/profile/spotlight",
+                "animation_name": "Crystal Pop In",
+                "size": [ 70, 70 ],
+                "bindings": [
+                  {
+                    "binding_name": "#daily_crystal_reward_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ],
+                "controls": [
+                  {
+                    "adventure_crystal_texture": {
+                      "type": "image",
+                      "bindings": [
+                        {
+                          "binding_name": "#daily_crystal_reward_texture",
+                          "binding_name_override": "#texture"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "pad": {
+                "type": "panel",
+                "size": [ 19, 0 ]
+              }
+            },
+            {
+              "adventure_crystal_label_panel": {
+                "type": "panel",
+                "animation_name": "Crystal Text Slide In",
+                "size": [ 220, "100%c" ],
+                "$item_font|default": "MinecraftTen",
+                "$item_font_height|default": 20,
+                "bindings": [
+                  {
+                    "binding_name": "#daily_crystal_reward_text_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ],
+                "controls": [
+                  {
+                    "adventure_crystal_label": {
+                      "type": "label",
+                      "size": [ "100%", "default" ],
+                      "font_type": "$item_font",
+                      "override_height": "$item_font_height",
+                      "text": "#daily_crystal_reward_text",
+                      "bindings": [
+                        {
+                          "binding_name": "#daily_crystal_reward_text",
+                          "binding_condition": "visible"
+                        },
+                        {
+                          "binding_name": "#daily_crystal_inventory_maxed",
+                          "binding_name_override": "(not #visible)"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "adventure_crystal_inventory_maxed_panel": {
+                      "type": "stack_panel",
+                      "use_new_layout": true,
+                      "size": [ "100%", "100%c" ],
+                      "bindings": [
+                        {
+                          "binding_name": "#daily_crystal_inventory_maxed",
+                          "binding_name_override": "#visible"
+                        }
+                      ],
+                      "controls": [
+                        {
+                          "adventure_crystal_inventory_maxed_item_label": {
+                            "type": "label",
+                            "size": [ "100%", "default" ],
+                            "font_type": "$item_font",
+                            "override_height": "$item_font_height",
+                            "text": "#daily_crystal_reward_text",
+                            "color": "$genoa_disclaimer_text_color",
+                            "bindings": [
+                              {
+                                "binding_name": "#daily_crystal_reward_text",
+                                "binding_condition": "visible"
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "adventure_crystal_inventory_maxed_full_label": {
+                            "type": "label",
+                            "size": [ "100%", "default" ],
+                            "font_type": "$item_font",
+                            "override_height": "$item_font_height",
+                            "text": "daily_login.slots_full"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 13 ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "minecraft:tropicalfish",
+      "materials": { "default": "tropicalfish" },
+      "textures": {
+        "typeA": "mobs/tropical_fish/tropical_a",
+        "typeB": "mobs/tropical_fish/tropical_b",
+        "aPattern1": "mobs/tropical_fish/tropical_a_pattern_1",
+        "aPattern2": "mobs/tropical_fish/tropical_a_pattern_2",
+        "aPattern3": "mobs/tropical_fish/tropical_a_pattern_3",
+        "aPattern4": "mobs/tropical_fish/tropical_a_pattern_4",
+        "aPattern5": "mobs/tropical_fish/tropical_a_pattern_5",
+        "aPattern6": "mobs/tropical_fish/tropical_a_pattern_6",
+        "bPattern1": "mobs/tropical_fish/tropical_b_pattern_1",
+        "bPattern2": "mobs/tropical_fish/tropical_b_pattern_2",
+        "bPattern3": "mobs/tropical_fish/tropical_b_pattern_3",
+        "bPattern4": "mobs/tropical_fish/tropical_b_pattern_4",
+        "bPattern5": "mobs/tropical_fish/tropical_b_pattern_5",
+        "bPattern6": "mobs/tropical_fish/tropical_b_pattern_6"
+      },
+      "scripts": {
+        "pre_animation": [
+          "variable.ZRot = !query.is_in_water ? Math.cos((query.time_stamp + query.frame_alpha) * 0.25) * 90 : 0.0;",
+          "variable.AnimationAmountBlend = Math.lerp(variable.AnimationAmountPrev, variable.AnimationAmount, query.frame_alpha);"
+        ],
+        "animate": [
+          "fish_control",
+          "blink"
+        ],
+        "initialization": [
+          "variable.last_blink_time = 0;",
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.max_blink_time = 0.2;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;",
+          "variable.tropicalfish.base = 0;",    //Temp fix for buildplate preview content error until we store variant/mark properly (Bug 285732)
+          "variable.tropicalfish.pattern = 0;"  //Temp fix for buildplate preview content error until we store variant/mark properly (Bug 285732)
+        ]
+      },
+      "geometry": {
+        //TODO: Blink-ify tropical_fish_b geometry once we add variants to tropical fish (currently all clownfish, which is type A)
+        "typeA": "geometry.genoa.tropicalfish_a",
+        "typeB": "geometry.genoa.tropicalfish_a"
+      },
+      "animations": {
+        "flop": "animation.tropicalfish.flop",
+        "swim": "animation.tropicalfish.swim",
+        "fish_control":  "controller.animation.fish.general",
+        "blink": "controller.animation.shared_mob.blink"
+      },
+      "render_controllers": [ "controller.render.tropicalfish" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 44
+      }
+    }
+  }
+}

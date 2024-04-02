@@ -1,0 +1,67 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "genoa:chest_break_ray_epic",
+      "basic_render_parameters": {
+        "material": "particles_disable_depth",
+        "texture": "textures/particle/tappable_particles"
+      }
+    },
+    "components": {
+      "minecraft:emitter_initialization": {
+        "creation_expression": "variable.minSize = 0.15;"
+      },
+      "minecraft:emitter_rate_instant": {
+        "num_particles": 15
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time": 0
+      },
+      "minecraft:emitter_shape_point": {
+        "offset": [0, 0, 0],
+        "direction": [0,0,0]
+      },
+      "minecraft:particle_initial_speed": 1.5,
+      "minecraft:particle_initial_spin": {
+        "rotation": "Math.random(-60, 230)",
+        "rotation_rate": 0
+      },
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": 0.6
+      },
+      "minecraft:particle_motion_dynamic": {
+        "linear_acceleration": [ 0, 0, 0 ],
+        "linear_drag_coefficient": 0,
+        "rotation_drag_coefficient": 0
+      },
+      "minecraft:particle_appearance_billboard": {
+        "size": [ "45*variable.particle_age", "variable.minSize"],
+        "facing_camera_mode": "rotate_xyz",
+        "uv": {
+          "texture_width": 32,
+          "texture_height": 64,
+          "flipbook": {
+            "base_UV": [ 0, 8 ],
+            "size_UV": [ 32, 8 ],
+            "step_UV": [ 0, 0 ],
+            "frames_per_second": 1,
+            "max_frame": 1,
+            "stretch_to_lifetime": true,
+            "loop": false
+          }
+        }
+      },
+      "minecraft:particle_appearance_tinting": {
+        "color":{
+          "gradient":{
+            "0.0": [0.97,0.75,1,1],
+            "0.25": [0.97,0.75,1,1],
+            "0.28": [ "Math.random(0.50,0.55)", "Math.random(0.28,0.37)", "Math.random(0.86,0.97)","math.clamp(0.75 - variable.particle_age, 0, 1)"]
+          },
+          "interpolant": "variable.particle_age/variable.particle_lifetime"
+        }
+      }
+    }
+  }
+}

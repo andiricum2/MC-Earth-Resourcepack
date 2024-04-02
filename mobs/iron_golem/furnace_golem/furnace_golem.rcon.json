@@ -1,0 +1,31 @@
+{
+  "format_version": "1.10.0",
+  "render_controllers": {
+    "controller.render.furnace_golem": {
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.default",
+      "materials": [ {"*": "Material.default" } ],
+      "textures": [ "Texture.default" ],
+      "part_visibility": [
+        { "face_blink": "variable.is_blinking && !query.has_target" },
+        { "face": "!variable.is_blinking && !query.has_target"},
+        { "aggro_head": "query.has_target"},
+        { "head_features": "!query.has_target"}
+      ]
+    },
+    "controller.render.furnace_golem_aggro": {
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.aggro_flames",
+      "materials": [ {"*": "Material.aggro_flames" } ],
+      "textures": [ "Texture.aggro_flames" ],
+      "part_visibility": [
+        { "aggro*": "query.has_target"}
+      ],
+      "uv_anim": 
+      {
+        "offset": [ 0.0, "Math.mod(Math.floor(query.life_time * 10),6)/6.0"],
+        "scale": [ 1.0, 1.0 ]
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "controller": "group",
+
+  "states": {
+    "Deselected": {
+      "animation": "Deselected",
+      "properties": [ "selected" ],
+
+      "transitions": [
+        {
+          "from": "Selected",
+          "animation": "Deselect"
+        }
+      ]
+    },
+
+    "Selected": {
+      "default": true,
+      "animation": "Selected",
+      "properties": [ "!selected" ],
+      "transitions": [
+        {
+          "from": "Deselected",
+          "animation": "Select"
+        }
+      ]
+    }
+  }
+}

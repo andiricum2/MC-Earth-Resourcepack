@@ -1,0 +1,45 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:glow_squid",
+      "materials": { "default": "glow_squid" },
+      "textures": {
+        "default": "mobs/squid/glow_squid/glow_squid"
+      },
+      "geometry": {
+        "default": "geometry.genoa.glow_squid"
+      },
+      "animations":{
+        "move": "animation.glow_squid.move",
+        "squid_rotate": "animation.glow_squid.rotate",
+        "squid_preview": "animation.glow_squid.preview_rotate", //@GENOA - buildplate preview fix
+        "blink": "controller.animation.shared_mob.blink"
+      },
+      "scripts":{
+        "animate": [
+          "move",
+          "squid_rotate",
+          "squid_preview",
+          "blink"
+        ],
+        "initialization": [
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;",
+          "variable.max_blink_time = 0.2;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;",
+          "variable.is_buildplate_preview = 1;",
+          "variable.squid.tentacle_angle = 0;",
+          "variable.squid.swim_rotation = 0;"
+        ]
+      },
+      "render_controllers": [ "controller.render.glow_squid" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 5008
+      }
+    }
+  }
+}

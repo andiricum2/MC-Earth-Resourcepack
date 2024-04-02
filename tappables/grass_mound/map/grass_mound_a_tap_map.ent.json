@@ -1,0 +1,30 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:grass_mound_a_tappable_map",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default":  "tappables/grass_mound/grass_mound_a"
+      },
+      "geometry": {
+        "default": "geometry.grass_mound_a_tappable_map"
+      },
+      "animations": {
+        "tapped": "animation.grass.tappable.tapped",
+        "map_spawn": "animation.grass.tappable.mapSpawn",
+        "map_despawn": "animation.grass.tappable.mapDespawn",
+        "award_transition": "animation.grass.tappable.awardTransition",
+        "idle" : "animation.grass.tappable.mapIdle"
+      },
+      "animation_controllers": [
+        { "idle_controller" : "controller.animation.tappable.map.idle"}
+      ],
+      "render_controllers": [ "controller.render.tappable" ]
+    }
+  }
+}

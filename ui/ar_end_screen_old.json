@@ -1,0 +1,647 @@
+{
+  "namespace": "ar_end_screen_old",
+
+  "ar_end_screen_old@genoa_common.genoa_base_screen": {
+    "$screen_content": "ar_end_screen_old.end_content",
+    "$use_background": false,
+    "animation_name": "AR End Screen"
+  },
+
+  "end_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "$bottom_panel_size": [ "100%", 115 ],
+    "controls": [
+      {
+        "vignette": {
+          "type": "custom",
+          "size": [ "100%", "100%" ],
+          "renderer": "vignette",
+          "vignette_scene": "$vignette_scene",
+          "property_bag": {
+            "vignette_skins": "$vignette_skins"
+          },
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_property_name": "#vignette_id",
+              "target_property_name": "#vignette_id",
+              "invoke_screen_controller": true
+            }
+          ]
+        }
+      },
+      {
+        "rewards_scrolling@common.scrolling_panel": {
+          "size": [ "100%", "100%" ],
+          "$show_background": false,
+          "$scrolling_pane_size": [ "100%", "default" ],
+          "$scroll_fade_distance": 100.0,
+          "$scrolling_content": "ar_end_screen_old.top_panel"
+        }
+      },
+      { "end_content_back_button@ar_end_screen_old.back_button_panel": {} }
+    ]
+  },
+
+  "top_panel": {
+    "type": "stack_panel",
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "orientation": "vertical",
+    "size": [ "100%", "default" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "padding_1": {
+          "type": "panel",
+          "size": [ "100%", 49 ]
+        }
+      },
+      {
+        "header": {
+          "type": "panel",
+          "size": [ "100%", "100%cm" ],
+          "controls": [
+            {
+              "initial_title": {
+                "alpha": 0,
+                "propagate_alpha": true,
+                "anchor_to": "top_middle",
+                "anchor_from": "top_middle",
+                "size": [ "100%", 110 ],
+                "type": "label",
+                "font_size": "large",
+                "font_type": "MinecraftTen",
+                "color": "$genoa_adventure_header_text_color",
+                "override_height": 50,
+                "text_alignment": "center",
+                "text": "$ar_end_title",
+                "animation_name": "Adventure Reward Title"
+              }
+            },
+            {
+              "player_died_title": {
+                "alpha": 0,
+                "propagate_alpha": true,
+                "anchor_to": "top_middle",
+                "anchor_from": "top_middle",
+                "size": [ "100%", 110 ],
+                "type": "label",
+                "font_size": "large",
+                "font_type": "MinecraftTen",
+                "color": "$genoa_adventure_header_text_color",
+                "override_height": 50,
+                "text_alignment": "center",
+                "text": "ar.end.header.died",
+                "animation_name": "Player Died Title"
+              }
+            },
+            {
+              "followup_title": {
+                "type": "stack_panel",
+                "orientation": "vertical",
+                "size": [ "100%", "100%c" ],
+                "anchor_to": "top_middle",
+                "anchor_from": "top_middle",
+                "use_new_layout": true,
+                "controls": [
+                  {
+                    "sub_title": {
+                      "alpha": 0,
+                      "propagate_alpha": true,
+                      "type": "label",
+                      "font_type": "MinecraftTen",
+                      "color": "white",
+                      "override_height": 24,
+                      "text_alignment": "center",
+                      "text": "ar.end.header.items",
+                      "animation_name": "Adventure Sub Title"
+                    }
+                  },
+                  {
+                    "padding_2": {
+                      "type": "panel",
+                      "size": [ "100%", 11 ]
+                    }
+                  },
+                  {
+                    "xp_main_row": {
+                      "size": [ "100%c", 50 ],
+                      "animation_name": "XP Orb Anchor",
+                      "type": "panel",
+                      "controls": [
+                        {
+                          "xp_row": {
+                            "alpha": 0,
+                            "propagate_alpha": true,
+                            "type": "stack_panel",
+                            "orientation": "horizontal",
+                            "size": [ "100%c", 50 ],
+                            "animation_name": "Adventure XP Line",
+                            "anchor_to": "top_middle",
+                            "anchor_from": "top_middle",
+                            "use_new_layout": true,
+                            "controls": [
+                              {
+                                "xp_icon@ar_end_screen_old.xp_item": {
+                                  "animation_name": "Adventure XP Icon"
+                                }
+                              },
+                              {
+                                "xp_value": {
+                                  "anchor_to": "left_middle",
+                                  "anchor_from": "left_middle",
+                                  "type": "label",
+                                  "font_type": "MinecraftSeven",
+                                  "color": "yellow",
+                                  "override_height": 25,
+                                  "text": "#xp_value",
+                                  "offset": [ 0, -5 ],
+                                  "bindings": [
+                                    {
+                                      "binding_name": "#xp_value",
+                                      "binding_condition": "always"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "items_panel": {
+          "type": "panel",
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "size": [ "100%", "100%c" ],
+          "controls": [
+            {
+              "no_items_with_xp@no_items_label": {
+                "animation_name": "No Items With XP"
+              }
+            },
+            {
+              "no_items_without_xp@no_items_label": {
+                "animation_name": "No Items Without XP",
+                "offset": [ 0, -10 ]
+              }
+            },
+            {
+              "adventure_resources_lost": {
+                "anchor_to": "top_middle",
+                "anchor_from": "top_middle",
+                "offset": [ 0, -10 ],
+                "type": "label",
+                "text": "ar.end.context.lost",
+                "alpha": 0,
+                "override_height": 22,
+                "animation_name": "Adventure Resources Lost"
+              }
+            },
+            {
+              "rewards@ar_end_screen_old.rewards_panel": {}
+            }
+          ],
+          "ignored": "(not $supports_rewards)"
+        }
+      },
+      {
+        "spacer": {
+          "type": "panel",
+          "size": "$bottom_panel_size"
+        }
+      }
+    ]
+  },
+
+  "no_items_label": {
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "type": "label",
+    "text": "ar.end.header.no_items",
+    "alpha": 0,
+    "override_height": 22
+  },
+
+  "back_button_panel": {
+    "layer": 30,
+    "type": "panel",
+    "size": "$bottom_panel_size",
+    "anchor_to": "bottom_middle",
+    "anchor_from": "bottom_middle",
+    "alpha": 0,
+    "propagate_alpha": true,
+    "animation_name": "Adventure Back Panel",
+    "controls": [
+      {
+        "background_image": {
+          "layer": 5,
+          "anchor_to": "bottom_middle",
+          "anchor_from": "bottom_middle",
+          "size": [ "100%", 115 ],
+          "type": "image",
+          "texture": "textures/ui/adventures/adventure_pixelated_background",
+          "fill": true
+        }
+      },
+      {
+        "divider@genoa_common.white": {
+          "layer": 7,
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "size": [ "100%", 5 ],
+          "alpha": 0.2
+        }
+      },
+      {
+        "loading_information_panel@ar_end_screen_old.load_bar_content": {
+          "anchor_to": "center",
+          "anchor_from": "center",
+          "layer": 10,
+          "alpha": 0,
+          "propagate_alpha": true,
+          "animation_name": "Loading Panel"
+        }
+      },
+      {
+        "controls_above_the_background": {
+          "size": [ "100%", "100%c" ],
+          "anchor_to": "bottom_middle",
+          "anchor_from": "bottom_middle",
+          "type": "stack_panel",
+          "layer": 6,
+          "use_new_layout": true,
+          "controls": [
+            {
+              "bottom_button_padding_1": {
+                "type": "panel",
+                "size": [ "100%", 30 ]
+              }
+            },
+            {
+              "actual_back_button@ar_end_screen_old.back_button": {}
+            },
+            {
+              "bottom_button_padding_2": {
+                "type": "panel",
+                "size": [ "100%", 25 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "back_button@genoa_common.button": {
+    "animation_name": "Adventure Back Button",
+    "alpha": 0,
+    "propagate_alpha": true,
+    "$glow_style": "white",
+    "anchor_to": "center",
+    "anchor_from": "center",
+    "$button_content": "genoa_common.button_content_text",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_height": 25,
+    "$pressed_button_name": "button.back",
+    "$button_text": "ar.end.button",
+    "size": [ 350, 60 ],
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/button_confirm",
+    "$locked_control": "ar_end_screen_old.locked_back_button",
+    "sound_name": "lets.play.button",
+    "bindings": [
+      {
+        "binding_name": "#loading_complete",
+        "binding_name_override": "#enabled",
+        "binding_condition": "always"
+      },
+      {
+        "binding_name": "#show_back_button",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "locked_back_button@genoa_common.default_button_content": {
+    "alpha": 0,
+    "propagate_alpha": true,
+    "$glow_style": "white",
+    "$button_content": "genoa_common.button_content_text",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_height": 25,
+    "$button_text": "ar.end.button",
+    "size": [ 296, 50 ],
+    "$background_style": "image",
+    "$background_alpha": 0.5,
+    "$button_background_image_texture": "textures/ui/button_confirm"
+  },
+
+  "rewards_panel": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "use_new_layout": true,
+    "size": [ "100%", "100%c" ],
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "controls": [
+      {
+        "legendary_rarity@ar_end_screen_old.reward_panel": {
+          "animation_name": "Legendary Tier",
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "$divider_color": "$genoa_rarity_legendary_color",
+          "$reward_collection_name": "legendary_items",
+          "$grid_dimension_binding_name": "#legendary_item_grid_size",
+          "$text": "#legendary_reward_text",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_condition": "always_when_visible"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#has_legendary_rewards",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "epic_rarity@ar_end_screen_old.reward_panel": {
+          "animation_name": "Epic Tier",
+          "$divider_color": "$genoa_rarity_epic_color",
+          "$reward_collection_name": "epic_items",
+          "$grid_dimension_binding_name": "#epic_item_grid_size",
+          "$text": "#epic_reward_text",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_condition": "always_when_visible"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#has_epic_rewards",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "rare_rarity@ar_end_screen_old.reward_panel": {
+          "animation_name": "Rare Tier",
+          "$divider_color": "$genoa_rarity_rare_color",
+          "$reward_collection_name": "rare_items",
+          "$grid_dimension_binding_name": "#rare_item_grid_size",
+          "$text": "#rare_reward_text",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_condition": "always_when_visible"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#has_rare_rewards",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "uncommon_rarity@ar_end_screen_old.reward_panel": {
+          "animation_name": "Uncommon Tier",
+          "$divider_color": "$genoa_rarity_uncommon_color",
+          "$reward_collection_name": "uncommon_items",
+          "$grid_dimension_binding_name": "#uncommon_item_grid_size",
+          "$text": "#uncommon_reward_text",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_condition": "always_when_visible"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#has_uncommon_rewards",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "common_rarity@ar_end_screen_old.reward_panel": {
+          "animation_name": "Common Tier",
+          "$divider_color": "$genoa_rarity_common_color",
+          "$reward_collection_name": "common_items",
+          "$grid_dimension_binding_name": "#common_item_grid_size",
+          "$text": "#common_reward_text",
+          "$text_binding": [
+            {
+              "binding_name": "$text",
+              "binding_condition": "always_when_visible"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#has_common_rewards",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "reward_panel": {
+    "type": "stack_panel",
+    "size": [ 350, "100%c" ],
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "use_new_layout": true,
+    "alpha": 0,
+    "propagate_alpha": true,
+    "controls": [
+      {
+        "rarity_header@genoa_common.divider_label": {
+          "size": [ "100%", 18 ],
+          "$bar_alpha": 1.0,
+          "$bar_color": "$divider_color",
+          "$font_color": "$divider_color",
+          "$text_alignment": "left"
+        }
+      },
+      {
+        "rewards_padding": {
+          "type": "panel",
+          "size": [ "100%", 15 ]
+        }
+      },
+      {
+        "item_grid": {
+          "type": "grid",
+          "size": [ "100%", "default" ],
+          "grid_item_template": "ar_end_screen_old.grid_item",
+          "grid_dimension_binding": "$grid_dimension_binding_name",
+          "collection_name": "$reward_collection_name",
+          "animation_name": "Item Grid",
+          "bindings": [
+            {
+              "binding_name": "$grid_dimension_binding_name",
+              "binding_type": "global"
+            }
+          ]
+        }
+      },
+      {
+        "end_reward_padding": {
+          "type": "panel",
+          "size": [ "100%", 15 ]
+        }
+      }
+    ]
+  },
+
+  "grid_item": {
+    "type": "stack_panel",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "item_panel": {
+          "type": "panel",
+          "size": [ 100, 100 ],
+          "controls": [
+            {
+              "item_renderer": {
+                "type": "custom",
+                "layer": 25,
+                "renderer": "genoa_item_renderer",
+                "bindings": [
+                  {
+                    "binding_name": "#item_id_aux",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$reward_collection_name"
+                  }
+                ]
+              }
+            },
+            {
+              "sparkles": {
+                "type": "panel",
+                "layer": 0,
+                "animation_name": "Item Sparkles",
+                "bindings": [
+                  {
+                    "binding_name": "#item_visible",
+                    "binding_name_override": "#visible",
+                    "binding_type": "collection",
+                    "binding_collection_name": "$reward_collection_name"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "grid_item_padding": {
+          "type": "panel",
+          "size": [ "100%", 5 ]
+        }
+      },
+      {
+        "item_count": {
+          "type": "label",
+          "text": "#item_count",
+          "shadow": true,
+          "anchor_to": "center",
+          "anchor_from": "center",
+          "font_type": "MinecraftSeven",
+          "override_height": 22,
+          "bindings": [
+            {
+              "binding_name": "#item_count",
+              "binding_type": "collection",
+              "binding_collection_name": "$reward_collection_name"
+            },
+            {
+              "binding_name": "#item_count_visible",
+              "binding_name_override": "#visible",
+              "binding_type": "collection",
+              "binding_collection_name": "$reward_collection_name"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "xp_item": {
+    "type": "panel",
+    "size": [ 50, 50 ],
+    "type": "image",
+    "texture": "textures/ui/icons/challenges_icons/xp"
+  },
+
+  "load_bar_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ 313, 92 ],
+    "use_new_layout": true,
+    "bindings": [
+      {
+        "binding_name": "(not #loading_complete)",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ],
+    "controls": [
+      {
+        "load_bar_text": {
+          "type": "label",
+          "size": [ "100%", 30 ],
+          "override_height": 15,
+          "font_type": "Smooth",
+          "text": "#load_text",
+          "text_alignment": "center",
+          "bindings": [
+            {
+              "binding_name": "#load_text",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 12 ]
+        }
+      },
+      {
+        "load_anim@genoa_common.progress_loading": {
+          "size": [ 50, 50 ]
+        }
+      }
+    ]
+  }
+}

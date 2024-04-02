@@ -1,0 +1,191 @@
+{
+  "namespace": "tappable",
+
+  "tappable_screen@genoa_common.genoa_base_screen": {
+    "animation_name": "Tappable Screen",
+    "$screen_animations": "genoa_common.genoa_screen_anims",
+    "$background_animations": "genoa_common.genoa_screen_background_anims",
+    "$screen_content": "tappable.content",
+    "screen_visibility": "opaque",
+    "$use_background": false
+  },
+
+  "content": {
+    "type": "panel",
+    "size": ["100%", "100%"],
+
+    "controls": [
+      {
+        "input_steal": {
+          "type": "input_panel",
+          "size": [ "100%", "100%" ],
+          "controls": [
+            {
+              "fade@genoa_common.white": {
+                "layer": 10,
+                "size": [ "100%", "100%" ],
+                "color": [ 0.0, 0.0, 0.0 ],
+                "alpha": 0.75,
+                "fill": true,
+                "screen_fill_down": true,
+                "screen_fill_left": true,
+                "screen_fill_right": true,
+                "screen_fill_up": true
+              }
+            },
+            {
+              "all_vignettes": {
+                "type": "panel",
+                "size": [ "100%", "100%" ],
+                "controls": [
+                  {
+                    "vignette_control": {
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
+                      "type": "custom",
+                      "size": [ "50%", "50%" ],
+                      "layer": 15,
+                      "renderer": "vignette",
+                      "vignette_scene": "genoa:chicken_tappable_sequence_vignette",
+                      "bindings": [
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "#vignette_id",
+                          "target_property_name": "#vignette_id",
+                          "invoke_screen_controller": true
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "vignette_control2": {
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
+
+                      "type": "custom",
+                      "size": [ "50%", "50%" ],
+                      "offset": ["50%", 0],
+                      "layer": 15,
+                      "renderer": "vignette",
+                      "vignette_scene": "genoa:cow_tappable_sequence_vignette",
+                      "bindings": [
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "#vignette_id",
+                          "target_property_name": "#vignette_id",
+                          "invoke_screen_controller": true
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "vignette_control3": {
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
+
+                      "type": "custom",
+                      "size": [ "50%", "50%" ],
+                      "offset": [ 0, "50%"],
+                      "layer": 15,
+                      "renderer": "vignette",
+                      "vignette_scene": "genoa:sheep_tappable_sequence_vignette",
+                      "bindings": [
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "#vignette_id",
+                          "target_property_name": "#vignette_id",
+                          "invoke_screen_controller": true
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "vignette_control4": {
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
+                      
+                      "type": "custom",
+                      "size": [ "50%", "50%" ],
+                      "offset": ["50%", "50%"],
+                      "layer": 15,
+                      "renderer": "vignette",
+                      "vignette_scene": "genoa:pig_tappable_sequence_vignette",
+                      "bindings": [
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "#vignette_id",
+                          "target_property_name": "#vignette_id",
+                          "invoke_screen_controller": true
+                        }
+                      ]
+                    }
+                  },                 
+                  {
+                    "vignette_control5": {
+                      "anchor_from": "top_left",
+                      "anchor_to": "top_left",
+
+                      "type": "custom",
+                      "size": [ "50%", "50%" ],
+                      "offset": ["50%", 0],
+                      "layer": 15,
+                      "renderer": "vignette",
+                      "vignette_scene": "genoa:squid_tappable_sequence_vignette",
+                      "bindings": [
+                        {
+                          "binding_type": "view",
+                          "source_property_name": "#vignette_id",
+                          "target_property_name": "#vignette_id",
+                          "invoke_screen_controller": true
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "main_content": {
+          "type": "panel",
+          "size": [ "100%", "100%" ],
+
+          "bindings": [
+            {
+              "binding_name": "(not #tappable_animation_playing)",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+
+          "controls": [
+            {
+              "tappable_region": {
+                "type": "input_panel",
+                "size": [ "100%", "100%" ],
+                "layer": 2,
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.tappable_tapped",
+                    "mapping_type": "pressed"
+                  }
+                ]
+              }
+            },
+            {
+              "tappable_region_text": {
+                "type": "label",
+                "text": "tappable.tap_action",
+                "layer": 15,
+                "offset": [ 0, 110 ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

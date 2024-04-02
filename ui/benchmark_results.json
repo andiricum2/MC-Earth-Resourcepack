@@ -1,0 +1,221 @@
+{
+  "namespace": "genoa_benchmark_results",
+
+  "benchmark_results@genoa_common.genoa_base_screen": {
+    "$screen_content": "genoa_benchmark_results.content",
+    "$screen_animations": [],
+    "$background_animations": []
+  },
+
+  "content": {
+    "type": "panel",
+    "controls": [
+      {
+        "main_panel@genoa_common.default_button_content": {
+          "size": ["100% - 20px", "100% - 90px"],
+          "offset": [0, 10],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "$button_content": "genoa_benchmark_results.result_panel",
+          "$background_style": "color",
+          "$background_color": "$genoa_hud_inventory_background_color",
+          "$background_alpha": 1
+        }
+      },
+      {
+        "button@genoa_common.button": {
+            "$glow_style": "white",
+            "$button_content": "genoa_common.button_content_text",
+            "$button_font_type": "MinecraftTen",
+            "$button_font_size": "extra_large",
+            "size": [ 305, 60 ],
+            "offset": [0, -10],
+            "anchor_from": "bottom_middle",
+            "anchor_to": "bottom_middle",
+            "$background_style": "image",
+            "$button_background_image_texture": "textures/ui/button_confirm",
+            "$pressed_button_name": "button.exit",
+            "$button_text": "Exit"
+        }
+      }
+    ]
+  },
+
+  "result_panel": {
+    "type": "stack_panel",
+    "size": ["100%", "100%"],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "header": {
+          "type": "label",
+          "font_type": "MinecraftTen",
+          "font_size": "extra_large",
+          "text": "Benchmark Report"
+        }
+      },
+      {
+        "border@genoa_common.white": {
+          "size": ["100% - 16px", 2]
+        }
+      },
+      {
+        "padding": {
+          "type": "panel",
+          "size": [0, 10]
+        }
+      },
+      {
+        "report_content": {
+          "type": "panel",
+          "size": ["100% - 20px", "fill"],
+
+          "controls": [
+            {
+              "scrolling_reports@common.scrolling_panel": {
+                "size": [ "100%", "100% - 4px" ],
+                "$show_background": false,
+                "$scroll_fade_distance": 4.0,
+                "$scrolling_content": "genoa_benchmark_results.reports_panel",
+                "$scroll_box_touch_image_control": "genoa_common.scroll_bar_control"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "padding_bottom": {
+          "type": "panel",
+          "size": [0, 10]
+        }
+      },
+      {
+        "copy_button@genoa_common.button": {
+            "$glow_style": "white",
+            "$button_content": "genoa_common.button_content_text",
+            "$button_font_type": "MinecraftTen",
+            "$button_font_size": "extra_large",
+            "size": [ "100% - 20px", 40 ],
+            "offset": [0, -10],
+            "anchor_from": "bottom_middle",
+            "anchor_to": "bottom_middle",
+            "$background_style": "image",
+            "$button_background_image_texture": "textures/ui/button_confirm",
+            "$pressed_button_name": "button.copy_to_clipboard",
+            "$button_text": "Copy to Clipboard"
+        }
+      }
+    ]
+  },
+
+  "reports_panel": {
+    "type": "stack_panel",
+    "size": ["100%", "100%c"],
+    "factory": {
+      "name": "report_item",
+      "control_name": "genoa_benchmark_results.report_item"
+    },
+
+    "collection_name": "benchmark_report",
+    "bindings": [
+      {
+        "binding_name": "#num_report_items",
+        "binding_name_override": "#collection_length"
+      }
+    ]
+  },
+
+  "report_item": {
+    "type": "stack_panel",
+    "size": ["100%", "100%c"],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "header": {
+          "type": "label",
+          "font_type": "MinecraftTen",
+          "font_size": "large",
+          "color": "black",
+          "text": "#report_item_name",
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "benchmark_report",
+              "binding_name": "#report_item_name"
+            }
+          ]
+        }
+      },
+      {
+        "padding": {
+          "type": "panel",
+          "size": [0, 4]
+        }
+      },
+      {
+        "min_framerate": {
+          "type": "label",
+          "font_type": "MinecraftSeven",
+          "font_size": "large",
+          "color": "black",
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "text": "#min_frametime",
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "benchmark_report",
+              "binding_name": "('Minimum Frametime: ' + #min_frametime + 'ms')",
+              "binding_name_override": "(#min_frametime)"
+            }
+          ]
+        }
+      },
+      {
+        "max_framerate": {
+          "type": "label",
+          "font_type": "MinecraftSeven",
+          "font_size": "large",
+          "color": "black",
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "text": "#max_frametime",
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "benchmark_report",
+              "binding_name": "('Maximum Frametime: ' + #max_frametime + 'ms')",
+              "binding_name_override": "(#max_frametime)"
+            }
+          ]
+        }
+      },
+      {
+        "average_framerate": {
+          "type": "label",
+          "font_type": "MinecraftSeven",
+          "font_size": "large",
+          "color": "black",
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "text": "#avg_frametime",
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "benchmark_report",
+              "binding_condition": "always",
+              "binding_name": "('Average Frametime: ' + #avg_frametime + 'ms')",
+              "binding_name_override": "(#avg_frametime)"
+            }
+          ]
+        }
+      },
+      {
+        "bottom_padding": {
+          "type": "panel",
+          "size": [0, 16]
+        }
+      }
+    ]
+  }
+}

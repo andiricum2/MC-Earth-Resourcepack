@@ -1,0 +1,264 @@
+{
+  "namespace": "persona_ftue",
+
+  "persona_ftue_screen@genoa_common.genoa_base_screen": {
+    "$screen_content": "persona_ftue.main_content",
+    "$background_scrim_visible": false,
+    "$screen_background_texture": "textures/ui/secondary_background",
+    "$background_scrim_alpha": 0.85,
+    "screen_visibility": "opaque",
+    "$use_background": false
+  },
+
+  "left_icon": {
+    "type": "image",
+    "size": [ 20, 20 ],
+    "texture": "textures/ui/arrow_left"
+  },
+
+  "right_icon": {
+    "type": "image",
+    "size": [ 20, 20 ],
+    "texture": "textures/ui/arrow_right"
+  },
+
+  "slot_indicator_grid_template": {
+    "type": "panel",
+    "size": [ "default + 15px", "100%" ],
+    "controls": [
+      {
+        "selected_carousel_indicator": {
+          "type": "image",
+          "texture": "textures/ui/carousel_dot_selected",
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "$slot_indicator_grid_collection_name",
+              "binding_name": "#is_slot_selected",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "unselected_carousel_indicator": {
+          "type": "image",
+          "texture": "textures/ui/carousel_dot",
+          "bindings": [
+            {
+              "binding_type": "collection",
+              "binding_collection_name": "$slot_indicator_grid_collection_name",
+              "binding_name": "#is_slot_selected",
+              "binding_name_override": "(not #visible)"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "locked_cycle_button@genoa_common.default_button_content": {
+    "alpha": 0.3,
+    "$glow_alpha": 0.3,
+    "$background_alpha": 0.3,
+    "$button_icon_alpha": 0.3,
+    "$bevel_alpha": 0.0,
+    "$shadow_alpha": 0.0
+  },
+
+
+  "main_content": {
+    "type": "panel",
+    "controls": [
+      {
+        "vignette": {
+          "type": "custom",
+          "size": [ "100%", "100%"],
+          "renderer": "vignette",
+          "vignette_scene": "genoa:ftue_vignette",
+          "property_bag": {
+            "vignette_skins": "$vignette_skins"
+          },
+          "bindings": [
+            {
+              "binding_type": "view",
+              "source_property_name": "#vignette_id",
+              "target_property_name": "#vignette_id",
+              "invoke_screen_controller": true
+            }
+          ]
+        }
+      },
+      {
+        "header": {
+          "type": "label",
+          "size": [ "100%", 25 ],
+          "offset": [ 0, 48 ],
+          "anchor_from": "top_middle",
+          "anchor_to": "top_middle",
+          "font_type": "MinecraftTen",
+          "override_height": 25,
+          "text": "dr.ftue.header",
+          "text_alignment": "center"
+        }
+      },
+      {
+        "middle_panel": {
+          "type": "panel",
+          "size": [ "100%", "50%" ],
+          "offset": [ 0, -40 ],
+          "controls": [
+            {
+              "cycle_left_button@genoa_common.button": {
+                "$pressed_button_name": "button.cycle_left",
+                "$button_content": "persona_ftue.left_icon",
+                "$background_style": "color",
+                "$background_color": "$genoa_nav_bar_background_color",
+                "$locked_control": "persona_ftue.locked_cycle_button",
+                "anchor_from": "left_middle",
+                "anchor_to": "left_middle",
+                "offset": [ 12, -40 ],
+                "size": [ 48, 90 ],
+                "bindings": [
+                  {
+                    "binding_name": "#can_cycle_left",
+                    "binding_name_override": "#enabled"
+                  }
+                ]
+              }
+            },
+            {
+              "cycle_right_button@genoa_common.button": {
+                "$pressed_button_name": "button.cycle_right",
+                "$button_content": "persona_ftue.right_icon",
+                "$background_style": "color",
+                "$background_color": "$genoa_nav_bar_background_color",
+                "$locked_control": "persona_ftue.locked_cycle_button",
+                "anchor_from": "right_middle",
+                "anchor_to": "right_middle",
+                "offset": [ -12, -40 ],
+                "size": [ 48, 90 ],
+                "bindings": [
+                  {
+                    "binding_name": "#can_cycle_right",
+                    "binding_name_override": "#enabled"
+                  }
+                ]
+              }
+            },
+            {
+              "vignette_input_panel": {
+                "type": "input_panel",
+                "size": [ "60%", "100%" ],
+                "gesture_tracking_button": "button.rotate_model",
+                "always_handle_controller_direction": true,
+                "button_mappings": [
+                  {
+                    "from_button_id": "button.menu_select",
+                    "to_button_id": "button.rotate_model",
+                    "mapping_type": "pressed"
+                  }
+                ],
+                "property_bag": {
+                  "#rotation_speed": 2.0
+                },
+                "bindings": [
+                  {
+                    "binding_type": "global",
+                    "binding_name": "#gesture_info",
+                    "binding_condition": "always_when_visible"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "#gesture_delta_source",
+                    "target_property_name": "#gesture_delta_source"
+                  },
+                  {
+                    "binding_type": "view",
+                    "source_property_name": "#gesture_mouse_delta_x",
+                    "target_property_name": "#gesture_mouse_delta_x"
+                  }
+                ]
+              }
+            },
+            {
+              "progress_loading@genoa_common.progress_loading": {
+                "anchor_from": "center",
+                "anchor_to": "center",
+                "layer": 100,
+                "offset": [ 0, -40 ],
+                "bindings": [
+                  {
+                    "binding_name": "#is_vignette_model_loading",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "slot_indicator_grid": {
+                "type": "grid",
+                "size": [ "100%c", 11 ],
+                "grid_dimension_binding": "#slot_indicator_grid_dimension",
+                "grid_item_template": "persona_ftue.slot_indicator_grid_template",
+                "$slot_indicator_grid_collection_name": "#slot_indicator_collection",
+                "collection_name": "$slot_indicator_grid_collection_name",
+                "anchor_from": "bottom_middle",
+                "anchor_to": "bottom_middle",
+                "offset": [ 0, -11 ],
+                "bindings": [
+                  {
+                    "binding_name": "#slot_indicator_grid_dimension"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }, // end of middle_panel
+      {
+        "sub_header": {
+          "type": "label",
+          "size": [ "100%", 20 ],
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [ 0, -152 ],
+          "override_height": 20,
+          "font_type": "noto-sans",
+          "text_alignment": "center",
+          "text": "dr.ftue.sub_header"
+        }
+      },
+      {
+        "ready_to_play_button@genoa_common.button": {
+          "$pressed_button_name": "button.ready_to_play",
+          "$button_text": "dr.ftue.ready_to_play_text",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_height": 25,
+          "$button_content": "genoa_common.button_content_text",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/collect_button_gradient",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [ 0, -94 ],
+          "size": [ "93.6%", "14.2%x" ]
+        }
+      },
+      {
+        "customize_button@genoa_common.button": {
+          "$pressed_button_name": "button.customize",
+          "$button_text": "dr.ftue.customize_text",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_height": 25,
+          "$button_content": "genoa_common.button_content_text",
+          "$background_style": "color",
+          "$background_color": "$genoa_ftue_customize_button_color",
+          "anchor_from": "bottom_middle",
+          "anchor_to": "bottom_middle",
+          "offset": [ 0, -34 ],
+          "size": [ "93.6%", "14.2%x" ]
+        }
+      }
+    ]
+  }
+}

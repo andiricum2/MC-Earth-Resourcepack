@@ -1,0 +1,50 @@
+{
+  "format_version": "1.10.0",
+  "particle_effect": {
+    "description": {
+      "identifier": "genoa:tappable_tap_sparkle_spiral_rare",
+      "basic_render_parameters": {
+        "material": "particles_blend",
+        "texture": "textures/particle/tappable_particles"
+      }
+    },
+    "components": {
+      "minecraft:emitter_initialization": {
+        "creation_expression": "variable.minSize = 0.1; variable.maxSize=0.2; variable.sprite = Math.floor(Math.random(0.0, 4.0)) * 8;"
+      },
+      "minecraft:emitter_rate_steady": {
+        "spawn_rate": 40,
+        "max_particles": 100
+      },
+      "minecraft:emitter_lifetime_once": {
+        "active_time":0.5
+      },
+      "minecraft:emitter_shape_point": {
+      },
+      "minecraft:particle_lifetime_expression": {
+        "max_lifetime": "Math.random(0.2, 0.5)"
+      },
+      "minecraft:particle_motion_parametric": {
+        "relative_position": [
+          "1.2 * Math.cos((variable.particle_age * 360) + (variable.particle_random_1 * 360))",
+          "variable.particle_age*3.5",
+          "1.2 * Math.sin((variable.particle_age * 360) + (variable.particle_random_1 * 360))"
+        ]
+      },
+      "minecraft:particle_appearance_billboard": {
+        "size": [ "math.clamp(variable.particle_random_1, variable.minSize, variable.maxSize)", "math.clamp(variable.particle_random_1, variable.minSize, variable.maxSize)"],
+        "facing_camera_mode": "lookat_xyz",
+        "uv": {
+          "texture_width": 32,
+          "texture_height": 64,
+          "uv":  [ "Math.floor((variable.particle_random_3 * 3.99)) * 8", 16 ],
+          "uv_size": [8, 8]
+        }
+      },
+      "minecraft:particle_appearance_tinting": 
+      {
+        "color": [ "Math.random(0.361,0.506)", "Math.random(0.804,0.941)", "Math.random(0.902,1.0)","math.clamp(1.1 - variable.particle_age, 0, 1)"]
+      }
+    }
+  }
+}

@@ -1,0 +1,660 @@
+{
+  "namespace": "genoa_report_buildplate",
+
+  "gps_report_buildplate@genoa_common.genoa_base_screen": {
+    "$screen_animations": [
+      "@common.screen_exit_animation_push_fade",
+      "@common.screen_exit_animation_pop_fade",
+      "@common.screen_exit_animation_pop_up_offset",
+      "@common.screen_entrance_animation_push_down_offset",
+      "@common.screen_entrance_animation_push_fade",
+      "@common.screen_entrance_animation_pop_fade"
+    ],
+    "$steal_all_input": true,
+    "$screen_background_texture": "textures/ui/secondary_background",
+    "$screen_content": "genoa_report_buildplate.report_buildplate_content",
+    "$background_scrim_visible": false
+  },
+
+  "report_buildplate_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "input_stealer": {
+          "type": "input_panel",
+          "layer": 110,
+          "size": [ "100%", "100%" ],
+          "bindings": [
+            {
+              "binding_name": "(#submitting_report or #submitted_report)",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "mock_sending_panel@genoa_common.white": {
+          "layer": 110,
+          "size": [ "100%", "100%" ],
+          "color": "black",
+          "alpha": 0.5,
+          "screen_fill_left": true,
+          "screen_fill_right": true,
+          "screen_fill_up": true,
+          "screen_fill_down": true,
+          "bindings": [
+            {
+              "binding_name": "#submitting_report",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+          "controls": [
+            {
+              "loading_stack_panel": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%c" ],
+                "use_new_layout": true,
+                "controls": [
+                  {
+                    "loading_animation@genoa_common.progress_loading": {
+                    }
+                  },
+                  {
+                    "submitting_label": {
+                      "type": "label",
+                      "override_height": 24,
+                      "font_type": "MinecraftSeven",
+                      "text": "report_buildplate.submitting_report"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "mock_sent_panel@genoa_common.white": {
+          "layer": 110,
+          "size": [ "100%", "100%" ],
+          "color": "black",
+          "alpha": 0.5,
+          "screen_fill_left": true,
+          "screen_fill_right": true,
+          "screen_fill_up": true,
+          "screen_fill_down": true,
+          "bindings": [
+            {
+              "binding_name": "#submitted_report",
+              "binding_name_override": "#visible",
+              "binding_condition": "always"
+            }
+          ],
+          "controls": [
+            {
+              "loading_stack_panel": {
+                "type": "stack_panel",
+                "size": [ "100%", "100%c" ],
+                "use_new_layout": true,
+                "controls": [
+                  {
+                    "report_sent": {
+                      "type": "image",
+                      "anchor_to": "top_middle",
+                      "anchor_from": "top_middle",
+                      "size": [ 30, 20 ],
+                      "texture": "textures/ui/adventures/report_sent"
+                    }
+                  },
+                  {
+                    "submitting_label": {
+                      "type": "label",
+                      "override_height": 24,
+                      "font_type": "MinecraftSeven",
+                      "text": "report_buildplate.submitted_report"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "always_visible@genoa_report_buildplate.report_buildplate_content_main": {
+        }
+      }
+    ]
+  },
+
+  "report_buildplate_content_main": {
+    "type": "stack_panel",
+    "size": [ "100%", "100%" ],
+    "use_new_layout": true,
+    "controls": [
+      {
+        "header_padding": {
+          "type": "panel",
+          "size": [ 0, 39 ]
+        }
+      },
+      {
+        "report_header": {
+          "type": "label",
+          "font_type": "MinecraftTen",
+          "override_height": 28,
+          "text": "report_buildplate.header"
+        }
+      },
+      {
+        "header_icon_padding": {
+          "type": "panel",
+          "size": [ 0, 5 ]
+        }
+      },
+      {
+        "report_page_icon": {
+          "type": "image",
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "size": [ 90, 90 ],
+          "texture": "textures/ui/adventures/report_page_icon"
+        }
+      },
+      {
+        "report_issue_dropdown_header": {
+          "type": "label",
+          "size": [ 351, 32 ],
+          "font_type": "MinecraftSeven",
+          "override_height": 24,
+          "text": "report_buildplate.reason.header"
+        }
+      },
+      {
+        "issue_reason_dropdown@genoa_common.dropdown": {
+          "$button_text": "report_buildplate.reason.unselected",
+
+          "$dropdown_content_panel_size": [ "100%", "100%c" ],
+          "$dropdown_content_panel_offset": [ 0, 2 ],
+          "$dropdown_button_content": "genoa_report_buildplate.issue_reason_dropdown_button_content",
+          "$dropdown_name": "report_buildplate_issue",
+          "$dropdown_content": "genoa_report_buildplate.issue_reason_dropdown_content",
+
+          "$use_scrolling": false,
+          "size": [ 351, 48 ]
+        }
+      },
+      {
+        "padding_2": {
+          "type": "panel",
+          "size": [ 0, 16 ]
+        }
+      },
+      {
+        "report_details_dropdown_header": {
+          "type": "label",
+          "size": [ 351, 32 ],
+          "font_type": "MinecraftSeven",
+          "override_height": 24,
+          "text": "report_buildplate.details.header"
+        }
+      },
+      {
+        "issue_details_dropdown@genoa_common.dropdown": {
+          "$button_text": "report_buildplate.details.unselected",
+
+          "$dropdown_content_panel_size": [ "100%", "100%c" ],
+          "$dropdown_content_panel_offset": [ 0, 2 ],
+          "$dropdown_button_content": "genoa_report_buildplate.issue_details_dropdown_button_content",
+          "$dropdown_name": "report_buildplate_details",
+          "$dropdown_content": "genoa_report_buildplate.issue_details_dropdown_content",
+          "$locked_control": "genoa_report_buildplate.locked_issue_details_button",
+          "$use_scrolling": false,
+          "size": [ 351, 48 ],
+          "bindings": [
+            {
+              "binding_name": "(not #details_dropdown_option_locked)",
+              "binding_name_override": "#enabled"
+            }
+          ]
+        }
+      },
+      {
+        "padding_2_1": {
+          "type": "panel",
+          "size": [ 0, 16 ]
+        }
+      },
+      {
+        "comment_header": {
+          "type": "label",
+          "size": [ 351, 33 ],
+          "font_type": "MinecraftSeven",
+          "override_height": 24,
+          "text": "report_buildplate.comments.header"
+        }
+      },
+      {
+        "comment_box@common.multiline_text_edit_box": {
+          "constrain_to_rect": true,
+          "$box_texture": "textures/ui/9_slice/dark_bevel_simple",
+          "$box_texture_hover": "textures/ui/9_slice/dark_bevel_simple",
+          "size": [ 351, 195 ],
+          "$text_offset": [ 10, 10 ],
+          "$text_edit_clipping_panel_size": [ 340, 195 ],
+          "$text_edit_box_label_size": [ 340, 195 ],
+          "max_length": 250,
+          "$text_edit_box_label_anchor_point|default": "top_right",
+          "$place_holder_text": "report_buildplate.comments.default_text_value",
+          "$font_type": "smooth",
+          "$font_override_height": 18,
+          "$place_holder_text_color": "$genoa_report_place_holder_text_color"
+        }
+      },
+      {
+        "padding_3": {
+          "type": "panel",
+          "size": [ "100%", "fill" ]
+        }
+      },
+      {
+        "report_button@genoa_common.button": {
+          "size": [ 351, 50 ],
+          "layer": 5,
+          "$button_content": "genoa_report_buildplate.report_buildplate_button",
+          "$locked_control": "genoa_report_buildplate.disabled_report_buildplate_button",
+          "$pressed_button_name": "button.confirm_report_buildplate",
+          "$background_style": "image",
+          "$button_background_image_texture": "textures/ui/button_confirm",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "$shadow_style": "soft_large",
+          "sound_name": "inmenu.general.button",
+          "bindings": [
+            {
+              "binding_name": "#reason_selected",
+              "binding_name_override": "#enabled"
+            }
+          ]
+        }
+      },
+      {
+        "padding_4": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      },
+      {
+        "cancel@genoa_common.button": {
+          "$button_content": "genoa_common.button_content_text",
+          "$button_font_type": "MinecraftTen",
+          "$button_font_height": 28,
+          "$background_style": "color",
+          "$button_text_color": "white",
+          "$pressed_button_name": "button.exit",
+          "$button_text": "gui.cancel",
+          "$background_color": "$genoa_modal_button_color_cancel",
+          "sound_name": "panel.collapse.button",
+          "size": [ 351, 50 ]
+        }
+      },
+      {
+        "filler_temp": {
+          "type": "panel",
+          "size": [ "100%", 48 ]
+        }
+      }
+    ]
+  },
+
+  "report_buildplate_button": {
+    "type": "label",
+    "font_type": "MinecraftTen",
+    "override_height": 28,
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "text": "report_buildplate.report"
+  },
+
+  "disabled_report_buildplate_button@genoa_common.default_button_content": {
+    "propagate_alpha": true,
+    "alpha": 0.5,
+    "$shadow_enabled": false,
+    "$soft_shadow_enabled": false,
+    "$glow_enabled": false,
+    "$shadow_style": "none"
+  },
+
+  "white_close_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "size": [ 24, 24 ],
+    "texture": "textures/ui/white_close"
+  },
+
+  "report_label_theme@genoa_common.button": {
+    "$pressed_button_name": "unset_button_name",
+    "$button_content_anchor_to": "left_middle",
+    "$button_content_anchor_from": "left_middle",
+    "$button_content_offset": [ 10, 0 ],
+    "$button_content": "genoa_common.button_content_text",
+    "$button_font_type": "MinecraftTen",
+    "$background_style": "color",
+    "$background_color": "$genoa_button_color",
+    "$button_text_color": "$genoa_settings_button_text_color",
+    "$button_font_height": 25,
+    "$glow_style": "white",
+    "$genoa_button_setting_binds|default": [],
+    "bindings": "$genoa_button_setting_binds",
+    "size": [ 351, 50 ]
+  },
+
+  "issue_reason_dropdown_button_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "arrow@genoa_common.collapse_icon": {
+          "size": [ 24, 24 ],
+          "offset": [ -12, 0 ],
+          "anchor_to": "right_middle",
+          "anchor_from": "right_middle"
+        }
+      },
+      {
+        "closed": {
+          "type": "label",
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "override_height": 25,
+          "font_type": "MinecraftTen",
+          "color": "$genoa_settings_button_text_color",
+          "offset": [ 10, 0 ],
+          "text": "#report_issue_label",
+          "bindings": [
+            {
+              "binding_name": "(not $dropdown_opened_binding_name)",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_name": "#report_issue_label"
+            }
+          ]
+        }
+      },
+      {
+        "opened": {
+          "type": "label",
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "override_height": 25,
+          "font_type": "MinecraftTen",
+          "color": "$genoa_settings_button_text_color",
+          "offset": [ 10, 0 ],
+          "text": "#report_issue_label",
+          "bindings": [
+            {
+              "binding_name": "$dropdown_opened_binding_name",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_name": "#report_issue_label"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "issue_reason_dropdown_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "$glow_enabled": false,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      },
+      {
+        "harassment@genoa_report_buildplate.report_dropdown_option": {
+          "$dropdown_option_selected_name": "#harassment_selected",
+          "$pressed_button_name": "button.reason.harassment",
+          "$button_text": "report_buildplate.reason.harassment"
+        }
+      },
+      {
+        "offensiveContent@genoa_report_buildplate.report_dropdown_option": {
+          "$dropdown_option_selected_name": "#offensiveContent_selected",
+          "$pressed_button_name": "button.reason.offensiveContent",
+          "$button_text": "report_buildplate.reason.offensiveContent"
+        }
+      },
+      {
+        "illegalActivities@genoa_report_buildplate.report_dropdown_option": {
+          "$dropdown_option_selected_name": "#illegalActivities_selected",
+          "$pressed_button_name": "button.reason.illegalActivities",
+          "$button_text": "report_buildplate.reason.illegalActivities"
+        }
+      },
+      {
+        "other_option@genoa_report_buildplate.report_dropdown_option": {
+          "$dropdown_option_selected_name": "#other_selected",
+          "$pressed_button_name": "button.reason.other",
+          "$button_text": "report_buildplate.reason.other"
+        }
+      }
+    ]
+  },
+
+  "locked_issue_details_button@genoa_common.default_button_content": {
+    "propagate_alpha": true,
+    "alpha": 0.5,
+    "$shadow_enabled": false,
+    "$soft_shadow_enabled": false,
+    "$glow_enabled": false,
+    "$shadow_style": "none"
+  },
+
+  "issue_details_dropdown_button_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "arrow@genoa_common.collapse_icon": {
+          "size": [ 24, 24 ],
+          "offset": [ -12, 0 ],
+          "anchor_to": "right_middle",
+          "anchor_from": "right_middle"
+        }
+      },
+      {
+        "closed": {
+          "type": "label",
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "override_height": 25,
+          "font_type": "MinecraftTen",
+          "color": "$genoa_settings_button_text_color",
+          "offset": [ 10, 0 ],
+          "text": "#report_details_label",
+          "bindings": [
+            {
+              "binding_name": "(not $dropdown_opened_binding_name)",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_name": "#report_details_label"
+            }
+          ]
+        }
+      },
+      {
+        "opened": {
+          "type": "label",
+          "anchor_to": "left_middle",
+          "anchor_from": "left_middle",
+          "override_height": 25,
+          "font_type": "MinecraftTen",
+          "color": "$genoa_settings_button_text_color",
+          "offset": [ 10, 0 ],
+          "text": "#report_details_label",
+          "bindings": [
+            {
+              "binding_name": "$dropdown_opened_binding_name",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_name": "#report_details_label"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "issue_details_dropdown_content": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "size": [ "100%", "100%c" ],
+    "$glow_enabled": false,
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ "100%", 10 ]
+        }
+      },
+      {
+        "grid@genoa_report_buildplate.issue_details_dropdown_grid_content": {
+
+        }
+      }
+    ]
+  },
+
+  "issue_details_dropdown_grid_content": {
+    "type": "grid",
+    "size": [ "100%", "100%c" ],
+    "layer": 1,
+    "grid_item_template": "genoa_report_buildplate.details_dropdown_option",
+    "grid_dimension_binding": "#details_grid_dimension",
+    "collection_name": "details_collection",
+    "$collection_name": "details_collection",
+    "bindings": [
+      {
+        "binding_name": "#details_grid_dimension",
+        "binding_type": "global"
+      }
+    ]
+  },
+
+  "details_dropdown_option": {
+    "type": "panel",
+    "size": [ 351, 50 ],
+    "layer": 1,
+    "$button_font_type": "MinecraftTen",
+    "$background_style": "image",
+    "$button_font_height": 25,
+    "$glow_style": "white",
+    "$pressed_button_name": "button.details_selected",
+    "$button_text_binding_type": "collection",
+    "$button_binding_condition": "visible",
+    "$button_text_collection_name": "$collection_name",
+    "$button_text": "#report_details_text",
+    "$button_content" : "genoa_common.button_content_text_bindable",
+    "$button_content_anchor_to": "left_middle",
+    "$button_content_anchor_from": "left_middle",
+    "$button_content_offset": [ 10, 0 ],
+    "controls": [
+      {
+        "selected@genoa_common.button": {
+          "$button_text_color": "white",
+          "$button_background_image_texture": "textures/ui/gradients/button_option_selected",
+          "$bevel_texture": "textures/ui/slot_bevel_simple",
+          "sound_name": "inmenu.child.small.button",
+          "bindings": [
+            {
+              "binding_name": "#details_dropdown_option_selected",
+              "binding_collection_name": "$collection_name",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_collection_name": "$collection_name",
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      },
+      {
+        "unselected@genoa_common.button": {
+          "$button_background_image_texture": "textures/ui/gradients/button_option",
+          "$button_text_color": "$genoa_settings_button_text_color",
+          "sound_name": "inmenu.child.small.button",
+          "bindings": [
+            {
+              "binding_name": "(not #details_dropdown_option_selected)",
+              "binding_collection_name": "$collection_name",
+              "binding_name_override": "#visible"
+            },
+            {
+              "binding_collection_name": "$collection_name",
+              "binding_type": "collection_details"
+            }
+          ]
+        }
+      }
+
+    ]
+  },
+
+  "report_dropdown_option": {
+    "type": "panel",
+    "size": [ 351, 50 ],
+    "$button_font_type": "MinecraftTen",
+    "$background_style": "image",
+    "$button_font_height": 25,
+    "$glow_style": "white",
+    "$button_text_color": "$genoa_settings_button_text_color",
+    "$button_content" : "genoa_common.button_content_text",
+    "$button_content_anchor_to": "left_middle",
+    "$button_content_anchor_from": "left_middle",
+    "$button_content_offset": [ 10, 0 ],
+    "controls": [
+      {
+        "selected@genoa_common.button": {
+          "$button_text_color": "white",
+          "$button_background_image_texture": "textures/ui/gradients/button_option_selected",
+          "$bevel_texture": "textures/ui/slot_bevel_simple",
+          "sound_name": "inmenu.child.small.button",
+          "bindings": [
+            {
+              "binding_name": "$dropdown_option_selected_name",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "unselected@genoa_common.button": {
+          "$button_background_image_texture": "textures/ui/gradients/button_option",
+          "sound_name": "inmenu.child.small.button",
+          "bindings": [
+            {
+              "binding_name": "(not $dropdown_option_selected_name)",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+
+    ]
+  }
+
+}

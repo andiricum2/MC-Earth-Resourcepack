@@ -1,0 +1,56 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.furnace_golem.move": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "move": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            }
+          ],
+          "transitions": [
+            { "attack": "variable.attack_animation_tick > 0.0" },
+            { "flower": "variable.offer_gift_tick" },
+            { "summon": "variable.summon" }
+          ]          
+        },
+        "attack": {
+          "animations": [ { "attack": [] } ],
+          "transitions": [
+            { "default": "variable.attack_animation_tick <= 0.0" }
+          ]
+        },
+        "flower": {
+          "animations": [ { "flower": [] } ],
+          "transitions": [
+            { "attack": "variable.attack_animation_tick > 0.0" },
+            { "default": "variable.offer_gift_tick <= 0.0" }
+          ]
+        },
+        "summon": {
+          "animations": [ { "summon": [] } ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ],
+          "on_exit": [
+            "variable.summon = 0;"
+          ]
+        }
+      }
+    },
+    "controller.animation.look_at": {
+      "states": {
+        "default": {
+          "animations": [{ "look_at_target": [] }  ]        
+        }
+      }
+    }    
+  }
+}

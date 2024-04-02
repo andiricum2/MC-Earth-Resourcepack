@@ -1,0 +1,49 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:cluck_shroom",
+      "textures": {
+        "default": "mobs/chicken/cluck_shroom/cluck_shroom"
+      },
+      "materials": {
+        "default": "entity",
+        "mushrooms": "entity_alphatest",
+        "legs": "chicken_legs"
+      },
+      "geometry": 
+      {
+        "default": "geometry.genoa.cluck_shroom"
+      },
+      "animations": {
+        "move": "animation.chicken.move",
+        "general": "animation.chicken.general",
+        "look_at_target": "animation.common.look_at_target",
+        "baby_transform": "animation.chicken.baby_transform",
+        "blink": "controller.animation.shared_mob.blink"
+      },
+      "scripts": {
+        "animate": [
+          "general",
+          { "move": "query.modified_move_speed" },
+          "look_at_target",
+          { "baby_transform": "query.is_baby" },
+          "blink"
+        ],
+        "initialization": [ 
+          "variable.last_blink_time = 0;",
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.max_blink_time = 0.2;",
+          "variable.min_blink_rest = 3;",
+          "variable.max_blink_rest = 40;"
+        ]
+      },
+      "render_controllers": [ "controller.render.cluck_shroom" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 55
+      }
+    }
+  }
+}

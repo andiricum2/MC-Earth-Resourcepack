@@ -1,0 +1,35 @@
+{
+  "managed_screen_name": "Adventure Crystals Screen",
+  "version": 1,
+
+  "animations": [
+    {
+      "control": "OOBE Arrow",
+      "animation_name": "callout_03",
+      "controller_name": "simple_enter_looping"
+    },
+    {
+      "controls": "(Genoa Adventure Crystals Item Grid).children",
+      "animation_name": "inventory_slot",
+      "controller_name": "no_hover_button_group",
+
+      "control_layers": {
+        "Text": "Stack Count",
+        "durability": "Durability_Bar",
+        "item": "Icon",
+        "frame_selected": "Slot Selected",
+        "slot": "Slot"
+      }
+    },
+    {
+      "control": "Adventure Crystal Parent",
+      "animation_name": "crystal_float_activate",
+      "controller_name": "crystal_enter_loop_activate_controller",
+
+      "control_layers": {
+        "target_asset_crystal_icon": "Adventure Crystal Image",
+        "target_asset_glow": "Adventure Crystal Glow"
+      }
+    }
+  ]
+}

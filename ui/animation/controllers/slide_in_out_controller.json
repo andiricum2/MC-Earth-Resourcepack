@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "controller": "single",
+
+  "states": {
+    "Enter": {
+      "animation": "Enter",
+      "properties": [ "selected" ]
+    },
+
+    "Exit": {
+      "animation": "Exit",
+      "properties": [ "!selected" ],
+      "default": true
+    }
+  }
+}

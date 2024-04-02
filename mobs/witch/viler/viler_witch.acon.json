@@ -1,0 +1,39 @@
+{
+  "format_version": "1.8.0",
+  "animation_controllers": {
+    "controller.animation.viler_witch.general": {
+      "states": {
+        "default": {
+          "parameters": [ "query.modified_move_speed" ],
+          "animations": [
+            {
+              "move": [
+                {
+                  "0.0": 0.0,
+                  "1.0": 1.0
+                }
+              ]
+            },
+            { "witch_arms": [] },
+            { "witch_nose": [] },
+            { "look_at_target": [] }
+          ],
+          "transitions": [
+            { "cast": "variable.cast_preparing" }
+          ]
+        },
+        "cast": {
+          "animations": [
+            { "cast": [] }
+          ],
+          "transitions": [
+            { "default": "query.any_animation_finished" }
+          ],
+          "on_exit": [
+            "variable.cast_preparing = 0;"
+          ]
+        }
+      }
+    }
+  }
+} 

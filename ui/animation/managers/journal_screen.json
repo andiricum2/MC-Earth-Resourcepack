@@ -1,0 +1,79 @@
+{
+  "managed_screen_name": "Journal Screen",
+  "version": 2,
+
+  "animations": [
+    {
+      "controls": "(Rewards Bar).children",
+      "animation_name": "Collect_Items/collect_item_only",
+      "controller_name": "collect_items_controller",
+      "control_layers": {
+        "item": "Reward Icon"
+      }
+    },
+    {
+      "controls": "(Collect Button Loop)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop_always",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "controls": "(Category Factory).(Item Grid).(Grid Item)",
+      "animation_name": "button_press_system",
+      "controller_name": "simple_click_depress_controller",
+      "control_layers": {
+        "button_system.png": "Item Icon"
+      }
+    },
+    {
+      "controls": "(Journal Details Item)",
+      "animation_name": "journal_details_float",
+      "controller_name": "simple_looping",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    },
+
+    // Particle effects for stamping animation
+    {
+      // rare rarity
+      "controls": "(New Items Category).(Item Grid).(Grid Item).(Rare Particles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+      "position_offset": [ 0, 45 ],
+      "properties": {
+        "Sparkle_Fire_01_Color": 4284272102 //ff5ccde6
+      }
+    },
+    {
+      // epic rarity
+      "controls": "(New Items Category).(Item Grid).(Grid Item).(Epic Particles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+      "position_offset": [ 0, 45 ],
+      "properties": {
+        "Sparkle_Fire_01_Color": 4289757183 //ffb07fff
+      }
+    },
+    {
+      // legendary rarity
+      "controls": "(New Items Category).(Item Grid).(Grid Item).(Legendary Particles)",
+      "animation_name": "VFX_Components/Sparkle_Fire_01",
+      "controller_name": "simple_looping",
+      "position_offset": [ 0, 45 ],
+      "properties": {
+        "Sparkle_Fire_01_Color": 4294952704 //ffffc700
+      }
+    },
+    {
+      "control": "Exit Button",
+      "animation_name": "entice_scale_square",
+      "controller_name": "entice_button_loop_controller",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    }
+  ]
+}

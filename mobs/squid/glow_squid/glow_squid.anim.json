@@ -1,0 +1,41 @@
+{
+  "format_version": "1.8.0",
+  "animations": {
+    //@GENOA - rotate the squid on the buildplate preview in the way that it rotates in game
+    "animation.glow_squid.preview_rotate": {
+      "loop": false,
+      "bones": {
+        "root": { "rotation": [ "variable.is_buildplate_preview ? -90.0 : 0.0", 0.0, 0.0 ] }
+      }
+    },
+    "animation.glow_squid.move": {
+      "anim_time_update": "query.modified_distance_moved",
+      "loop": true,
+      "bones": {
+        "body": { "position": [ 0.0, "query.is_in_water ? 0.0 : (query.is_baby ? 3.2 : 6.4)", 0.0 ] },
+        "tentacle1": { "rotation": [ "variable.squid.tentacle_angle - this", "90.0 - this", 0.0 ] },
+        "tentacle2": { "rotation": [ "variable.squid.tentacle_angle - this", "45.0 - this", 0.0 ] },
+        "tentacle3": { "rotation": [ "variable.squid.tentacle_angle - this", "0.0 - this", 0.0 ] },
+        "tentacle4": { "rotation": [ "variable.squid.tentacle_angle - this", "-45.0 - this", 0.0 ] },
+        "tentacle5": { "rotation": [ "variable.squid.tentacle_angle - this", "-90.0 - this", 0.0 ] },
+        "tentacle6": { "rotation": [ "variable.squid.tentacle_angle - this", "-135.0 - this", 0.0 ] },
+        "tentacle7": { "rotation": [ "variable.squid.tentacle_angle - this", "-180.0 - this", 0.0 ] },
+        "tentacle8": { "rotation": [ "variable.squid.tentacle_angle - this", "-225.0 - this", 0.0 ] }
+      }
+    },
+    "animation.glow_squid.rotate": {
+      "anim_time_update": "query.modified_distance_moved",
+      "loop": true,
+      "bones": {
+        // @GENOA - To maintain squid behavior without the ability to specify rotation order,
+        // body must be a child of a root bone that is animated separately.
+        "root": {
+          "rotation": [ "query.target_x_rotation", "180 - this", 0.0 ]
+        },
+        "body": {
+          "rotation": [ 0.0, "variable.squid.swim_rotation", 0.0 ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "format_version": "1.8.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:chest_gift_tappable_map",
+      "min_engine_version": "1.8.0",
+      "materials": {
+        "default": "genoa_map_actor_alphatest",
+        "outline": "genoa_map_actor_outline"
+      },
+      "textures": {
+        "default": "tappables/chest_gift/chest_rare"
+      },
+      "geometry": {
+        "default": "geometry.chest_gift_tappable_map"
+      },
+      "animations": {
+        "tapped": "animation.chest.tappable.tapped",
+        "map_spawn": "animation.chest.tappable.mapSpawn",
+        "map_despawn": "animation.chest.tappable.mapDespawn",
+        "award_transition": "animation.chest.tappable.awardTransition",
+        "idle": "animation.chest.tappable.mapIdle"
+      },
+      "animation_controllers": [
+        { "tappable": "controller.animation.tappable" },
+        { "idle_controller" : "controller.animation.tappable.map.idle"}
+      ],
+      "render_controllers": [ "controller.render.tappable" ]
+    }
+  }
+} 
+

@@ -1,0 +1,61 @@
+{
+  "format_version": "1.10.0",
+  "minecraft:client_entity": {
+    "description": {
+      "identifier": "genoa:mud_pig",
+      "min_engine_version": "1.8.0",
+      "materials": { "default": "entity_alphatest" },
+      "textures": {
+        "default": "mobs/pig/mud_pig/mud_pig_dried",
+        "muddy": "mobs/pig/mud_pig/mud_pig"
+      },
+      "geometry": {
+        "default": "geometry.genoa.mud_pig",
+        "muddy": "geometry.genoa.mud_pig"
+      },
+      "animations": {
+        "walk": "animation.mud_pig.walk",
+        "look_at_target": "animation.common.look_at_target",
+        "roll_in_mud": "animation.mud_pig.roll_in_mud",
+        "hop_into_mud": "animation.mud_pig.hop_into_mud",
+        "celebration_hop": "animation.mud_pig.celebration_hop",
+        "seek_mud": "animation.mud_pig.seek_mud",
+        "move": "controller.animation.mud_pig.move",
+        "blink": "controller.animation.mud_pig.blink",
+        "drip_mud": "controller.animation.mud_pig.drip"
+      },
+      "scripts": {
+        "initialization": [
+          "variable.muddy = 0;",
+          "variable.mud_rolling = 0;",
+          "variable.seek_mud = 0;",
+          "variable.hop_into_mud = 0;",
+          "variable.celebrate_mud = 0;",
+          "variable.is_muddy = 0;",
+          "variable.is_blinking = 0;",
+          "variable.return_from_blink = 0;",
+          "variable.last_blink_time = 0;"
+        ],
+        "animate": [
+          "move",
+          "blink",
+          "drip_mud"
+        ]
+      },
+      "particle_effects": {
+        "mud_splash": "genoa:mud_pig_splash",
+        "mud_drip": "genoa:mud_pig_drip"
+      },
+      "sound_effects": {
+        "wallow": "mob.mud_pig.wallow",
+        "celebration": "mob.mud_pig.bloom",
+        "into_mud": "mob.mud_pig.bloom"
+      },
+      "render_controllers": [ "controller.render.mud_pig" ],
+      "spawn_egg": {
+        "texture": "spawn_egg",
+        "texture_index": 52
+      }
+    }
+  }
+}

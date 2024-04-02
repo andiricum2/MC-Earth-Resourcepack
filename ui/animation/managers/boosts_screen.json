@@ -1,0 +1,61 @@
+{
+  "managed_screen_name": "Boosts Screen",
+  "version": 2,
+
+  "animations": [
+    {
+      "controls": "(Boosts Panel)",
+      "animation_name": "job_start_transition",
+      "controller_name": "start_making_controller",
+      "control_layers": {
+        "item": "Boost Icon"
+      }
+    },
+    {
+      "controls": "(Boost Icon Parent)",
+      "animation_name": "boost_remove",
+      "controller_name": "simple_looping",
+      "control_layers": {
+        "boost_item": "Boost Icon Removing"
+      }
+    },
+    {
+      "controls": "(Boosts Header Panel)",
+      "animation_name": "Boost_Header_ActivationState/boosts_active",
+      "controller_name": "boost_header_activation_controller",
+      "properties": {
+        "particle_color": 4294960322, // FFFFE4C2
+        "particle_glow_color": 4294960322 // FFFFE4C2
+      },
+      "control_layers": {
+        "Origin": "this"
+      }
+    },
+    {
+      "controls": "(Gold Boost Particles)",
+      "animation_name": "twinkle_ambient_02",
+      "controller_name": "simple_looping"
+    },
+    {
+      "controls": "(Diamond Boost Particles)",
+      "animation_name": "sparkle_03",
+      "controller_name": "simple_looping"
+    },
+    {
+      "controls": "(Diamond Boost Particles)",
+      "animation_name": "hexagon_pulse_01",
+      "controller_name": "simple_looping",
+      "properties": {
+        "tint": "#0x00FFFF"
+      }
+    },
+    {
+      "controls": "(Diamond Boost Particles)",
+      "animation_name": "smoke_small_02",
+      "controller_name": "simple_looping",
+      "properties": {
+        "tint": "#0xAFFFEB"
+      }
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "managed_screen_name": "Store Screen",
+  "version": 1,
+
+  "animations": [
+    {
+      "controls": "(Background Sparkle)",
+      "animation_name": "twinkle_ambient_04",
+      "controller_name": "simple_looping",
+      "control_layers": {
+        "Origin": "this"
+      }
+    }
+  ]
+}

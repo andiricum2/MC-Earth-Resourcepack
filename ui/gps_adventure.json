@@ -1,0 +1,801 @@
+{
+  "namespace": "genoa_adventure",
+
+  "gps_adventure@genoa_common.genoa_base_screen": {
+    "$transition_time_push": 0.1,
+    "$screen_animations": [
+      "@common.screen_exit_animation_pop_fade",
+      "@common.screen_exit_animation_push_fade",
+      "@common.screen_entrance_animation_push_fade",
+      "@common.screen_entrance_animation_pop_fade"
+    ],
+    "$background_animations": "genoa_common.genoa_screen_background_anims",
+    "$use_background": false,
+    "$steal_all_input": true,
+    "$screen_content": "genoa_adventure.adventure_content",
+    "animation_name": "Adventure Screen"
+  },
+
+  "adventure_content": {
+    "type": "panel",
+    "size": [ "100%", "100%" ],
+    "controls": [
+      {
+        "vignette": {
+          "type": "custom",
+          "size": [ "100%", "100%"],
+          "renderer": "vignette",
+          "vignette_scene": "genoa:adventure_preview_vignette",
+          "property_bag": {
+            "vignette_skins": "$vignette_skins",
+            "entity_overrides": "$entity_overrides"
+          }
+        }
+      },
+      {
+        "exit@genoa_common.close_button": {
+          "animation_name": "Adventure Close Button",
+          "size": [ 60, 34 ],
+          "offset": [ 0, 47 ],
+          "anchor_from": "top_right",
+          "anchor_to": "top_right",
+          "$glow_enabled": false,
+          "$shadow_enabled": false,
+          "$button_content": "genoa_common.white_close_icon",
+          "$background_style": "color",
+          "$background_alpha": 0,
+          "$bevel_alpha": 0,
+          "$sound_name": "submenu.close.button",
+          "alpha": 0,
+          "propagate_alpha": true
+        }
+      },
+      { "adventure_out_of_range_notification@genoa_adventure.adventure_out_of_range": {} },
+      { "adventure_running_out_of_time_notification@genoa_adventure.adventure_running_out_of_time": {} },
+      { "top_info_panel@genoa_adventure.top_adventure_panel": {} },
+      { "bottom_info_panel@genoa_adventure.bottom_adventure_panel": {} },
+      { "fading_selection_info@genoa_common.fading_selection_info": {} }
+    ]
+  },
+
+  "top_adventure_panel": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "anchor_from": "top_middle",
+    "anchor_to": "top_middle",
+    "use_new_layout": true,
+    
+    "size": [ "100%", 420 ],
+    "controls": [
+      {
+        "pad_0": {
+          "type": "panel",
+          "size": [ 0, 51 ]
+        }
+      },
+      {
+        "header": {
+          "type": "label",
+          "font_type": "MinecraftTen",
+          "override_height": 25,
+          "color": "$genoa_adventure_header_text_color",
+          "text": "adventure.details_text",
+          "animation_name": "Adventure Title",
+          "alpha": 0
+        }
+      },
+
+      {
+        "pad_1": {
+          "type": "panel",
+          "size": [ 0, 22 ],
+
+          //only display the adventure ID in non-publish modes. Putting the adventure ID in the padding here so that
+          //it fits nicely into the stack panel and we dont have to worry about enabling/disabling it based on if we are in publish or not
+          "controls": [
+            {
+              "adventure_id": {
+                "type": "label",
+                "font_type": "MinecraftTen",
+                "override_height": 14,
+                "color": "$genoa_adventure_header_text_color",
+                "text": "#adventure_ID",
+                "bindings": [
+                  {
+                    "binding_name": "#adventure_ID"
+                  }
+                ],
+                "controls": [
+                  {
+                    "copy_adventure_id_button": {
+                      "type": "input_panel",
+                      "size": [ "100%", "100%" ],
+                      "sounds": [],
+                      "sound_name": "inmenu.general.button",
+                      "button_mappings": [
+                        {
+                          "from_button_id": "button.menu_select",
+                          "to_button_id": "button.copy_adventure_id",
+                          "mapping_type": "pressed"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "icons_stack_panel": {
+          "type": "stack_panel",
+          "orientation": "horizontal",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "size": [ "100%c", 67 ],
+          "controls": [
+            {
+              "adventure_status_icon@genoa_adventure.icon_with_tail": {
+                "$icon_texture": "#adventure_status_icon_texture",
+                "$button_control": "genoa_adventure.adventure_status_icon_button",
+                "$tool_tip_tail_control": "genoa_adventure.status_tool_tip_tail",
+                "bindings": [
+                  {
+                    "binding_name": "#has_adventure_status",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "icon_padding_2": {
+                "type": "panel",
+                "size": [ 12, "100%" ],
+                "bindings": [
+                  {
+                    "binding_name": "#has_adventure_status",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            },
+            {
+              "adventure_time_remaining_icon@genoa_adventure.icon_with_tail": {
+                "$button_control": "genoa_adventure.adventure_time_remaining_icon_button",
+                "$tool_tip_tail_control": "genoa_adventure.time_remaining_tool_tip_tail",
+                "visible": false,
+                "bindings": [
+                  {
+                    "binding_name": "#timer_data_visible",
+                    "binding_name_override": "#visible"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "adventure_tool_tip@genoa_common.tool_tip": {
+          "size": [ 330, 120 ],
+          "$tool_tip_text_size": [ 300, 50 ],
+          "$glow_enabled": false,
+          "$tool_tip_text_bottom_binding_condition": "always_when_visible",
+          "offset": [ 0, 15 ],
+          "layer": 20
+        }
+      }
+    ]
+  },
+
+  "bottom_adventure_panel": {
+    "type": "stack_panel",
+    "orientation": "vertical",
+    "anchor_from": "bottom_middle",
+    "anchor_to": "bottom_middle",
+    "size": [ "100%", 274 ],
+    "controls": [
+      {
+        "report_panel": {
+          "type": "panel",
+          "size": [ "100%", 46 ],
+          "controls": [
+            {
+              "report_button@genoa_common.button": {
+                "animation_name": "Adventure Report Button",
+                "anchor_to": "bottom_right",
+                "anchor_from": "bottom_right",
+                "offset": [ -12, 0 ],
+                "size": [ 46, 46 ],
+                "$pressed_button_name": "button.report",
+                "$button_content": "genoa_adventure.report_icon",
+                "$background_style": "color",
+                "$background_color": "$genoa_button_color",
+                "$glow_style": "white",
+                "sound_name": "inmenu.child.small.button",
+                "alpha": 0,
+                "propagate_alpha": true,
+                "ignored": "(not $is_reportable)"
+              }
+            }
+          ]
+        }
+      },
+
+      {
+        "adventure_panel": {
+          "type": "stack_panel",
+          "orientation": "vertical",
+          "anchor_to": "top_middle",
+          "anchor_from": "top_middle",
+          "use_new_layout": true,
+          "size": [ "100%", "fill" ],
+          "controls": [
+            {
+              "bottom_panel@genoa_adventure.main_adventure_panel": {
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "main_adventure_panel": {
+    "type": "stack_panel",
+    "size": [ "100%", "fill" ],
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "pad_4": {
+          "type": "panel",
+          "size": [ 0, 15 ]
+        }
+      },
+      {
+        "play_button": {
+          "animation_name": "Adventure Play Button",
+          "type": "panel",
+          "size": [ 350, 60 ],
+          "alpha": 0,
+          "propagate_alpha": true,
+          "controls": [
+            {
+              "arrow_anim@genoa_common.oobe_arrow": {
+                "$binding_name": "#oobe_arrow_enabled",
+                "offset": [ 0, 20 ]
+              }
+            },
+            {
+              "enabled_play_button@genoa_adventure.play_adventure_button": {
+                "size": [ 350, 60 ],
+                "layer": 5,
+                "$shadow_style": "soft_large",
+                "sound_name": "adventure.enter.button",
+                "bindings": [
+                  {
+                    "binding_name": "#adventure_playable",
+                    "binding_name_override": "#enabled",
+                    "binding_condition": "always"
+                  },
+                  {
+                    "binding_name": "#adventure_playable",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            },
+            {
+              "disabled_play_button@genoa_adventure.play_adventure_button": {
+                "size": [ 350, 60 ],
+                "layer": 6,
+                "$font_alpha": 0.5,
+                "$shadow_enabled": false,
+                "$button_content_shadow_enabled": false,
+                "$glow_enabled": false,
+                "$background_alpha": 0.5,
+                "$bevel_alpha": 0.5,
+                "sound_name": "cancel.button",
+                "bindings": [
+                  {
+                    "binding_name": "(not #adventure_playable)",
+                    "binding_name_override": "#enabled",
+                    "binding_condition": "always"
+                  },
+                  {
+                    "binding_name": "(not #adventure_playable)",
+                    "binding_name_override": "#visible",
+                    "binding_condition": "always"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_5": {
+          "type": "panel",
+          "size": [ 0, 11 ]
+        }
+      },
+      {
+        "adventure_hotbar_title@genoa_common.divider_label": {
+          "size": [ 350, 18 ],
+          "$font_type": "MinecraftSeven",
+          "$text_height": 18,
+          "$text": "adventure.hotbar",
+          "$text_alignment": "left",
+          "alpha": 0,
+          "propagate_alpha": true,
+          "animation_name": "Adventure Hotbar Description"
+        }
+      },
+      {
+        "pad_3": {
+          "type": "panel",
+          "size": [ 0, 20 ]
+        }
+      },
+      {
+        "inventory_hot_bar_container": {
+          "type": "panel",
+          "size": [ 350, 50 ],
+          "animation_name": "Genoa Hotbar Container",
+          "alpha": 0,
+          "propagate_alpha": true,
+          "controls": [
+            {
+              "hotbar_bevel": {
+                "layer": 7,
+                "type": "image",
+                "texture": "textures/ui/9_slice/tile_bevel_bundle",
+                "bilinear": true,
+                "size": [ 350, 67 ]
+              }
+            },
+            {
+              "hotbar_background@genoa_common.white": {
+                "layer": 6,
+                "size": [ 350, 67 ]
+              }
+            },
+            {
+              "inventory_hot_bar@genoa_inventory_common.hotbar_content": {
+                "layer": 8,
+                "anchor_to": "top_middle",
+                "anchor_from": "top_middle",
+                "size": [ 332, 32 ]
+              }
+            },
+            {
+              "soft_shadow": {
+                "layer": 6,
+                "type": "image",
+                "texture": "textures/ui/9_slice/shadow_simple",
+                "bilinear": true,
+                "offset": [ 1, 1 ],
+                "size": [ 362, 75 ]
+              }
+            },
+            {
+              "hotbar_empty@genoa_adventure.hotbar_empty_panel": {
+                "layer": 12
+              }
+            }
+          ]
+        }
+      },
+      {
+        "pad_x": {
+          "type": "panel",
+          "size": [ 0, 15 ]
+        }
+      },
+      {
+        "be_nice_man": {
+          "animation_name": "Adventure Be Nice",
+          "type": "label",
+          "size": [ 333, 40 ],
+          "font_type": "smooth",
+          "override_height": 16,
+          "text_alignment": "center",
+          "color": [ 1.0, 1.0, 1.0 ],
+          "alpha": 0,
+          "text": "adventure.be_nice"
+        }
+      },
+      {
+        "pad_6": {
+          "type": "panel",
+          "size": [ 0, 5 ]
+        }
+      }
+    ]
+  },
+
+  "adventure_out_of_range@genoa_common.default_button_content": {
+    "layer": 25,
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "size": [ 351, 70 ],
+    "offset": [ 0, 182 ],
+    "$button_font_type": "smooth",
+    "$button_font_height": 17,
+    "$background_style": "color",
+    "$background_color": "$genoa_tool_tip_background_font_color",
+    "$glow_style": "white",
+    "$bevel_texture": "textures/ui/tile_bevel_dark",
+    "$button_content": "genoa_adventure.adventure_out_of_range_panel",
+    "$adventure_out_of_range": "#adventure_out_of_range",
+    "bindings": [
+      {
+        "binding_name": "#adventure_out_of_range",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "adventure_out_of_range_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "anchor_to": "center",
+    "anchor_from": "center",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "warning_icon": {
+          "type": "image",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "texture": "textures/ui/adventures/alert_2",
+          "size": [ 36, 36 ]
+        }
+      },
+      {
+        "padding": {
+          "type": "panel",
+          "size": [ 19, 0 ]
+        }
+      },
+      {
+        "out_of_range_label": {
+          "size": [ 268, 39 ],
+          "type": "label",
+          "font_type": "smooth",
+          "override_height": 19,
+          "text": "adventure.location_out_of_range"
+        }
+      }
+    ]
+  },
+
+  "adventure_running_out_of_time@genoa_common.default_button_content": {
+    "layer": 30,
+    "anchor_to": "top_middle",
+    "anchor_from": "top_middle",
+    "size": [ 351, 70 ],
+    "offset": [ 0, 182 ],
+    "$button_font_type": "smooth",
+    "$button_font_height": 17,
+    "$background_style": "color",
+    "$background_color": "$genoa_tool_tip_background_font_color",
+    "$glow_style": "white",
+    "$bevel_texture": "textures/ui/tile_bevel_dark",
+    "$button_content": "genoa_adventure.running_out_of_time_panel",
+    "bindings": [
+      {
+        "binding_name": "#adventure_running_out_of_time",
+        "binding_name_override": "#visible",
+        "binding_condition": "always"
+      }
+    ]
+  },
+
+  "running_out_of_time_panel": {
+    "type": "stack_panel",
+    "orientation": "horizontal",
+    "anchor_to": "center",
+    "anchor_from": "center",
+    "use_new_layout": true,
+    "controls": [
+      {
+        "warning_icon": {
+          "type": "image",
+          "anchor_from": "center",
+          "anchor_to": "center",
+          "texture": "textures/ui/adventures/hourglass",
+          "size": [ 36, 36 ]
+        }
+      },
+      {
+        "padding": {
+          "type": "panel",
+          "size": [ 19, 0 ]
+        }
+      },
+      {
+        "out_of_range_label": {
+          "size": [ 268, 39 ],
+          "type": "label",
+          "font_type": "smooth",
+          "override_height": 19,
+          "text": "adventure.about_to_time_out"
+        }
+      }
+    ]
+  },
+
+  "play_adventure_button@genoa_common.button": {
+    "$button_content": "genoa_common.button_content_text",
+    "$button_font_type": "MinecraftTen",
+    "$button_font_height": 40,
+    "$button_text": "adventure.play",
+    "$pressed_button_name": "button.play_adventure",
+    "$background_style": "image",
+    "$button_background_image_texture": "textures/ui/button_confirm",
+    "anchor_from": "center",
+    "anchor_to": "center"
+  },
+
+  "report_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "texture": "textures/ui/adventures/report",
+    "size": [ 36, 36 ]
+  },
+
+  "icon_with_tail": {
+    "type": "panel",
+    "size": [ 64, 64 ],
+    "$icon_texture|default": "textures/ui/adventures/adventure_pristine",
+    "$pressed_button_name": "button.tool_tip_hide",
+    "controls": [
+      {
+        "input_stealer": {
+          "type": "input_panel",
+          "layer": 20,
+          "size": [ 3000, 1000 ],
+          "button_mappings": [
+            {
+              "from_button_id": "button.menu_select",
+              "to_button_id": "$pressed_button_name",
+              "mapping_type": "pressed"
+            }
+          ],
+          "bindings": [
+            {
+              "binding_name": "#tool_tip_on",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      },
+      {
+        "$tool_tip_tail_control@$tool_tip_tail_control": {}
+      },
+      {
+        "$button_control@$button_control": {
+        }
+      }
+    ]
+  },
+
+  "adventure_time_remaining_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "size": [ 64, 64 ],
+    "texture": "textures/ui/adventures/time_remaining"
+  },
+
+  "adventure_time_remaining_icon_panel": {
+    "type": "panel",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "size": [ 64, 64 ],
+    "animation_name": "Remaining Time Icon Panel",
+    "controls": [
+      {
+        "outer_hex_bar": {
+          "type": "custom",
+          "size": [ "100%", "100%" ],
+          "renderer": "hex_gauge_renderer",
+          "layer": 15,
+          "primary_color": [ 1, 1, 1, 1 ],
+          "secondary_color": [ 0.0, 0.0, 0.0, 0.0 ],
+          "property_bag": {
+            "#outer_radius": 1.0,
+            "#inner_radius": 0.79
+          },
+          "bindings": [
+            {
+              "binding_name": "#time_remaining",
+              "binding_name_override": "#xp_fill_level",
+              "binding_condition": "always"
+            }
+          ]
+        }
+      },
+      {
+        "icon@genoa_adventure.adventure_time_remaining_icon": {
+        }
+      }
+    ]
+  },
+
+  "adventure_time_remaining_icon_button@genoa_common.button": {
+    "animation_name": "Adventure Time Remaining Icon",
+    "$pressed_button_name": "button.time_remaining_tool_tip_toggle",
+    "$button_content": "genoa_adventure.adventure_time_remaining_icon_panel",
+    "$background_control": "genoa_common.empty",
+    "$shadow_enabled": false,
+    "$glow_enabled": false,
+    "$bevel_texture": "",
+    "sound_name": "stat.button",
+    "sound_volume": 1.0,
+    "alpha": 0,
+    "propagate_alpha": true
+  },
+
+  "time_remaining_tool_tip_tail": {
+    "anchor_to": "bottom_middle",
+    "anchor_from": "bottom_middle",
+    "type": "image",
+    "layer": 24,
+    "texture": "textures/ui/tool_tip_tail_dark",
+    "size": [ 35, 25 ],
+    "offset": [ 0, 23 ],
+    "bindings": [
+      {
+        "binding_name": "#time_remaining_tool_tip_on",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "adventure_status_icon_button@genoa_common.button": {
+    "animation_name": "Adventure Status Icon",
+    "$pressed_button_name": "button.status_tool_tip_toggle",
+    "$button_content": "genoa_adventure.adventure_status_icon",
+    "$background_control": "genoa_common.empty",
+    "$shadow_enabled": false,
+    "$glow_enabled": false,
+    "$bevel_texture": "",
+    "sound_name": "stat.button",
+    "sound_volume": 1.0,
+    "alpha": 0,
+    "propagate_alpha": true
+  },
+
+  "adventure_status_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "size": [ 64, 64 ],
+    "texture": "#adventure_status_icon_texture",
+    "bindings": [
+      {
+        "binding_name": "#adventure_status_icon_texture",
+        "binding_name_override": "#texture"
+      }
+    ],
+    "controls": [
+      {
+        "sparkles": {
+          "type": "panel",
+          "layer": 3,
+          "size": [ "100%", "100%" ],
+          "animation_name": "Pristine Sparkles",
+          "bindings": [
+            {
+              "binding_name": "#adventure_pristine",
+              "binding_name_override": "#visible"
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "status_tool_tip_tail": {
+    "anchor_to": "bottom_middle",
+    "anchor_from": "bottom_middle",
+    "type": "image",
+    "layer": 24,
+    "texture": "textures/ui/tool_tip_tail_dark",
+    "size": [ 35, 25 ],
+    "offset": [ 0, 23 ],
+    "bindings": [
+      {
+        "binding_name": "#status_tool_tip_on",
+        "binding_name_override": "#visible"
+      }
+    ]
+  },
+
+  "collapse_icon": {
+    "type": "image",
+    "anchor_from": "center",
+    "anchor_to": "center",
+    "texture": "textures/ui/collapse_icon",
+    "size": [ 24, 24 ]
+  },
+
+  "hotbar_empty_panel": {
+    "type": "panel",
+    "bindings": [
+      {
+        "binding_name": "#hotbar_empty",
+        "binding_name_override": "#visible"
+      }
+    ],
+    "controls": [
+      {
+        "background": {
+          "type": "image",
+          "anchor_to": "center",
+          "anchor_from": "center",
+          "size": [ "100%c", 30 ],
+          "texture": "textures/ui/9_slice/label_simple",
+          "alpha": 0.8,
+          "controls": [
+            {
+              "icon_and_text": {
+                "type": "stack_panel",
+                "orientation": "horizontal",
+                "anchor_to": "center",
+                "anchor_from": "center",
+                "use_new_layout": true,
+                "controls": [
+                  {
+                    "pad_0": {
+                      "type": "panel",
+                      "size": [ 6, 0 ]
+                    }
+                  },
+                  {
+                    "icon": {
+                      "type": "image",
+                      "size": [ 16, 24 ],
+                      "texture": "textures/ui/empty_hotbar_notification"
+                    }
+                  },
+                  {
+                    "pad_1": {
+                      "type": "panel",
+                      "size": [ 6, 0 ]
+                    }
+                  },
+                  {
+                    "empty_hotbar_text": {
+                      "type": "label",
+                      "size": [ "default", 15 ],
+                      "offset": [ 0, -2 ],
+                      "text": "adventure.hotbar_empty",
+                      "font_type": "MinecraftSeven",
+                      "override_height": 13,
+                      "color": "white"
+                    }
+                  },
+                  {
+                    "pad_2": {
+                      "type": "panel",
+                      "size": [ 6, 0 ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

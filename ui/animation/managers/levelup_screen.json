@@ -1,0 +1,16 @@
+{
+  "managed_screen_name": "Level Up Screen",
+  "version": 1,
+
+  "animations": [
+    {
+      "control": "Exit Button",
+      "animation_name": "button_press_confirmation",
+      "controller_name": "triggered_enter_press_controller",
+
+      "control_layers": {
+        "button": "this"
+      }
+    }
+  ]
+}

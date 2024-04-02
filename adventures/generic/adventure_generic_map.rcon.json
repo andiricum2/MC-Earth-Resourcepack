@@ -1,0 +1,49 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.adventure_generic_base": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.base",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.base" ]
+    },
+    "controller.render.adventure_generic_tree": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.tree",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.tree" ]
+    },
+    "controller.render.adventure_generic_sign": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.sign",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.sign" ]
+    },
+    "controller.render.adventure_generic_chest": {
+      "arrays": {
+        "materials": {
+          "Array.materials": [ "Material.default", "Material.outline", "Material.vignette" ]
+        }
+      },
+      "rebuild_animation_matrices": true,
+      "geometry": "Geometry.chest",
+      "materials": [ { "*": "Array.materials[variable.is_outline + variable.is_vignette]" } ],
+      "textures": [ "Texture.chest" ]
+    }
+  }
+}

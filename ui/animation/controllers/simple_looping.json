@@ -1,0 +1,11 @@
+{
+	"version": 1,
+
+  "states": {
+    "Loop": {
+      "animation": "Loop",
+      "default": true,
+      "loop": true
+    }
+  }
+}

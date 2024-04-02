@@ -1,0 +1,161 @@
+{
+  "managed_screen_name": "GPS Overlay",
+  "version": 1,
+
+  "animations": [
+    {
+      "control": "Inventory Nav Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Inventory Nav Bar Icon"
+      }
+    },
+    {
+      "control": "Friends Nav Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Friends Nav Bar Icon"
+      }
+    },
+    {
+      "control": "Adventure Crystals Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Adventure Crystals Bar Icon"
+      }
+    },
+    {
+      "control": "Code Scan Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Code Scan Bar Icon"
+      }
+    },
+    {
+      "control": "Buildplates Nav Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Buildplates Nav Bar Icon"
+      }
+    },
+    {
+      "control": "Settings Nav Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Settings Nav Bar Icon"
+      }
+    },
+    {
+      "control": "Store Nav Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Store Nav Bar Icon"
+      }
+    },
+    {
+      "control": "Map Avatar Frame",
+      "animation_name": "xp_collect/avatar_frame",
+      "controller_name": "map_avatar_frame",
+
+      "control_layers": {
+        "avatar_frame": "this"
+      }
+    },
+    {
+      "control": "Ruby Balance",
+      "animation_name": "Ruby_Reward/ruby_label_sequence",
+      "controller_name": "ruby_balance_controller",
+
+      "control_layers": {
+        "ruby.png": "Currency Icon",
+        "label.png": "this"
+      }
+    },
+    {
+      "control": "Workshop Nav Bar Button",
+      "animation_name": "button_press_primary_nav",
+      "controller_name": "nav_bar_controller",
+
+      "control_layers": {
+        "nav_icon": "Workshop Nav Bar Icon"
+      }
+    },
+    {
+      "controls": "(Collect Button Entice)",
+      "animation_name": "entice_bounce",
+      "controller_name": "entice_button_loop_always",
+      "control_layers": {
+        "button": "this"
+      }
+    },
+    {
+      "control": "OOBE Arrow",
+      "animation_name": "callout_03",
+      "controller_name": "simple_enter_looping"
+    },
+    {
+      "controls": "(Exclusive Glow Purple)",
+      "animation_name": "square_glow_02",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 12074208 // B83CE0
+      }
+    },
+    {
+      "controls": "(Exclusive Glow Blue)",
+      "animation_name": "square_glow_02",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 3984873 // 3CCDE9
+      }
+    },
+    {
+      "controls": "(Exclusive Glow Purple Small)",
+      "animation_name": "square_glow_01",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 12074208 // B83CE0
+      }
+    },
+    {
+      "controls": "(Exclusive Glow Blue Small)",
+      "animation_name": "square_glow_01",
+      "controller_name": "simple_looping",
+      "properties": {
+        "square_glow_color": 3984873 // 3CCDE9
+      }
+    },
+    {
+      "controls": "(Reward Sparkles)",
+      "animation_name": "sparkle_01",
+      "controller_name": "sparkle_node_offset"
+    },
+    {
+      "controls": "(Exclusive Animations)",
+      "animation_name": "twinkle_ambient_03",
+      "controller_name": "simple_looping"
+    },
+    {
+      "controls": "(Exclusive Animations)",
+      "animation_name": "float_01",
+      "controller_name": "simple_looping",
+      "control_layers": {
+        "target_asset": "this"
+      }
+    }
+  ]
+}

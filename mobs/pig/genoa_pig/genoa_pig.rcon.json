@@ -1,0 +1,18 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.genoa_pig": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [ "Texture.default", "Texture.saddled" ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Array.skins[query.is_saddled]" ],
+      "part_visibility": [ 
+        { "face_blink": "variable.is_blinking" },
+        { "face": "!variable.is_blinking"} ]
+    }
+  }
+}
